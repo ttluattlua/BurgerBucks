@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="BBMember">
+	<select id="allMember" 
+		resultType="bb.com.a.model.Bb_MemberDto"> 
+		SELECT SEQ, ID, PASSWORD, BDAY, NAME, PHONE, SEX,
+		MILEAGE, GRADE, EXP, DEL
+		FROM BB_MEMBER WHERE SEQ=1 
+	</select> <!-- 쿼리오케이  -->
+
+</mapper>  
+
+
+
+
+
