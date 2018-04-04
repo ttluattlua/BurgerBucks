@@ -11,6 +11,5 @@
 response.sendRedirect("./address.do"); 
 %> 
 <h2>hi!! BURGERBUCKS</h2>
-<h2>hi!! 이서원 </h2>
 </body>
 </html>
