@@ -24,7 +24,7 @@ List<Bb_AddrDto> AddrList = (List<Bb_AddrDto>)request.getAttribute("addr"); %>
 </select>
 </h3>
 
-<h2><a href="./addaddress.do"><h2>주소 추가하기</h2> </a>
+<h2><a href="./popup.do"><h2>주소 추가하기</h2> </a>
 </div>
 </body>
 </html>

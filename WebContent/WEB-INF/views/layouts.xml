@@ -18,6 +18,10 @@
 	<put-attribute name="main" value="/WEB-INF/views/addr/NewFile.jsp"/>
 </definition>
 
+<definition name="jusoPopup.tiles" extends="home.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/addr/jusoPopup.jsp"/>
+</definition>
+
 <!-- <definition name="NewFile.tiles" template="/WEB-INF/views/addr/NewFile.jsp"/>
  -->
 

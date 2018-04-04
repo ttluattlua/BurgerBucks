@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import bb.com.a.service.BbAddrService;
@@ -38,21 +39,14 @@ public class BbAddrController {
 		model.addAttribute("member", member);
 		return "NewFile.tiles";	
 	}
-	@RequestMapping(value="addaddress.do",method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="popup.do",method= {RequestMethod.GET, RequestMethod.POST})
 	public String addAddress(Model model) throws Exception {
-		logger.info("KhAddressController addressAdd");
-		List<Bb_AddrDto> AddrList= BbAddrService.allAddress();
-//		model.addAttribute("dto", dto);
-		return "NewFile1";	
+		logger.info("KhAddressController popup");
+
+		return "jusoPopup.tiles";	
 	}
 
-	@RequestMapping(value="addaddressAf.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String addAddressAf(Model model) {
-		logger.info("KhAddressController addressAddAf");
-		return "NewFile2";	
-	}
-
-
+	/*http://huistorage.tistory.com/19*/
 	
 }
 

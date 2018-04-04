@@ -10,6 +10,5 @@
 <%
 response.sendRedirect("./address.do"); 
 %> 
-<h2>hi!! BURGERBUCKS</h2>
 </body>
 </html>
