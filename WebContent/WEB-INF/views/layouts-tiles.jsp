@@ -8,44 +8,30 @@
 
 <tiles:insertAttribute name="header"/>
 
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath() %>/css/style.css"/> <!-- request.getContextPath() 이부분에 따라 어떤 뷰뜰지 결정 ?-->
- <!-- getContextPath(): Returns the portion of the request URI that indicates the context of the request. -->
 </head>
-<body>
-
-<div id="body_wrap">
-	<div id="main_wrap">
-		<div id="header_wrap">
-			<tiles:insertAttribute name="top_inc"/>
+<body style="background-color: #f3f3f3;">
+		<!--header-->
+		<div>
 			<tiles:insertAttribute name="top_menu"/>
 		</div>
 		
-		<div id="middle_wrap">
-			<div id="sidebar_wrap">
-				<tiles:insertAttribute name="left_main"/>
-			</div>		
-			
-			<div id="content_wrap">
-				<div id="content_title_wrap">
-					<div class="title">${doc_title }</div>				
-				</div>
-				<tiles:insertAttribute name="main"/>
-			</div>			
-		</div>
-		
-		<div id="footer_wrap">
-			<tiles:insertAttribute name="bottom_inc"/>		
+		<%-- <div  class="left-sidebar">
+			<tiles:insertAttribute name="left_main"/>
+		</div>		 --%>
+		<!--main-->
+		<div>
+			<tiles:insertAttribute name="main"/>
 		</div>			
-	</div>
-</div>
+		<!--footer-->
+		<div>
+			<tiles:insertAttribute name="footer"/>		
+		</div>			
 
-<script type="text/javascript">
-$(document).ready(function() {
-	$("#content_title_wrap div.title").css("background-image",
-							"url('<%=request.getContextPath() %>/image/ico_sub_sb.gif')");	
-});
 
-</script>      
+
 </body>
+
 </html>
+
+
+

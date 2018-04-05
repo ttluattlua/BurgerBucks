@@ -1,23 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
-
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
 
-	<definition name="login.tiles" template="/WEB-INF/views/login/login.jsp"></definition>
-	<definition name="regi.tiles" template="/WEB-INF/views/login/regi.jsp"></definition>
-	
-	<definition name="bbslist.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
-		<put-attribute name="common" value="/WEB-INF/views/common/common.jsp"></put-attribute>
-		<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"></put-attribute>
-		<put-attribute name="top_inc" value="/WEB-INF/views/common/top.jsp"></put-attribute> 
-		<put-attribute name="top_menu" value="/WEB-INF/views/common/top_menu.jsp"></put-attribute>
-		<put-attribute name="left_main" value="/WEB-INF/views/common/left_bbslist.jsp"></put-attribute>
-		<put-attribute name="main" value="/WEB-INF/views/bbs/bbslist.jsp"></put-attribute>
-		<put-attribute name="bottom_inc" value="/WEB-INF/views/common/bottom.jsp"></put-attribute>
-	</definition>
-	
+<!--메인-->
+<definition name="home.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
+	<put-attribute name="common" value="/WEB-INF/views/common/common.jsp"/>
+	<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>
+	<put-attribute name="top_menu" value="/WEB-INF/views/common/top_menu.jsp"/>
+<!-- 	<put-attribute name="left_main" value="/WEB-INF/views/common/left_side_bar.jsp"/> -->
+	<put-attribute name="main" value="/WEB-INF/views/home/main.jsp"/>
+	<put-attribute name="main" value="/WEB-INF/views/addr/join.jsp"/>
+	<put-attribute name="footer" value="/WEB-INF/views/common/bottom.jsp"/>
+</definition>
+
+<definition name="regi.tiles" extends="home.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/addr/regi.jsp"/>
+</definition>
+
+<definition name="NewFile.tiles" extends="home.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/addr/NewFile.jsp"/>
+</definition>
+
+<definition name="jusoPopup.tiles" extends="home.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/addr/jusoPopup.jsp"/>
+</definition>
+
+<!-- <definition name="NewFile.tiles" template="/WEB-INF/views/addr/NewFile.jsp"/>
+ -->
 
 
 
 </tiles-definitions>
+
+
+
+
