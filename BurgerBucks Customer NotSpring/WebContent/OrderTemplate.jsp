@@ -23,14 +23,14 @@
     <!-- Language -->
     <div style="float: left;">
       <a class="flat_a" style="color: black;" href="#">한국어◀</a>
-      <font style="cursor: default;">│</font> 
+      <font style="cursor: default;">│</font>
       <a class="flat_a" style="color: lightgray;" href="#">English</a>
     </div>
     
     <!-- Login and Register -->
     <div style="float: right;">
       <a class="flat_a" style="color: lightgray;" href="#" data-toggle="modal" data-target="#loginModal">Login</a>
-      <font style="cursor: default;">│</font> 
+      <font style="cursor: default;">│</font>
       <a class="flat_a" style="color: lightgray;" href="#">Regist</a>
     </div>
     
@@ -88,11 +88,11 @@
         <h4 style="cursor:pointer; size: 28px; margin-top: 30px; color: #ededed; size: 28px; margin-top: 30px;">마이 페이지 ▼</h4>
       </a>
       <ul class="dropdown-menu">
-        <li><a href="#">주문 내역</a></li>
-        <li><a href="#">즐겨찾기</a></li>
-        <li><a href="#">주소록</a></li>
-        <li><a href="#">내 정보</a></li>
-      </ul>
+	      <li><a href="#">주문 내역</a></li>
+	      <li><a href="#">즐겨찾기</a></li>
+	      <li><a href="#">주소록</a></li>
+	      <li><a href="#">내 정보</a></li>
+	    </ul>
     </div>
     <div class="dropdown" style="height:100%; width: 160px; border-right: 2px ridge #7a7979; display: block; float: left;" align="center">
       <a class="hover_a dropdown-toggle" data-toggle="dropdown" >
@@ -269,78 +269,87 @@
     });
     </script>
   </div>
-        
-  <!-- Login and Notice -->
-  <div style="padding: 0; margin: 0 auto; margin-top:20px; height: 300px; width: 1000px;">
   
-    <!-- Carousel --> 
-    <div id="transition-timer-carousel"  class="carousel slide transition-timer-carousel"  data-ride="carousel" data-interval="4000" 
-    style="display:block; height: 300px; width:700px; float: left; border: 1px solid #999999; border-radius: 4px;">
+  <!-- Guide -->
+  <div style="width: 1000px; height: 30px; margin: 0 auto; margin-top: 20px; margin-bottom: 20px;" align="center">
+    <div style="width: 600px; height: 30px; background-color: white; border: 1px solid #999999; border-radius: 4px; padding: 5px;">
+      <p>2. 메뉴 선택</p>
+    </div>
+  </div>
         
-        <!-- Carousel Indicators -->
-        <ol class="carousel-indicators">
-          <li data-target="#transition-timer-carousel" data-slide-to="0" class="active" style="border: 1px solid #7a7979;"></li>
-          <li data-target="#transition-timer-carousel" data-slide-to="1" style="border: 1px solid #7a7979;"></li>
-          <li data-target="#transition-timer-carousel" data-slide-to="2" style="border: 1px solid #7a7979;"></li>
-        </ol>
+  <!-- Order and Cart and Pay -->
+  <div style="padding: 0; margin: 0 auto; margin-top:20px; height: 800px; width: 1000px; margin-bottom: 20px;">
+  
+    <!-- Order --> 
+    <div style="display:block; height: 800px; width:640px; float: left; border: 1px solid #999999; border-radius: 4px;">
+                
+    </div>
+    
+    <!-- Cart and Pay -->
+    <div style="margin-left:10px; display:block; height: 800px; width:350px; float: left;">
+      
+      <!-- Cart -->
+      <div style="border: 1px solid #999999; border-radius: 4px; height: 480px; width:350px; padding: 10px;" align="center">
+        <div>장바구니</div>
+        <hr style="margin-top:10px; width: 300px; border-color: #aaaaaa;">
+        <div style="margin-top:10px; border: 1px solid #999999; border-radius: 4px; height: 60px; width:330px;">
+        </div>
+        <div style="margin-top:10px; border: 1px solid #999999; border-radius: 4px; height: 60px; width:330px;">
+        </div>
+        <div style="margin-top:10px; border: 1px solid #999999; border-radius: 4px; height: 60px; width:330px;">
+        </div>
+        <div style="margin-top:10px; border: 1px solid #999999; border-radius: 4px; height: 60px; width:330px;">
+        </div>
+        <div style="margin-top:10px; border: 1px solid #999999; border-radius: 4px; height: 60px; width:330px;">
+        </div>
+        <div style="margin-top:10px; border: 1px solid #999999; border-radius: 4px; height: 60px; width:330px;">
+        </div>
+      </div>
+      
+      <!-- Pay -->
+      <div style="margin-top:20px; border: 1px solid #999999; border-radius: 4px; height: 300px; width:350px; padding: 10px;" align="center">
         
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-          <div class="item active">
-            <img src="./UI/3.jpg" style="height: 298px; border-radius: 4px;" />
-          </div>
-
-          <div class="item">
-            <img src="./UI/3.jpg" style="height: 298px; border-radius: 4px;" />
-          </div>
-
-          <div class="item">
-            <img src="./UI/3.jpg" style="height: 298px; border-radius: 4px;" />
+        <div>내 주문 정보</div>
+        <hr style="margin-top:10px; margin-bottom: 0px; width: 300px; border-color: #aaaaaa;">
+        
+        <div class="form-group" style="margin-top: 5px; height: 50px; width:330px;">
+          <label class="control-label" for="comment" style="float: left;">주소지</label><br>
+          <div style="margin-top: 5px; height : 30px; width:330px; padding-top: 5px;">
+            <select style="margin-top:-5px; border: 1px solid #999999; border-radius: 4px; height: 30px; width:280px; float: left;">
+              <option>주소지 1</option>
+              <option>주소지 2</option>
+              <option>주소지 3</option>
+            </select>
+            <a href="#" style="font-size: 12px;">변경</a>
           </div>
         </div>
         
-    </div>
-    
-    <!-- Login -->
-    <div style="margin-left:10px; display:block; height: 300px; width:290px; float: left;">
-      
-      <!-- Login Form -->
-      <div style="background-color: white; border: 1px solid #999999; border-radius: 4px; height: 200px; width:290px; padding: 10px;" align="center">
-        <form>
+        <hr style="margin-top:10px; margin-bottom: 0px; width: 300px; border-color: #aaaaaa;">
+        <div class="form-group" style="margin-top: 5px; height: 50px; width:330px;">
+          <label class="control-label" for="comment" style="float: left;">예정 도착 시각</label><br>
+          <div style="margin-top: 5px; padding-top: 5px;">
+            <div style="margin-top:-5px; border: 1px solid #999999; border-radius: 4px; height: 30px; width:280px;  float: left; padding:3px;">
+             <font style="float:left;">2018/04/05 14:05</font>
+            </div>
+            <a href="#" style="font-size: 12px;">변경</a>
+          </div>
+        </div>
         
-	        <p style="width: 240px; margin-top:10px;">로그인</p>
-	        
-	        <div class="input-group" style="width: 240px; margin-top:20px;">
-	          <span class="input-group-addon" style="width:50px;">ID</span> 
-	          <input id="name" name="name" type="text" class="form-control" placeholder="아이디를 입력해주세요" required>
-	        </div>
-	        
-	        <div class="input-group" style="width: 240px; margin-top:10px;">
-	          <span class="input-group-addon" style="width:50px;">PW</span> 
-	          <input id="name" name="name" type="text" class="form-control" placeholder="비밀번호를 입력해주세요" required>
-	        </div>
-	        
-          <button class="btn btn-success" style="width: 240px; margin-top:15px;" type="submit">로그인</button>
+        <hr style="margin-top:10px; margin-bottom: 0px; width: 300px; border-color: #aaaaaa;">
+        <div class="form-group" style="margin-top: 5px; height: 50px; width:330px;">
+          <label class="control-label" for="comment" style="float: left;">결제 금액</label><br>
+          <div style="margin-top: 5px; height: 30px; width:330px; padding-right: 10px;" align="right">
+            <font style="font-size: 20px;">0</font>
+            <label style="font-size: 20px;">원</label>
+          </div>
+        </div>
         
-        </form>
+        <hr style="margin-top:10px; margin-bottom: 0px; width: 300px; border-color: #aaaaaa;">
+        <button class="btn btn-success" style="width: 240px; height:26px; margin-top:10px; padding-top: 2px;" type="button">주문하기</button>
+        
       </div>
       
-      <!-- ID/PW Find Button -->
-      <div style="margin-top:10px;">
-        <button class="btn btn-success" style="width: 290px; border: 1px solid #999999; border-radius: 4px; height: 40px;">ID/PW 찾기</button>
-      </div>
-      
-      <!-- Regist Button -->
-      <div style="margin-top:10px;">
-        <button class="btn btn-success" style="width: 290px; border: 1px solid #999999; border-radius: 4px; height: 40px;">회원 가입</button>
-      </div>
-     
     </div>
-  </div>
-
-  <!-- Guide -->
-  <div style="width: 1000px; height: 400px; background: white; margin: 0 auto; margin-top: 20px; margin-bottom: 20px;">
-    <img src="./UI/Deliever.png" style="width: 1000px; height: 400px; border: 1px solid #999999; border-radius: 4px;">
   </div>
   
   <!-- Footer -->
@@ -370,7 +379,6 @@
     </div> 
   </footer>
   
-
 
 </body>
 </html>
