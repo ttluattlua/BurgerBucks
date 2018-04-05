@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<!-- ahahhaah --><!-- ahahhaah --><!-- ahahhaah --><!-- ahahhaah --><!-- ahahhaah --><!-- ahahhaah -->
 <%
 response.sendRedirect("./address.do"); 
 %> 

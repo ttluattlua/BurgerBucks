@@ -1,11 +1,11 @@
 package kh.com.a.model;
 import java.io.Serializable;
 /*------------------------------------------------------------
- *memberDto�Դϴ� 
+ *memberDto�Դϴ� 
  *-----------------------------------------------------------*/
 
 public class Bb_MemberDto {
-/////
+
 	private int seq;
 	private String id;
 	private String password;

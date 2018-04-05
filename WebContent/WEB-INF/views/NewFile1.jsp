@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<%Bb_AddrDto dto = new Bb_AddrDto(); %>
+<%Bb_AddrDto dto = (Bb_AddrDto)request.getAttribute("dto"); %>
 <body>
 <form action="addaddressAf.do">
 <%=dto.getAddress() %>
