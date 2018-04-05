@@ -22,4 +22,9 @@ public class BbMemberDaoImpl implements BbMemberDao {
 		System.out.println("dto in member dao: " + dto);
 		return dto;
 	}
+	@Override
+	public boolean addMember(Bb_MemberDto mem) throws Exception {		
+		int n = sqlSession.insert(ns + "addMember", mem);		
+		return n>0?true:false;
+	}
 }

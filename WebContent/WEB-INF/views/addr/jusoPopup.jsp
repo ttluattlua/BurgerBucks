@@ -73,5 +73,36 @@ function init(){
 		 -->
 		<!-- 해당시스템의 인코딩타입이 EUC-KR일경우에만 추가 END-->
 	</form>
+	
+	<h2>
+	<%=inputYn   %> 
+	<%=roadFullAddr %> 
+	<%=roadAddrPart1 %> 
+	<%=roadAddrPart2 %> 
+	<%=engAddr %> 
+	<%=jibunAddr %> 
+	<%=zipNo %> 
+	<%=addrDetail %> 
+	<%=admCd %> 
+	<%=rnMgtSn %> 
+	<%=bdMgtSn %> 
+	<%=detBdNmList %> 
+
+	<%=bdNm  %>  
+	<%=bdKdcd %> 
+	<%=siNm  %> 
+	<%=sggNm %> 
+	<%=emdNm %> 
+	<%=liNm  %> 
+	<%=rn %> 
+	<%=udrtYn  %> 
+	<%=buldMnnm   %>
+	<%=buldSlno %>
+	<%=mtYn %> 
+	<%=lnbrMnnm  %>
+	<%=lnbrSlno   %>
+
+	<%=emdNo %> 
+	</h2>
 </body>
 </html>

@@ -18,5 +18,11 @@ public class BbMemberServiceImpl implements BbMemberService {
 		// TODO Auto-generated method stub
 		return bbMemberDao.allMember();
 	}
+
+	@Override
+	public boolean addMember(Bb_MemberDto mem) throws Exception {
+		// TODO Auto-generated method stub
+		return bbMemberDao.addMember(mem);
+	}
 	
 }

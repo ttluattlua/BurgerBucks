@@ -28,4 +28,15 @@ public class BbMemberController {
 		return "home.tiles";
 	}
 	
+	@RequestMapping(value="regi.do", method=RequestMethod.GET)
+	public String regi(Model model) {
+		logger.info("BbMemberController addMember");
+		return "regi.tiles";
+	}
+	
+	@RequestMapping(value="regiAf.do", method=RequestMethod.GET)
+	public String regiAg(Model model) {
+		logger.info("BbMemberController addMember");
+		return "regi.tiles";
+	}
 }

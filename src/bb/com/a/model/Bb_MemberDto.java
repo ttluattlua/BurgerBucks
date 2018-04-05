@@ -1,5 +1,6 @@
 package bb.com.a.model;
 import java.io.Serializable;
+import java.util.List;
 /*------------------------------------------------------------
  *memberDto�Դϴ� 
  *-----------------------------------------------------------*/
@@ -17,13 +18,14 @@ public class Bb_MemberDto implements Serializable{
 	private int grade;
 	private int exp;
 	private int del;
+	private List<Bb_AddrDto> addrList;
 	
 	public Bb_MemberDto() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Bb_MemberDto(int seq, String id, String password, String bday, String name, String phone, int sex,
-			int mileage, int grade, int exp, int del) {
+			int mileage, int grade, int exp, int del, List<Bb_AddrDto> addrList) {
 		super();
 		this.seq = seq;
 		this.id = id;
@@ -36,6 +38,7 @@ public class Bb_MemberDto implements Serializable{
 		this.grade = grade;
 		this.exp = exp;
 		this.del = del;
+		this.addrList = addrList;
 	}
 
 	public int getSeq() {
@@ -126,11 +129,21 @@ public class Bb_MemberDto implements Serializable{
 		this.del = del;
 	}
 
+	public List<Bb_AddrDto> getAddrList() {
+		return addrList;
+	}
+
+	public void setAddrList(List<Bb_AddrDto> addrList) {
+		this.addrList = addrList;
+	}
+
 	@Override
 	public String toString() {
 		return "Bb_MemberDto [seq=" + seq + ", id=" + id + ", password=" + password + ", bday=" + bday + ", name="
 				+ name + ", phone=" + phone + ", sex=" + sex + ", mileage=" + mileage + ", grade=" + grade + ", exp="
-				+ exp + ", del=" + del + "]";
+				+ exp + ", del=" + del + ", addrList=" + addrList + "]";
 	}
+
+	
 
 }
