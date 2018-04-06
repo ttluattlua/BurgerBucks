@@ -282,27 +282,29 @@
   
     <!-- Order --> 
     <div style="display:block; height: 800px; width:640px; float: left; border: 1px solid #999999; border-radius: 4px;">
-                
+      <button onclick="addCart()">add</button>
+      <script type="text/javascript">
+      var cartHeight = 1;
+      function addCart() {
+        if (cartHeight >= 7){
+          alert("장바구니가 가득 차서 상품을 담을 수 없습니다.");
+          return;
+        }
+        $("#cartList").append("<div style='margin-top:10px; border: 1px solid #999999; border-radius: 4px; height: 60px; width:330px;'></div>");
+        $("#cartDiv").height(40+(cartHeight*70));
+        cartHeight ++;
+      }
+      </script>     
     </div>
     
     <!-- Cart and Pay -->
     <div style="margin-left:10px; display:block; height: 800px; width:350px; float: left;">
       
       <!-- Cart -->
-      <div style="border: 1px solid #999999; border-radius: 4px; height: 480px; width:350px; padding: 10px;" align="center">
+      <div id="cartDiv" style="border: 1px solid #999999; border-radius: 4px; height: 60px; width:350px; padding: 10px;" align="center">
         <div>장바구니</div>
         <hr style="margin-top:10px; width: 300px; border-color: #aaaaaa;">
-        <div style="margin-top:10px; border: 1px solid #999999; border-radius: 4px; height: 60px; width:330px;">
-        </div>
-        <div style="margin-top:10px; border: 1px solid #999999; border-radius: 4px; height: 60px; width:330px;">
-        </div>
-        <div style="margin-top:10px; border: 1px solid #999999; border-radius: 4px; height: 60px; width:330px;">
-        </div>
-        <div style="margin-top:10px; border: 1px solid #999999; border-radius: 4px; height: 60px; width:330px;">
-        </div>
-        <div style="margin-top:10px; border: 1px solid #999999; border-radius: 4px; height: 60px; width:330px;">
-        </div>
-        <div style="margin-top:10px; border: 1px solid #999999; border-radius: 4px; height: 60px; width:330px;">
+        <div id="cartList">
         </div>
       </div>
       
