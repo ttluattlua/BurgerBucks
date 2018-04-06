@@ -36,6 +36,8 @@
 	String lnbrSlno  = request.getParameter("lnbrSlno");
 	/** 2017년 3월 추가제공 **/
 	String emdNo  = request.getParameter("emdNo");
+	String entX  = request.getParameter("entX");
+	String entY  = request.getParameter("entY");
 
 %>
 </head>
@@ -102,7 +104,8 @@ function init(){
 	<%=lnbrMnnm  %>
 	<%=lnbrSlno   %>
 
-	<%=emdNo %> 
+	<%=emdNo %>
+	
 	</h2>
 </body>
 </html>

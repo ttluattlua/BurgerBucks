@@ -9,13 +9,13 @@
 		SELECT SEQ, ID, PASSWORD, BDAY, NAME, PHONE, SEX,
 		MILEAGE, GRADE, EXP, DEL
 		FROM BB_MEMBER WHERE SEQ=1 
-	</select> <!-- 쿼리오케이  -->
+	</select> 
 	
 	<insert id="addMember" parameterType="bb.com.a.model.Bb_MemberDto"> 
 		INSERT INTO BB_MEMBER
 		VALUES(BB_MEMBER_SEQ.NEXTVAL, #{id}, #{password}, #{bday}, #{name}, #{phone}, #{sex},
 		#{mileage}, #{grade}, #{exp}, #{del})
-	</insert> <!-- 쿼리오케이  -->
+	</insert> 
 	
 </mapper>  
 

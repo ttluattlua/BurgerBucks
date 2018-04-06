@@ -5,13 +5,8 @@ import java.util.List;
  *memberDto�Դϴ� 
  *-----------------------------------------------------------*/
 
-<<<<<<< HEAD:src/kh/com/a/model/Bb_MemberDto.java
-public class Bb_MemberDto {
-
-=======
 public class Bb_MemberDto implements Serializable{
 /////
->>>>>>> ce5907708fbe1674cf067b7621c14b65465e5c3b:src/bb/com/a/model/Bb_MemberDto.java
 	private int seq;
 	private String id;
 	private String password;
