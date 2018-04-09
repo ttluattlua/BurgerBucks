@@ -16,5 +16,6 @@
 <td><%=addr.getSeq() %></td><td><%=addr.getMember_seq() %></td><td><%=addr.getAddress() %></td>
 </tr>
 </table>
+
 </body>
 </html>

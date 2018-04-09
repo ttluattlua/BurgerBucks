@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="BBMember">
+<<<<<<< HEAD
 
 <!--로그인-->
 <select id="login" parameterType="bb.com.a.model.Bb_MemberDto" resultType="bb.com.a.model.Bb_MemberDto">
@@ -18,7 +19,7 @@ FROM BB_ADDR
 WHERE MEMBER_SEQ=#{seq} AND DEl=0
 </select>
 
-
+=======
 	<select id="allMember" 
 		resultType="bb.com.a.model.Bb_MemberDto"> 
 		SELECT SEQ, ID, PASSWORD, BDAY, NAME, PHONE, SEX,
@@ -32,6 +33,7 @@ WHERE MEMBER_SEQ=#{seq} AND DEl=0
 		#{mileage}, #{grade}, #{exp}, #{del})
 	</insert> 
 	
+>>>>>>> 084ae849e2c3377c83f1846968204c442003a997
 </mapper>  
 
 

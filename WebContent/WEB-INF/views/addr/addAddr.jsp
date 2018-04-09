@@ -45,7 +45,7 @@ AIzaSyBW3AnL99zotumTGhgh3B8lT3NgEACpRoo
 <script type="text/javascript">
 $("#_btnSubmit").click(function() {	
 	alert('글작성');	
-	$("#_frmForm").attr({"action":"./addAddrAf.do" }).submit();	
+	$("#_frmForm").attr({ "target":"_self", "action":"addAddrAf.do" }).submit();	
 });
 </script>
 
