@@ -34,6 +34,7 @@ public class BbMemberController {
 		logger.info("BbMemberController home");
 		return "home.tiles";
 	}
+<<<<<<< HEAD
 	
 	
 	/*--------------------------------------------------------------------------------------------
@@ -90,4 +91,6 @@ public class BbMemberController {
 		return yes;		
 	}
 	
+=======
+>>>>>>> 084ae849e2c3377c83f1846968204c442003a997
 }

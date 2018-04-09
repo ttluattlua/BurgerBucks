@@ -11,6 +11,10 @@
 	<put-attribute name="top_menu" value="/WEB-INF/views/common/top_menu.jsp"/>
 <!-- 	<put-attribute name="left_main" value="/WEB-INF/views/common/left_side_bar.jsp"/> -->
 	<put-attribute name="main" value="/WEB-INF/views/home/main.jsp"/>
+<<<<<<< HEAD
+=======
+	<put-attribute name="main" value="/WEB-INF/views/addr/goAddr.jsp"/>
+>>>>>>> 084ae849e2c3377c83f1846968204c442003a997
 	<put-attribute name="footer" value="/WEB-INF/views/common/bottom.jsp"/>
 </definition>
 
@@ -28,6 +32,7 @@
 	<put-attribute name="main" value="/WEB-INF/views/order/orderpage.jsp"/>
 </definition>
 
+<<<<<<< HEAD
 
 
 <!--주소추가 폼으로 이동 -->
@@ -45,6 +50,23 @@
 
 </definition>
 
+=======
+<definition name="goAddr.tiles" extends="home.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/addr/goAddr.jsp"/>
+</definition>
+
+<definition name="addAddr.tiles" extends="home.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/addr/addAddr.jsp"/>
+</definition>
+
+<definition name="addAddrAf.tiles" extends="home.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/addr/addAddrAf.jsp"/>
+</definition>
+
+
+<!-- <definition name="NewFile.tiles" template="/WEB-INF/views/addr/NewFile.jsp"/>
+ -->
+>>>>>>> 084ae849e2c3377c83f1846968204c442003a997
 
 <!--주소추가 완료-->
 <definition name="addAddrAf.tiles" extends="home.tiles">
