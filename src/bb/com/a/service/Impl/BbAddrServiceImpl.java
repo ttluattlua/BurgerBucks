@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import bb.com.a.dao.BbAddrDao;
 
@@ -19,5 +20,10 @@ public class BbAddrServiceImpl implements BbAddrService {
 	@Override
 	public List<Bb_AddrDto> allAddress() throws Exception{
 		return BbAddressDao.allAddress();
+	}
+
+	@Override
+	public boolean addrAdd(Model model, Bb_AddrDto dto) throws Exception {
+		return BbAddressDao.addrAdd(model, dto);
 	}
 }

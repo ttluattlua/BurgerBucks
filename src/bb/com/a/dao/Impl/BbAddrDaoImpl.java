@@ -24,4 +24,11 @@ public class BbAddrDaoImpl implements BbAddrDao{
 		System.out.println("dto in addr dao: " + AddrList.get(0));
 		return AddrList;
 	}
+
+	@Override
+	public boolean addrAdd(Model model, Bb_AddrDto addr) throws Exception {
+		model.addAttribute("addr",addr);
+		int n = sqlSession.insert(ns + "addAddr", addr);		
+		return n>0?true:false;
+	}
 }

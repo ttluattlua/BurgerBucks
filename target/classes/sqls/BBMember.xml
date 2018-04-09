@@ -4,19 +4,20 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="BBMember">
-	<select id="allMember" 
-		resultType="bb.com.a.model.Bb_MemberDto"> 
-		SELECT SEQ, ID, PASSWORD, BDAY, NAME, PHONE, SEX,
-		MILEAGE, GRADE, EXP, DEL
-		FROM BB_MEMBER WHERE SEQ=1 
-	</select> <!-- 쿼리오케이  -->
-	
-	<insert id="addMember" parameterType="bb.com.a.model.Bb_MemberDto"> 
-		INSERT INTO BB_MEMBER
-		VALUES(BB_MEMBER_SEQ.NEXTVAL, #{id}, #{password}, #{bday}, #{name}, #{phone}, #{sex},
-		#{mileage}, #{grade}, #{exp}, #{del})
-	</insert> <!-- 쿼리오케이  -->
-	
+
+<!--로그인-->
+<select id="login" parameterType="bb.com.a.model.Bb_MemberDto" resultType="bb.com.a.model.Bb_MemberDto">
+SELECT SEQ, ID, PASSWORD, BDAY, NAME, PHONE, SEX, MILEAGE, GRADE, EXP, DEL
+FROM BB_MEMBER
+WHERE ID=#{id} AND PASSWORD=#{password} AND DEL=0
+</select>
+<!--로그인한 사람의 최신 주소 하나 가져오기 -->
+<select id="getMostCurrentAddress" parameterType="bb.com.a.model.Bb_MemberDto" resultType="bb.com.a.model.Bb_AddrDto">
+SELECT SEQ, MEMBER_SEQ, ADDRESS, BDAY, LAT, LNG, MEMO, DEL
+FROM BB_ADDR
+WHERE MEMBER_SEQ=#{seq} AND DEl=0
+</select>
+
 </mapper>  
 
 

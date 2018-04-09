@@ -11,25 +11,47 @@
 	<put-attribute name="top_menu" value="/WEB-INF/views/common/top_menu.jsp"/>
 <!-- 	<put-attribute name="left_main" value="/WEB-INF/views/common/left_side_bar.jsp"/> -->
 	<put-attribute name="main" value="/WEB-INF/views/home/main.jsp"/>
-	<put-attribute name="main" value="/WEB-INF/views/addr/join.jsp"/>
 	<put-attribute name="footer" value="/WEB-INF/views/common/bottom.jsp"/>
 </definition>
 
+<!-- 가입 -->
 <definition name="regi.tiles" extends="home.tiles">
-	<put-attribute name="main" value="/WEB-INF/views/addr/regi.jsp"/>
+
+<put-attribute name="main" value="/WEB-INF/views/login/regi.jsp"/>
+
 </definition>
 
-<definition name="NewFile.tiles" extends="home.tiles">
-	<put-attribute name="main" value="/WEB-INF/views/addr/NewFile.jsp"/>
+
+
+<!--오더로 이동-->
+<definition name="order.tiles" extends="home.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/order/orderpage.jsp"/>
 </definition>
 
-<definition name="jusoPopup.tiles" extends="home.tiles">
-	<put-attribute name="main" value="/WEB-INF/views/addr/jusoPopup.jsp"/>
+
+
+<!--주소추가 폼으로 이동 -->
+<definition name="goAddr.tiles" extends="home.tiles">
+
+<put-attribute name="main" value="/WEB-INF/views/addr/goAddr.jsp"/>
+
 </definition>
 
-<!-- <definition name="NewFile.tiles" template="/WEB-INF/views/addr/NewFile.jsp"/>
- -->
 
+<!--주소추가하기 2-->
+<definition name="addAddr.tiles" extends="home.tiles">
+
+<put-attribute name="main" value="/WEB-INF/views/addr/addAddr.jsp"/>
+
+</definition>
+
+
+<!--주소추가 완료-->
+<definition name="addAddrAf.tiles" extends="home.tiles">
+
+<put-attribute name="main" value="/WEB-INF/views/addr/addAddrAf.jsp"/>
+
+</definition>
 
 
 </tiles-definitions>
