@@ -30,6 +30,23 @@ public class BbAddrController {
 	@Autowired
 	BbMemberService BbMemberService;
 	
+<<<<<<< HEAD
+	
+	/*-------------------------------------------------------------------------------
+	 * 주소 추가 폼으로 이동
+	 * --------------------------------------------------------------------------------*/	
+	
+	@RequestMapping(value="goAddr.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public String goAddr(Model model) throws Exception {
+		logger.info("KhAddressController goAddr");
+		return "goAddr.tiles";	
+	}
+	
+	/*-------------------------------------------------------------------------------
+	 * 주소 추가
+	 * --------------------------------------------------------------------------------*/
+=======
+>>>>>>> 084ae849e2c3377c83f1846968204c442003a997
 	@RequestMapping(value="addAddr.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String googlemap(Model model) throws Exception {
 		logger.info("KhAddressController googlemap");

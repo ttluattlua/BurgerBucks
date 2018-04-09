@@ -11,6 +11,8 @@ public class Bb_AdminDto implements Serializable{
 	private int store_seq;
 	private int del;
 	
+	public Bb_AdminDto() {}
+	
 	public Bb_AdminDto(int seq, String id, String password, String name, String phone_number, int store_seq, int del) {
 		super();
 		this.seq = seq;

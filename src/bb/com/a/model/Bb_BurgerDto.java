@@ -13,6 +13,8 @@ public class Bb_BurgerDto implements Serializable {
   private int calorie;
   private boolean del;
   
+  public Bb_BurgerDto() {}
+  
   public Bb_BurgerDto(Bb_IngredientDto bread, List<Bb_IngredientDto> ingredientList, int creatorSeq, int price,
       int calorie) {
     super();
