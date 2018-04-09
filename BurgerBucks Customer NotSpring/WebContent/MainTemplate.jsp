@@ -113,11 +113,13 @@
     <!-- Modal Part -->
     <div style="height:600px; width: 800px; background-color: #f3f3f3; border-radius: 4px;">
       
+      <!-- Modal Explanation -->
       <div style="width: 800px; height: 40px; padding: 10px;">
         <label style="float: left;">나만의 햄버거 제작</label>
-        <a data-dismiss="modal" style="float: right;"><label>X</label></a>
+        <a onclick="initBurgerModal()" data-dismiss="modal" style="float: right;"><label style="cursor:pointer;">X</label></a>
       </div> 
       
+      <!-- Modal Contents -->
       <div style="width: 800px; height: 560px; padding:10px;">
         <form action="BurgerCont" method="get" name="burgerInfo" onsubmit="return logincheckValue()">
           
@@ -130,42 +132,24 @@
             </div>
           </div>
           
+          <!-- Burger Ingredient -->
           <div style="height:440px; width: 780px; margin-top:10px;">
           
-            <!-- Burger Animation -->
+            <!-- Ingredient List -->
             <div style="border:1px solid green; height:440px; width: 320px; float: left; display: inline-block;" align="center">
-              <div style="height:40px; width: 320px;">
-                <img src="./Ingredient/bread_homil.png" id="bread01" style="height: 40px; width: 100px;">
-              </div>
-              <div style="height:40px; width: 320px;">
-                <img src="./Ingredient/ing_none.png" id="ingredient01" style="height: 40px; width: 100px;">
-              </div>
-              <div style="height:40px; width: 320px;">
-                <img src="./Ingredient/ing_none.png" id="ingredient02" style="height: 40px; width: 100px;">
-              </div>
-              <div style="height:40px; width: 320px;">
-                <img src="./Ingredient/ing_none.png" id="ingredient03" style="height: 40px; width: 100px;">
-              </div>
-              <div style="height:40px; width: 320px;">
-                <img src="./Ingredient/ing_none.png" id="ingredient04" style="height: 40px; width: 100px;">
-              </div>
-              <div style="height:40px; width: 320px;">
-                <img src="./Ingredient/ing_none.png" id="ingredient05" style="height: 40px; width: 100px;">
-              </div>
-              <div style="height:40px; width: 320px;">
-                <img src="./Ingredient/ing_none.png" id="ingredient06" style="height: 40px; width: 100px;">  
-              </div>
-              <div style="height:40px; width: 320px;">
-                <img src="./Ingredient/ing_none.png" id="ingredient07" style="height: 40px; width: 100px;">
-              </div>
-              <div style="height:40px; width: 320px;">
-                <img src="./Ingredient/ing_none.png" id="ingredient08" style="height: 40px; width: 100px;">
-              </div>
-              <div style="height:40px; width: 320px;">
-                <img src="./Ingredient/ing_none.png" id="ingredient09" style="height: 40px; width: 100px;">
-              </div>
-              <div style="height:40px; width: 320px;">
-                <img src="./Ingredient/bread_black.png" id="bread02" style="height: 40px; width: 100px;">
+              <div id="ingredientList" >
+              
+	              <div style="height:30px; width: 318px; margin-top: 5px;">
+	                <div style="height:30px; width: 140px; float:left;" align="center">
+	                  <img src="./Ingredient/bread_homil.png" id="bread_down" style="height: 30px; width: 100px;">
+	                </div>
+	                <div style="height:30px; width: 120px; float:left; padding-top:5px;" align="center">
+	                  <p>호밀빵</p>
+	                </div>
+	                <div style="height:30px; width: 58px; float:left; padding-top:5px;" align="center">
+	                </div>
+	              </div>
+	              
               </div>
             </div>
             
@@ -184,7 +168,7 @@
                 </div>
                 
                 <div class="form-group" style="height:220px; width: 220px; float:left; text-align: left; padding:10px;">
-                  <label class="control-label">햄버거 번</label><br>
+                  <label class="control-label">패티</label><br>
                   <select class="form-control" id='meatSelect' name='meatSelect' style="width: 180px; float:left;" size="8">
                     <option value='소고기패티'>소고기패티</option>
                     <option value='스테이크패티'>스테이크 패티</option>
@@ -196,7 +180,7 @@
               <!-- Lettuce and Etc Select -->
               <div style="height:220px; width: 440px;">
                 <div class="form-group" style="margin-top:-15px; height:220px; width: 220px; float:left; text-align: left; padding:10px;">
-                  <label class="control-label">햄버거 번</label><br>
+                  <label class="control-label">채소</label><br>
                   <select class="form-control" id='vegeSelect' name='vegeSelect' style="width: 180px; float:left;" size="8">
                     <option value='상추'>상추</option>
                     <option value='양파'>양파</option>
@@ -205,7 +189,7 @@
                 </div>
                 
                 <div class="form-group" style="margin-top:-15px; height:220px; width: 220px; float:left; text-align: left; padding:10px;">
-                  <label class="control-label">햄버거 번</label><br>
+                  <label class="control-label">기타</label><br>
                   <select class="form-control" id='etcSelect' name='etcSelect' style="width: 180px; float:left;" size="8">
                   </select>
                 </div>
@@ -224,49 +208,91 @@
     
     <!-- Script Part -->
     <script type="text/javascript">
-    var ingredientCount = 1;
+    var ingredientList = [];
+    var divIdList = [];
+    var ingredientIdCount = 0;
+    var ingredientCount = 0;
     
     $(document).ready(function () {
-            
+      
+      //빵 선택
       $("#breadSelect").click(function(){
         var selectedBread = $("#breadSelect option:selected").val(); 
                 
         switch (selectedBread) {
-        case "호밀번": 
-          $("#bread01").attr("src", "./Ingredient/bread_homil.png");
-          $("#bread02").attr("src", "./Ingredient/bread_homil.png"); 
-          break;
-        case "흑미번": 
-          $("#bread01").attr("src", "./Ingredient/bread_mil.png");
-          $("#bread02").attr("src", "./Ingredient/bread_mil.png");
-          break;
-        case "밀번": 
-          $("#bread01").attr("src", "./Ingredient/bread_black.png"); 
-          $("#bread02").attr("src", "./Ingredient/bread_black.png"); 
-          break;
-        default : break;
+        case "호밀번": var breadImgSrc = "./Ingredient/bread_homil.png"; break;
+        case "흑미번": var breadImgSrc = "./Ingredient/bread_mil.png"; break;
+        case "밀번": var breadImgSrc = "./Ingredient/bread_black.png"; break;
+        default : alert("잘못된 선택입니다."); break;
         }
+        
+        $("#bread_down").attr("src", breadImgSrc);
+        $("#bread_top").attr("src", breadImgSrc); 
+        
       });
       
+      //고기 선택
       $("#meatSelect").click(function(){
-        var ingredient = document.getElementById("ingredient0" + ingredientCount);
+        
+        if (ingredientCount>=9) {alert("더 이상 재료를 추가할 수 없습니다."); return;}
+        
+        var ingredientImgSrc;
+        var ingredientID = "ing" + ingredientIdCount;
         var selectedMeat = $("#meatSelect option:selected").val();
-        
-                
+        ingredientList.push(selectedMeat);
+        divIdList.push("div"+ingredientID);
+         
         switch (selectedMeat) {
-        case "소고기패티": ingredient.src="./Ingredient/meat_beaf.png"; break;
-        case "스테이크패티": ingredient.src="./Ingredient/meat_steak.png"; break;
-        case "치킨패티": ingredient.src="./Ingredient/meat_chicken.png" ; break;
-        default : break;
+        case "소고기패티": ingredientImgSrc = "./Ingredient/meat_beaf.png"; break;
+        case "스테이크패티": ingredientImgSrc = "./Ingredient/meat_steak.png"; break;
+        case "치킨패티": ingredientImgSrc = "./Ingredient/meat_chicken.png" ; break;
+        default : alert("잘못된 선택입니다."); return; break;
         }
-        ingredient.opacity = 1;
-        $(ingredient).animate({marginTop: "+=100px"});
-        ingredientCount++;
+                
+        var newIngredient = '<div id="div' + ingredientID + '" style="height:30px; width: 318px; margin-top: 5px;">';
         
+        newIngredient += '<div style="height:30px; width: 140px; float:left;" align="center">';
+        newIngredient += '<img id="' + ingredientID + '" src="' + ingredientImgSrc + '" style="height: 30px; width: 100px; margin-top:-100px;">';
+        newIngredient += '</div>';
+        
+        newIngredient += '<div style="height:30px; width: 120px; float:left; padding-top: 5px;" align="center">';
+        newIngredient += '<p>' + selectedMeat + '</p>';
+        newIngredient += '</div>';
+        
+        newIngredient += '<div style="height:30px; width: 58px; float:left; padding-top:5px;" align="center">';
+        newIngredient += '<button style="height:20px; width: 20px; padding:0px;" class="btn btn-danger glyphicon glyphicon-remove" onclick="delRow(this)" type="button"></button>';
+        newIngredient += '</div>';
+        
+        newIngredient += '</div>';
+        
+        $('#ingredientList').prepend(newIngredient);
+        $('#'+ingredientID).animate({marginTop: "+=100px"});
+        
+        ingredientCount ++;
+        ingredientIdCount ++;
         $("#meatSelect option:selected").prop("selected", false);
       });
       
     });
+    
+    //행 삭제
+    function delRow (button){
+      ingredientCount --;
+      $(button).parent().parent().remove();
+    }
+    
+    //햄버거 모달 초기화
+    function initBurgerModal() {
+      
+      for (var i = 0; i < divIdList.length; i++) {
+        $("#"+divIdList[i]).remove();
+      }
+      
+      ingredientList = [];
+      divIdList = [];
+      ingredientIdCount = 0;
+      ingredientCount = 0;
+    }
     </script>
   </div>
         
