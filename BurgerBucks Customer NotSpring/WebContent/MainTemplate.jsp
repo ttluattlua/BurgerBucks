@@ -136,12 +136,12 @@
           <div style="height:440px; width: 780px; margin-top:10px;">
           
             <!-- Ingredient List -->
-            <div style="border:1px solid green; height:440px; width: 320px; float: left; display: inline-block;" align="center">
-              <div id="ingredientList" >
-              
-	              <div style="height:30px; width: 318px; margin-top: 5px;">
+            <div style="height:440px; width: 320px; float: left;">
+              <div id="ingredientList" style="border:1px solid green; height:440px; width: 320px; vertical-align: bottom; display: table-cell;" align="center">            
+	              
+	              <div style="height:30px; width: 318px; margin-bottom: 30px; z-index: 0; position: relative; display: block;">
 	                <div style="height:30px; width: 140px; float:left;" align="center">
-	                  <img src="./Ingredient/bread_homil.png" id="bread_down" style="height: 30px; width: 100px;">
+	                  <img src="./Ingredient/bread_homil.png" id="bread_down" style="height: 50px; width: 100px; margin-top:-10px;">
 	                </div>
 	                <div style="height:30px; width: 120px; float:left; padding-top:5px;" align="center">
 	                  <p>호밀빵</p>
@@ -150,7 +150,7 @@
 	                </div>
 	              </div>
 	              
-              </div>
+	             </div>
             </div>
             
             <!-- Ingredient Select -->
@@ -249,10 +249,10 @@
         default : alert("잘못된 선택입니다."); return; break;
         }
                 
-        var newIngredient = '<div id="div' + ingredientID + '" style="height:30px; width: 318px; margin-top: 5px;">';
+        var newIngredient = '<div id="div' + ingredientID + '" style="height:30px; width: 318px; margin-top: 5px; z-index:' + (ingredientCount+1) + '; position: relative; display: block;">';
         
         newIngredient += '<div style="height:30px; width: 140px; float:left;" align="center">';
-        newIngredient += '<img id="' + ingredientID + '" src="' + ingredientImgSrc + '" style="height: 30px; width: 100px; margin-top:-100px;">';
+        newIngredient += '<img id="' + ingredientID + '" src="' + ingredientImgSrc + '" style="height: 50px; width: 100px; margin-top:-110px; ">';
         newIngredient += '</div>';
         
         newIngredient += '<div style="height:30px; width: 120px; float:left; padding-top: 5px;" align="center">';
