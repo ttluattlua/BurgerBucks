@@ -53,24 +53,11 @@ public class BbAddrController {
 
 	@RequestMapping(value="addAddrAf.do",method= {RequestMethod.GET, RequestMethod.POST})
 	public String addrAddAf(Model model, Bb_AddrDto addr) throws Exception {
-		logger.info("KhAddressController addrAdd");
+		logger.info("KhAddressController addrAddAf");
 		System.out.println("bfService: " + addr);
 		BbAddrService.addrAdd(model, addr);
-		System.out.println("afService: " + addr);
 		return "addAddrAf.tiles";	
 	}
-
-//	@RequestMapping(value="address.do", method= {RequestMethod.GET, RequestMethod.POST})
-//	public String address(Model model) throws Exception {
-//		logger.info("KhAddressController address");
-//		Bb_MemberDto member = BbMemberService.allMember();
-//		List<Bb_AddrDto> AddrList = BbAddrService.allAddress();
-//		model.addAttribute("addr", AddrList);
-//		model.addAttribute("member", member);
-//		return "NewFile.tiles";	
-//	}
-	
-	
 }
 
 

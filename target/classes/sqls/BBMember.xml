@@ -5,7 +5,6 @@
   
 <mapper namespace="BBMember">
 
-
 <!--로그인-->
 <select id="login" parameterType="bb.com.a.model.Bb_MemberDto" resultType="bb.com.a.model.Bb_MemberDto">
 SELECT SEQ, ID, PASSWORD, BDAY, NAME, PHONE, SEX, MILEAGE, GRADE, EXP, DEL
