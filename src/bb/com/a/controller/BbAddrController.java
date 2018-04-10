@@ -56,8 +56,35 @@ public class BbAddrController {
 		logger.info("KhAddressController addrAddAf");
 		System.out.println("bfService: " + addr);
 		BbAddrService.addrAdd(model, addr);
+<<<<<<< HEAD
 		return "addAddrAf.tiles";	
 	}
+=======
+		model.addAttribute("addr",addr);
+		return "addAddrAf.tiles";	
+	}
+	/*@RequestMapping(value="test.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public String test(Model model) throws Exception {
+		logger.info("KhAddressController test");
+		
+		System.out.println("bfService: " + addr);
+		
+		return "addAddrAf.tiles";	
+	}
+	*/
+
+//	@RequestMapping(value="address.do", method= {RequestMethod.GET, RequestMethod.POST})
+//	public String address(Model model) throws Exception {
+//		logger.info("KhAddressController address");
+//		Bb_MemberDto member = BbMemberService.allMember();
+//		List<Bb_AddrDto> AddrList = BbAddrService.allAddress();
+//		model.addAttribute("addr", AddrList);
+//		model.addAttribute("member", member);
+//		return "NewFile.tiles";	
+//	}
+	
+	
+>>>>>>> burgerbucks-seoone
 }
 
 

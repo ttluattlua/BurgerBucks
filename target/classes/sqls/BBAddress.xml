@@ -9,7 +9,11 @@
 		resultType="bb.com.a.model.Bb_AddrDto"> 
 		SELECT SEQ, MEMBER_SEQ, ADDRESS, LAT, LNG, MEMO, DEL 
 		FROM BB_ADDR
+<<<<<<< HEAD
 	</select> <!-- 쿼리오케이  -->
+=======
+	</select> 
+>>>>>>> burgerbucks-seoone
 	
 	<insert id="addAddr"
 		parameterType="bb.com.a.model.Bb_AddrDto">
@@ -19,4 +23,8 @@
 		(BB_ADDR_SEQ.NEXTVAL, #{member_seq}, #{address}, #{lat}, #{lng}, #{memo}, 0)
 	</insert>
 
+<<<<<<< HEAD
 </mapper>  
+=======
+</mapper>
+>>>>>>> burgerbucks-seoone
