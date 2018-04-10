@@ -19,7 +19,7 @@ public class BbAddrDaoImpl implements BbAddrDao{
 	private String ns = "BBAddress.";
 	
 	@Override
-	public List<Bb_AddrDto> allAddress() {
+	public List<Bb_AddrDto> allAddress() throws Exception {
 		List<Bb_AddrDto> AddrList = sqlSession.selectList(ns+"allAddress");
 		System.out.println("dto in addr dao: " + AddrList.get(0));
 		return AddrList;
@@ -28,7 +28,13 @@ public class BbAddrDaoImpl implements BbAddrDao{
 	@Override
 	public boolean addrAdd(Model model, Bb_AddrDto addr) throws Exception {
 		model.addAttribute("addr",addr);
-		int n = sqlSession.insert(ns + "addAddr", addr);		
+		int n = sqlSession.insert(ns + "addrAdd", addr);		
 		return n>0?true:false;
+	}
+
+	@Override
+	public List<Bb_AddrDto> addrUpdate(Model model, int seq) throws Exception {
+		List<Bb_AddrDto> AddrList = sqlSession.selectList(ns+"addrUpdate");
+		return AddrList;
 	}
 }

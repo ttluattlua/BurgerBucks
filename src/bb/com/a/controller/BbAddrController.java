@@ -63,6 +63,12 @@ public class BbAddrController {
 		model.addAttribute("addr",addr);
 		return "addAddrAf.tiles";	
 	}
+	@RequestMapping(value="addrUpdate.do",method= {RequestMethod.GET, RequestMethod.POST})
+	public String addrUpdate(Model model, int seq) throws Exception {
+		logger.info("KhAddressController addrUpdate");
+		model.addAttribute("seq", seq);
+		return "redirect:/addAddr.do";
+	}
 
 }
 

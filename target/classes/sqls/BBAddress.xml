@@ -11,13 +11,19 @@
 		FROM BB_ADDR
 	</select> 
 	
-	<insert id="addAddr"
+	<insert id="addrAdd"
 		parameterType="bb.com.a.model.Bb_AddrDto">
 		INSERT INTO BB_ADDR
 		(SEQ, MEMBER_SEQ, ADDRESS, LAT, LNG, MEMO, DEL)
 		VALUES
 		(BB_ADDR_SEQ.NEXTVAL, #{member_seq}, #{address}, #{lat}, #{lng}, #{memo}, 0)
 	</insert>
+
+	<insert id="addrUpdate"	parameterType="int">
+		UPDATE BB_ADDR
+		WHERE MEMBER_SEQ=#{member_seq};
+	</insert>	
+	
 
 </mapper>
 

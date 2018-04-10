@@ -26,4 +26,10 @@ public class BbAddrServiceImpl implements BbAddrService {
 	public boolean addrAdd(Model model, Bb_AddrDto dto) throws Exception {
 		return BbAddressDao.addrAdd(model, dto);
 	}
+
+	@Override
+	public List<Bb_AddrDto> addrUpdate(Model model, int seq) throws Exception {
+		// TODO Auto-generated method stub
+		return BbAddressDao.addrUpdate(model, seq);
+	}
 }
