@@ -40,6 +40,9 @@
 	<put-attribute name="main" value="/WEB-INF/views/addr/addAddrAf.jsp"/>
 </definition>
 
+<definition name="addrUpdate.tiles" extends="home.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/addr/addrUpdate.jsp"/>
+</definition>
 
 </tiles-definitions>
 

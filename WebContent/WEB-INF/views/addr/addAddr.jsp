@@ -19,16 +19,16 @@ AIzaSyBW3AnL99zotumTGhgh3B8lT3NgEACpRoo
 
  <!-- jquery-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <body>
 <form action="./addAddrAf.do" id="_frmForm"  method="get">
 <!--위도 경도 저장해놓는부분-->
-
 <input type="hidden" name="lat" id="_lat">
 <input type="hidden" name="lng" id="_lng">
 <input type="hidden" name="latlng" id="latlng">
 
 <!--위도 경도 저장해놓는부분-->
- 
+<input type="hidden" id="_seq" name="seq">
 <input type="text" id="_member_seq" name="member_seq" placeholder="임의 멤버시퀀스 1">
 <input type="text" id="_postcode" name="postcode" placeholder="우편번호">
 <input type="button" onclick="findPostCode()" value="우편번호 찾기"><br>
