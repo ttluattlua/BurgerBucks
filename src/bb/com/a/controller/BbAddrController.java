@@ -38,8 +38,12 @@ public class BbAddrController {
 	@RequestMapping(value="goAddr.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String goAddr(Model model) throws Exception {
 		logger.info("KhAddressController goAddr");
+		List<Bb_AddrDto> addrList = BbAddrService.allAddress();
+		System.out.println("addrList in Controller" + addrList.get(0));
+		model.addAttribute("list", addrList);
 		return "goAddr.tiles";	
 	}
+
 	
 	/*-------------------------------------------------------------------------------
 	 * 주소 추가
@@ -53,24 +57,19 @@ public class BbAddrController {
 
 	@RequestMapping(value="addAddrAf.do",method= {RequestMethod.GET, RequestMethod.POST})
 	public String addrAddAf(Model model, Bb_AddrDto addr) throws Exception {
-		logger.info("KhAddressController addrAdd");
+		logger.info("KhAddressController addrAddAf");
 		System.out.println("bfService: " + addr);
 		BbAddrService.addrAdd(model, addr);
-		System.out.println("afService: " + addr);
+		model.addAttribute("addr",addr);
 		return "addAddrAf.tiles";	
 	}
+	@RequestMapping(value="addrUpdate.do",method= {RequestMethod.GET, RequestMethod.POST})
+	public String addrUpdate(Model model, int seq) throws Exception {
+		logger.info("KhAddressController addrUpdate");
+		model.addAttribute("seq", seq);
+		return "redirect:/addAddr.do";
+	}
 
-//	@RequestMapping(value="address.do", method= {RequestMethod.GET, RequestMethod.POST})
-//	public String address(Model model) throws Exception {
-//		logger.info("KhAddressController address");
-//		Bb_MemberDto member = BbMemberService.allMember();
-//		List<Bb_AddrDto> AddrList = BbAddrService.allAddress();
-//		model.addAttribute("addr", AddrList);
-//		model.addAttribute("member", member);
-//		return "NewFile.tiles";	
-//	}
-	
-	
 }
 
 

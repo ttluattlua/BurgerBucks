@@ -20,10 +20,7 @@ AIzaSyBW3AnL99zotumTGhgh3B8lT3NgEACpRoo
  <!-- jquery-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <body>
-</script>
-
-
-<form action="./addAddrAf.do" id="_frmForm"  method="post">
+<form action="./addAddrAf.do" id="_frmForm"  method="get">
 <!--위도 경도 저장해놓는부분-->
 
 <input type="hidden" name="lat" id="_lat">
@@ -31,21 +28,25 @@ AIzaSyBW3AnL99zotumTGhgh3B8lT3NgEACpRoo
 <input type="hidden" name="latlng" id="latlng">
 
 <!--위도 경도 저장해놓는부분-->
-
+ 
 <input type="text" id="_member_seq" name="member_seq" placeholder="임의 멤버시퀀스 1">
 <input type="text" id="_postcode" name="postcode" placeholder="우편번호">
 <input type="button" onclick="findPostCode()" value="우편번호 찾기"><br>
-<input type="text" id="_roadAddress" name="address" placeholder="도로명주소"> <!-- name="roadAddress" -->
+<input type="text" id="_roadAddress" name="address" placeholder="도로명주소"> name="roadAddress"
 <input type="text" id="_jibunAddress" name="jibunAddress" placeholder="지번주소">
 <input type="text" id="_memo" name="memo" placeholder="배달특이사항">
 <input type="button" id="_btnSubmit" value="주소저장"><br>
+</form>
 
 <span id="guide" style="color:#999"></span>
 
 <script type="text/javascript">
 $("#_btnSubmit").click(function() {	
-	alert('글작성');	
-	$("#_frmForm").attr({ "target":"_self", "action":"addAddrAf.do" }).submit();	
+	alert('글작성');
+//	location.href = "addAddrAf.do";
+	$("#_frmForm").attr({ "target":"_self", "action":"addAddrAf.do" }).submit();
+	//$("#_frmForm").submit();
+	alert('글작성 123');	
 });
 </script>
 
@@ -58,6 +59,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW3AnL99zotumTGhgh3B8lT3N
 </script>
 
 <script>
+
 var map;  //map을 글로벌 변수로 빼줌 (해당변수를 findPostCode() 와 geocodeAddress 에서 같이 사용 하기때문에)
 var geocoder; //map을 글로벌 변수로 빼줌 (해당변수를 initMap() 와 geocodeAddress 에서 같이 사용 하기때문에)
 
@@ -134,6 +136,7 @@ function initMap() {
 	/*------------------------------------------------------------------------------  
 	 *위도 경도 가져오는 함수 
 	 *----------------------------------------------------------------------------*/
+	 
 	function geocodeAddress(geocoder, resultsMap) {
 		var address = document.getElementById('_jibunAddress').value;
 
@@ -178,7 +181,7 @@ function initMap() {
 	}
 </script>
 
-</form>
+
 
 
 </body>

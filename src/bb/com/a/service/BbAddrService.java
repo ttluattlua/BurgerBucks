@@ -11,4 +11,5 @@ import bb.com.a.model.Bb_AddrDto;
 public interface BbAddrService {
 	public List<Bb_AddrDto> allAddress() throws Exception;
 	public boolean addrAdd(Model model, Bb_AddrDto dto) throws Exception;
+	public List<Bb_AddrDto> addrUpdate(Model model, int seq) throws Exception;
 }
