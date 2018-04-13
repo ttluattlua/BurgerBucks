@@ -252,7 +252,7 @@
         var newIngredient = '<div id="div' + ingredientID + '" style="height:30px; width: 318px; margin-top: 5px; z-index:' + (ingredientCount+1) + '; position: relative; display: block;">';
         
         newIngredient += '<div style="height:30px; width: 140px; float:left;" align="center">';
-        newIngredient += '<img id="' + ingredientID + '" src="' + ingredientImgSrc + '" style="height: 50px; width: 100px; margin-top:-110px; ">';
+        newIngredient += '<img id="' + ingredientID + '" src="' + ingredientImgSrc + '" style="height: 50px; width: 100px; margin-top:-110px; opacity:0.2;">';
         newIngredient += '</div>';
         
         newIngredient += '<div style="height:30px; width: 120px; float:left; padding-top: 5px;" align="center">';
@@ -266,7 +266,7 @@
         newIngredient += '</div>';
         
         $('#ingredientList').prepend(newIngredient);
-        $('#'+ingredientID).animate({marginTop: "+=100px"});
+        $('#'+ingredientID).animate({marginTop: "+=100px", opacity: "1"});
         
         ingredientCount ++;
         ingredientIdCount ++;
