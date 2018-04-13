@@ -5,17 +5,17 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="BBABurger">
+<mapper namespace="BBCBurger">
 
 <!--재료 전체뽑아오기-->
-<select id="getIngredientList" resultType="bba.com.a.model.Bb_IngredientDto">
+<select id="getIngredientList" resultType="bbc.com.a.model.Bb_IngredientDto">
 SELECT A.SEQ, NAME, TYPES, PRICE ,CAL, A.DEL, B.SEQ AS IMAGE_SEQ, IMAGE_SRC, B.WHAT_IMAGE
 FROM (SELECT * FROM BB_INGREDIENT WHERE DEL = 0) A,(SELECT * FROM BB_IMAGE WHERE WHAT_IMAGE='일러스트' AND TABLE_NAME='BB_INGREDIENT') B
 WHERE A.SEQ = B.REF_SEQ
 </select>
 
 <!--버거 전체뽑아오기 -->
-<select id="getBurgerList" resultType="bba.com.a.model.Bb_BurgerDto">
+<select id="getBurgerList" resultType="bbc.com.a.model.Bb_BurgerDto">
 SELECT A.SEQ, NAME, TYPES, PRICE ,CAL, A.DEL, B.SEQ AS IMAGE_SEQ, IMAGE_SRC, B.WHAT_IMAGE
 FROM (SELECT * FROM BB_INGREDIENT WHERE DEL = 0) A,(SELECT * FROM BB_IMAGE WHERE WHAT_IMAGE='일러스트' AND TABLE_NAME='BB_INGREDIENT') B
 WHERE A.SEQ = B.REF_SEQ
