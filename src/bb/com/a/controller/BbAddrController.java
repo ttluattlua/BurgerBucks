@@ -49,25 +49,31 @@ public class BbAddrController {
 	 * 주소 추가
 	 * --------------------------------------------------------------------------------*/
 
-	@RequestMapping(value="addAddr.do", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="addrAdd.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String googlemap(Model model) throws Exception {
 		logger.info("KhAddressController googlemap");
-		return "addAddr.tiles";	
+		return "addrAdd.tiles";	
 	}
-
-	@RequestMapping(value="addAddrAf.do",method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="addrAddAf.do",method= {RequestMethod.GET, RequestMethod.POST})
 	public String addrAddAf(Model model, Bb_AddrDto addr) throws Exception {
 		logger.info("KhAddressController addrAddAf");
 		System.out.println("bfService: " + addr);
 		BbAddrService.addrAdd(model, addr);
 		model.addAttribute("addr",addr);
-		return "addAddrAf.tiles";	
+		return "addrAddAf.tiles";	
 	}
 	@RequestMapping(value="addrUpdate.do",method= {RequestMethod.GET, RequestMethod.POST})
 	public String addrUpdate(Model model, int seq) throws Exception {
 		logger.info("KhAddressController addrUpdate");
 		model.addAttribute("seq", seq);
-		return "redirect:/addAddr.do";
+		System.out.println("update seq:" + seq);
+		return "addrUpdate.tiles";
+	}
+	@RequestMapping(value="addrUpdateAf.do",method= {RequestMethod.GET, RequestMethod.POST})
+	public String addrUpdateAf(Model model, Bb_AddrDto addr) throws Exception {
+		logger.info("KhAddressController addrUpdate");
+		BbAddrService.addrUpdate(model, addr);
+		return "redirect:/goAddr.do";
 	}
 
 }

@@ -28,8 +28,8 @@ public class BbAddrServiceImpl implements BbAddrService {
 	}
 
 	@Override
-	public List<Bb_AddrDto> addrUpdate(Model model, int seq) throws Exception {
+	public boolean addrUpdate(Model model, Bb_AddrDto addr) throws Exception {
 		// TODO Auto-generated method stub
-		return BbAddressDao.addrUpdate(model, seq);
+		return BbAddressDao.addrUpdate(model, addr);
 	}
 }
