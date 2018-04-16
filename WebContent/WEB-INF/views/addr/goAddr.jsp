@@ -1,14 +1,11 @@
 <%@page import="java.util.List"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@page import="bb.com.a.model.Bb_MemberDto"%>
 <%@page import="bb.com.a.model.Bb_AddrDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<title>goAddr</title>
+<title>Insert title here</title>
 <%
 /* Bb_MemberDto member = (Bb_MemberDto)request.getAttribute("member"); */
-List<Bb_AddrDto> addrList = (List<Bb_AddrDto>)request.getAttribute("addrList");
+List<Bb_AddrDto> addrList = (List<Bb_AddrDto>)request.getAttribute("list"); 
 %>
 <!DOCTYPE html>
 <html>
@@ -19,23 +16,24 @@ List<Bb_AddrDto> addrList = (List<Bb_AddrDto>)request.getAttribute("addrList");
 <div style="width:700px;">
 <h2>주소록 </h2>
 
-<form name="frmForm" id="_frmForm" method="post" action="addrUpdate.do">
 <table id="" style="background-color: white; border-radius:4px; border:1px solid #999999;">
-<%-- <input type="hidden" name="seq" value="${addrList.seq}"/>--%>
 <col number="4">
 <tr><th>no.</th><th>주소</th><th>배달 시 유의사항</th><th></th></tr>
 <%-- <%for(Bb_AddrDto addr:addrList){ %> --%>
-<c:forEach items="${addrList}" var="addr"><!-- 아 이부분 모르겟군.. -->
+<c:forEach var="addr" items="${addrList}" varStatus="addrS">
 <tr>
-<td><%-- <%=addr.getSeq()%> --%>${addrList.seq}</td>
-<td><%-- <%=addr.getAddress()%> --%>""</td>
-<td><%-- <%=addr.getMemo()%> --%></td>
-<td><%-- <a href='addAddr.do?seq=<%=addr.getSeq()%>'>수정</a>/<a href="addrDelete.do">삭제</a> --%></td>
+<%-- <td><%=addr.getSeq()%></td>
+<td><%=addr.getAddress()%></td>
+<td><%=addr.getMemo()%></td> --%>
+<td>${addr.seq}</td>
+<td>${addr.address}</td>
+<td>${addr.memo}</td>
+<td><a href='addrUpdate.do?seq=${addr.seq}'>수정</a>/<a href="addrDelete.do">삭제</a></td>
+<!-- 테이블의 몇번째 주소를 수정하려고 하는지 seq값을 가지고 넘어가야함  -->
 </tr>
+<%} %>
 </c:forEach>
 </table>
-</form>
-
 <br>
 <div align="right">
 <button>주소 추가하기</button>

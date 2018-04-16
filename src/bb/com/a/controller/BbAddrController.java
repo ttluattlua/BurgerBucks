@@ -40,7 +40,7 @@ public class BbAddrController {
 		logger.info("KhAddressController goAddr");
 		List<Bb_AddrDto> addrList = BbAddrService.allAddress();
 		System.out.println("addrList in Controller" + addrList.get(0));
-		model.addAttribute("addrList", addrList);
+		model.addAttribute("list", addrList);
 		return "goAddr.tiles";	
 	}
 
@@ -67,8 +67,7 @@ public class BbAddrController {
 	public String addrUpdate(Model model, int seq) throws Exception {
 		logger.info("KhAddressController addrUpdate");
 		model.addAttribute("seq", seq);
-		return "addrUpdate.tiles";
-		/*return "redirect:/addAddr.do";*/
+		return "redirect:/addAddr.do";
 	}
 
 }
