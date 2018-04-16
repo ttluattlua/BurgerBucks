@@ -6,64 +6,19 @@
 
 <!-- 메인 화면 - 로그아웃  -->
 <definition name="main_logout.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
-  <put-attribute name="common" value="/WEB-INF/views/common/common.jsp"/>
+  <put-attribute name="header" value="/WEB-INF/views/common/top_header.jsp"/>
+  <put-attribute name="top_menu" value="/WEB-INF/views/common/top_nav.jsp"/>
+  <put-attribute name="main" value="/WEB-INF/views/BbcMain/main.jsp"/>
+  <put-attribute name="footer" value="/WEB-INF/views/common/bot_footer.jsp"/>
   
 </definition>
 
 <!-- 메인 화면 - 로그인 -->
 <definition name="main_login.tiles" extends="main_logout.tiles"> 
-  <put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>
+  <put-attribute name="header" value="/WEB-INF/views/common/top_header.jsp"/>
+  <put-attribute name="main" value="/WEB-INF/views/BbcMain/main.jsp"/>
 </definition>
 
-<!--글목록-->
-<definition name="home.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
-	<put-attribute name="common" value="/WEB-INF/views/common/common.jsp"/>
-	<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>
-	<put-attribute name="top_menu" value="/WEB-INF/views/common/top_menu.jsp"/>
-	<put-attribute name="left_main" value="/WEB-INF/views/common/left_side_bar.jsp"/>
-	<put-attribute name="main" value="/WEB-INF/views/home/main.jsp"/>
-	<put-attribute name="footer" value="/WEB-INF/views/common/bottom.jsp"/>
-</definition>
-
-
-<!--사원등록-->
-<definition name="adminplus.tiles" extends="home.tiles">
-<put-attribute name="main" value="/WEB-INF/views/membermenu/adminplus.jsp"/>
-</definition>
-
-
-<!--지점관리자 관리-->
-<definition name="adminlist.tiles" extends="home.tiles">
-<put-attribute name="main" value="/WEB-INF/views/membermenu/adminlist.jsp"/>
-</definition>
-
-
-<!--고객 관리-->
-<definition name="customerlist.tiles" extends="home.tiles">
-<put-attribute name="main" value="/WEB-INF/views/membermenu/customerlist.jsp"/>
-</definition>
-
-
-<!--store관리로 이동 -->
-<definition name="storelist.tiles" extends="home.tiles">
-<put-attribute name="main" value="/WEB-INF/views/storemenu/storelist.jsp"/>
-</definition>
-
-
-<!--side관리로 이동 -->
-<definition name="sidelist.tiles" extends="home.tiles">
-<put-attribute name="main" value="/WEB-INF/views/tablemenu/sidelist.jsp"/>
-</definition>
-
-<!--menu관리로 이동 -->
-<definition name="menulist.tiles" extends="home.tiles">
-<put-attribute name="main" value="/WEB-INF/views/tablemenu/menulist.jsp"/>
-</definition>
-
-<!--재료관리로 이동 -->
-<definition name="ingredientlist.tiles" extends="home.tiles">
-<put-attribute name="main" value="/WEB-INF/views/tablemenu/ingredientlist.jsp"/>
-</definition>
 
 </tiles-definitions>
 

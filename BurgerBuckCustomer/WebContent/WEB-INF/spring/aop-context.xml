@@ -15,7 +15,7 @@
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
 	<aop:aspectj-autoproxy/>	
-	<bean id="testAspect" class="bba.com.a.aop.LogAop"/>
+	<bean id="testAspect" class="bbc.com.a.aop.LogCop"/>
 		
 </beans>
 

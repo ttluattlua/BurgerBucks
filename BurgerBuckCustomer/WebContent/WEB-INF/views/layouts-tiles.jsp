@@ -5,39 +5,36 @@
 <fmt:requestEncoding value="utf-8"/>
 <html>
 
-<title>BurgerBucksCustomer</title>
+<title>BurgerBucks Customer</title>
 
 <tiles:insertAttribute name="header"/>
 
 </head>
 <body class="fix-header fix-sidebar">
 
+<!-- Main wrapper  --> 
 <div id="main-wrapper">
-
-	<!-- Preloader - style you can find in spinners.css -->
-	<div class="preloader">
-	  <svg class="circular" viewBox="25 25 50 50">
-	  <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
-	</div>
-	  
-	  
-	<!-- Main wrapper  -->  
-	<div class="header">
-	  <tiles:insertAttribute name="top_menu"/>
-	</div>
-	
-	<div class="left-sidebar">
-	  <tiles:insertAttribute name="left_main"/>
-	</div>    
-	
-	<div class="page-wrapper" data-interval="false">
-	  <tiles:insertAttribute name="main"/>
-	</div>      
-	
-	<div class="">
-	  <tiles:insertAttribute name="footer"/>    
-	</div>
-	
+  
+  <div class="header" data-interval="false">
+    <tiles:insertAttribute name="header"/>
+  </div>
+  
+  <div class="top_menu">
+    <tiles:insertAttribute name="top_menu"/>
+  </div>
+  
+  <div class="left_main">
+    <tiles:insertAttribute name="left_main"/>
+  </div>    
+  
+  <div class="main" data-interval="false">
+    <tiles:insertAttribute name="main"/>
+  </div>      
+  
+  <div class="footer">
+    <tiles:insertAttribute name="footer"/>    
+  </div>
+  
 </div>
 
 
