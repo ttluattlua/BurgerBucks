@@ -12,51 +12,67 @@
 <!--the Key values of key Parameter is gittp92's. you should use yours. go to google '
     https://console.developers.google.com' and get your key value
     > 파라미터 key 값 제 코드라서 각자 받아서 써야해요  https://console.developers.google.com 여기들어가서 키값받으면 됨
-
-(Api key)
-AIzaSyBW3AnL99zotumTGhgh3B8lT3NgEACpRoo
 -->
-
- <!-- jquery-->
+<!--구글맵 api코드: 서원계정으로 받음 -->
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW3AnL99zotumTGhgh3B8lT3NgEACpRoo&callback=initMap">
+</script>
+<!-- jquery-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<body>
-<form action="./addAddrAf.do" id="_frmForm"  method="get">
-<!--위도 경도 저장해놓는부분-->
 
+<body>
+<div align="center" style="margin-top:50px">
+<div style="width:1000px;">
+<div style="display:block; height: 300px; width:500px; float: left; border-radius: 4px;">
+
+<!-- 주소 form 시작 -->
+<form action="./addrAddAf.do" id="_frmForm"  method="get">
+<!--멤버시퀀스, 위도,경도 저장해놓는부분-->
 <input type="hidden" name="lat" id="_lat">
 <input type="hidden" name="lng" id="_lng">
 <input type="hidden" name="latlng" id="latlng">
+<input type="hidden" id="_member_seq" name="member_seq" value="1">
+<input type="hidden" id="_seq" name="seq" value="${seq}">
 
-<!--위도 경도 저장해놓는부분-->
- 
-<input type="text" id="_member_seq" name="member_seq" placeholder="임의 멤버시퀀스 1">
-<input type="text" id="_postcode" name="postcode" placeholder="우편번호">
-<input type="button" onclick="findPostCode()" value="우편번호 찾기"><br>
-<input type="text" id="_roadAddress" name="address" placeholder="도로명주소"> name="roadAddress"
-<input type="text" id="_jibunAddress" name="jibunAddress" placeholder="지번주소">
-<input type="text" id="_memo" name="memo" placeholder="배달특이사항">
-<input type="button" id="_btnSubmit" value="주소저장"><br>
+<!-- 주소입력테이블  -->
+<table style= "background-color: white; padding:10px; border:1px solid #eee;">
+<tr>
+<th style="border: 1px; padding: 5px; background-color:#eeeeee" scope="row">주소</th>
+<td>
+<input type="text" id="_postcode" name="postcode" size="10" >-
+<input type="button" onclick="findPostCode()" value="우편번호 검색"><br>
+<input type="text" id="_roadAddress" name="address"  size="40">도로명주소<br>
+<input type="text" id="_jibunAddress" name="jibunAddress" size="40">지번주소
+</td>
+</tr>
+<tr>
+<th style="padding: 5px; background-color:#eeeeee" scope="row">배달 특이사항</th>
+<td><input type="text" id="_memo" name="memo" size="40" ></td>
+</tr>
+</table>
+<input type="button" id="_btnSubmit" value="주소저장">
 </form>
-
+</div>
 <span id="guide" style="color:#999"></span>
 
 <script type="text/javascript">
 $("#_btnSubmit").click(function() {	
 	alert('글작성');
 //	location.href = "addAddrAf.do";
-	$("#_frmForm").attr({ "target":"_self", "action":"addAddrAf.do" }).submit();
+	$("#_frmForm").attr({ "target":"_self", "action":"addrUpdateAf.do" }).submit();
 	//$("#_frmForm").submit();
 	alert('글작성 123');	
 });
 </script>
 
-<div id="map" style="width: 400px; height: 400px;"></div> <!--지도부분-->
+<div style="display:block; height: 500px; width:500px; float: left;">
+<!--지도 띄우는 div-->
+<div id="map" style="width: 400px; height: 400px;"></div> 
+</div>
+</div>
+</div>
 
 
-<!--언니 여기서 key값은 제아이디로 받은거라서 일단 우리 프로젝트에는 이 key값으로 사용하고 제가 나중에 구글에서 지도 key값 받는 사이트 알려드릴게용-->
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW3AnL99zotumTGhgh3B8lT3NgEACpRoo&callback=initMap">
-</script>
 
 <script>
 
@@ -180,9 +196,6 @@ function initMap() {
 
 	}
 </script>
-
-
-
 
 </body>
 </html>

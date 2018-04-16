@@ -33,8 +33,8 @@ public class BbAddrDaoImpl implements BbAddrDao{
 	}
 
 	@Override
-	public List<Bb_AddrDto> addrUpdate(Model model, int seq) throws Exception {
-		List<Bb_AddrDto> AddrList = sqlSession.selectList(ns+"addrUpdate");
-		return AddrList;
+	public boolean addrUpdate(Model model, Bb_AddrDto addr) throws Exception {
+		int n = sqlSession.update(ns+"addrUpdate", addr);
+		return n>0?true:false;
 	}
 }
