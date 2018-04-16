@@ -32,7 +32,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW3AnL99zotumTGhgh3B8lT3N
 <input type="hidden" name="lng" id="_lng">
 <input type="hidden" name="latlng" id="latlng">
 <input type="hidden" id="_member_seq" name="member_seq" value="1">
-<input type="hidden" id="_seq" name="seq">
+<!-- <input type="hidden" id="_seq" name="seq"> -->
 
 <!-- 주소입력테이블  -->
 <table style= "background-color: white; padding:10px; border:1px solid #eee;">
@@ -46,7 +46,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW3AnL99zotumTGhgh3B8lT3N
 </td>
 </tr>
 <tr>
-<th style="padding: 5px; background-color:#eeeeee" scope="row">배달 특이사항</th>
+<th style="padding: 5px; background-color:#eee" scope="row">배달 특이사항</th>
 <td><input type="text" id="_memo" name="memo" size="40" ></td>
 </tr>
 </table>
@@ -59,8 +59,8 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW3AnL99zotumTGhgh3B8lT3N
 $("#_btnSubmit").click(function() {	
 	alert('글작성');
 //	location.href = "addAddrAf.do";
-	$("#_frmForm").attr({ "target":"_self", "action":"addAddrAf.do" }).submit();
-	//$("#_frmForm").submit();
+//	$("#_frmForm").submit();
+	$("#_frmForm").attr({ "target":"_self", "action":"addrAddAf.do" }).submit();
 	alert('글작성 123');	
 });
 </script>

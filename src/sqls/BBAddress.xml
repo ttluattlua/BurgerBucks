@@ -25,6 +25,9 @@
 		WHERE SEQ=#{seq}
 	</update>	
 	
+	<update id="addrDelete"	parameterType="bb.com.a.model.Bb_AddrDto">
+		DELETE FROM BB_ADDR WHERE SEQ=#{seq}
+	</update>		
 
 </mapper>
 

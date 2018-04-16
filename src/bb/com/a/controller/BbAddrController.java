@@ -60,7 +60,11 @@ public class BbAddrController {
 		System.out.println("bfService: " + addr);
 		BbAddrService.addrAdd(model, addr);
 		model.addAttribute("addr",addr);
-		return "addrAddAf.tiles";	
+		return "redirect:/goAddr.do";
+		
+	/*-------------------------------------------------------------------------------
+	 * 주소 수정
+	 * --------------------------------------------------------------------------------*/
 	}
 	@RequestMapping(value="addrUpdate.do",method= {RequestMethod.GET, RequestMethod.POST})
 	public String addrUpdate(Model model, int seq) throws Exception {
@@ -75,7 +79,18 @@ public class BbAddrController {
 		BbAddrService.addrUpdate(model, addr);
 		return "redirect:/goAddr.do";
 	}
-
+	
+	/*-------------------------------------------------------------------------------
+	 * 주소 삭제
+	 * --------------------------------------------------------------------------------*/
+	@RequestMapping(value="addrDelete.do",method= {RequestMethod.GET, RequestMethod.POST})
+	public String addrDelete(Model model, Bb_AddrDto addr) throws Exception {
+		logger.info("KhAddressController addrDelete");
+		System.out.println("====================addrDelete.do======================");
+		System.out.println(addr.toString());
+		BbAddrService.addrDelete(model, addr);
+		return "redirect:/goAddr.do";
+	}
 }
 
 

@@ -32,4 +32,10 @@ public class BbAddrServiceImpl implements BbAddrService {
 		// TODO Auto-generated method stub
 		return BbAddressDao.addrUpdate(model, addr);
 	}
+
+	@Override
+	public boolean addrDelete(Model model, Bb_AddrDto addr) throws Exception {
+		// TODO Auto-generated method stub
+		return BbAddressDao.addrDelete(model, addr);
+	}
 }

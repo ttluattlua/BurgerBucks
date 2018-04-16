@@ -8,6 +8,7 @@
 /* Bb_MemberDto member = (Bb_MemberDto)request.getAttribute("member"); */
 List<Bb_AddrDto> addrList = (List<Bb_AddrDto>)request.getAttribute("list"); 
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +23,7 @@ List<Bb_AddrDto> addrList = (List<Bb_AddrDto>)request.getAttribute("list");
 <div style="width:1000px; background-color:white;">
 <div style="display:block; width:600px; float: left; border-radius: 4px;">
 
+<form action="" id="_frmForm" method="post" action="">
 <h2>주소록 </h2>
 <table id="" style="width:600px; background-color:white; border:1px solid #999999;">
 <col number="4">
@@ -36,15 +38,29 @@ List<Bb_AddrDto> addrList = (List<Bb_AddrDto>)request.getAttribute("list");
 <td style="padding:3px;">${addr.seq}</td>
 <td style="padding:3px;">${addr.address}</td>
 <td style="padding:3px;">${addr.memo}</td>
-<td style="padding:3px;"><a href='addrUpdate.do?seq=${addr.seq}'>수정</a>/<a href="addrDelete.do?seq=${addr.seq}">삭제</a></td>
+<td style="padding:3px;">
+<a href='addrUpdate.do?seq=${addr.seq}'>수정</a>
+<a href="#" onclick="confirmChoice();<!--  return false; -->">삭제<input type="hidden" value="${addr.seq}" name="seq"></a></td>
+
 <!-- 테이블의 몇번째 주소를 수정하려고 하는지 seq값을 가지고 넘어감  -->
 </tr>
 </c:forEach>
 </table>
+</form>
+
+<script type="text/javascript">
+	function confirmChoice(){
+		var answer = confirm("정말 삭제하시겠습니까?");
+		if(answer !=0){
+			$("#_frmForm").attr({ "target":"_self", "action":"addrDelete.do" }).submit();	
+		}
+	}
+</script>
+
 <br>
 <div align="right">
-<button>주소 추가하기</button>
-<button>메인화면으로 이동</button>
+<input type="button" id="_btnNew" value="주소 새로 추가하기">
+<input type="button" id="_btnMain" value="메인화면 가기">
 </div>
 </div>
 </div>
@@ -67,6 +83,11 @@ List<Bb_AddrDto> addrList = (List<Bb_AddrDto>)request.getAttribute("list");
 </div>
 </div>
 
-
+<script type="text/javascript">
+$("#_btnNew").click(function(){
+	alert("새로 추가하기!");
+	location.href = "addrAdd.do";
+})
+</script>
 </body>
 </html>
