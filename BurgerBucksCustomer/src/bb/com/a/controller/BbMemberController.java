@@ -37,6 +37,7 @@ public class BbMemberController {
 	@Autowired
 	BbAddrService BbAddrService;
 	
+
 	
 	/*--------------------------------------------------------------------------------------------
 	 * 켰을때 메인으로 이동
@@ -67,22 +68,32 @@ public class BbMemberController {
 		logger.info("BbMemberController login");
 		System.out.println(bmdto.toString());
 		Bb_MemberDto login = bbMemberSerivce.login(bmdto);
+		
+		PrintWriter alerting = resp.getWriter();
+		alerting.println("<script language='javascript'>");
+		
+	  //인코딩
+	  req.setCharacterEncoding("utf-8");
+	  resp.setContentType("text/html; charset=UTF-8");
 
 		//회원정보가 일치했을 경우 (주소도 불러옴)
 		if(login != null && !login.getId().equals("")) {
 			//세션에 아이디 주소 다 저장
 			HttpSession session = req.getSession(true);
 			session.setAttribute("login", login);
-			System.out.println("로그인 성공");
-		
-		}else {
-
-
-			System.out.println("로그인 실패");
+			alerting.println("alert('로그인에 성공했습니다.');");
+		}
+		else {
+		  alerting.println("alert('로그인에 실패했습니다.');");
 		}
 		
-		return "redirect:/home.do";
-
+		alerting.println("location.href='home.do';"); 
+    
+    alerting.println("</script>"); 
+    alerting.close();
+		
+    return null;
+		/*return "redirect:/home.do";*/
 	}
 	
 
