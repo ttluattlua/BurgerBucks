@@ -23,7 +23,7 @@ List<Bb_AddrDto> addrList = (List<Bb_AddrDto>)request.getAttribute("list");
 <div style="width:1000px; background-color:white;">
 <div style="display:block; width:600px; float: left; border-radius: 4px;">
 
-<form action="" id="_frmForm" method="post" action="">
+<form id="_frmForm" method="post" action="">
 <h2>주소록 </h2>
 <table id="" style="width:600px; background-color:white; border:1px solid #999999;">
 <col number="4">
@@ -40,8 +40,9 @@ List<Bb_AddrDto> addrList = (List<Bb_AddrDto>)request.getAttribute("list");
 <td style="padding:3px;">${addr.memo}</td>
 <td style="padding:3px;">
 <a href='addrUpdate.do?seq=${addr.seq}'>수정</a>
-<a href="#" onclick="confirmChoice();<!--  return false; -->">삭제<input type="hidden" value="${addr.seq}" name="seq"></a></td>
-
+<%-- <a href='addrDelete.do?seq=${addr.seq}'>삭제</a> --%>
+<a href="#" onclick="confirmChoice();">삭제</a><input type="hidden" value="${addr.seq}" name="seq">${addr.seq}</td>
+<!--  return false; -->
 <!-- 테이블의 몇번째 주소를 수정하려고 하는지 seq값을 가지고 넘어감  -->
 </tr>
 </c:forEach>
@@ -53,6 +54,8 @@ List<Bb_AddrDto> addrList = (List<Bb_AddrDto>)request.getAttribute("list");
 		var answer = confirm("정말 삭제하시겠습니까?");
 		if(answer !=0){
 			$("#_frmForm").attr({ "target":"_self", "action":"addrDelete.do" }).submit();	
+		}else if(answer !=1){
+			location.href = "goAddr.do";
 		}
 	}
 </script>

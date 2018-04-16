@@ -61,7 +61,6 @@ $("#_btnSubmit").click(function() {
 //	location.href = "addAddrAf.do";
 //	$("#_frmForm").submit();
 	$("#_frmForm").attr({ "target":"_self", "action":"addrAddAf.do" }).submit();
-	alert('글작성 123');	
 });
 </script>
 
@@ -168,14 +167,9 @@ function initMap() {
 			alert("위도경도:" + latlng);
 			
 			latlng = latlng.replace("(","");
-			latlng = latlng.replace(")","");
-			alert('AF replace: ' + latlng);
-			
+			latlng = latlng.replace(")","");			
 			var afterStr = latlng.split(',');
-			alert("lat:"+ afterStr[0]);
-			alert("lng:"+ afterStr[1]);
 
-			
 			document.getElementById('_lat').value = afterStr[0];
 			document.getElementById('_lng').value = afterStr[1];
 			

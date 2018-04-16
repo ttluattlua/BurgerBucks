@@ -87,7 +87,7 @@ public class BbAddrController {
 	public String addrDelete(Model model, Bb_AddrDto addr) throws Exception {
 		logger.info("KhAddressController addrDelete");
 		System.out.println("====================addrDelete.do======================");
-		System.out.println(addr.toString());
+		System.out.println("지울set: "+addr.toString());
 		BbAddrService.addrDelete(model, addr);
 		return "redirect:/goAddr.do";
 	}
