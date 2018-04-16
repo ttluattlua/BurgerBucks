@@ -6,11 +6,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-`
+<body style="background-color: #c33a02;" align="center">
 
-<%
-response.sendRedirect("./home.do");
-%>
+<img src="./UI/Burger.gif">
+
+<script type="text/javascript">
+  setTimeout(function() { 
+    alert("버거벅스에 오신 것을 환영합니다!");
+    location.href="./home.do";
+    }, 2600);
+</script>
+
+<%-- <%response.sendRedirect("./home.do");%> --%>
+
 </body>
 </html>
