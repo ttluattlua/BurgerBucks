@@ -8,7 +8,8 @@
 	<select id="allAddress" 
 		resultType="bb.com.a.model.Bb_AddrDto"> 
 		SELECT SEQ, MEMBER_SEQ, ADDRESS, LAT, LNG, MEMO, DEL 
-		FROM BB_ADDR ORDER BY SEQ DESC
+		FROM BB_ADDR WHERE DEL=0 ORDER BY SEQ DESC
+		
 	</select> 
 	
 	<insert id="addrAdd"
