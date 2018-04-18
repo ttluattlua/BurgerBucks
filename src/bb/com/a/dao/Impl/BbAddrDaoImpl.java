@@ -19,29 +19,16 @@ public class BbAddrDaoImpl implements BbAddrDao{
 	private String ns = "BBAddress.";
 	
 	@Override
-	public List<Bb_AddrDto> allAddress() throws Exception {
+	public List<Bb_AddrDto> allAddress() {
 		List<Bb_AddrDto> AddrList = sqlSession.selectList(ns+"allAddress");
+		System.out.println("dto in addr dao: " + AddrList.get(0));
 		return AddrList;
 	}
 
 	@Override
 	public boolean addrAdd(Model model, Bb_AddrDto addr) throws Exception {
 		model.addAttribute("addr",addr);
-		int n = sqlSession.insert(ns + "addrAdd", addr);		
-		return n>0?true:false;
-	}
-
-	@Override
-	public boolean addrUpdate(Model model, Bb_AddrDto addr) throws Exception {
-		int n = sqlSession.update(ns+"addrUpdate", addr);
-		return n>0?true:false;
-	}
-
-	@Override
-	public boolean addrDelete(Model model, Bb_AddrDto addr) throws Exception {
-		System.out.println("addrDelete DaoImpl");
-		System.out.println("지울 seq:" + addr.getSeq());
-		int n = sqlSession.update(ns+"addrDelete", addr);
+		int n = sqlSession.insert(ns + "addAddr", addr);		
 		return n>0?true:false;
 	}
 }

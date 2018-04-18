@@ -38,59 +38,47 @@ public class BbAddrController {
 	@RequestMapping(value="goAddr.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String goAddr(Model model) throws Exception {
 		logger.info("KhAddressController goAddr");
-		List<Bb_AddrDto> addrList = BbAddrService.allAddress();
-		/*System.out.println("addrList in Controller" + addrList.get(0));*/
-		model.addAttribute("list", addrList);
 		return "goAddr.tiles";	
 	}
-
 	
 	/*-------------------------------------------------------------------------------
 	 * 주소 추가
 	 * --------------------------------------------------------------------------------*/
-
-	@RequestMapping(value="addrAdd.do", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="addAddr.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String googlemap(Model model) throws Exception {
 		logger.info("KhAddressController googlemap");
-		return "addrAdd.tiles";	
+		return "addAddr.tiles";	
 	}
-	@RequestMapping(value="addrAddAf.do",method= {RequestMethod.GET, RequestMethod.POST})
+
+	@RequestMapping(value="addAddrAf.do",method= {RequestMethod.GET, RequestMethod.POST})
 	public String addrAddAf(Model model, Bb_AddrDto addr) throws Exception {
-		logger.info("KhAddressController addrAddAf");
+		logger.info("KhAddressController addrAdd");
 		System.out.println("bfService: " + addr);
 		BbAddrService.addrAdd(model, addr);
 		model.addAttribute("addr",addr);
-		return "redirect:/goAddr.do";
+		return "addAddrAf.tiles";	
+	}
+	/*@RequestMapping(value="test.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public String test(Model model) throws Exception {
+		logger.info("KhAddressController test");
 		
-	/*-------------------------------------------------------------------------------
-	 * 주소 수정
-	 * --------------------------------------------------------------------------------*/
+		System.out.println("bfService: " + addr);
+		
+		return "addAddrAf.tiles";	
 	}
-	@RequestMapping(value="addrUpdate.do",method= {RequestMethod.GET, RequestMethod.POST})
-	public String addrUpdate(Model model, int seq) throws Exception {
-		logger.info("KhAddressController addrUpdate");
-		model.addAttribute("seq", seq);
-		System.out.println("update seq:" + seq);
-		return "addrUpdate.tiles";
-	}
-	@RequestMapping(value="addrUpdateAf.do",method= {RequestMethod.GET, RequestMethod.POST})
-	public String addrUpdateAf(Model model, Bb_AddrDto addr) throws Exception {
-		logger.info("KhAddressController addrUpdate");
-		BbAddrService.addrUpdate(model, addr);
-		return "redirect:/goAddr.do";
-	}
+	*/
+
+//	@RequestMapping(value="address.do", method= {RequestMethod.GET, RequestMethod.POST})
+//	public String address(Model model) throws Exception {
+//		logger.info("KhAddressController address");
+//		Bb_MemberDto member = BbMemberService.allMember();
+//		List<Bb_AddrDto> AddrList = BbAddrService.allAddress();
+//		model.addAttribute("addr", AddrList);
+//		model.addAttribute("member", member);
+//		return "NewFile.tiles";	
+//	}
 	
-	/*-------------------------------------------------------------------------------
-	 * 주소 삭제
-	 * --------------------------------------------------------------------------------*/
-	@RequestMapping(value="addrDelete.do",method= {RequestMethod.GET, RequestMethod.POST})
-	public String addrDelete(Model model, Bb_AddrDto addr) throws Exception {
-		logger.info("KhAddressController addrDelete");
-		System.out.println("====================addrDelete.do======================");
-		System.out.println("지울set: "+addr.toString());
-		BbAddrService.addrDelete(model, addr);
-		return "redirect:/goAddr.do";
-	}
+	
 }
 
 

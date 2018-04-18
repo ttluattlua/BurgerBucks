@@ -16,34 +16,44 @@
 
 <!-- 가입 -->
 <definition name="regi.tiles" extends="home.tiles">
-	<put-attribute name="main" value="/WEB-INF/views/login/regi.jsp"/>
+
+<put-attribute name="main" value="/WEB-INF/views/login/regi.jsp"/>
+
 </definition>
+
+
 
 <!--오더로 이동-->
 <definition name="order.tiles" extends="home.tiles">
 	<put-attribute name="main" value="/WEB-INF/views/order/orderpage.jsp"/>
 </definition>
 
+
+
 <!--주소추가 폼으로 이동 -->
 <definition name="goAddr.tiles" extends="home.tiles">
-	<put-attribute name="main" value="/WEB-INF/views/addr/goAddr.jsp"/>
+
+<put-attribute name="main" value="/WEB-INF/views/addr/goAddr.jsp"/>
+
 </definition>
 
 
 <!--주소추가하기 2-->
-<definition name="addrAdd.tiles" extends="home.tiles">
-	<put-attribute name="main" value="/WEB-INF/views/addr/addrAdd.jsp"/>
+<definition name="addAddr.tiles" extends="home.tiles">
+
+<put-attribute name="main" value="/WEB-INF/views/addr/addAddr.jsp"/>
+
 </definition>
 
-<!--주소추가 완료 후-->
-<definition name="addrAddAf.tiles" extends="home.tiles">
-	<put-attribute name="main" value="/WEB-INF/views/addr/addrAddAf.jsp"/>
+
+<!--주소추가 완료-->
+<definition name="addAddrAf.tiles" extends="home.tiles">
+
+<put-attribute name="main" value="/WEB-INF/views/addr/addAddrAf.jsp"/>
+
 </definition>
 
-<!--주소 수정-->
-<definition name="addrUpdate.tiles" extends="home.tiles">
-	<put-attribute name="main" value="/WEB-INF/views/addr/addrUpdate.jsp"/>
-</definition>
+
 </tiles-definitions>
 
 

@@ -18,20 +18,6 @@ FROM BB_ADDR
 WHERE MEMBER_SEQ=#{seq} AND DEl=0
 </select>
 
-	<select id="allMember" 
-		resultType="bb.com.a.model.Bb_MemberDto"> 
-		SELECT SEQ, ID, PASSWORD, BDAY, NAME, PHONE, SEX,
-		MILEAGE, GRADE, EXP, DEL
-		FROM BB_MEMBER WHERE SEQ=1 
-	</select> 
-	
-	<insert id="addMember" parameterType="bb.com.a.model.Bb_MemberDto"> 
-		INSERT INTO BB_MEMBER
-		VALUES(BB_MEMBER_SEQ.NEXTVAL, #{id}, #{password}, #{bday}, #{name}, #{phone}, #{sex},
-		#{mileage}, #{grade}, #{exp}, #{del})
-	</insert> 
-	
-
 </mapper>  
 
 
