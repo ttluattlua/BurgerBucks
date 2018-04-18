@@ -33,15 +33,55 @@ public class BbMemberDaoImpl implements BbMemberDao {
 		return sqlSession.selectOne(ns+"getMostCurrentAddress", bmdto);
 	}
 	
+	/*----------------------------------------------------------------------------
+	 * 비밀번호 변경 
+	 * ----------------------------------------------------------------------------*/
+	@Override
+	public void updatePwd(Bb_MemberDto mem) {
+		int count = sqlSession.update(ns+"updatePwd", mem);
+		
+	}
+	
+	
+	/*----------------------------------------------------------------------------
+	 * 회원정보 수정
+	 * ----------------------------------------------------------------------------*/
+	@Override
+	public void updateProfile(Bb_MemberDto bmdto) {
+		int count = sqlSession.update(ns+"updateProfile", bmdto);
+		
+	}
+	
+	/*----------------------------------------------------------------------------
+	 * 회원정보 탈퇴
+	 * ----------------------------------------------------------------------------*/
+	@Override
+	public void deleteMember(int seq) {
+		int count = sqlSession.update(ns+"deleteMember", seq);
+		
+	}
+
+
+	
+	
+	/*----------------------------------------------------------------------------
+	 * 회원가입
+	 * ----------------------------------------------------------------------------*/
 	@Override
 	public boolean addmember(Bb_MemberDto mem) throws Exception {
-		int n = sqlSession.insert(ns + "addmember", mem);		
+		int n = sqlSession.insert(ns + "addMember", mem);		
 		return n>0?true:false;
 	}
 
+	/*----------------------------------------------------------------------------
+	 * 중복확인
+	 * ----------------------------------------------------------------------------*/
 	@Override
 	public int getID(Bb_MemberDto mem) {
 		return sqlSession.selectOne(ns + "getID", mem);
 	}
+
+
+
 
 }

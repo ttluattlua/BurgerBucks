@@ -5,22 +5,35 @@
 <fmt:requestEncoding value="utf-8"/>
 <html>
 <title>BurgerBucks</title>
+<style>
 
+.mypage_common{
+    display: inline-block;
+    margin-top: 10px; 
+    padding: 10px;
+    float: left;
+    
+}
+</style>
 <tiles:insertAttribute name="header"/>
 
 </head>
 <body style="background-color: #f3f3f3;">
-		<!--header-->
+
 		<div>
 			<tiles:insertAttribute name="top_menu"/>
 		</div>
 		
-		<%-- <div  class="left-sidebar">
-			<tiles:insertAttribute name="left_main"/>
-		</div>		 --%>
+
 		<!--main-->
-		<div>
-			<tiles:insertAttribute name="main"/>
+		<div style="padding: 0; margin: 0 auto; margin-top:20px; margin-bottom:20px; height: 700px; width: 1000px;  background: #E4DFDE;  border-radius: 1em;">
+			<div class="mypage_common" >
+				<tiles:insertAttribute name="left_side"/>
+			</div>
+			<div class="mypage_common" style="margin-left: 20px; margin-top: 30px;" >
+				<tiles:insertAttribute name="main_side"/>
+			</div>
+			
 		</div>			
 		<!--footer-->
 		<div>

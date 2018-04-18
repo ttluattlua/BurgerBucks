@@ -21,6 +21,7 @@ public class BbAddrDaoImpl implements BbAddrDao{
 	@Override
 	public List<Bb_AddrDto> allAddress() throws Exception {
 		List<Bb_AddrDto> AddrList = sqlSession.selectList(ns+"allAddress");
+		System.out.println("dto in addr dao: " + AddrList.get(0));
 		return AddrList;
 	}
 
@@ -39,8 +40,6 @@ public class BbAddrDaoImpl implements BbAddrDao{
 
 	@Override
 	public boolean addrDelete(Model model, Bb_AddrDto addr) throws Exception {
-		System.out.println("addrDelete DaoImpl");
-		System.out.println("지울 seq:" + addr.getSeq());
 		int n = sqlSession.update(ns+"addrDelete", addr);
 		return n>0?true:false;
 	}

@@ -23,7 +23,7 @@ import bb.com.a.service.BbAddrService;
 
 @Controller
 public class BbAddrController {
-	private static final Logger logger = LoggerFactory.getLogger(BbAddrController.class);
+private static final Logger logger = LoggerFactory.getLogger(BbAddrController.class);
 	
 	@Autowired
 	BbAddrService BbAddrService;
@@ -39,7 +39,7 @@ public class BbAddrController {
 	public String goAddr(Model model) throws Exception {
 		logger.info("KhAddressController goAddr");
 		List<Bb_AddrDto> addrList = BbAddrService.allAddress();
-		/*System.out.println("addrList in Controller" + addrList.get(0));*/
+		System.out.println("addrList in Controller" + addrList.get(0));
 		model.addAttribute("list", addrList);
 		return "goAddr.tiles";	
 	}
@@ -85,9 +85,7 @@ public class BbAddrController {
 	 * --------------------------------------------------------------------------------*/
 	@RequestMapping(value="addrDelete.do",method= {RequestMethod.GET, RequestMethod.POST})
 	public String addrDelete(Model model, Bb_AddrDto addr) throws Exception {
-		logger.info("KhAddressController addrDelete");
-		System.out.println("====================addrDelete.do======================");
-		System.out.println("지울set: "+addr.toString());
+		logger.info("KhAddressController addrUpdate");
 		BbAddrService.addrDelete(model, addr);
 		return "redirect:/goAddr.do";
 	}
