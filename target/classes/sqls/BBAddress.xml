@@ -8,8 +8,7 @@
 	<select id="allAddress" 
 		resultType="bb.com.a.model.Bb_AddrDto"> 
 		SELECT SEQ, MEMBER_SEQ, ADDRESS, LAT, LNG, MEMO, DEL 
-		FROM BB_ADDR WHERE DEL=0 ORDER BY SEQ DESC
-		
+		FROM BB_ADDR
 	</select> 
 	
 	<insert id="addrAdd"
@@ -27,9 +26,7 @@
 	</update>	
 	
 	<update id="addrDelete"	parameterType="bb.com.a.model.Bb_AddrDto">
-		UPDATE BB_ADDR SET
-		DEL=1
-		WHERE SEQ=#{seq}
+		DELETE FROM BB_ADDR WHERE SEQ=#{seq}
 	</update>		
 
 </mapper>
