@@ -26,8 +26,10 @@
 	</update>	
 	
 	<update id="addrDelete"	parameterType="bb.com.a.model.Bb_AddrDto">
-		DELETE FROM BB_ADDR WHERE SEQ=#{seq}
-	</update>		
+		UPDATE BB_ADDR SET
+		DEL=1
+		WHERE SEQ=#{seq}
+	</update>				
 
 </mapper>
 

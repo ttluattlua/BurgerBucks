@@ -21,9 +21,8 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW3AnL99zotumTGhgh3B8lT3N
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <body>
-<div align="center" style="margin-top:50px">
-<div style="width:1000px;">
-<div style="display:block; height: 300px; width:500px; float: left; border-radius: 4px;">
+<div style="width: 750px; height: 620px;">
+<div style="display:block; width:480px; height:400px; float: left; margin-right:20px; border-radius: 4px; ">
 
 <!-- 주소 form 시작 -->
 <form action="./addrAddAf.do" id="_frmForm"  method="get">
@@ -36,24 +35,36 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW3AnL99zotumTGhgh3B8lT3N
 
 <!-- 주소입력테이블  -->
 <table style= "background-color: white; padding:10px; border:1px solid #eee;">
-<tr>
+<tr style="border-bottom: 1px solid gray">
 <th style="border: 1px; padding: 5px; background-color:#eeeeee" scope="row">주소</th>
-<td>
+<td height="80" style="padding:15;">
 <input type="text" id="_postcode" name="postcode" size="10" >-
 <input type="button" onclick="findPostCode()" value="우편번호 검색"><br>
-<input type="text" id="_roadAddress" name="address"  size="40">도로명주소<br>
-<input type="text" id="_jibunAddress" name="jibunAddress" size="40">지번주소
+<p style="font-size:7px">(우편번호)</p>
+<input type="text" id="_roadAddress" name="address" size="50"><br>
+<p style="font-size:7px">(도로명 주소)</p>
+<input type="text" id="_jibunAddress" name="jibunAddress" size="50"><br>
+<p style="font-size:7px">(지번 주소)</p>
 </td>
 </tr>
 <tr>
-<th style="padding: 5px; background-color:#eee" scope="row">배달 특이사항</th>
-<td><input type="text" id="_memo" name="memo" size="40" ></td>
+<th style="padding: 5px; width:50px; background-color:#eee" scope="row">배달<br>특이사항</th>
+<td height="20" style="padding:15;"><input type="text" id="_memo" name="memo" size="50" ></td>
 </tr>
 </table>
+<br>
+<div align="right"> <!-- style="float:right" -->
 <input type="button" id="_btnSubmit" value="주소저장">
+</div>
 </form>
 </div>
 <span id="guide" style="color:#999"></span>
+
+<!--지도 띄우는 div-->
+<div style="display:block; width:250px; height: 400px; float: left;">
+<div id="map" style="width: 250px; height: 400px;"></div> 
+</div>
+</div>
 
 <script type="text/javascript">
 $("#_btnSubmit").click(function() {	
@@ -64,15 +75,6 @@ $("#_btnSubmit").click(function() {
 	alert('글작성 123');	
 });
 </script>
-
-<div style="display:block; height: 500px; width:500px; float: left;">
-<!--지도 띄우는 div-->
-<div id="map" style="width: 400px; height: 400px;"></div> 
-</div>
-</div>
-</div>
-
-
 
 <script>
 

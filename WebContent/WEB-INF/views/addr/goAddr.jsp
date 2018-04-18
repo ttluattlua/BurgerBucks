@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <title>Insert title here</title>
+
 <%
 /* Bb_MemberDto member = (Bb_MemberDto)request.getAttribute("member"); */
 List<Bb_AddrDto> addrList = (List<Bb_AddrDto>)request.getAttribute("list"); 
@@ -19,34 +20,51 @@ List<Bb_AddrDto> addrList = (List<Bb_AddrDto>)request.getAttribute("list");
 
 <body>
 
-<div align="center" style="margin-top:20px">
-<div style="width:1000px; background-color:white;">
-<div style="display:block; width:600px; float: left; border-radius: 4px;">
 
-<form action="" id="_frmForm" method="post" action="">
+<div style="width: 750px; height: 620px;">
+
+<form id="_frmForm" method="post" action="">
 <h2>주소록 </h2>
-<table id="" style="width:600px; background-color:white; border:1px solid #999999;">
-<col number="4">
+<table id="" style="width:750px; background-color:white; border:1px solid #999999;">
+<thead>
 <tr>
-<th style="background-color:#eee; padding:3px;">no.</th>
-<th style="background-color:#eee; padding:3px;">주소</th>
-<th style="background-color:#eee; padding:3px;">배달 시 유의사항</th>
-<th style="background-color:#eee; padding:3px;"></th>
+	<th style="background-color:#eee; padding:3px;">no.</th>
+	<th style="background-color:#eee; padding:3px;">주소</th>
+	<th style="background-color:#eee; padding:3px;">배달 시 유의사항</th>
+	<th style="background-color:#eee; padding:3px;"></th>
 </tr>
+</thead>
+
+<tbody>
+<c:if test="${empty list}">
+<tr>
+	<td colspan="4">작성된 글이 없습니다.</td>
+</tr>	
+</c:if>
 <c:forEach var="addr" items="${list}" varStatus="vs">
 <tr>
-<td style="padding:3px;">${addr.seq}</td>
-<td style="padding:3px;">${addr.address}</td>
-<td style="padding:3px;">${addr.memo}</td>
-<td style="padding:3px;">
-<a href='addrUpdate.do?seq=${addr.seq}'>수정</a>
-<a href="#" onclick="confirmChoice(); return false;">삭제<input type="hidden" value="${addr.seq}" n></a></td>
-
+	<%-- <td style="padding:3px;">${addr.seq}</td> --%>
+	<td>${vs.count}</td> 
+	<td style="padding:3px;">${addr.address}</td>
+	<td style="padding:3px;">${addr.memo}</td>
+	<td style="padding:3px;">
+	<a href='addrUpdate.do?seq=${addr.seq}'>수정</a>
+	<a href='addrDelete.do?seq=${addr.seq}'>삭제</a> 
+	<%-- <a href="#" onclick="confirmChoice();">삭제</a><input type="hidden" value="${addr.seq}" name="seq">${addr.seq}</td> --%>
+	<!--  return false; -->
+	</td>
 <!-- 테이블의 몇번째 주소를 수정하려고 하는지 seq값을 가지고 넘어감  -->
 </tr>
 </c:forEach>
+</tbody>
 </table>
 </form>
+<br>
+<div align="right">
+<input type="button" id="_btnNew" value="주소 새로 추가하기">
+<input type="button" id="_btnMain" value="메인화면 가기">
+</div>
+</div>
 
 <script type="text/javascript">
 	function confirmChoice(){
@@ -58,19 +76,10 @@ List<Bb_AddrDto> addrList = (List<Bb_AddrDto>)request.getAttribute("list");
 	}
 </script>
 
-<br>
-<div align="right">
-<input type="button" id="_btnNew" value="주소 새로 추가하기">
-<input type="button" id="_btnMain" value="메인화면 가기">
-</div>
-</div>
-</div>
-</div>
-
-
+<%-- 
 <br><br><br>
 <div style="display:block; padding:20px; margin-left:50px; height: 200px; width:300px; float: left; background-color:white; border-radius: 4px;">
-<h4>안녕하세요<%--  <%=member.getName()%> --%>--- 님<br>
+<h4>안녕하세요 <%=member.getName()%>--- 님<br>
 다음주소로 배달됩니다.<br><br>
 <select style="font-size:1.7pt;">
 <%for(Bb_AddrDto addr:addrList){ %>
@@ -83,7 +92,7 @@ List<Bb_AddrDto> addrList = (List<Bb_AddrDto>)request.getAttribute("list");
 <h4><a href="./addAddr.do">새로 주문하기</a></h4> 
 </div>
 </div>
-
+ --%>
 <script type="text/javascript">
 $("#_btnNew").click(function(){
 	alert("새로 추가하기!");
