@@ -5,10 +5,11 @@
 
 <mapper namespace="BBAddress">
 
-	<select id="allAddress" 
+	<select id="allAddress" parameterType="Bb_MemberDto"
 		resultType="bb.com.a.model.Bb_AddrDto"> 
 		SELECT SEQ, MEMBER_SEQ, ADDRESS, LAT, LNG, MEMO, DEL 
-		FROM BB_ADDR
+		FROM BB_ADDR WHERE DEL=0 AND MEMBER_SEQ=#{member_seq} 
+		ORDER BY SEQ DESC
 	</select> 
 	
 	<insert id="addrAdd"

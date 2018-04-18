@@ -53,7 +53,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW3AnL99zotumTGhgh3B8lT3N
 </tr>
 </table>
 <br>
-<div align="right"> <!-- style="float:right" -->
+<div align="right" style="margin-right:20px"> <!-- style="float:right" -->
 <input type="button" id="_btnSubmit" value="주소저장">
 </div>
 </form>
@@ -68,11 +68,9 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW3AnL99zotumTGhgh3B8lT3N
 
 <script type="text/javascript">
 $("#_btnSubmit").click(function() {	
-	alert('글작성');
 //	location.href = "addAddrAf.do";
 //	$("#_frmForm").submit();
 	$("#_frmForm").attr({ "target":"_self", "action":"addrAddAf.do" }).submit();
-	alert('글작성 123');	
 });
 </script>
 
@@ -171,12 +169,8 @@ function initMap() {
 			
 			latlng = latlng.replace("(","");
 			latlng = latlng.replace(")","");
-			alert('AF replace: ' + latlng);
 			
 			var afterStr = latlng.split(',');
-			alert("lat:"+ afterStr[0]);
-			alert("lng:"+ afterStr[1]);
-
 			
 			document.getElementById('_lat').value = afterStr[0];
 			document.getElementById('_lng').value = afterStr[1];

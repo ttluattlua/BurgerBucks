@@ -36,10 +36,10 @@ private static final Logger logger = LoggerFactory.getLogger(BbAddrController.cl
 	 * --------------------------------------------------------------------------------*/	
 	
 	@RequestMapping(value="goAddr.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String goAddr(Model model) throws Exception {
+	public String goAddr(Model model, HttpServletRequest req) throws Exception {
 		logger.info("KhAddressController goAddr");
+		
 		List<Bb_AddrDto> addrList = BbAddrService.allAddress();
-		System.out.println("addrList in Controller" + addrList.get(0));
 		model.addAttribute("list", addrList);
 		return "goAddr.tiles";	
 	}

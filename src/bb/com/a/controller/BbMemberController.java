@@ -76,8 +76,6 @@ public class BbMemberController {
 			System.out.println("로그인 성공");
 		
 		}else {
-
-
 			System.out.println("로그인 실패");
 		}
 		
