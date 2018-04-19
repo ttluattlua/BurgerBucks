@@ -36,12 +36,25 @@ private static final Logger logger = LoggerFactory.getLogger(BbAddrController.cl
 	 * --------------------------------------------------------------------------------*/	
 	
 	@RequestMapping(value="goAddr.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String goAddr(Model model, HttpServletRequest req) throws Exception {
+	public String goAddr(Model model, Bb_MemberDto login, Bb_AddrDto addr, HttpServletRequest req) throws Exception {
+		System.out.println("hi goAddr1");
 		logger.info("KhAddressController goAddr");
-		
-		List<Bb_AddrDto> addrList = BbAddrService.allAddress();
-		model.addAttribute("list", addrList);
-		return "goAddr.tiles";	
+		login = (Bb_MemberDto)req.getSession().getAttribute("login");
+		System.out.println("login.getSeq():" + login.getSeq()); //잘들어옴 
+
+		if(login != null && !login.getId().equals("")) {
+			System.out.println("hi goAddr2");
+			model.addAttribute("login", login);
+			System.out.println("hi goAddr3");
+			List<Bb_AddrDto> addrList = BbAddrService.allAddress(login); 
+			System.out.println("hi goAddr4");
+			model.addAttribute("list", addrList);
+			System.out.println("hi goAddr5");
+			//sendRedirect를 간단하게 만든것. 컨트롤러->컨트롤러 이동할때 씀
+			return "goAddr.tiles";  
+		}else {
+			return "redirect:/login.do";
+		}
 	}
 
 	
@@ -50,7 +63,7 @@ private static final Logger logger = LoggerFactory.getLogger(BbAddrController.cl
 	 * --------------------------------------------------------------------------------*/
 
 	@RequestMapping(value="addrAdd.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String googlemap(Model model) throws Exception {
+	public String addrAdd(Model model) throws Exception {
 		logger.info("KhAddressController googlemap");
 		return "addrAdd.tiles";	
 	}

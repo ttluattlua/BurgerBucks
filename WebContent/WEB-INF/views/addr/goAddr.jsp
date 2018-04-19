@@ -6,9 +6,7 @@
 <title>Insert title here</title>
 
 <%
-Bb_MemberDto member = (Bb_MemberDto)session.getAttribute("login");
 List<Bb_AddrDto> addrList = (List<Bb_AddrDto>)request.getAttribute("list"); 
-
 %>
 
 <!DOCTYPE html>

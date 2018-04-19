@@ -8,7 +8,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 
 import bb.com.a.dao.BbAddrDao;
-import bb.com.a.model.Bb_AddrDto;;
+import bb.com.a.model.Bb_AddrDto;
+import bb.com.a.model.Bb_MemberDto;;
 
 @Repository
 public class BbAddrDaoImpl implements BbAddrDao{
@@ -19,9 +20,8 @@ public class BbAddrDaoImpl implements BbAddrDao{
 	private String ns = "BBAddress.";
 	
 	@Override
-	public List<Bb_AddrDto> allAddress() throws Exception {
-		List<Bb_AddrDto> AddrList = sqlSession.selectList(ns+"allAddress");
-		System.out.println("dto in addr dao: " + AddrList.get(0));
+	public List<Bb_AddrDto> allAddress(Bb_MemberDto login) throws Exception {
+		List<Bb_AddrDto> AddrList = sqlSession.selectList(ns+"allAddress", login);
 		return AddrList;
 	}
 
