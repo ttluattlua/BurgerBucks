@@ -68,7 +68,7 @@ private static final Logger logger = LoggerFactory.getLogger(BbAddrController.cl
 		return "addrAdd.tiles";	
 	}
 	@RequestMapping(value="addrAddAf.do",method= {RequestMethod.GET, RequestMethod.POST})
-	public String addrAddAf(Model model, Bb_AddrDto addr) throws Exception {
+	public String addrAddAf(Model model, Bb_MemberDto login, Bb_AddrDto addr) throws Exception {
 		logger.info("KhAddressController addrAddAf");
 		System.out.println("bfService: " + addr);
 		BbAddrService.addrAdd(model, addr);

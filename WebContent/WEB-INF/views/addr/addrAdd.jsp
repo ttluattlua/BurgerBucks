@@ -1,7 +1,13 @@
+<%@page import="bb.com.a.model.Bb_MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<%
+Bb_MemberDto login = (Bb_MemberDto)session.getAttribute("login");
+int member_seq = login.getSeq();
+System.out.println("addrAdd.jsp로 넘어온 멤버시퀀스값: " + member_seq);
+%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -30,8 +36,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW3AnL99zotumTGhgh3B8lT3N
 <input type="hidden" name="lat" id="_lat">
 <input type="hidden" name="lng" id="_lng">
 <input type="hidden" name="latlng" id="latlng">
-<input type="hidden" id="_member_seq" name="member_seq" value="1">
-<!-- <input type="hidden" id="_seq" name="seq"> -->
+<input type="hidden" id="_member_seq" name="member_seq" value="<%=login.getSeq()%>">
 
 <!-- 주소입력테이블  -->
 <table style= "background-color: white; padding:10px; border:1px solid #eee;">
@@ -68,8 +73,6 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW3AnL99zotumTGhgh3B8lT3N
 
 <script type="text/javascript">
 $("#_btnSubmit").click(function() {	
-//	location.href = "addAddrAf.do";
-//	$("#_frmForm").submit();
 	$("#_frmForm").attr({ "target":"_self", "action":"addrAddAf.do" }).submit();
 });
 </script>

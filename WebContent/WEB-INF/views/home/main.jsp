@@ -74,7 +74,7 @@
     </div>
     </c:if>
     
-    
+
     <!--로그인 한후-->
     <c:if test="${login.id != null}">
     <div style="margin-left:10px; display:block; height: 300px; width:290px; float: left;" id="login_in_form">
@@ -85,19 +85,30 @@
         
 	        <p style="width: 240px; margin-top:10px;"><h4>${login.name} 님 반갑습니다!</h4></p>
 	        
-	        <div class="input-group" style="width: 240px; margin-top:20px;">
-			  <select  class="form-control">
-			  </select>
-	        </div>
+			<div class="input-group" style="width: 240px; margin-top:20px;">
+			
+			<!-- 주소리스트 --> 
+			
+			<c:if test="${empty list}">
+				<select  class="form-control">
+					<option>주소를 새로 추가해주세요</option>
+				</select>
+			</c:if>
+			<c:if test="${not empty list}">
+			<select  class="form-control">
+				<c:forEach var="addr" items="${list}" varStatus="vs">
+					<option>${addr.address}</option>
+				</c:forEach>	
+			</select>
+			</c:if>
+			</div>
 	        
 	        <div class="input-group" style="width: 240px; margin-top:10px;">
 	           <button class="btn btn-success" style="width: 240px; margin-top:15px;">주문하러가기</button>
 	        </div>
 	        
 	        <div class="input-group" style="width: 240px; margin-top:10px;">
-	           <a class="flat_a" style="color: black;" href="#">주소추가</a>
-		       <font style="cursor: default;">│</font>
-		       <a class="flat_a" style="color: black;" href="#">주소수정</a>
+	           <a class="flat_a" style="color: black;" href="./goAddr.do">내 주소정보 보기</a>
 	        </div>
         
         </form>

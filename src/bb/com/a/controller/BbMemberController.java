@@ -42,8 +42,10 @@ public class BbMemberController {
 	 * 켰을때 메인으로 이동
 	 *-------------------------------------------------------------------------------------------*/
 	@RequestMapping(value="home.do", method=RequestMethod.GET)
-	public String home(Model model) {
+	public String home(Model model, Bb_MemberDto login) throws Exception {
 		logger.info("BbMemberController home");
+		List<Bb_AddrDto> addrList = BbAddrService.allAddress(login);
+		model.addAttribute("list", addrList);
 		return "home.tiles";
 	}
 
@@ -63,7 +65,7 @@ public class BbMemberController {
 	 *-------------------------------------------------------------------------------------------*/
 
 	@RequestMapping(value="login.do", method=RequestMethod.POST)
-	public String login(Bb_MemberDto bmdto, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public String login(Bb_MemberDto bmdto, HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		logger.info("BbMemberController login");
 		System.out.println(bmdto.toString());
 		Bb_MemberDto login = bbMemberSerivce.login(bmdto);
@@ -73,6 +75,8 @@ public class BbMemberController {
 			//세션에 아이디 주소 다 저장
 			HttpSession session = req.getSession(true);
 			session.setAttribute("login", login);
+			List<Bb_AddrDto> addrList = BbAddrService.allAddress(login);
+			session.setAttribute("list", addrList);
 			System.out.println("로그인 성공");
 		
 		}else {
