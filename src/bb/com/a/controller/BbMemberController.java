@@ -42,10 +42,8 @@ public class BbMemberController {
 	 * 켰을때 메인으로 이동
 	 *-------------------------------------------------------------------------------------------*/
 	@RequestMapping(value="home.do", method=RequestMethod.GET)
-	public String home(Model model, Bb_MemberDto login) throws Exception {
+	public String home(Model model) throws Exception {
 		logger.info("BbMemberController home");
-		List<Bb_AddrDto> addrList = BbAddrService.allAddress(login);
-		model.addAttribute("list", addrList);
 		return "home.tiles";
 	}
 
