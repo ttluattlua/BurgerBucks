@@ -4,7 +4,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="utf-8"/>
 <html>
+<<<<<<< HEAD
 <title>layouts-tiles</title>
+=======
+<title>BurgerBucks</title>
+>>>>>>> kh
 
 <tiles:insertAttribute name="header"/>
 

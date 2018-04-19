@@ -24,6 +24,7 @@
 			$.ajax({
 				type : 'post',
 				url : 'getID.do',
+				async:true,
 				data : {
 					"id" : userID
 				},
@@ -43,12 +44,13 @@
 
 <script type="text/javascript">
 function idCheckMessage(data) {
-	if(data == 'yes'){
-		$("#checkMessage").html("사용하실 수 있는 메일주소입니다");
-		//$("#input-id").val($("#input-id").val());
-	}else{
+	if(data == 'SUCS'){
 		$("#checkMessage").html("사용할 수 없는 메일주소입니다");
 		$("#input-id").val("");		
+		
+	}else{
+		$("#checkMessage").html("사용하실 수 있는 메일주소입니다");
+		//$("#input-id").val($("#input-id").val());	
 		
 	}
 }
@@ -338,6 +340,7 @@ $("#btn_branchMRegi").click(function() {
 	alert('등록');	
 	$("#_adminPForm").attr({"target":"_self", "action":"regiAf.do" }).submit();		
 });
+ 
 
 </script> 
 			

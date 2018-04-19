@@ -18,19 +18,30 @@
     
     <!-- Login and Register -->
     <div style="float: right;">
-      <a class="flat_a" style="color: lightgray;" href="#" data-toggle="modal" data-target="#loginModal">Login</a>
-      <font style="cursor: default;">│</font>
-      <a class="flat_a" style="color: lightgray;" href="regi.do">Regist</a>
+      <c:if test="${login.id == null}">
+      	  <a class="flat_a" style="color: lightgray;" href="#" data-toggle="modal" data-target="#loginModal">Login</a>
+	      <font style="cursor: default;">│</font>
+	      <a class="flat_a" style="color: lightgray;" href="regi.do">Regist</a>
+      </c:if>
+      
+       <c:if test="${login.id != null}">
+       	  <a class="flat_a" style="color: lightgray;">${login.name}님 반갑습니다.</a>
+       	  <font style="cursor: default;">│</font>
+       	  <a class="flat_a" style="color: lightgray;" href="#">My Order</a>
+	      <font style="cursor: default;">│</font>
+	      <a class="flat_a" style="color: lightgray;" href="logOut.do">LogOut</a>
+	      
+      </c:if>
+      
     </div>
     
-    <!-- Modal -->
+    <!-- 로그인  Modal -->
     <div class="modal fade" id="loginModal" role="dialog" align="center" style="width: 600px; margin: auto; margin-top:100px; overflow: hidden;">
       <div class="modal-content">
         <button type="button" class="close" data-dismiss="modal" style="margin: 10px; color: white;">×</button>
         
         <div style="width:240px; margin: auto; padding-top: 40px;">
-          <form action="UserController" method="post" name="loginuserInfo" onsubmit="return logincheckValue()">
-            <input type="hidden" name="command" value="login">
+          <form action="login.do" method="post" name="loginuserInfo" onsubmit="return logincheckValue()">
             <h1 style="color: white; opacity: 1;">로그인</h1>
             
             <div class="input-group" style="margin-top: 20px;">
@@ -40,7 +51,7 @@
              
              <div class="input-group" style="margin-top: 10px;">
                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-               <input id="pw" type="text" class="form-control" name="pw" placeholder="Password를 입력하세요" required>
+               <input id="pw" type="text" class="form-control" name="password" placeholder="Password를 입력하세요" required>
              </div>
              
              <div style="margin-top: 20px;">
@@ -58,7 +69,7 @@
   <!-- Button Div -->
   <div style="background: linear-gradient(#5b5b5b, #333333); padding: 0; margin: 0 auto; height:80px; width: 1000px; border: 1px solid #999999; border-radius: 4px; box-shadow: 0px 4px 4px #bbbbbb;">
     <div style="background: linear-gradient(#ad3b29, #771e10); padding:10px; height:100%; width: 80px; border-right: 2px ridge #7a7979; display: block; float: left; border-top-left-radius: 3px; border-bottom-left-radius: 3px;">
-      <a href="#">
+      <a href="home.do">
         <img src="./UI/BB_Symbol.png" style="width: 60px; height: 60px; margin: 0 auto;">
       </a>
     </div>
@@ -73,14 +84,16 @@
       </a>
     </div>
     <div class="dropdown" style="height:100%; width: 160px; border-right: 2px ridge #7a7979; display: block; float: left;" align="center">
-      <a class="hover_a dropdown-toggle" data-toggle="dropdown" >
+      <a class="hover_a dropdown-toggle" data-toggle="dropdown">
         <h4 style="cursor:pointer; size: 28px; margin-top: 30px; color: #ededed; size: 28px; margin-top: 30px;">마이 페이지 ▼</h4>
       </a>
       <ul class="dropdown-menu">
-	      <li><a href="#">주문 내역</a></li>
+	      <li><a href="order_inquiry.do">주문 내역</a></li>
+	      <li><a href="order_history.do">주문 조회</a></li>
 	      <li><a href="#">즐겨찾기</a></li>
 	      <li><a href="goAddr.do">주소록</a></li>
-	      <li><a href="#">내 정보</a></li>
+	      <li><a href="updateProfile.do">회원정보 수정</a></li>
+	      <li><a href="changePwd.do">비밀번호 변경</a></li>
 	    </ul>
     </div>
     <div class="dropdown" style="height:100%; width: 160px; border-right: 2px ridge #7a7979; display: block; float: left;" align="center">
@@ -88,10 +101,9 @@
         <h4 style="cursor:pointer; size: 28px; margin-top: 30px; color: #ededed; size: 28px; margin-top: 30px;">기타 페이지 ▼</h4>
       </a>
       <ul class="dropdown-menu">
-        <li><a href="#">이용약관</a></li>
-        <li><a href="#">원산지 표시</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">문의하기</a></li>
+        <li><a href="terms_and_conditions.do">이용약관</a></li>
+        <li><a href="faq.do">FAQ</a></li>
+        <li><a href="customer_inquiry.do">문의하기</a></li>
       </ul>
     </div>
   </div>
@@ -262,7 +274,4 @@
     </script>
   </div>
   
-<!--==============================================햄버거모달==================================================== -->  
-<script>
-
-</script>
+<!--==============================================로그인==================================================== -->  

@@ -13,25 +13,68 @@ public class BbMemberServiceImpl implements BbMemberService {
 	@Autowired
 	BbMemberDao bbMemberDao;
 
+	/*----------------------------------------------------------------------------
+	 * 로그인
+	 * ----------------------------------------------------------------------------*/
 	@Override
 	public Bb_MemberDto login(Bb_MemberDto bmdto) {
 		return bbMemberDao.login(bmdto);
 	}
 
+	/*----------------------------------------------------------------------------
+	 * 로그인 한 사람 최신주소가져오기 
+	 * ----------------------------------------------------------------------------*/
 	@Override
 	public Bb_AddrDto getMostCurrentAddress(Bb_MemberDto bmdto) {
 		// TODO Auto-generated method stub
 		return bbMemberDao.getMostCurrentAddress(bmdto);
 	}
 	
+	/*----------------------------------------------------------------------------
+	 * 비밀번호 변경 
+	 * ----------------------------------------------------------------------------*/
+	@Override
+	public void updatePwd(Bb_MemberDto mem) {
+		bbMemberDao.updatePwd(mem);
+		
+	}
+	
+	/*----------------------------------------------------------------------------
+	 * 회원정보 수정
+	 * ----------------------------------------------------------------------------*/
+	@Override
+	public void updateProfile(Bb_MemberDto bmdto) {
+		bbMemberDao.updateProfile(bmdto);
+		
+	}
+	
+	/*----------------------------------------------------------------------------
+	 * 회원정보 탈퇴
+	 * ----------------------------------------------------------------------------*/
+	@Override
+	public void deleteMember(int seq) {
+		bbMemberDao.deleteMember(seq);
+	}
+
+
+	/*----------------------------------------------------------------------------
+	 * 회원가입
+	 * ----------------------------------------------------------------------------*/
 	@Override
 	public boolean addmember(Bb_MemberDto mem) throws Exception {
 		return bbMemberDao.addmember(mem);
 	}
 	
+	/*----------------------------------------------------------------------------
+	 * 중복확인
+	 * ----------------------------------------------------------------------------*/
 	@Override
 	public int getID(Bb_MemberDto mem) {
 		return bbMemberDao.getID(mem);
 	}
+
+
+
+
 	
 }

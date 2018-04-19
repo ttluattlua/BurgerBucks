@@ -37,30 +37,30 @@
         
     </div>
     
-    <!-- Login -->
-    <div style="margin-left:10px; display:block; height: 300px; width:290px; float: left;">
+    <c:if test="${login.id == null}">
+    <!-- Login  하기전-->
+    <div style="margin-left:10px; display:block; height: 300px; width:290px; float: left;" id="login_in_form">
       
-      <!-- Login Form -->
-      <div style="background-color: white; border: 1px solid #999999; border-radius: 4px; height: 200px; width:290px; padding: 10px;" align="center">
-        <form>
+      <!-- Login Form (로그인 하기 전에 입력 창 -->
+      <div style="background-color: white; border: 1px solid #999999; border-radius: 4px; height: 200px; width:290px; padding: 10px;" align="center" >
+        <form action="login.do" method="post">
         
 	        <p style="width: 240px; margin-top:10px;">로그인</p>
 	        
 	        <div class="input-group" style="width: 240px; margin-top:20px;">
 	          <span class="input-group-addon" style="width:50px;">ID</span> 
-	          <input id="name" name="name" type="text" class="form-control" placeholder="아이디를 입력해주세요" required>
+	          <input id="name" name="id" type="text" class="form-control" placeholder="아이디를 입력해주세요" required>
 	        </div>
 	        
 	        <div class="input-group" style="width: 240px; margin-top:10px;">
 	          <span class="input-group-addon" style="width:50px;">PW</span> 
-	          <input id="name" name="name" type="text" class="form-control" placeholder="비밀번호를 입력해주세요" required>
+	          <input id="name" name="password" type="password" class="form-control" placeholder="비밀번호를 입력해주세요" required>
 	        </div>
 	        
           <button class="btn btn-success" style="width: 240px; margin-top:15px;" type="submit">로그인</button>
         
         </form>
       </div>
-      
       <!-- ID/PW Find Button -->
       <div style="margin-top:10px;">
         <button class="btn btn-success" style="width: 290px; border: 1px solid #999999; border-radius: 4px; height: 40px;">ID/PW 찾기</button>
@@ -68,10 +68,64 @@
       
       <!-- Regist Button -->
       <div style="margin-top:10px;">
-        <button class="btn btn-success" style="width: 290px; border: 1px solid #999999; border-radius: 4px; height: 40px;">회원 가입</button>
+        <button class="btn btn-success" style="width: 290px; border: 1px solid #999999; border-radius: 4px; height: 40px;" onclick="location.href='regi.do'">회원 가입</button>
       </div>
      
     </div>
+    </c:if>
+    
+
+    <!--로그인 한후-->
+    <c:if test="${login.id != null}">
+    <div style="margin-left:10px; display:block; height: 300px; width:290px; float: left;" id="login_in_form">
+      
+      <!-- Login Form (로그인 하기 전에 입력 창 -->
+      <div style="background-color: white; border: 1px solid #999999; border-radius: 4px; height: 200px; width:290px; padding: 10px;" align="center" >
+        <form action="login.do" method="post">
+        
+	        <p style="width: 240px; margin-top:10px;"><h4>${login.name} 님 반갑습니다!</h4></p>
+	        
+			<div class="input-group" style="width: 240px; margin-top:20px;">
+			
+			<!-- 주소리스트 --> 
+			
+			<c:if test="${empty list}">
+				<select  class="form-control">
+					<option>주소를 새로 추가해주세요</option>
+				</select>
+			</c:if>
+			<c:if test="${not empty list}">
+			<select  class="form-control">
+				<c:forEach var="addr" items="${list}" varStatus="vs">
+					<option>${addr.address}</option>
+				</c:forEach>	
+			</select>
+			</c:if>
+			</div>
+	        
+	        <div class="input-group" style="width: 240px; margin-top:10px;">
+	           <button class="btn btn-success" style="width: 240px; margin-top:15px;">주문하러가기</button>
+	        </div>
+	        
+	        <div class="input-group" style="width: 240px; margin-top:10px;">
+	           <a class="flat_a" style="color: black;" href="./goAddr.do">내 주소정보 보기</a>
+	        </div>
+        
+        </form>
+      </div>
+      <!-- 내 주문 조회 Button -->
+      <div style="margin-top:10px;">
+        <button class="btn btn-success" style="width: 290px; border: 1px solid #999999; border-radius: 4px; height: 40px;" onclick="location.href='./order_inquiry.do'">내 주문 조회</button>
+      </div>
+      
+      <!-- 내 정보 수정 Button -->
+      <div style="margin-top:10px;">
+        <button class="btn btn-success" style="width: 290px; border: 1px solid #999999; border-radius: 4px; height: 40px;" onclick="location.href='./updateProfile.do'">내 정보 수정</button>
+      </div>
+     
+    </div>
+    </c:if>
+        
   </div>
 
   <!-- Guide -->
