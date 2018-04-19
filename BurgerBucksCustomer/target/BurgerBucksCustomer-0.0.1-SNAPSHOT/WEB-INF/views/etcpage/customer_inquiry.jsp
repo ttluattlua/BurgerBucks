@@ -17,7 +17,7 @@
 	 					<td>
 	 						 <div class="form-group">
 							    <label for="profile_id">제목</label>
-							    <input type="text" class="form-control" id="inquiry_title" name="title" value="${login.id }">
+							    <input type="text" class="form-control" id="inquiry_title" name="title" >
 			  				</div>
 	 					</td>
 	 				</tr>
@@ -57,6 +57,44 @@
  	
  <script type="text/javascript">
 function inquiry() {
+
+    alert("문의하기클릭");
+    
+    
+	//입력란에 다 입력했는지 막아주기 
+	if($("#inquiry_title").val() == "" || $("#inquiry_title").val() == null){
+		alert("제목을 입력해주세요");
+		return;
+	}
+	
+	if($("#inquiry_content").val() == "" || $("#inquiry_content").val() == null){
+		alert("문의내용을 입력해주세요");
+		return;
+	}
+	var data = {};
+	
+	data["title"]= $("#inquiry_title").val();
+	data["content"]= $("#inquiry_content").val();
+	data["email"]= $("#inquiry_id").val();
+	
+	$.ajax({
+		contentType:'application/json',
+		dataType:'json',
+		data:JSON.stringify(data), 		//JavaScript 값을 JSON으로 변환 한다
+		url:"sendInquiry.do",			// store
+		type:'POST',
+		success:function(data){
+
+			alert(data.msg)
+			$("#inquiry_title").val("");
+			$("#inquiry_content").val("");
+				
+		},
+		error:function(req, status, error){
+			alert("error");
+		}
+	
+	});
 	
 }
 </script>

@@ -64,9 +64,20 @@
            <mvc:exclude-mapping path="/login.do"/>
            <mvc:exclude-mapping path="/regi.do"/>
            <mvc:exclude-mapping path="/getID.do"/>
+           <mvc:exclude-mapping path="/terms_and_conditions.do"/>
+           <mvc:exclude-mapping path="/made_in.do"/>
+           <mvc:exclude-mapping path="/faq.do"/>
+           <mvc:exclude-mapping path="/regiAf.do"/>   
            <bean class="bb.com.a.interceptor.AuthenticationInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
+
+
+		<!-- String uploadPath = new String("이용약관") -->
+		<bean class="java.lang.String" id="termsPath">		
+		<!-- 이용약관불러올 경로 디렉토리-->
+		<constructor-arg value="http:\\192.168.25.7:8090\\upload\\"/>
+		</bean>
 	
 
 </beans>

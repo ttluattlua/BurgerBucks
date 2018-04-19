@@ -22,7 +22,6 @@ a{
 	<ul class="mypage_ul">
     	<li><h4>기타페이지</h4></li>
     	<li><a href="terms_and_conditions.do">이용약관</a></li>
-    	<li><a href="made_in.do">원산지표시</a></li>
     	<li><a href="faq.do">FAQ</a></li>
     	<li><a href="customer_inquiry.do">문의하기</a></li>
     

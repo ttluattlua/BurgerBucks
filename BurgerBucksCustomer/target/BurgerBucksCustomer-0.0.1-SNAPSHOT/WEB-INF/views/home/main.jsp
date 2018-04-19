@@ -54,7 +54,7 @@
 	        
 	        <div class="input-group" style="width: 240px; margin-top:10px;">
 	          <span class="input-group-addon" style="width:50px;">PW</span> 
-	          <input id="name" name="password" type="text" class="form-control" placeholder="비밀번호를 입력해주세요" required>
+	          <input id="name" name="password" type="password" class="form-control" placeholder="비밀번호를 입력해주세요" required>
 	        </div>
 	        
           <button class="btn btn-success" style="width: 240px; margin-top:15px;" type="submit">로그인</button>
@@ -68,7 +68,7 @@
       
       <!-- Regist Button -->
       <div style="margin-top:10px;">
-        <button class="btn btn-success" style="width: 290px; border: 1px solid #999999; border-radius: 4px; height: 40px;">회원 가입</button>
+        <button class="btn btn-success" style="width: 290px; border: 1px solid #999999; border-radius: 4px; height: 40px;" onclick="location.href='regi.do'">회원 가입</button>
       </div>
      
     </div>

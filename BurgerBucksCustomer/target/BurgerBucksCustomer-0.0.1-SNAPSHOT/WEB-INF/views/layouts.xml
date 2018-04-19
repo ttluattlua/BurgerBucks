@@ -16,11 +16,8 @@
 
 <!-- 가입 -->
 <definition name="regi.tiles" extends="home.tiles">
-
 <put-attribute name="main" value="/WEB-INF/views/login/regi.jsp"/>
-
 </definition>
-
 
 
 <!--오더로 이동-->
@@ -29,29 +26,6 @@
 </definition>
 
 
-
-<!--주소추가 폼으로 이동 -->
-<definition name="goAddr.tiles" extends="home.tiles">
-
-<put-attribute name="main" value="/WEB-INF/views/addr/goAddr.jsp"/>
-
-</definition>
-
-
-<!--주소추가하기 2-->
-<definition name="addAddr.tiles" extends="home.tiles">
-
-<put-attribute name="main" value="/WEB-INF/views/addr/addAddr.jsp"/>
-
-</definition>
-
-
-<!--주소추가 완료-->
-<definition name="addAddrAf.tiles" extends="home.tiles">
-
-<put-attribute name="main" value="/WEB-INF/views/addr/addAddrAf.jsp"/>
-
-</definition>
 
 
 <!--마이페이지로 이동 -->
@@ -88,6 +62,46 @@
 
 </definition>
 
+<!--주소추가 폼으로 이동 -->
+
+
+
+<definition name="goAddr.tiles" extends="changePwd.tiles">
+
+<put-attribute name="main_side" value="/WEB-INF/views/addr/goAddr.jsp"/>
+
+</definition>
+
+<!--주소추가하기 2-->
+
+
+
+<definition name="addrAdd.tiles" extends="changePwd.tiles">
+
+<put-attribute name="main_side" value="/WEB-INF/views/addr/addrAdd.jsp"/>
+
+</definition>
+
+<!--주소추가 완료 후-->
+
+
+
+<definition name="addrAddAf.tiles" extends="changePwd.tiles">
+
+<put-attribute name="main_side" value="/WEB-INF/views/addr/addrAddAf.jsp"/>
+
+</definition>
+
+<!--주소 수정-->
+
+
+
+<definition name="addrUpdate.tiles" extends="changePwd.tiles">
+
+<put-attribute name="main_side" value="/WEB-INF/views/addr/addrUpdate.jsp"/>
+
+</definition>
+
 
 <!--기타페이지로 이동 -->
 <!-- 문의하기 페이지로 이동 -->
@@ -106,6 +120,15 @@
 	<put-attribute name="main_side" value="/WEB-INF/views/etcpage/faq.jsp"/>
 
 </definition>
+
+<!-- 이용약관로 이동 -->
+<definition name="terms_and_conditions.tiles" extends="customer_inquiry.tiles">
+
+	<put-attribute name="main_side" value="/WEB-INF/views/etcpage/terms_and_conditions.jsp"/>
+
+</definition>
+
+
 
 </tiles-definitions>
 
