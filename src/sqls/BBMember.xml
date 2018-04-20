@@ -18,8 +18,6 @@ FROM BB_ADDR
 WHERE MEMBER_SEQ=#{seq} AND DEl=0
 </select>
 
-<<<<<<< HEAD
-=======
 <!--비밀번호 변경하기-->
 <update id="updatePwd" parameterType="bb.com.a.model.Bb_MemberDto">
  UPDATE BB_MEMBER SET PASSWORD=#{password} WHERE SEQ=#{seq} 
@@ -48,8 +46,6 @@ VALUES(BB_MEMBER_SEQ.NEXTVAL, #{id}, #{password}, #{bday}, #{name}, #{phone}, #{
 SELECT NVL(COUNT(*), 0) FROM BB_MEMBER WHERE ID=#{id} 
 </select>
 
-
->>>>>>> kh
 </mapper>  
 
 

@@ -28,8 +28,6 @@ public class BbAddrServiceImpl implements BbAddrService {
 	public boolean addrAdd(Model model, Bb_AddrDto dto) throws Exception {
 		return BbAddressDao.addrAdd(model, dto);
 	}
-<<<<<<< HEAD
-=======
 
 	@Override
 	public boolean addrUpdate(Model model, Bb_AddrDto addr) throws Exception {
@@ -42,7 +40,4 @@ public class BbAddrServiceImpl implements BbAddrService {
 		// TODO Auto-generated method stub
 		return BbAddressDao.addrDelete(model, addr);
 	}
-
-
->>>>>>> kh
 }

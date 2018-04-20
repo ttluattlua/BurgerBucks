@@ -39,9 +39,6 @@ private static final Logger logger = LoggerFactory.getLogger(BbAddrController.cl
 	public String goAddr(Model model, Bb_MemberDto login, Bb_AddrDto addr, HttpServletRequest req) throws Exception {
 		System.out.println("hi goAddr1");
 		logger.info("KhAddressController goAddr");
-<<<<<<< HEAD
-		return "goAddr.tiles";	
-=======
 		login = (Bb_MemberDto)req.getSession().getAttribute("login");
 		System.out.println("login.getSeq():" + login.getSeq()); //잘들어옴 
 
@@ -58,61 +55,43 @@ private static final Logger logger = LoggerFactory.getLogger(BbAddrController.cl
 		}else {
 			return "redirect:/login.do";
 		}
->>>>>>> kh
 	}
 	
 	/*-------------------------------------------------------------------------------
 	 * 주소 추가
 	 * --------------------------------------------------------------------------------*/
-<<<<<<< HEAD
-	@RequestMapping(value="addAddr.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String googlemap(Model model) throws Exception {
-=======
 
 	@RequestMapping(value="addrAdd.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String addrAdd(Model model) throws Exception {
->>>>>>> kh
 		logger.info("KhAddressController googlemap");
-		return "addAddr.tiles";	
+		return "addrAdd.tiles";	
 	}
-<<<<<<< HEAD
 
-	@RequestMapping(value="addAddrAf.do",method= {RequestMethod.GET, RequestMethod.POST})
-	public String addrAddAf(Model model, Bb_AddrDto addr) throws Exception {
-		logger.info("KhAddressController addrAdd");
-=======
 	@RequestMapping(value="addrAddAf.do",method= {RequestMethod.GET, RequestMethod.POST})
 	public String addrAddAf(Model model, Bb_MemberDto login, Bb_AddrDto addr) throws Exception {
 		logger.info("KhAddressController addrAddAf");
->>>>>>> kh
 		System.out.println("bfService: " + addr);
 		BbAddrService.addrAdd(model, addr);
 		model.addAttribute("addr",addr);
-		return "addAddrAf.tiles";	
+		return "redirect:/goAddr.do";	
 	}
-	/*@RequestMapping(value="test.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String test(Model model) throws Exception {
-		logger.info("KhAddressController test");
-		
-		System.out.println("bfService: " + addr);
-		
-		return "addAddrAf.tiles";	
-	}
-	*/
 
-//	@RequestMapping(value="address.do", method= {RequestMethod.GET, RequestMethod.POST})
-//	public String address(Model model) throws Exception {
-//		logger.info("KhAddressController address");
-//		Bb_MemberDto member = BbMemberService.allMember();
-//		List<Bb_AddrDto> AddrList = BbAddrService.allAddress();
-//		model.addAttribute("addr", AddrList);
-//		model.addAttribute("member", member);
-//		return "NewFile.tiles";	
-//	}
+	/*-------------------------------------------------------------------------------
+	 * 주소 수정
+	 * --------------------------------------------------------------------------------*/
+	@RequestMapping(value="addrUpdate.do",method= {RequestMethod.GET, RequestMethod.POST})
+	public String addrUpdate(Model model, int seq) throws Exception {
+		logger.info("KhAddressController addrUpdate");
+		model.addAttribute("seq",seq);
+		return "addrUpdate.tiles";	
+	}
 	
-	
-<<<<<<< HEAD
-=======
+	@RequestMapping(value="addrUpdateAf.do",method= {RequestMethod.GET, RequestMethod.POST})
+	public String addrUpdateAf(Model model, Bb_AddrDto addr) throws Exception {
+		logger.info("KhAddressController addrUpdateAf");
+		BbAddrService.addrUpdate(model, addr);
+		return "redirect:/goAddr.do";	
+	}
 	/*-------------------------------------------------------------------------------
 	 * 주소 삭제
 	 * --------------------------------------------------------------------------------*/
@@ -122,7 +101,6 @@ private static final Logger logger = LoggerFactory.getLogger(BbAddrController.cl
 		BbAddrService.addrDelete(model, addr);
 		return "redirect:/goAddr.do";
 	}
->>>>>>> kh
 }
 
 

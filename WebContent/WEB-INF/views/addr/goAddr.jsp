@@ -1,17 +1,9 @@
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.List"%>
 <%@page import="bb.com.a.model.Bb_MemberDto"%>
 <%@page import="bb.com.a.model.Bb_AddrDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<<<<<<< HEAD
-=======
-<title>Insert title here</title>
 
-<%
-List<Bb_AddrDto> addrList = (List<Bb_AddrDto>)request.getAttribute("list"); 
-%>
-
->>>>>>> kh
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,19 +16,6 @@ List<Bb_AddrDto> AddrList = (List<Bb_AddrDto>)request.getAttribute("addr"); */%>
 <body>
 
 
-<<<<<<< HEAD
-<div style="width:50%; height:50%; text-align: left;" align="center">
-<h3>안녕하세요<%--  <%=member.getName()%> --%>--- 님<br>
-다음주소로 배달됩니다.<br>
-<select>
-<%-- <option><%=AddrList.get(0).getAddress() %></option>
-<option><%=AddrList.get(1).getAddress() %></option> --%>
-</select>
-</h3>
-
-<h2><a href="./addAddr.do"><h2>주소 추가하기</h2> </a>
-</div>
-=======
 <div style="width: 750px; height: 620px;">
 
 <form id="_frmForm" method="post" action="">
@@ -88,18 +67,5 @@ $("#_btnMain").click(function(){
 	location.href = "home.do"; //**메인에 주소 안뜸 	
 });
 </script>
-
-<!--
- <script type="text/javascript">
-	function confirmChoice(){
-		var answer = confirm("정말 삭제하시겠습니까?");
-		if(answer !=0){
-			/* location.href="addrDelete.do?seq=${addr.seq}"; */
-			$("#_frmForm").attr({ "target":"_self", "action":"addrDelete.do" }).submit();	
-		}
-	}
-</script>
- -->
->>>>>>> kh
 </body>
 </html>
