@@ -11,12 +11,14 @@
 		ORDER BY SEQ DESC
 	</select> 
 	
-	<insert id="addrAdd" parameterType="bb.com.a.model.Bb_AddrDto">
+	<insert id="addrAdd"
+		parameterType="bb.com.a.model.Bb_AddrDto">
 		INSERT INTO BB_ADDR
 		(SEQ, MEMBER_SEQ, ADDRESS, LAT, LNG, MEMO, DEL)
 		VALUES
 		(BB_ADDR_SEQ.NEXTVAL, #{member_seq}, #{address}, #{lat}, #{lng}, #{memo}, 0)
 	</insert>
+
 
 	<update id="addrUpdate"	parameterType="bb.com.a.model.Bb_AddrDto">
 		UPDATE BB_ADDR SET
@@ -28,6 +30,7 @@
 		UPDATE BB_ADDR SET
 		DEL=1
 		WHERE SEQ=#{seq}
-	</update>				
+	</update>
 
 </mapper>
+

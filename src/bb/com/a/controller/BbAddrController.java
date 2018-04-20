@@ -4,6 +4,7 @@ package bb.com.a.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,10 +37,14 @@ private static final Logger logger = LoggerFactory.getLogger(BbAddrController.cl
 	 * --------------------------------------------------------------------------------*/	
 	
 	@RequestMapping(value="goAddr.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String goAddr(Model model, Bb_MemberDto login, Bb_AddrDto addr, HttpServletRequest req) throws Exception {
+	public String goAddr(Model model, Bb_AddrDto addr, HttpServletRequest req) throws Exception {
 		System.out.println("hi goAddr1");
 		logger.info("KhAddressController goAddr");
-		login = (Bb_MemberDto)req.getSession().getAttribute("login");
+		
+		HttpSession session = req.getSession(true);
+		
+		Bb_MemberDto login = (Bb_MemberDto)session.getAttribute("login");
+		System.out.println("컨트롤러 로그인:"+login.toString());
 		System.out.println("login.getSeq():" + login.getSeq()); //잘들어옴 
 
 		if(login != null && !login.getId().equals("")) {
@@ -47,6 +52,7 @@ private static final Logger logger = LoggerFactory.getLogger(BbAddrController.cl
 			model.addAttribute("login", login);
 			System.out.println("hi goAddr3");
 			List<Bb_AddrDto> addrList = BbAddrService.allAddress(login); 
+			System.out.println("컨트롤러 주소 리스트 확인");
 			System.out.println("hi goAddr4");
 			model.addAttribute("list", addrList);
 			System.out.println("hi goAddr5");
@@ -60,12 +66,13 @@ private static final Logger logger = LoggerFactory.getLogger(BbAddrController.cl
 	/*-------------------------------------------------------------------------------
 	 * 주소 추가
 	 * --------------------------------------------------------------------------------*/
-
 	@RequestMapping(value="addrAdd.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String addrAdd(Model model) throws Exception {
 		logger.info("KhAddressController googlemap");
 		return "addrAdd.tiles";	
 	}
+
+
 
 	@RequestMapping(value="addrAddAf.do",method= {RequestMethod.GET, RequestMethod.POST})
 	public String addrAddAf(Model model, Bb_MemberDto login, Bb_AddrDto addr) throws Exception {
@@ -75,23 +82,24 @@ private static final Logger logger = LoggerFactory.getLogger(BbAddrController.cl
 		model.addAttribute("addr",addr);
 		return "redirect:/goAddr.do";	
 	}
-
+	
 	/*-------------------------------------------------------------------------------
 	 * 주소 수정
 	 * --------------------------------------------------------------------------------*/
 	@RequestMapping(value="addrUpdate.do",method= {RequestMethod.GET, RequestMethod.POST})
 	public String addrUpdate(Model model, int seq) throws Exception {
 		logger.info("KhAddressController addrUpdate");
-		model.addAttribute("seq",seq);
-		return "addrUpdate.tiles";	
+		model.addAttribute("seq", seq);
+		System.out.println("update seq:" + seq);
+		return "addrUpdate.tiles";
 	}
-	
 	@RequestMapping(value="addrUpdateAf.do",method= {RequestMethod.GET, RequestMethod.POST})
 	public String addrUpdateAf(Model model, Bb_AddrDto addr) throws Exception {
-		logger.info("KhAddressController addrUpdateAf");
+		logger.info("KhAddressController addrUpdate");
 		BbAddrService.addrUpdate(model, addr);
-		return "redirect:/goAddr.do";	
+		return "redirect:/goAddr.do";
 	}
+
 	/*-------------------------------------------------------------------------------
 	 * 주소 삭제
 	 * --------------------------------------------------------------------------------*/
@@ -101,6 +109,7 @@ private static final Logger logger = LoggerFactory.getLogger(BbAddrController.cl
 		BbAddrService.addrDelete(model, addr);
 		return "redirect:/goAddr.do";
 	}
+
 }
 
 

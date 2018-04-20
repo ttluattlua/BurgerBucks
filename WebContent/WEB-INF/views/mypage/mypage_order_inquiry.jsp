@@ -13,8 +13,6 @@
 
 
 
-
-
 <!--datatable위한 자바스크립트 및 css -->
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
@@ -34,9 +32,18 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <!--주문조회-->
  	<div style=" padding-top:50px; width: 750px; height: 620px;">
- 		
+ 			<div style="text-align: right;">
+			<i class="fa fa-shopping-basket"></i> 장바구니 / 
+			<i class="fa fa-credit-card"></i> 주문완료 / 
+			<i class="fa  fa-clock-o"></i> 준비중 / 
+			<i class="fa fa-truck"></i> 배달시작 / 
+			<i class="fa fa-krw"></i> 배달완료 / 
+			</div>
 
 		
 			<table id="example" class="table table-striped table-bordered" style="width:100%">
@@ -70,7 +77,30 @@
 			 				<td>${status.count}</td>
 			 				<td>${orderDto.seq}</td>
 			 				<td>${orderDto.order_date}</td>
-			 				<td>${orderDto.status}</td>
+			 				<c:choose>
+
+							    <c:when test="${orderDto.status eq '0'}">
+					            <td><i class="fa fa-shopping-basket"></i>장바구니</td> 
+							    </c:when>
+					
+							    <c:when test="${orderDto.status eq '1'}">
+					            <td><i class="fa fa-credit-card"></i>주문완료</td> 
+							    </c:when>
+							    
+							    <c:when test="${orderDto.status eq '2'}">
+					             <td><i class="fa  fa-clock-o"></i>준비중</td> 
+							    </c:when>
+							    
+							    <c:when test="${orderDto.status eq '3'}">
+					             <td><i class="fa fa-truck"></i>배달시작</td> 
+							    </c:when>
+							   
+							    <c:otherwise>
+					             <td><i class="fa fa-krw"></i>배달완료</td> 
+							    </c:otherwise>
+
+							</c:choose>
+			 				
 			 			</tr>
 						</c:forEach>
 	 				</c:if>
@@ -127,11 +157,5 @@ $(document).ready(function() {
         .appendTo( '#example_wrapper .col-sm-6:eq(0)' );
 } );
 
-/* function initComplete() {
-	serverSide: true,
-	initComplete : function () {
-	    table.buttons().container()
-	           .appendTo( $('#example_wrapper .col-sm-6:eq(0)'));
-	},
-} */
+
 </script>	

@@ -46,6 +46,13 @@ VALUES(BB_MEMBER_SEQ.NEXTVAL, #{id}, #{password}, #{bday}, #{name}, #{phone}, #{
 SELECT NVL(COUNT(*), 0) FROM BB_MEMBER WHERE ID=#{id} 
 </select>
 
+<!--비밀번호 변경하기-->
+<update id="changePwd" parameterType="bb.com.a.model.Bb_MemberDto">
+ UPDATE BB_MEMBER SET PASSWORD=#{password} WHERE ID=#{id} 
+</update>
+
+
+
 </mapper>  
 
 
