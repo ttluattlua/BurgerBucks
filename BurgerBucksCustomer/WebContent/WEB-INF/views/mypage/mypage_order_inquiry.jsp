@@ -61,12 +61,12 @@
 			  <tbody>
 			    <c:if test="${orderList.size() == 0 }">
 	 					<tr align="center">
-	 						<td colspan="4">
+	 						<td colspan="47">
 	 						주문 조회가 없습니다.
 	 						</td>
 	 					</tr>
 						<tr align="center">
-		 					<td colspan="4">
+		 					<td colspan="7">
 		 						<button class="btn btn-success" style="width: 400px; " type="button" onclick="location.href='#'">
 		 						주문하러가기
 		 						</button>
