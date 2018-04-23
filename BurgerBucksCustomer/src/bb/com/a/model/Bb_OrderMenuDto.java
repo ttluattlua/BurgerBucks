@@ -6,11 +6,12 @@ import java.util.List;
 public class Bb_OrderMenuDto implements Serializable {
 
   private int seq;
-  private int orderSeq;
-  private Bb_MenuDto menu;
+  private int order_seq;
+  private int menu_seq;
+  private Bb_MenuTableDto menu;
   private int quantity;
   private int price;
-  private boolean del;
+  private int del;
   
   /*---------------------------------------------------------------------------------------
   Constructor
@@ -19,76 +20,100 @@ public class Bb_OrderMenuDto implements Serializable {
   public Bb_OrderMenuDto() {
     super();
   }
+ 
+	public Bb_OrderMenuDto(int seq, int order_seq, int menu_seq, int quantity, int price, int del) {
+		super();
+		this.seq = seq;
+		this.order_seq = order_seq;
+		this.menu_seq = menu_seq;
+		this.quantity = quantity;
+		this.price = price;
+		this.del = del;
+	}
+	
+	public Bb_OrderMenuDto(int seq, int order_seq, int menu_seq, Bb_MenuTableDto menu, int quantity, int price, int del) {
+		super();
+		this.seq = seq;
+		this.order_seq = order_seq;
+		this.menu_seq = menu_seq;
+		this.menu = menu;
+		this.quantity = quantity;
+		this.price = price;
+		this.del = del;
+	}
 
-  public Bb_OrderMenuDto(int orderSeq, Bb_MenuDto menu, int quantity, int price) {
-    super();
-    this.orderSeq = orderSeq;
-    this.menu = menu;
-    this.quantity = quantity;
-    this.price = price;
-  }
+	
 
-  public Bb_OrderMenuDto(int seq, int orderSeq, Bb_MenuDto menu, int quantity, int price, boolean del) {
-    super();
-    this.seq = seq;
-    this.orderSeq = orderSeq;
-    this.menu = menu;
-    this.quantity = quantity;
-    this.price = price;
-    this.del = del;
-  }
-
-  /*---------------------------------------------------------------------------------------
+/*---------------------------------------------------------------------------------------
   Getter & Setter
   --------------------------------------------------------------------------------------- */
   
-  public int getSeq() {
-    return seq;
-  }
+	
+	public int getSeq() {
+		return seq;
+	}
 
-  public void setSeq(int seq) {
-    this.seq = seq;
-  }
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
 
-  public int getOrderSeq() {
-    return orderSeq;
-  }
+	public int getOrder_seq() {
+		return order_seq;
+	}
 
-  public void setOrderSeq(int orderSeq) {
-    this.orderSeq = orderSeq;
-  }
+	public void setOrder_seq(int order_seq) {
+		this.order_seq = order_seq;
+	}
 
-  public Bb_MenuDto getMenu() {
-    return menu;
-  }
+	public int getMenu_seq() {
+		return menu_seq;
+	}
 
-  public void setMenu(Bb_MenuDto menu) {
-    this.menu = menu;
-  }
+	public void setMenu_seq(int menu_seq) {
+		this.menu_seq = menu_seq;
+	}
 
-  public int getQuantity() {
-    return quantity;
-  }
+	public Bb_MenuTableDto getMenu() {
+		return menu;
+	}
 
-  public void setQuantity(int quantity) {
-    this.quantity = quantity;
-  }
+	public void setMenu(Bb_MenuTableDto menu) {
+		this.menu = menu;
+	}
 
-  public int getPrice() {
-    return price;
-  }
+	public int getQuantity() {
+		return quantity;
+	}
 
-  public void setPrice(int price) {
-    this.price = price;
-  }
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 
-  public boolean isDel() {
-    return del;
-  }
+	public int getPrice() {
+		return price;
+	}
 
-  public void setDel(boolean del) {
-    this.del = del;
-  }
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getDel() {
+		return del;
+	}
+
+	public void setDel(int del) {
+		this.del = del;
+	}
+
+	@Override
+	public String toString() {
+		return "Bb_OrderMenuDto [seq=" + seq + ", order_seq=" + order_seq + ", menu_seq=" + menu_seq + ", menu=" + menu
+				+ ", quantity=" + quantity + ", price=" + price + ", del=" + del + "]";
+	}
+
+
+	
+
   
   
   

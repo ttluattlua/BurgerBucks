@@ -72,8 +72,8 @@ public class Bb_InquiryDto implements Serializable {
 
 	@Override
 	public String toString() {
-		return seq + "-" + title + "-" + email + "-" + regdate
-				+ "-" + content + "-" + status;
+		return "{\"seq\":" + seq +", \"email\":\"" + email +"\", \"title\":\"" + title + "\", \"content\":\"" + content + "\", \"status\":"
+				+ status + "}";
 	}
 
 	

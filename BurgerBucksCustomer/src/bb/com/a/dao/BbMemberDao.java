@@ -1,6 +1,7 @@
 package bb.com.a.dao;
 
 import bb.com.a.model.Bb_AddrDto;
+import bb.com.a.model.Bb_BurgerDto;
 import bb.com.a.model.Bb_MemberDto;
 
 public interface BbMemberDao {
