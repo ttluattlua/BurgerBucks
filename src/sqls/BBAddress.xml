@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BBAddress">
+
+	<select id="allAddress" parameterType="Bb_MemberDto"
+		resultType="bb.com.a.model.Bb_AddrDto"> 
+		SELECT SEQ, MEMBER_SEQ, ADDRESS, LAT, LNG, MEMO, DEL 
+		FROM BB_ADDR WHERE DEL=0 AND MEMBER_SEQ=#{member_seq} 
+		ORDER BY SEQ DESC
+	</select> 
+	
+	<insert id="addAddr"
+		parameterType="bb.com.a.model.Bb_AddrDto">
+		INSERT INTO BB_ADDR
+		(SEQ, MEMBER_SEQ, ADDRESS, LAT, LNG, MEMO, DEL)
+		VALUES
+		(BB_ADDR_SEQ.NEXTVAL, #{member_seq}, #{address}, #{lat}, #{lng}, #{memo}, 0)
+	</insert>
+
+	<update id="addrUpdate"	parameterType="bb.com.a.model.Bb_AddrDto">
+		UPDATE BB_ADDR SET
+		ADDRESS=#{address}, LAT=#{lat}, LNG=#{lng}, MEMO=#{memo} 
+		WHERE SEQ=#{seq}
+	</update>	
+	
+	<update id="addrDelete"	parameterType="bb.com.a.model.Bb_AddrDto">
+		UPDATE BB_ADDR SET
+		DEL=1
+		WHERE SEQ=#{seq}
+	</update>				
+
+</mapper>
+
