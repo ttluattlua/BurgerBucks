@@ -5,6 +5,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:requestEncoding value="utf-8"/> 
 
+ 		
+<div style="padding: 0; margin: 0 auto; margin-top:20px; width: 1000px;">
+<div align="center">
+
 <!--===============현재가 어느 화면인지 나타내주는 상단바 ============================-->
 <!-- Page wrapper  -->
    <!-- Bread crumb -->
@@ -74,7 +78,7 @@ function idCheckMessage(data) {
                        	
                        <!-- 이메일(id) 입력 -->
                         <div class="row">
-                          <div class="col-md-12 ">
+                          <div class="col-md-6 ">
                               <div class="form-group">
                               	<div>
                                   <label for="input-id">Email</label>
@@ -85,10 +89,11 @@ function idCheckMessage(data) {
                               </div>
                             </div>
                         </div>
+                        
                             
                         <!-- 패스워드 입력 -->
                         <div class="row">
-                            <div class="col-md-12 ">
+                            <div class="col-md-6 ">
                                 <div class="form-group">
                                     <label for="input-pw">Password</label>
                                     <div>
@@ -98,7 +103,9 @@ function idCheckMessage(data) {
                                     	<strong class="help-block" style="display: block;width: 200%;" id="checkMessage2"><!-- 영문, 숫자, 언더스코어(_), 하이픈(-)으로 이루어진  6~18 문자. --></strong>
                                 </div>
                             </div>
-                            
+                         </div>
+                         
+                         <div class="row">
                             <div class="col-md-6 ">
                                 <div class="form-group">
                                     <label for="input-repw">Password 확인</label>
@@ -109,38 +116,46 @@ function idCheckMessage(data) {
                         </div>
                         
                        <!-- 이름 입력 -->
-                        <div class="row p-t-20">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="input-name">성함</label>
-                                    <input type="text" name="name" id="input-name" class="form-control" placeholder="Enter Name">
-                                </div>
-                            </div>
-                            <!--/span-->
-                        </div>
+                        <div class="row">
+	                       
+	                            <div class="col-md-6">
+	                                <div class="form-group">
+	                                    <label class="input-name">성함</label>
+	                                    <input type="text" name="name" id="input-name" class="form-control" placeholder="Enter Name">
+	                                </div>
+	                            </div>
+	                            <!--/span-->
+	                       
+	                     </div>
                         
                        <!-- 생일 -->
-                       <div class="col-md-6">
-                          <div class="form-group">
-                              <label class="control-label">생일</label>
-                              <input type="date" name="bday" id="input-bday" value="" class="form-control" placeholder="BirthDay" required="required">
-                              <small class="form-control-feedback"></small></div>
-                      	  </div>
-                       </div>
+                       <div class="row">
+	                       <div class="col-md-6">
+	                          <div class="form-group">
+	                              <label class="control-label">생일</label>
+	                              <input type="date" name="bday" id="input-bday" value="" class="form-control" placeholder="BirthDay" required="required">
+	                            <small class="form-control-feedback"></small></div>
+	                      	  </div>
+	                       </div>
+                        </div>
                         
                        <!-- 성별 입력 -->
-                        <div class="form-group col-md-4">
-					      <label for="input-sex">성별</label>
-					      <select id="input-sex" class="form-control">
-					        <option selected></option>
-					        <option value="0">남</option>
-					        <option value="1">여</option>
-					      </select>
-					    </div>
-                            
+                       <div class="row">
+	                        <div class="col-md-6">
+	                        <div class="form-group">
+						      <label for="input-sex">성별</label>
+						      <select id="input-sex" class="form-control">
+						        <option selected></option>
+						        <option value="0">남</option>
+						        <option value="1">여</option>
+						      </select>
+						      </div>
+						    </div>
+                        </div>
+                         
                        <!-- 휴대전화 -->
                        <div class="row">
-                            <div class="col-md-12 ">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="input_phone">연락처</label>
                                     <input type="text" name="phone" id="input-phone" placeholder="Enter Phone Number" class="form-control">
