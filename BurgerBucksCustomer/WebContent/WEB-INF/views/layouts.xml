@@ -19,6 +19,10 @@
 <put-attribute name="main" value="/WEB-INF/views/login/regi.jsp"/>
 </definition>
 
+<!-- 비밀번호 찾기-->
+<definition name="pwdPage.tiles" extends="home.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/login/findPWD.jsp"/>
+</definition>
 
 <!--오더로 이동-->
 <definition name="order.tiles" extends="home.tiles">

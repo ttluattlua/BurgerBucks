@@ -78,6 +78,26 @@
 		<!-- 이용약관불러올 경로 디렉토리-->
 		<constructor-arg value="http:\\192.168.25.7:8090\\upload\\"/>
 		</bean>
+		
+		
+		<!-- 이메일 관련 -->
+		<bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="javaMailSender">
+			<property name="host" value="smtp.gmail.com"/>
+			<property name="port" value="587"/>
+			<property name="username" value="burger0bucks@gmail.com"/>
+			<property name="password" value="qjrjqjrtm"/>
+			<property name="javaMailProperties">
+			<props>
+			<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+			<prop key="mail.smtp.starttls.enable">true</prop>
+			<prop key="mail.smtp.auth">true</prop>
+			</props>
+			</property>
+		</bean>
+		
+		<bean class="bb.com.a.service.Impl.MailServiceImpl" id="mailService">
+		<property name="javaMailSender" ref="javaMailSender"/>
+		</bean>
 	
 
 </beans>
