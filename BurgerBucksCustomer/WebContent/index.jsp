@@ -15,9 +15,13 @@
     location.href="./home.do";
     }, 4000);
 </script>
+<<<<<<< HEAD
 
 <%-- <%response.sendRedirect("./home.do");%> --%>
+=======
+>>>>>>> parent of c7cf759... 주문 부분 합치기 거의 완료
 
+<%-- <%response.sendRedirect("./home.do");%> --%>
 
 </body>
 </html>

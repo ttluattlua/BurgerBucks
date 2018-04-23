@@ -1,4 +1,4 @@
-package bb.com.a.arrow;
+package bb.com.a.util;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -15,22 +15,49 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
+<<<<<<< HEAD:BurgerBucksCustomer/src/bb/com/a/arrow/xmlParser.java
 
 import bb.com.a.model.Bb_IngredientDto;
 
+=======
+>>>>>>> parent of c7cf759... 주문 부분 합치기 거의 완료:BurgerBucksCustomer/src/bb/com/a/util/xmlParser.java
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 
-
+import bb.com.a.model.Bb_IngredientDto;;
 
 
 public class xmlParser {
   
-	 
-  /*-------------------------------------------------------------
-   * 파일안에있는 모든 ingredient가져오기
-   *--------------------------------------------------------*/
+  static public String xml_getTerms(String ingredient_xml) {
+    
+    String terms_class = "";
+    String terms_text = "";
+    
+    try {
+            
+      File xmlFile = new File(ingredient_xml);
+      DocumentBuilderFactory docu_factory = DocumentBuilderFactory.newInstance();
+      DocumentBuilder docu_builder = docu_factory.newDocumentBuilder();
+      Document xmldoc = docu_builder.parse(xmlFile);
+
+      NodeList terms_list = xmldoc.getElementsByTagName("terms");
+      Element terms_element = (Element)terms_list.item(0);
+      
+      terms_class = getTagValue(terms_element, "class");
+      terms_text = getTagValue(terms_element, "text");
+      
+      System.out.println( terms_class );
+      System.out.println( terms_text );
+      
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+    }
+    return terms_text;
+  }
+  
   static public List<Bb_IngredientDto> xml_getIngredient(String ingredient_xml) {
     
     List<Bb_IngredientDto> ingredient_list = new ArrayList<>();
@@ -69,10 +96,6 @@ public class xmlParser {
     return ingredient_list;
   }
  
-	 
-	/*-------------------------------------------------------------
-	* 파일안에있는 ingredient재료리스트 뽑아오기 (번리스트,야채리스트...
-	*--------------------------------------------------------*/
   static public Map<String, List<Bb_IngredientDto>> xml_getIngredient_classified(String ingredient_xml) {
     
     Map<String, List<Bb_IngredientDto>> ingredient_map = new HashMap<>();
@@ -123,9 +146,6 @@ public class xmlParser {
     return ingredient_map;
   }
   
-  /*-------------------------------------------------------------
-   * ingredient추가
-   *--------------------------------------------------------*/
   static public void xml_addIngredient(String ingredient_xml, Bb_IngredientDto ingredient_dto) {
     
     try {     
@@ -156,10 +176,6 @@ public class xmlParser {
     
   }
   
-  
-  /*-------------------------------------------------------------
-   * ingredient업데이트
-   *--------------------------------------------------------*/
   static public void xml_updIngredient(String ingredient_xml, Bb_IngredientDto ingredient_dto) {
     
     try {     
@@ -194,10 +210,6 @@ public class xmlParser {
     
   }
   
-  
-  /*-------------------------------------------------------------
-   * ingredient삭제하기
-   *--------------------------------------------------------*/
   static public void xml_delIngredient(String ingredient_xml, Bb_IngredientDto ingredient_dto) {
     
     try {     
@@ -231,16 +243,7 @@ public class xmlParser {
     }
     
   }
-  
-  static public String getTagValue(Element element, String tag) {  
-    NodeList nodelist = element.getElementsByTagName(tag).item(0).getChildNodes();
-    String value = nodelist.item(0).getNodeValue();
-    return value;
-  }
-  
-  
-  
-
+ 
   static public Node getIngredient(Document xmldoc, Element ingredient, Bb_IngredientDto ingredient_dto) {  
     ingredient.appendChild(xmldoc.createTextNode("\n    "));
     ingredient.appendChild(getIngredientElement(xmldoc, "seq", Integer.toString(ingredient_dto.getSeq())));
@@ -278,6 +281,12 @@ public class xmlParser {
   
   static public void repIngredientElement(Element ingredient, Node element_old, Node element_new) {  
     ingredient.replaceChild(element_new, element_old);
+  }
+  
+  static public String getTagValue(Element element, String tag) {  
+    NodeList nodelist = element.getElementsByTagName(tag).item(0).getChildNodes();
+    String value = nodelist.item(0).getNodeValue();
+    return value;
   }
 
 }

@@ -99,6 +99,7 @@ public class BbEctController {
 	@RequestMapping(value="terms_and_conditions.do", method=RequestMethod.GET)
 	public String termsAndConditions(Model model) {
 		logger.info("BbMyPageController faq");
+<<<<<<< HEAD
 		
 <<<<<<< HEAD
 =======
@@ -123,6 +124,29 @@ public class BbEctController {
 		  }
 		
 >>>>>>> parent of 295bb71... Upload
+=======
+		/*
+    File file = new File(termsPath+"WebContent/Terms/terms.txt");
+    //문장으로 읽어 오는 방법
+    try {
+     //Buffer == 저장공간
+     BufferedReader br = new BufferedReader(new FileReader(file)); 
+    
+     String terms ;  //문자열로 넘어옴
+    
+     while((terms = br.readLine()) != null){
+    
+      System.out.println(terms);
+    
+     }
+     model.addAttribute("terms", terms);  
+     br.close(); // buffered~ 꼭 닫아줘야함
+    
+    }catch (Exception e) {
+     e.printStackTrace();
+    }
+		*/
+>>>>>>> parent of c7cf759... 주문 부분 합치기 거의 완료
 		return "terms_and_conditions.tiles";
 	}
 
