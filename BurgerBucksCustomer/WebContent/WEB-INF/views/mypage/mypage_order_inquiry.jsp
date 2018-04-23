@@ -46,16 +46,16 @@
 			<i class="material-icons">directions_bike</i> 배달시작 / 
 			<i class="material-icons">assignment_turned_in</i> 배달완료 /  -->
 		
-			<table id="example" class="table table-striped table-bordered" style="width:100%">
+			<table id="example" class="table table-striped table-bordered" style="width:100%; background: white;">
 			  <thead >
 			    <tr class="active">
-			      <th scope="col" title="순서">No.</th>
-			      <th scope="col" title="주문번호">Order Number</th>
-			      <th scope="col" title="주문날짜">Order Date</th>
-			      <th scope="col" title="주문완료">Order Status</th>
-			      <th scope="col" title="준비중">Order Status</th>
-			      <th scope="col" title="배달시작">Order Status</th>
-			      <th scope="col" title="배달완료">Order Status</th>
+			      <th scope="col" title="No" style="width: 5%; text-align: center;">No.</th>
+			      <th scope="col" title="주문번호" style="width: 15%; text-align: center;">Order Number</th>
+			      <th scope="col" title="주문날짜" style="text-align: center;">Order Date</th>
+			      <th scope="col" title="주문완료" style="width: 15%; text-align: center;">Order Status</th>
+			      <th scope="col" title="준비중" style="width: 15%; text-align: center;">Order Status</th>
+			      <th scope="col" title="배달시작" style="width: 15%; text-align: center;">Order Status</th>
+			      <th scope="col" title="배달완료" style="width: 15%; text-align: center;">Order Status</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -131,8 +131,9 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
+	
 	/* initComplete(); */
-	var col_kor = [
+	var col_kor = [ 
         { title: "No" },
         { title: "주문번호" },
         { title: "주문날짜" },
@@ -153,7 +154,7 @@ $(document).ready(function() {
         "lengthMenu" : "_MENU_ 개씩 보기",
         "loadingRecords" : "로딩중...",
         "processing" : "처리중...",
-        "search" : "검색 : ",
+        "search" : "Search : ",
         "zeroRecords" : "검색된 데이터가 없습니다.",
         "paginate" : {
             "first" : "첫 페이지",
@@ -168,11 +169,12 @@ $(document).ready(function() {
     };
 
     var table = $('#example').DataTable( {
+    	bSort: false, //정렬
         lengthChange: false,
-        buttons: [ 'copy', 'excel', 'pdf' ],
+        /* buttons: [ 'copy', 'excel', 'pdf' ], */
         columns: col_kor,
         language : lang_kor,
-        "searching": false //서치 막기,
+        "searching": true //서치 막기,
     } );
  
     table.buttons().container()
