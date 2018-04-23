@@ -27,15 +27,14 @@
       <!-- Select Burger -->
       <div id="selectBurger" style="height: 800px; width:640px; border: 1px solid #999999; border-radius: 4px;" hidden="hidden">
         
-        <div style="height: 30px; width:620px; margin: 10px; margin-top: 10px;">
-          <a onclick='cancelMenu()' style="height: 40px; width: 20px; float: right;"><span class="glyphicon glyphicon-remove"></span></a>
-        </div>
-        
-        <div style="height: 40px; width:620px; margin: 10px; margin-top: 10px;">
-	        <div class="input-group" style="width: 300px;">
-	          <span class="input-group-addon">메뉴 이름</span>
-	          <input id="login_id" type="text" class="form-control menu_name" placeholder="메뉴의 이름을 입력하세요" onblur="saveMenuName(this)" style="width: 200px;">
+        <div style="height: 40px; width:620px; margin: 10px; margin-top: 40px;">
+          <div style="display: inline-block; float: left;">
+		        <div class="input-group" style="width: 300px;">
+		          <span class="input-group-addon">메뉴 이름</span>
+		          <input id="login_id" type="text" class="form-control menu_name" placeholder="메뉴의 이름을 입력하세요" onblur="saveMenuName(this)" style="width: 200px;">
+		        </div>
 	        </div>
+	        <a onclick='cancelMenu()' style="height: 40px; width: 20px; display: inline-block; float: right;"><span class="glyphicon glyphicon-remove"></span></a>
         </div>
         
         <div style="height: 60px; width:620px; margin: 10px; margin-top: 20px;">
@@ -61,10 +60,10 @@
           </div>
         </div>
         
-        <div style="height: 220px; width:620px; margin: 10px; margin-top: 30px; border: 1px solid black;">
+        <div style="height: 220px; width:620px; margin: 10px; margin-top: 40px; border: 1px solid black;">
         </div>
         
-        <div style="height: 220px; width:620px; margin: 10px; margin-top: 10px; border: 1px solid black;">
+        <div style="height: 220px; width:620px; margin: 10px; margin-top: 20px; border: 1px solid black;">
           
 	        <div id="burgerCarousel" class="col-md-12 carousel slide" style="height: 200px; background-color: #999999;">
                         
@@ -106,15 +105,11 @@
 	        </div>
         </div>
         
-        <div style="height: 40px; width:620px; margin: 10px; margin-top: 10px;" align="right">
-          <button class="btn btn-warning" data-toggle="modal" data-target="#burgerModal" onclick="loadBurger()">나만의 버거 만들기</button>
+        <div style="height: 40px; width:620px; margin: 10px; margin-top: 20px;">
         </div>
         
-        <div style="height: 60px; width:620px; margin: 10px; margin-top: 40px;" align="center">
-          <button type="button" class="btn btn-info" onclick='$("#selectBurger").attr("hidden","hidden"); $("#selectSide").removeAttr("hidden");'>
-            <span class="glyphicon glyphicon-chevron-right"></span><br>
-            <font>사이드 메뉴 선택</font>
-          </button>
+        <div style="height: 60px; width:620px; margin: 10px; margin-top: 20px;">
+          <button onclick='$("#selectBurger").attr("hidden","hidden"); $("#selectSide").removeAttr("hidden");'>사이드 메뉴 선택</button>
         </div>
                
       </div>
@@ -371,7 +366,14 @@
               <div id="ingredientList" style="border:1px solid lightgray; border-radius: 4px; height:440px; width: 320px; vertical-align: bottom; display: table-cell;" align="center">            
                 
                 <div style="height:30px; width: 318px; margin-bottom: 30px; z-index: 0; position: relative; display: block;">
-                  
+                  <div style="height:30px; width: 140px; float:left;" align="center">
+                    <img src="<%=bun_list.get(0).getImage_Src()%>" id="bread_down" style="height: 50px; width: 100px; margin-top:-10px;">
+                  </div>
+                  <div style="height:30px; width: 120px; float:left; padding-top:5px;" align="center">
+                    <p id="bread_down_name"><%=bun_list.get(0).getName()%></p>
+                  </div>
+                  <div style="height:30px; width: 58px; float:left; padding-top:5px;" align="center">
+                  </div>
                 </div>
                 
                </div>
@@ -382,12 +384,44 @@
               
               <!-- Bread and Meat Select -->
               <div style="height:220px; width: 440px;">
+                <div class="form-group" style="height:220px; width: 220px; float:left; text-align: left; padding:10px;">
+                  <label class="control-label">햄버거 번</label><br>
+                  <select class="form-control" id='bunSelect' name='bunSelect' style="width: 180px; float:left;" size="8">
+                    <%for (int i=0; i<bun_list.size(); i++) { %>
+                        <option onclick="changeBun(this)" value="<%=bun_list.get(i).getImage_Src()%>" id="<%=bun_list.get(i).getSeq()%>"><%=bun_list.get(i).getName()%></option>
+                    <%}%>
+                  </select>
+                </div>
                 
+                <div class="form-group" style="height:220px; width: 220px; float:left; text-align: left; padding:10px;">
+                  <label class="control-label">패티</label><br>
+                  <select class="form-control" id='pattySelect' name='pattySelect' style="width: 180px; float:left;" size="8">
+                    <%for (int i=0; i<patty_list.size(); i++) { %>
+                        <option onclick="addIngredient(this)" value="<%=patty_list.get(i).getImage_Src()%>" id="<%=patty_list.get(i).getSeq()%>"><%=patty_list.get(i).getName()%></option>
+                    <%}%>
+                  </select>
+                </div>
               </div>
               
               <!-- Lettuce and Etc Select -->
               <div style="height:220px; width: 440px;">
+                <div class="form-group" style="margin-top:-15px; height:220px; width: 220px; float:left; text-align: left; padding:10px;">
+                  <label class="control-label">채소</label><br>
+                  <select class="form-control" id='vegeSelect' name='vegeSelect' style="width: 180px; float:left;" size="8">
+                    <%for (int i=0; i<vege_list.size(); i++) { %>
+                        <option onclick="addIngredient(this)" value="<%=vege_list.get(i).getImage_Src()%>" id="<%=vege_list.get(i).getSeq()%>"><%=vege_list.get(i).getName()%></option>
+                    <%}%>
+                  </select>
+                </div>
                 
+                <div class="form-group" style="margin-top:-15px; height:220px; width: 220px; float:left; text-align: left; padding:10px;">
+                  <label class="control-label">기타</label><br>
+                  <select class="form-control" id='etcSelect' name='etcSelect' style="width: 180px; float:left;" size="8">
+                    <%for (int i=0; i<etc_list.size(); i++) { %>
+                        <option onclick="addIngredient(this)" value="<%=etc_list.get(i).getImage_Src()%>" id="<%=etc_list.get(i).getSeq()%>"><%=etc_list.get(i).getName()%></option>
+                    <%}%>
+                  </select>
+                </div>
               </div>
               
             </div>

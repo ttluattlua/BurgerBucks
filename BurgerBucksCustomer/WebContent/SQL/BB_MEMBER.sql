@@ -24,3 +24,6 @@ CREATE TABLE BB_MEMBER(
 CREATE SEQUENCE BB_MEMBER_SEQ
 START WITH 1
 INCREMENT BY 1;
+
+insert into bb_member
+values(0, 'admin', 'admin', 'admin', 'admin','admin', 0, 0, 0, 0, 0);

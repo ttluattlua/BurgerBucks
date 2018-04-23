@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 
 import bb.com.a.dao.BbBurgerDao;
 import bb.com.a.model.Bb_IngredientDto;
-import bb.com.a.service.BbaBurgerService;
+import bb.com.a.service.BbBurgerService;
 
 @Service
-public class BbaBurgerServiceImpl implements BbaBurgerService {
+public class BbBurgerServiceImpl implements BbBurgerService {
 
 	@Autowired
 	BbBurgerDao bbBurgerDao;
