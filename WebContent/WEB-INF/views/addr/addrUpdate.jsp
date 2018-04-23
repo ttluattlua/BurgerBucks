@@ -1,11 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:requestEncoding value="utf-8"/> 
+
 <!--========================다음 도로명주소위한 스크립트 꼭사용해야함========================-->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <!--===================================구글 지도 사용하기위한 스크립트 =========================================-->
@@ -20,7 +18,6 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW3AnL99zotumTGhgh3B8lT3N
 <!-- jquery-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<body>
 <div style="width: 750px; height: 620px;">
 <div style="display:block; width:480px; height:400px; float: left; margin-right:20px; border-radius: 4px; ">
 
@@ -193,6 +190,3 @@ function initMap() {
 
 	}
 </script>
-
-</body>
-</html>

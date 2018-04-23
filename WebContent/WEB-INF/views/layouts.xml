@@ -16,20 +16,16 @@
 
 <!-- 가입 -->
 <definition name="regi.tiles" extends="home.tiles">
-<<<<<<< HEAD
-
 <put-attribute name="main" value="/WEB-INF/views/login/regi.jsp"/>
+</definition>
 
+<!--diy게시판으로 이동-->
+<definition name="diyboard.tiles" extends="home.tiles">
+<put-attribute name="main" value="/WEB-INF/views/diyburger/diyboard.jsp"/>
 </definition>
 
 
 
-=======
-<put-attribute name="main" value="/WEB-INF/views/login/regi.jsp"/>
-</definition>
-
-
->>>>>>> kh
 <!--오더로 이동-->
 <definition name="order.tiles" extends="home.tiles">
 	<put-attribute name="main" value="/WEB-INF/views/order/orderpage.jsp"/>
@@ -37,12 +33,6 @@
 
 
 
-<<<<<<< HEAD
-<!--주소추가 폼으로 이동 -->
-<definition name="goAddr.tiles" extends="home.tiles">
-
-<put-attribute name="main" value="/WEB-INF/views/addr/goAddr.jsp"/>
-=======
 
 <!--마이페이지로 이동 -->
 <!-- 비밀번호 변경으로 이동 -->
@@ -75,67 +65,35 @@
 <definition name="order_history.tiles" extends="changePwd.tiles">
 
 	<put-attribute name="main_side" value="/WEB-INF/views/mypage/mypage_order_history.jsp"/>
->>>>>>> kh
 
 </definition>
+
 
 <!--주소추가 폼으로 이동 -->
 
-
-
 <definition name="goAddr.tiles" extends="changePwd.tiles">
-
 <put-attribute name="main_side" value="/WEB-INF/views/addr/goAddr.jsp"/>
-
 </definition>
 
-<!--주소추가하기 2-->
-<<<<<<< HEAD
-<definition name="addAddr.tiles" extends="home.tiles">
-
-<put-attribute name="main" value="/WEB-INF/views/addr/addAddr.jsp"/>
-
-</definition>
-
-
-<!--주소추가 완료-->
-<definition name="addAddrAf.tiles" extends="home.tiles">
-
-<put-attribute name="main" value="/WEB-INF/views/addr/addAddrAf.jsp"/>
-=======
-
-
-
+<!--주소추가하기 -->
 <definition name="addrAdd.tiles" extends="changePwd.tiles">
-
 <put-attribute name="main_side" value="/WEB-INF/views/addr/addrAdd.jsp"/>
-
 </definition>
+
 
 <!--주소추가 완료 후-->
 
-
-
 <definition name="addrAddAf.tiles" extends="changePwd.tiles">
-
 <put-attribute name="main_side" value="/WEB-INF/views/addr/addrAddAf.jsp"/>
-
 </definition>
+
 
 <!--주소 수정-->
 
-
-
 <definition name="addrUpdate.tiles" extends="changePwd.tiles">
-
 <put-attribute name="main_side" value="/WEB-INF/views/addr/addrUpdate.jsp"/>
->>>>>>> kh
-
 </definition>
 
-
-<<<<<<< HEAD
-=======
 <!--기타페이지로 이동 -->
 <!-- 문의하기 페이지로 이동 -->
 <definition name="customer_inquiry.tiles" template="/WEB-INF/views/layouts_mypage_ect_tiles.jsp">
@@ -161,9 +119,13 @@
 
 </definition>
 
+<!-- 비밀번호-->
+<definition name="pwdPage.tiles" extends="home.tiles">
+<put-attribute name="main" value="/WEB-INF/views/login/findPWD.jsp"/>
+</definition>
 
 
->>>>>>> kh
+
 </tiles-definitions>
 
 

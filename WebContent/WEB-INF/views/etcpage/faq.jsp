@@ -27,15 +27,14 @@
 			    <tr>
 			      <th>No.</th>
 			      <th>제목</th>
-			      <th>조회수</th>
-			      <th>글내용</th>
+			      <th>버튼</th>
 			    </tr>
 			  </thead>
 			  <tbody>
  				
 	 				<c:if test="${faqList.size() != 0}">
 	 					<c:forEach var="faqDto" items="${faqList}" varStatus="status">
-	 					<tr>
+	 					<tr id="tr${faqDto.seq}">
 			 				<td>${status.count}</td>
 			 				
 			 				
@@ -47,8 +46,9 @@
 			 					<td>&nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-info">RE:</span>${faqDto.title}</td>
 			 				</c:if>
 			 				
-			 				<td>${faqDto.readcount}</td>
-			 				<td>${faqDto.contents}</td>
+			 				<td>
+			 					<input type="button" value="상세보기" class="btn btn-dark" id="faqDetailBtn" onclick="faqDetailClick('${faqDto.contents}', ${faqDto.seq })">
+			 				</td>
 			 			</tr>
 						</c:forEach>
 	 				</c:if>
@@ -60,6 +60,20 @@
 	</div>
 	
 <script type="text/javascript">
+
+var toggle=0;
+
+function faqDetailClick(contents, seq){
+
+    if(toggle == 0){        	
+   		$( '#tr'+seq ).after('<tr id="trtr'+seq+'" align="right"><td colspan="3" >'+contents+'</td></tr>');
+   		toggle = 1;
+    }else{
+    	$( '#trtr'+seq ).remove();
+   		toggle = 0;
+    }
+
+}
 
 $(document).ready(function() {
 	 var lang_kor = {
@@ -98,4 +112,8 @@ $(document).ready(function() {
 	    language : lang_kor	//언어 한국어로 교체
 	} );
 } );
+
+
+
+ 
 </script>	

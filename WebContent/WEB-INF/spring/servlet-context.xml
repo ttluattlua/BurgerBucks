@@ -60,7 +60,9 @@
     <mvc:interceptors>
         <mvc:interceptor>
            <mvc:mapping path="/**"/>
+           <mvc:exclude-mapping path="/pwdPage.do"/>
            <mvc:exclude-mapping path="/home.do"/>
+           <mvc:exclude-mapping path="/findPWD.do"/>
            <mvc:exclude-mapping path="/login.do"/>
            <mvc:exclude-mapping path="/regi.do"/>
            <mvc:exclude-mapping path="/getID.do"/>
@@ -71,13 +73,36 @@
            <bean class="bb.com.a.interceptor.AuthenticationInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
+    
+	<!-- String uploadPath = new String("이용약관") -->
+	<bean class="java.lang.String" id="termsPath">		
+	<!-- 이용약관불러올 경로 디렉토리-->
+	<constructor-arg value="http:\\192.168.25.7:8090\\upload\\"/>
+	</bean>
+	
+	
+	<!-- 이메일 관련 -->
 
 
-		<!-- String uploadPath = new String("이용약관") -->
-		<bean class="java.lang.String" id="termsPath">		
-		<!-- 이용약관불러올 경로 디렉토리-->
-		<constructor-arg value="http:\\192.168.25.7:8090\\upload\\"/>
-		</bean>
+
+	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="javaMailSender">
+		<property name="host" value="smtp.gmail.com"/>
+		<property name="port" value="587"/>
+		<property name="username" value="burger0bucks@gmail.com"/>
+		<property name="password" value="qjrjqjrtm"/>
+		<property name="javaMailProperties">
+		
+		<props>
+		<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+		<prop key="mail.smtp.starttls.enable">true</prop>
+		<prop key="mail.smtp.auth">true</prop>
+		</props>
+		</property>
+	</bean>
+	
+	<bean class="bb.com.a.service.Impl.MailServiceImpl" id="mailService">
+		<property name="javaMailSender" ref="javaMailSender"/>
+	</bean>
 	
 
 </beans>

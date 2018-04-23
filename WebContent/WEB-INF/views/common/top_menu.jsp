@@ -79,7 +79,7 @@
       </a>
     </div>
     <div style="height:100%; width: 160px; border-right: 2px ridge #7a7979; display: block; float: left;" align="center">
-      <a class="hover_a" style="color: #ededed;" href="#" data-toggle="modal" data-target="#burgerModal">
+      <a class="hover_a" style="color: #ededed;" href="diyboard.do" >
         <h4 style="size: 28px; margin-top: 30px;">DIY햄버거</h4>
       </a>
     </div>

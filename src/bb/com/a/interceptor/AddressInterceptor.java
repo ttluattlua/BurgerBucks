@@ -2,6 +2,7 @@ package bb.com.a.interceptor;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,9 +11,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import bb.com.a.model.Bb_AddrDto;
 import bb.com.a.model.Bb_MemberDto;
 
-public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
+public class AddressInterceptor extends HandlerInterceptorAdapter {
 	
 	//preHandle - controller 이벤트 호출전    
     @Override
@@ -22,8 +24,8 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
             //login이라는 세션key를 가진 정보가 널일경우 로그인페이지로 이동
         	HttpSession session = request.getSession(true);
         	
-        	Bb_MemberDto login = (Bb_MemberDto)session.getAttribute("login");
-            if(login == null ){
+        	List<Bb_AddrDto> addrList = (List<Bb_AddrDto> )session.getAttribute("addrList");
+            if(addrList.size() == 0 ){
             	
             	 response.setContentType("text/html; charset=UTF-8");
                  PrintWriter out;
@@ -31,7 +33,7 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 	                 
 	                 //실패시 창 띄우기
 	                 out = response.getWriter();
-	                 out.println("<script>alert('로그인 후 이용가능한 서비스입니다.'); history.go(-1);</script>");
+	                 out.println("<script>alert('주소를 작성해주세요'); history.go(-1);</script>");
 	                    out.flush(); 
 	                 
 	              } catch (IOException e) {
@@ -39,7 +41,7 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 	                 e.printStackTrace();
 	              }
 
-                    response.sendRedirect("./home.do");
+                    response.sendRedirect("./addrAdd.do");
                     return false;
             }
         } catch (Exception e) {

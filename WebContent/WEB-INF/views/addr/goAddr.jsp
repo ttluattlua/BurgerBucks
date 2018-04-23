@@ -1,7 +1,3 @@
-
-<%@page import="java.util.List"%>
-<%@page import="bb.com.a.model.Bb_MemberDto"%>
-<%@page import="bb.com.a.model.Bb_AddrDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <title>Insert title here</title>
@@ -33,6 +29,15 @@ List<Bb_AddrDto> AddrList = (List<Bb_AddrDto>)request.getAttribute("addr"); */%>
 <h2><a href="./addAddr.do"><h2>주소 추가하기</h2> </a>
 </div>
 
+=======
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:requestEncoding value="utf-8"/> 
+
+
+
+>>>>>>> 1865bc0e220db4b4b1fc339106c8d91278f9be11
 <div style="width: 750px; height: 620px;">
 
 <form id="_frmForm" method="post" action="">
@@ -48,11 +53,14 @@ List<Bb_AddrDto> AddrList = (List<Bb_AddrDto>)request.getAttribute("addr"); */%>
 </thead>
 
 <tbody>
+<!-- list가 empty일때 -->
 <c:if test="${empty list}">
 <tr>
 	<td colspan="4">저장된 주소가 없습니다.</td>
 </tr>	
 </c:if>
+<!-- list가 있을때 -->
+<c:if test="${list.size() != 0 }">
 <c:forEach var="addr" items="${list}" varStatus="vs">
 <tr>
 	<td>${vs.count}</td> 
@@ -64,6 +72,7 @@ List<Bb_AddrDto> AddrList = (List<Bb_AddrDto>)request.getAttribute("addr"); */%>
 	</td>
 </tr>
 </c:forEach>
+</c:if>
 </tbody>
 </table>
 </form>
@@ -85,17 +94,4 @@ $("#_btnMain").click(function(){
 });
 </script>
 
-<!--
- <script type="text/javascript">
-	function confirmChoice(){
-		var answer = confirm("정말 삭제하시겠습니까?");
-		if(answer !=0){
-			/* location.href="addrDelete.do?seq=${addr.seq}"; */
-			$("#_frmForm").attr({ "target":"_self", "action":"addrDelete.do" }).submit();	
-		}
-	}
-</script>
- -->
->>>>>>> kh
-</body>
-</html>
+
