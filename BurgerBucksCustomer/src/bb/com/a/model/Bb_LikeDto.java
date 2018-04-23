@@ -6,47 +6,50 @@ import java.util.List;
 public class Bb_LikeDto implements Serializable {
 
   private int seq;
-  private int memberSeq ;
-  private int bbsSeq;
+  private int member_Seq ;
+  private int bbs_Seq;
   
   /*---------------------------------------------------------------------------------------
   Constructor
   --------------------------------------------------------------------------------------- */
   public Bb_LikeDto() { }
+
+	public Bb_LikeDto(int seq, int member_Seq, int bbs_Seq) {
+		super();
+		this.seq = seq;
+		this.member_Seq = member_Seq;
+		this.bbs_Seq = bbs_Seq;
+	}
+
+	public int getSeq() {
+		return seq;
+	}
+
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
+
+	public int getMember_Seq() {
+		return member_Seq;
+	}
+
+	public void setMember_Seq(int member_Seq) {
+		this.member_Seq = member_Seq;
+	}
+
+	public int getBbs_Seq() {
+		return bbs_Seq;
+	}
+
+	public void setBbs_Seq(int bbs_Seq) {
+		this.bbs_Seq = bbs_Seq;
+	}
+
+	@Override
+	public String toString() {
+		return "Bb_LikeDto [seq=" + seq + ", member_Seq=" + member_Seq + ", bbs_Seq=" + bbs_Seq + "]";
+	}
   
-  public Bb_LikeDto(int seq, int memberSeq, int bbsSeq) {
-    super();
-    this.seq = seq;
-    this.memberSeq = memberSeq;
-    this.bbsSeq = bbsSeq;
-  }
+	
 
-  /*---------------------------------------------------------------------------------------
-  Getter & Setter
-  --------------------------------------------------------------------------------------- */
-  
-  public int getSeq() {
-    return seq;
-  }
-
-  public void setSeq(int seq) {
-    this.seq = seq;
-  }
-
-  public int getMemberSeq() {
-    return memberSeq;
-  }
-
-  public void setMemberSeq(int memberSeq) {
-    this.memberSeq = memberSeq;
-  }
-
-  public int getBbsSeq() {
-    return bbsSeq;
-  }
-
-  public void setBbsSeq(int bbsSeq) {
-    this.bbsSeq = bbsSeq;
-  }
-  
 }

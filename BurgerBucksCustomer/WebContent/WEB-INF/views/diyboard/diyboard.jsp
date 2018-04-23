@@ -40,49 +40,116 @@
 	padding-top: 5px;	
 }
 </style>
-<div style="padding: 0; margin: 0 auto; margin-top:20px; height: 300px; width: 1000px;">
-	<div align="right">
-		<button class="btn btn-outlined btn-block btn-success" style="width: 100px;">버거등록</button>
-	</div>
-	<div class="diy-box">
-		<div class="diy-detail"></div>
-		<div class="text-left">
-			<div style="font-size:1.5em; color:Tomato">
-  				<i class="fa fa-smile-o">10</i>
-			</div>
-			
+<div style="padding: 0; margin: 0 auto; margin-top:20px; height: 2000px; width: 1000px;">
+	<div>
+		<div align="right">
+			<button class="btn btn-outlined btn-block btn-success" style="width: 100px;">버거등록</button>
 		</div>
-		<div class="text-right">
-			<input type="button" class="btn btn-outlined btn-warning" value="구매">
-			<input type="button"  class="btn btn-outlined btn-danger" value="상세"><br>
-			<p style="margin-top: 3px;"><i class="fa fa-krw">5000원</i></p>
-		</div>
-	</div>
-	<div class="diy-box">
-		<div class="diy-detail"></div>
-		<div class="text-left">
-			<div style="font-size:1.5em; color:Tomato">
-  				<i class="fa fa-smile-o">10</i>
-			</div>
+		<div>
+			<c:forEach var="bbsdto" items="${bbsList}" varStatus="status">
 		
-		</div>
-		<div class="text-right">
-			<input type="button" class="btn btn-outlined btn-warning" value="구매">
-			<input type="button"  class="btn btn-outlined btn-danger" value="상세"><br>
-			<p style="margin-top: 3px;"><i class="fa fa-krw">5000원</i></p>
-		</div>
-	</div>
-	<div class="diy-box">
-		<div class="diy-detail"></div>
-		<div class="text-left">
-			<div style="font-size:1.5em; color:Tomato">
-  				<i class="fa fa-meh-o">10</i>
-			</div>
-		</div>
-		<div class="text-right">
-			<input type="button" class="btn btn-outlined btn-warning" value="구매">
-			<input type="button"  class="btn btn-outlined btn-danger" value="상세"><br>
-			<p style="margin-top: 3px;"><i class="fa fa-krw">5000원</i></p>
+				<div class="diy-box">
+					<div class="diy-detail">
+					<c:if test="${bbsdto.image_Src == '없음' }">
+					<img alt="" src="./UI/AdminBurgerImage.png" style="width: 200px; height: 200px;">
+					</c:if>
+					<c:if test="${bbsdto.image_Src != '없음' }">
+					<img alt="" src="${imagePath}${bbsdto.image_src}" style="width: 200px; height: 200px;">
+					</c:if>
+					
+					</div>
+					<div class="text-left">
+						<div style="font-size:1.5em; color:Tomato">
+							<c:if test="${bbsdto.likecheck == 0 }">
+								<i class="fa fa-meh-o">${bbsdto.bbs_like }</i>
+							</c:if>
+							<c:if test="${bbsdto.likecheck != 0 }">
+								<i class="fa fa-smile-o">${bbsdto.bbs_like }</i>
+							</c:if>
+							<p style="margin-top: 3px;"><i class="fa fa-check" style="font-size: 15px;">${bbsdto.burger_name}</i></p>
+						</div>
+						
+					</div>
+					<div class="text-right">
+						<input type="button" class="btn btn-outlined btn-warning" value="구매" onclick="alert('연구중입니다.')">
+						<input type="button"  class="btn btn-outlined btn-danger" value="상세" onclick="bbsDetail('${bbsdto.buger_seq}')"  data-toggle="modal" data-target="#detailModal"><br>
+						<p style="margin-top: 3px;"><i class="fa fa-krw">${bbsdto.price}</i></p>
+					</div>
+				</div>
+				<c:if test="${status.index%3 ==2 }">
+				</div><div> 
+				</c:if>
+				
+			</c:forEach>
 		</div>
 	</div>
 </div>
+<!-- 상세보기 모달-->
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="detailModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" style="color: white">버거정보</h4>
+        </div>
+        <div class="modal-body">
+          <div id="burgerName" style="color: white"></div>
+          <div id="creatorId" style="color: white"></div>
+          <div id="ingredients" style="color: white"></div>
+          <div id="calories" style="color: white"></div>
+          <div id="price" style="color: white"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+function bbsDetail(burger_Seq) {
+		alert(burger_Seq);
+		var data = {};
+	    
+		data["seq"]=burger_Seq;
+		
+		$.ajax({
+			contentType:'application/json',
+			dataType:'json',
+			data:JSON.stringify(data), 		//JavaScript 값을 JSON으로 변환 한다
+			url:"getBurgerDiyDetail.do",			// side
+			type:'POST',
+			success:function(data){
+				
+			console.log(data);
+			/* var burgerDD = JSON.parse(data); */
+	        $("#burgerName").html("버거이름 : "+data.name);
+	        $("#creatorId").html("만든이 : "+data.creatorID);
+	        $("#ingredients").html("재료 : "+data.bread_name+"/"+
+	        		  data.ingredient01_name+"/"+
+	        		  data.ingredient02_name+"/"+
+	        		  data.ingredient03_name+"/"+
+	        		  data.ingredient04_name+"/"+
+	        		  data.ingredient05_name+"/"+
+	        		  data.ingredient06_name+"/"+
+	        		  data.ingredient07_name+"/"+
+	        		  data.ingredient08_name+"/"+
+	        		  data.ingredient09_name
+	          );
+	         $("#calories").html("칼로리 : "+data.cal);
+	         $("#price").html("가격 : "+data.price);
+			 
+				
+			},
+			error:function(req, status, error){
+				alert("error");
+			}
+		
+		});
+
+}
+
+</script>
