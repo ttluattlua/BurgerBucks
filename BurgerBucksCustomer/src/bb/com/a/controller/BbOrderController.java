@@ -106,28 +106,7 @@ public class BbOrderController {
 			}
 		}
 		
-		//멤버 dto 가져오기
-		/*List<Bb_MemberDto> memberList = new ArrayList<Bb_MemberDto>();
-		for (int i = 0; i < olist.size(); i++) {
-			memberList.add(bbOrderService.getMemberList(olist.get(i).getMember_seq()));
-		}*/
-		
-		//주소 상세 가져오기
-		List<Bb_AddrDto> addrList = new ArrayList<Bb_AddrDto>();
-		/*for (int i = 0; i < olist.size(); i++) {
-			addrList.add(bbOrderService.getAddrList(olist.get(i).getMember_addr()));
-		}*/
-		
-		//점포 dto 가져오기
-		List<Bb_StoreDto> storeList = new ArrayList<Bb_StoreDto>();
-		/*for (int i = 0; i < olist.size(); i++) {
-			storeList.add(bbOrderService.getStoreList(olist.get(i).getStore_seq()));
-		}*/
-		
 		model.addAttribute("olist", olist); 			//order list
-		model.addAttribute("addrList", addrList);		//address list
-		model.addAttribute("storeList", storeList);		//store list
-		
 		
 		
 		return "order_history.tiles";
@@ -144,15 +123,23 @@ public class BbOrderController {
 			HttpServletRequest request, Model model) throws Exception {
 		logger.info("Welcome BbaOrderController orderDetail! "+ new Date());
 		
+		HttpSession session = request.getSession(true);
+		String imagePath = (String)session.getAttribute("imagePath");
+		System.out.println("imagePath:"+imagePath);
+		
+		Bb_SideDto sideDto = null;
+		Bb_BeverageDto beverDto= null;
+		Bb_BurgerTableDto burgerDto = null;
+		
 		//버거 리스트 가져오기
 		List<Bb_BurgerTableDto> burgerList = bbOrderService.getBurgerList();
 		
 		//음료 리스트 가져오기
 		List<Bb_BeverageDto> beverageList = bbOrderService.getBeverageList();
 		
-		//음료 리스트 가져오기
+		//사이드 리스트 가져오기
 		List<Bb_SideDto> sideList = bbOrderService.getSideList();
-		
+
 		//재료 리스트 가져오기
 		List<Bb_IngredientDto> ingreList = bbOrderService.getIngreList();
 		
@@ -237,39 +224,67 @@ public class BbOrderController {
 					
 					burgerIngre += "번 : " ;
 					for(int z = 0; z < ingreList.size(); z++) {
-					
-						
 						if(burgerList.get(j).getBread() == ingreList.get(z).getSeq()) {
 							burgerIngre += ingreList.get(z).getName();
 						}
 					}
 		
+					//재료  0-X / 1-번 / 2-패티 / 3-채소 / 4-기타
 					burgerIngre += "  /  재료 : " ;
+					
 					for(int z = 0; z < ingreList.size(); z++) {
-						
-						
-						
-						if(burgerList.get(j).getIngredient01() == ingreList.get(z).getSeq()) {
-							burgerIngre += " - " + ingreList.get(z).getName();
-						}else if(burgerList.get(j).getIngredient02() == ingreList.get(z).getSeq()) {
-							burgerIngre += " - " + ingreList.get(z).getName();
-						}else if(burgerList.get(j).getIngredient03() == ingreList.get(z).getSeq()) {
-							burgerIngre += " - " + ingreList.get(z).getName();
-						}else if(burgerList.get(j).getIngredient04() == ingreList.get(z).getSeq()) {
-							burgerIngre += " - " + ingreList.get(z).getName();
-						}else if(burgerList.get(j).getIngredient05() == ingreList.get(z).getSeq()) {
-							burgerIngre += " - " + ingreList.get(z).getName();
-						}else if(burgerList.get(j).getIngredient06() == ingreList.get(z).getSeq()) {
-							burgerIngre += " - " + ingreList.get(z).getName();
-						}else if(burgerList.get(j).getIngredient07() == ingreList.get(z).getSeq()) {
-							burgerIngre += " - " + ingreList.get(z).getName();
-						}else if(burgerList.get(j).getIngredient08() == ingreList.get(z).getSeq()) {
-							burgerIngre += " - " + ingreList.get(z).getName();
-						}else if(burgerList.get(j).getIngredient09() == ingreList.get(z).getSeq()) {
+						if(burgerList.get(j).getIngredient01() == ingreList.get(z).getSeq() && burgerList.get(j).getIngredient01()!=0) {
+							burgerIngre += ingreList.get(z).getName();
+						}
+					}
+					
+					for(int z = 0; z < ingreList.size(); z++) {
+						if(burgerList.get(j).getIngredient02() == ingreList.get(z).getSeq() && burgerList.get(j).getIngredient02()!=0) {
 							burgerIngre += " - " + ingreList.get(z).getName();
 						}
-						
 					}
+					
+					for(int z = 0; z < ingreList.size(); z++) {
+						if(burgerList.get(j).getIngredient03() == ingreList.get(z).getSeq() && burgerList.get(j).getIngredient03()!=0) {
+							burgerIngre += " - " + ingreList.get(z).getName();
+						}
+					}
+					
+					for(int z = 0; z < ingreList.size(); z++) {
+						if(burgerList.get(j).getIngredient04() == ingreList.get(z).getSeq() && burgerList.get(j).getIngredient04()!=0) {
+							burgerIngre += " - " + ingreList.get(z).getName();
+						}
+					}
+					
+					for(int z = 0; z < ingreList.size(); z++) {
+						if(burgerList.get(j).getIngredient05() == ingreList.get(z).getSeq() && burgerList.get(j).getIngredient05()!=0) {
+							burgerIngre += " - " + ingreList.get(z).getName();
+						}
+					}
+					
+					for(int z = 0; z < ingreList.size(); z++) {
+						if(burgerList.get(j).getIngredient06() == ingreList.get(z).getSeq() && burgerList.get(j).getIngredient06()!=0) {
+							burgerIngre += " - " + ingreList.get(z).getName();
+						}
+					}
+					
+					for(int z = 0; z < ingreList.size(); z++) {
+						if(burgerList.get(j).getIngredient07() == ingreList.get(z).getSeq() && burgerList.get(j).getIngredient07()!=0) {
+							burgerIngre += " - " + ingreList.get(z).getName();
+						}
+					}
+					
+					for(int z = 0; z < ingreList.size(); z++) {
+						if(burgerList.get(j).getIngredient08() == ingreList.get(z).getSeq() && burgerList.get(j).getIngredient08()!=0) {
+							burgerIngre += " - " + ingreList.get(z).getName();
+						}
+					}
+					
+					for(int z = 0; z < ingreList.size(); z++) {
+						if(burgerList.get(j).getIngredient09() == ingreList.get(z).getSeq() && burgerList.get(j).getIngredient09()!=0) {
+							burgerIngre += " - " + ingreList.get(z).getName();
+						}
+					}				
 				}
 			}
 			

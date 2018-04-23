@@ -88,8 +88,8 @@
         <h4 style="cursor:pointer; size: 28px; margin-top: 30px; color: #ededed; size: 28px; margin-top: 30px;">마이 페이지 ▼</h4>
       </a>
       <ul class="dropdown-menu">
-	      <li><a href="order_inquiry.do">주문 내역</a></li>
 	      <li><a href="order_history.do">주문 조회</a></li>
+	      <li><a href="order_inquiry.do">주문 내역</a></li>
 	      <li><a href="#">즐겨찾기</a></li>
 	      <li><a href="goAddr.do">주소록</a></li>
 	      <li><a href="updateProfile.do">회원정보 수정</a></li>
