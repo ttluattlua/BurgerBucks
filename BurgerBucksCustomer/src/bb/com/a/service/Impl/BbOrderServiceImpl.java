@@ -10,6 +10,12 @@ import bb.com.a.model.Bb_AddrDto;
 import bb.com.a.model.Bb_OrderDto;
 import bb.com.a.model.Bb_StoreDto;
 import bb.com.a.service.BbOrderSerivce;
+import bb.com.a.model.Bb_MenuTableDto;
+import bb.com.a.model.Bb_OrderMenuDto;
+import bb.com.a.model.Bb_BeverageDto;
+import bb.com.a.model.Bb_BurgerTableDto;
+import bb.com.a.model.Bb_IngredientDto;
+import bb.com.a.model.Bb_SideDto;
 
 @Service
 public class BbOrderServiceImpl implements BbOrderSerivce {
@@ -41,8 +47,54 @@ public class BbOrderServiceImpl implements BbOrderSerivce {
 		return bbOrderDao.getStoreList(store_seq);
 	}
 	
+	/*--------------------------------------------------------------------------------------------
+	 * 주문 상세 가져오기 (orderMenu)
+	 *-------------------------------------------------------------------------------------------*/
+	@Override
+	public List<Bb_OrderMenuDto> getOrderMenuList() throws Exception {
+		return bbOrderDao.getOrderMenuList();
+	}
+
+	/*--------------------------------------------------------------------------------------------
+	 * 메뉴 리스트 가져오기
+	 *-------------------------------------------------------------------------------------------*/
+	@Override
+	public Bb_MenuTableDto getMenuList(int seq) throws Exception {
+		return bbOrderDao.getMenuList(seq);
+	}
+
 	
-	
+	/*--------------------------------------------------------------------------------------------
+	 * 버거 리스트 가져오기
+	 *-------------------------------------------------------------------------------------------*/
+	@Override
+	public List<Bb_BurgerTableDto> getBurgerList() throws Exception {
+		return bbOrderDao.getBurgerList();
+	}
+
+	/*--------------------------------------------------------------------------------------------
+	 * 음료 리스트 가져오기
+	 *-------------------------------------------------------------------------------------------*/
+	@Override
+	public List<Bb_BeverageDto> getBeverageList() throws Exception {
+		return bbOrderDao.getBeverageList();
+	}
+
+	/*--------------------------------------------------------------------------------------------
+	 * 사이드 리스트 가져오기
+	 *-------------------------------------------------------------------------------------------*/
+	@Override
+	public List<Bb_SideDto> getSideList() throws Exception {
+		return bbOrderDao.getSideList();
+	}
+
+	/*------------------------------------------------------------------------------
+	* 재료 리스트 가져오기
+	* -----------------------------------------------------------------------------*/
+	@Override
+	public List<Bb_IngredientDto> getIngreList() throws Exception {
+		return bbOrderDao.getIngreList();
+	}
 	
 	
 	

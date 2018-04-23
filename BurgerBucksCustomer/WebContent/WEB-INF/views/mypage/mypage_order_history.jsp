@@ -27,79 +27,31 @@ if(session.getAttribute("login") != null){
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<link rel="stylesheet" type="text/css" href="./DataTables/datatables.min.css"/>
-<script type="text/javascript" src="./DataTables/datatables.min.js"></script>
+<!--datatable위한 자바스크립트 및 css -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.colVis.min.js"></script>
 
 
-<!-- Bread crumb -->
-          <div class="row page-titles">
-              <div class="col-md-5 align-self-center">
-                  <h3 class="text-primary">${doc_title }</h3> </div>
-              <div class="col-md-7 align-self-center">
-                  <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="javascript:void(0)">${doc_menu }</a></li>
-                      <li class="breadcrumb-item active">${doc_title }</li>
-                  </ol>
-              </div>
-          </div>
-            <!-- End Bread crumb -->
-            <!-- Container fluid  -->
-<div class="container-fluid">
-    <!-- Start Page Content -->
-<div class="row">
-    <div class="col-12">
-     <!--========================== 주문 리스트 가져오기 ==============================-->
-
-   
-      <div class="card">
-       <div class="card-body">
-           <h4 class="card-title">주문 리스트</h4>
-           <h6 class="card-subtitle">Order List</h6>
-           <div class="table-responsive m-t-40">
-           <div>
-           <hr>
-
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<div style="text-align: right;">
-			<i class="material-icons">shopping_cart</i> 장바구니 / 
-			<i class="material-icons">payment</i> 주문완료 / 
-			<i class="material-icons">room_service</i> 준비중 / 
-			<i class="material-icons">directions_bike</i> 배달시작 / 
-			<i class="material-icons">assignment_turned_in</i> 배달완료 / 
-			</div>
-           </div>
 
 
-<!-- 점포 / 본사 구분 -->
-<input type="hidden" name="chStoreSeq" value="<%=id %>">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
 
-<table id="orderTable" class="display" cellspacing="0" width="100%">
 
-    <thead>
-        <tr>
-        	<th>No</th>
-        	<th>주문번호</th>
-        	<th>주문일자</th>
-            <th>점포명</th>
-            <th>주문자</th>
-            <th>연락처</th>
-            <th>배송지</th>
 
-            
-            <%-- 
-            <c:forEach items="${olist}" var="chorder" varStatus="status">
-            <c:forEach items="${orderMenuList}" var="chorderMenu" varStatus="status">
-            <c:if test="${chorder.seq eq chorderMenu.order_seq}">
-            <th class="none">배송지</th>
-            <th class="none">주문번호</th>
-            <th class="none">메뉴 seq</th>
-            </c:if>
-            </c:forEach>
-            </c:forEach>
-             --%>
-        </tr>
-    </thead>
-    
+<div style=" padding-top:50px; width: 750px; height: 620px;">
+<table id="example" class="table table-striped table-bordered" style="width:100%">
+	
     <tbody>
     
 <%-- 	JSTL 문법의 for문 사용법
@@ -115,9 +67,7 @@ status 는 for문의 돌아가는 상태를 알 수 있게 체크하여 준다
 #{status.end}   for문의 끝 값
 #{status.step}  for문의 증가값 --%>
 
- 	<!-- member list -->
-	<c:set var="memberList" value="${memberList }" />
-	
+
 	<!-- address list -->
 	<c:set var="addrList" value="${addrList }" />
 	
@@ -125,255 +75,38 @@ status 는 for문의 돌아가는 상태를 알 수 있게 체크하여 준다
 	<c:set var="storeList" value="${storeList }" />
 	
 	<!-- 접속한 점포 코드 -->
-	<c:set var="storeCode" value="<%=store %>"></c:set>
+	<c:set var="id" value="<%=id %>"></c:set>
 	
 	<!-- order list -->
 	<c:set var="i" value="0" />
     <c:forEach items="${olist}" var="order" varStatus="status">
-    
 
         <tr id="tr${order.seq}">
         	<!-- 기본 정보 -->
         	
-        	<!-- no -->
-            <td> ${status.count}</td>
-            <!-- 점포명 -->
-            <td>${storeList[i].name }</td>
-            <!-- 주문자 -->
-            <td><%=id %></td>
-            <!-- 연락처 -->
-            <td>${memberList[i].phone }</td>
-            <!-- 주문일자 -->
-            <td>${order.order_date }</td>
-            
-            <!-- 배송지 -->
-            <td>${addrList[i].address }</td>
-            <!-- 배송메모 -->
-            <td>${addrList[i].memo }</td>
-            
-            
-			<!-- 현재 주문 상태 아이콘 -->
-            <td id="tdPre${order.seq}">
-			<c:choose>
-
-		    <c:when test="${order.status eq '0'}">
-            <i class="material-icons">shopping_cart</i>
-		    </c:when>
-
-		    <c:when test="${order.status eq '1'}">
-            <i class="material-icons">payment</i>
-		    </c:when>
-		    
-		    <c:when test="${order.status eq '2'}">
-            <i class="material-icons">room_service</i>
-		    </c:when>
-		    
-		    <c:when test="${order.status eq '3'}">
-            <i class="material-icons">directions_bike</i>
-		    </c:when>
-		   
-		    <c:otherwise>
-            <i class="material-icons">assignment_turned_in</i>
-		    </c:otherwise>
-
-			</c:choose>
+        	<!-- 상세보기 버튼 -->
+            <td style="width: 10%; text-align: center;">
+            <button  id="detailBtn" type="button" class="btn btn-danger" value="0" onclick="orderDetail(${order.seq})" >+</button>
             </td>
-            
-            
-            
-            <!-- 상태 변경하기 -->
-            <td id="tdChPre${order.seq}">
-            <select name="${order.seq}oSelect1" title="선택하세요" class="form-control">
-		      <option value='0' <c:if test="${order.status eq '0'}">selected</c:if>>장바구니</option>
-		      <option value='1' <c:if test="${order.status eq '1'}">selected</c:if>>주문완료</option>
-		      <option value='2' <c:if test="${order.status eq '2'}">selected</c:if>>준비중</option>
-		      <option value='3' <c:if test="${order.status eq '3'}">selected</c:if>>배달시작</option>
-		      <option value='4' <c:if test="${order.status eq '4'}">selected</c:if>>배달완료</option>
-		    </select>
-			</td>
-			
-			
-			
-			<!-- 상태 저장 버튼 -->
-            <td style="text-align: right;">
-            <button id="save" type="button" class="btn btn-inverse" onclick="saveOSelect(${order.seq})" >저장</button>
-            </td>
-            
-            <!-- 상세보기 버튼 -->
-            <td style="text-align: right;">
-            <button  id="detailBtn" type="button" class="btn btn-inverse" value="0" onclick="orderDetail(${order.seq})" >주문상세</button>
-            </td>
-
-        </tr>
-        
-<%--         
-        <!-- 점포 매니저 로그인 시 -->
-        <c:set var="s" value="1" />
-        <c:if test="${storeCode eq storeList[i].seq }">
-
-        <tr id="tr${order.seq}">
-        	<!-- 기본 정보 -->
         	
-        	<!-- no -->
-            <td> ${s}</td>
-            <!-- 점포명 -->
-            <td>${storeList[i].name }</td>
-            <!-- 주문자 -->
-            <td>${memberList[i].id }</td>
-            <!-- 연락처 -->
-            <td>${memberList[i].phone }</td>
+        	
             <!-- 주문일자 -->
-            <td>${order.order_date }</td>
-            
-            <!-- 배송지 -->
-            <td>${addrList[i].address }</td>
-            <!-- 배송메모 -->
-            <td>${addrList[i].memo }</td>
-            
-            
-			<!-- 현재 주문 상태 아이콘 -->
-            <td id="tdPre${order.seq}" style="text-align: center;">
-			<c:choose>
-
-		    <c:when test="${order.status eq '0'}">
-            <i class="material-icons">shopping_cart</i>
-		    </c:when>
-
-		    <c:when test="${order.status eq '1'}">
-            <i class="material-icons">payment</i>
-		    </c:when>
-		    
-		    <c:when test="${order.status eq '2'}">
-            <i class="material-icons">room_service</i>
-		    </c:when>
-		    
-		    <c:when test="${order.status eq '3'}">
-            <i class="material-icons">directions_bike</i>
-		    </c:when>
-		   
-		    <c:otherwise>
-            <i class="material-icons">assignment_turned_in</i>
-		    </c:otherwise>
-
-			</c:choose>
-            </td>
-            
-            
-            <!-- 상태 변경하기 -->
-            <td id="tdChPre${order.seq}" style="text-align: center;">
-            <select name="${order.seq}oSelect2" title="선택하세요" class="form-control">
-		      <option value='0' <c:if test="${order.status eq '0'}">selected</c:if>>장바구니</option>
-		      <option value='1' <c:if test="${order.status eq '1'}">selected</c:if>>주문완료</option>
-		      <option value='2' <c:if test="${order.status eq '2'}">selected</c:if>>준비중</option>
-		      <option value='3' <c:if test="${order.status eq '3'}">selected</c:if>>배달시작</option>
-		      <option value='4' <c:if test="${order.status eq '4'}">selected</c:if>>배달완료</option>
-		    </select>
-			</td>
-			
-			<!-- 상태 저장 버튼 -->
-            <td style="text-align: right;">
-            <button id="save" type="button" class="btn btn-inverse" onclick="saveOSelect(${order.seq})" >저장</button>
-            </td>
-            
-            <!-- 상세보기 버튼 -->
-            <td style="text-align: right;">
-            <button  id="detailBtn" type="button" class="btn btn-inverse" value="0" onclick="orderDetail(${order.seq})" >주문상세</button>
-            </td>
-		<c:set var="ss" value="${s+1 }"></c:set>
+            <td><b>주문일자 : </b>${order.order_date }</td>
         </tr>
-        </c:if>
-        
-        
-        
         
         <c:set var="i" value="${i+1 }"></c:set>
-    --%>
+    </c:forEach>
     
-	</c:forEach> 
     </tbody>
 </table>
-           </div>
-       </div>
-   </div>
-   
-   
-   </div>
-   </div>
-   </div>
+</div>
    
 
-   <script>
-   $(document).ready(function (){
-	    var table = $('#orderTable').DataTable({
-	        'responsive': true
-	    });
-
-	    // Handle click on "Expand All" button
-	    $('#btn-show-all-children').on('click', function(){
-	        // Expand row details
-	        table.rows(':not(.parent)').nodes().to$().find('td:first-child').trigger('click');
-	    });
-
-	    // Handle click on "Collapse All" button
-	    $('#btn-hide-all-children').on('click', function(){
-	        // Collapse row details
-	        table.rows('.parent').nodes().to$().find('td:first-child').trigger('click');
-	    });
-	});
-   </script>
-   
-
-
-
-  
 <script type="text/javascript">
-   
-/*---------------------------------------------------------------------------------------------
- * 상태 변경 클릭
- *----------------------------------------------------------------------------------------------*/
-	function saveOSelect(seq){
-		alert("상태 수정 클릭");
-		
-		var oSelect = -1;
-		
-		var chStore = document.getElementsByClassName(".chStoreSeq");
-		var chStore = $('input[name=chStoreSeq]').val();
-		alert("점포 코드 : "+chStore);
-		
-		if(chStore==0){
-			oSelect = $('select[name='+seq+'oSelect1]').val();
-			alert("상태 선택 코드 : [0] "+oSelect);
-		}else{
-			oSelect = $('select[name='+seq+'oSelect2]').val();
-			alert("상태 선택 코드 : "+oSelect);
-		}
-		
-		$.ajax({
-            url : "changeOrder.do",
-            type: "get",
-            data : { "seq" : seq, 
-            		"status" : oSelect	},
-            dataType: 'json',
-    		contentType : "application; charset=utf-8",
-    		traditional : true,
-            success : function(data){
-                
-                alert(JSON.stringify(data));
-                
-                //성공하면 이 함수 찾아서 고!
-                updateRow(data);
-                
-            },error : function(request,status,error){
-                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-            }
-        });
-	}
-	 
-	 
+ 
 /*---------------------------------------------------------------------------------------------
  * 주문상세 클릭
  *----------------------------------------------------------------------------------------------*/
-
 	function orderDetail(seq){
 		alert("상세 보기 클릭");
 		
@@ -398,7 +131,7 @@ status 는 for문의 돌아가는 상태를 알 수 있게 체크하여 준다
                 	if(x==0){
                 	
 	                	$( '#tr'+seq ).after( 
-	                		'<tr class="trtr'+seq+'"><td colspan="11">'+
+	                		'<tr class="trtr'+seq+'"><td>'+
 	                		'<b>주문번호 : </b> '+data[i].order_seq+ '&nbsp&nbsp&nbsp&nbsp<b>메뉴명 : </b>'+data[i].menu_name+'&nbsp&nbsp&nbsp&nbsp<b>가격 : </b>'+data[i].orderMenu_price+ '&nbsp&nbsp&nbsp&nbsp<b>수량 : </b> '+data[i].orderMenu_quantity +
 	                		'<br><b>버거 : </b>'+data[i].burger_name+'&nbsp&nbsp&nbsp&nbsp<b>음료 : </b>'+data[i].beverage_name+'&nbsp&nbsp&nbsp&nbsp<b>사이드 : </b>'+data[i].side_name+
 	                		'<br><br>'+
@@ -445,5 +178,47 @@ function updateRow(data){
 }
 
 
-</script>
+$(document).ready(function() {
+	/* initComplete(); */
+	var col_kor = [
+        { }
+    ];
+
+	 var lang_kor = {
+        "decimal" : "",
+        "emptyTable" : "데이터가 없습니다.",
+        "info" : "_START_ - _END_ (총 _TOTAL_ 개)",
+        "infoEmpty" : "0명",
+        "infoFiltered" : "(전체 _MAX_ 명 중 검색결과)",
+        "infoPostFix" : "",
+        "thousands" : ",",
+        "lengthMenu" : "_MENU_ 개씩 보기",
+        "loadingRecords" : "로딩중...",
+        "processing" : "처리중...",
+        "search" : "검색 : ",
+        "zeroRecords" : "검색된 데이터가 없습니다.",
+        "paginate" : {
+            "first" : "첫 페이지",
+            "last" : "마지막 페이지",
+            "next" : "다음",
+            "previous" : "이전"
+        },
+        "aria" : {
+            "sortAscending" : " :  오름차순 정렬",
+            "sortDescending" : " :  내림차순 정렬"
+        }
+    };
+
+    var table = $('#example').DataTable( {
+        lengthChange: false,
+        buttons: [ 'copy', 'excel', 'pdf' ],
+        columns: col_kor,
+        language : lang_kor,
+        "searching": false //서치 막기,
+    } );
+ 
+    table.buttons().container()
+        .appendTo( '#example_wrapper .col-sm-6:eq(0)' );
+} );
+</script>	
   
