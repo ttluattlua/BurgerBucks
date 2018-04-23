@@ -74,4 +74,37 @@ public class BbDiyController {
 	    }
 	
 
+		/*--------------------------------------------------------------------------------------------
+		 * 버거등록게시판으로가기
+		 *-------------------------------------------------------------------------------------------*/
+		@RequestMapping(value="addDiyBoard.do", method=RequestMethod.GET)
+		public String addDiyBurger(Model model, HttpServletRequest req) throws Exception {
+			logger.info("BbDiyController addDiyBurger");
+			HttpSession session = req.getSession(true);
+			Bb_MemberDto login = (Bb_MemberDto)session.getAttribute("login");
+			List<BB_DiyBurgerDto> bbsList = bbBurgerDiyService.myDiyBurgerList(login.getSeq());
+			for (BB_DiyBurgerDto BB_DiyBurgerDto : bbsList) {
+				System.out.println(BB_DiyBurgerDto.toString());
+			}
+			model.addAttribute("bbsList", bbsList);
+			return "addDiyBoard.tiles";
+		}
+		
+		/*--------------------------------------------------------------------------------------------
+		 * 버거등록후 diy게시판으로이동
+		 *-------------------------------------------------------------------------------------------*/
+		@RequestMapping(value="regiDiyBurger.do", method=RequestMethod.GET)
+		public String regiDiyBurger(Model model, HttpServletRequest req, int seq) throws Exception {
+			System.out.println("regeDIy-seq:" +seq);
+			logger.info("BbDiyController addDiyBurger");
+			HttpSession session = req.getSession(true);
+			Bb_MemberDto login = (Bb_MemberDto)session.getAttribute("login");
+			Bb_BbsDto bsdto = new Bb_BbsDto(seq, login.getSeq());
+			bbBurgerDiyService.regiDiyBurger(bsdto);
+			return "redirect:/diyboard.do";
+
+		}
+		
+		
+
 }

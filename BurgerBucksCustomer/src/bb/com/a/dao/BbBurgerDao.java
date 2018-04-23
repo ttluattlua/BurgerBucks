@@ -38,6 +38,8 @@ public interface BbBurgerDao {
    * 모든 재료 불러오기
    * ----------------------------------------------------------------------------*/
   public List<Bb_IngredientDto> getIngredientList();
+  
+
 
 
 }

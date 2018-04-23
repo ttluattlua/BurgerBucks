@@ -34,6 +34,12 @@
 	<put-attribute name="main" value="/WEB-INF/views/diyboard/diyboard.jsp"/>
 </definition>
 
+<!--diy버거등록게시판이동-->
+<definition name="addDiyBoard.tiles" extends="home.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/diyboard/addDiyBoard.jsp"/>
+</definition>
+
+
 <!--마이페이지로 이동 -->
 <!-- 비밀번호 변경으로 이동 -->
 <definition name="changePwd.tiles" template="/WEB-INF/views/layouts_mypage_ect_tiles.jsp">

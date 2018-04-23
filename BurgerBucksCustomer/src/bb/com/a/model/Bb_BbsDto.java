@@ -12,7 +12,7 @@ public class Bb_BbsDto implements Serializable {
 	BBS_LIKE NUMBER(10) NOT NULL,
 	DEL NUMBER(1) NOT NULL*/	
 	  private int seq;
-	  private int buger_seq;
+	  private int burger_seq;
 	  private String id;
 	  private int bbs_like;
 	  private int del;
@@ -33,11 +33,11 @@ public class Bb_BbsDto implements Serializable {
 	  }
 
 
-	public Bb_BbsDto(int seq, int buger_seq, String id, int bbs_like, int del, Bb_BurgerDto burger, String image_Src,
+	public Bb_BbsDto(int seq, int burger_seq, String id, int bbs_like, int del, Bb_BurgerDto burger, String image_Src,
 			int likecheck, int writer, int price, String burger_name) {
 		super();
 		this.seq = seq;
-		this.buger_seq = buger_seq;
+		this.burger_seq = burger_seq;
 		this.id = id;
 		this.bbs_like = bbs_like;
 		this.del = del;
@@ -47,6 +47,13 @@ public class Bb_BbsDto implements Serializable {
 		this.writer = writer;
 		this.price = price;
 		this.burger_name = burger_name;
+	}
+
+
+	public Bb_BbsDto(int burger_seq, int writer) {
+		super();
+		this.burger_seq = burger_seq;
+		this.writer = writer;
 	}
 
 
@@ -60,13 +67,13 @@ public class Bb_BbsDto implements Serializable {
 	}
 
 
-	public int getBuger_seq() {
-		return buger_seq;
+	public int getBurger_seq() {
+		return burger_seq;
 	}
 
 
-	public void setBuger_seq(int buger_seq) {
-		this.buger_seq = buger_seq;
+	public void setBurger_seq(int burger_seq) {
+		this.burger_seq = burger_seq;
 	}
 
 
@@ -162,10 +169,17 @@ public class Bb_BbsDto implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Bb_BbsDto [seq=" + seq + ", buger_seq=" + buger_seq + ", id=" + id + ", bbs_like=" + bbs_like + ", del="
-				+ del + ", burger=" + burger + ", image_Src=" + image_Src + ", likecheck=" + likecheck + ", writer="
-				+ writer + ", price=" + price + ", burger_name=" + burger_name + "]";
+		return "Bb_BbsDto [seq=" + seq + ", burger_seq=" + burger_seq + ", id=" + id + ", bbs_like=" + bbs_like
+				+ ", del=" + del + ", burger=" + burger + ", image_Src=" + image_Src + ", likecheck=" + likecheck
+				+ ", writer=" + writer + ", price=" + price + ", burger_name=" + burger_name + "]";
 	}
+
+
+
+
+	
+	
+
 
 
 	

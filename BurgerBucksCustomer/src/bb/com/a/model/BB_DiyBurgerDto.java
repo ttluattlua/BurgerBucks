@@ -187,6 +187,8 @@ public class BB_DiyBurgerDto implements Serializable {
 		this.ingredient08_name = ingredient08_name;
 		this.ingredient09_name = ingredient09_name;
 	}
+	
+	
 
 	public int getSeq() {
 		return seq;

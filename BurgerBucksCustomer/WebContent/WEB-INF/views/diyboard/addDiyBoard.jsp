@@ -42,8 +42,8 @@
 </style>
 <div style="padding: 0; margin: 0 auto; margin-top:20px; height: 2000px; width: 1000px;">
 	<div>
-		<div align="right">
-			<button class="btn btn-outlined btn-block btn-success" style="width: 100px;" onclick="location.href='addDiyBoard.do'">버거등록</button>
+		<div align="center">
+			<h3>DIY버거등록하기</h3>
 		</div>
 		<div>
 			<c:forEach var="bbsdto" items="${bbsList}" varStatus="status">
@@ -60,19 +60,13 @@
 					</div>
 					<div class="text-left">
 						<div style="font-size:1.5em; color:Tomato">
-							<c:if test="${bbsdto.likecheck == 0 }">
-								<i class="fa fa-meh-o">${bbsdto.bbs_like }</i>
-							</c:if>
-							<c:if test="${bbsdto.likecheck != 0 }">
-								<i class="fa fa-smile-o">${bbsdto.bbs_like }</i>
-							</c:if>
-							<p style="margin-top: 3px;"><i class="fa fa-check" style="font-size: 15px;">${bbsdto.burger_name}</i></p>
+							<p style="margin-top: 3px;"><i class="fa fa-check" style="font-size: 15px;">${bbsdto.name}</i></p>
 						</div>
 						
 					</div>
 					<div class="text-right">
-						<input type="button" class="btn btn-outlined btn-warning" value="구매" onclick="alert('연구중입니다.')">
-						<input type="button"  class="btn btn-outlined btn-danger" value="상세" onclick="bbsDetail('${bbsdto.burger_seq}')"  data-toggle="modal" data-target="#detailModal"><br>
+						<input type="button" class="btn btn-outlined btn-warning" value="등록" onclick="location.href='regiDiyBurger.do?seq=${bbsdto.seq}'">
+						<input type="button"  class="btn btn-outlined btn-danger" value="상세" onclick="bbsDetail('${bbsdto.seq}')"  data-toggle="modal" data-target="#detailModal"><br>
 						<p style="margin-top: 3px;"><i class="fa fa-krw">${bbsdto.price}</i></p>
 					</div>
 				</div>
