@@ -1,26 +1,9 @@
-
-<%@page import="java.util.List"%>
-<%@page import="bb.com.a.model.Bb_MemberDto"%>
-<%@page import="bb.com.a.model.Bb_AddrDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<title>Insert title here</title>
 
-<%
-Bb_MemberDto member = (Bb_MemberDto)session.getAttribute("login");
-List<Bb_AddrDto> addrList = (List<Bb_AddrDto>)request.getAttribute("list"); 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:requestEncoding value="utf-8"/> 
 
-%>
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<%
-/* Bb_MemberDto member = (Bb_MemberDto)request.getAttribute("member"); 
-List<Bb_AddrDto> AddrList = (List<Bb_AddrDto>)request.getAttribute("addr"); */%>
-</head>
-<body>
 
 
 <div style="width: 750px; height: 620px;">
@@ -38,26 +21,26 @@ List<Bb_AddrDto> AddrList = (List<Bb_AddrDto>)request.getAttribute("addr"); */%>
 </thead>
 
 <tbody>
+<!-- list가 empty일때 -->
 <c:if test="${empty list}">
 <tr>
-	<td colspan="4">작성된 글이 없습니다.</td>
+	<td colspan="4">저장된 주소가 없습니다.</td>
 </tr>	
 </c:if>
+<!-- list가 있을때 -->
+<c:if test="${list.size() != 0 }">
 <c:forEach var="addr" items="${list}" varStatus="vs">
 <tr>
-	<%-- <td style="padding:3px;">${addr.seq}</td> --%>
 	<td>${vs.count}</td> 
 	<td style="padding:3px;">${addr.address}</td>
 	<td style="padding:3px;">${addr.memo}</td>
 	<td style="padding:3px;">
 	<a href='addrUpdate.do?seq=${addr.seq}'>수정</a>
 	<a href='addrDelete.do?seq=${addr.seq}'>삭제</a> 
-	<%-- <a href="#" onclick="confirmChoice();">삭제</a><input type="hidden" value="${addr.seq}" name="seq">${addr.seq}</td> --%>
-	<!--  return false; -->
 	</td>
-<!-- 테이블의 몇번째 주소를 수정하려고 하는지 seq값을 가지고 넘어감  -->
 </tr>
 </c:forEach>
+</c:if>
 </tbody>
 </table>
 </form>
@@ -69,37 +52,14 @@ List<Bb_AddrDto> AddrList = (List<Bb_AddrDto>)request.getAttribute("addr"); */%>
 </div>
 
 <script type="text/javascript">
-	function confirmChoice(){
-		var answer = confirm("정말 삭제하시겠습니까?");
-		if(answer !=0){
-			/* location.href="addrDelete.do?seq=${addr.seq}"; */
-			$("#_frmForm").attr({ "target":"_self", "action":"addrDelete.do" }).submit();	
-		}
-	}
-</script>
-
-<%-- 
-<br><br><br>
-<div style="display:block; padding:20px; margin-left:50px; height: 200px; width:300px; float: left; background-color:white; border-radius: 4px;">
-<h4>안녕하세요 <%=member.getName()%>--- 님<br>
-다음주소로 배달됩니다.<br><br>
-<select style="font-size:1.7pt;">
-<%for(Bb_AddrDto addr:addrList){ %>
-<option><%=addr.getAddress()%></option>
-<%}%>
-</select>
-</h4><br>
-<div style="text-align:right">
-<h4><a href="./addAddr.do">주소 추가하기</a></h4> 
-<h4><a href="./addAddr.do">새로 주문하기</a></h4> 
-</div>
-</div>
- --%>
-<script type="text/javascript">
 $("#_btnNew").click(function(){
 	alert("새로 추가하기!");
 	location.href = "addrAdd.do";
-})
+});
+$("#_btnMain").click(function(){
+	alert("메인으로 고고!");
+	location.href = "home.do"; //**메인에 주소 안뜸 	
+});
 </script>
-</body>
-</html>
+
+

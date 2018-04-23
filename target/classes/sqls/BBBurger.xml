@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="BBBurger">
+
+<!-- 버거 저장 -->
+<insert id="addBurger" parameterType="bb.com.a.model.Bb_BurgerDto">
+ INSERT INTO BB_BURGER 
+ VALUES(BB_BURGER_SEQ.NEXTVAL, #{name}, #{bread}, 
+                              #{ingredients01}, #{ingredients02}, #{ingredients03}, 
+                              #{ingredients04}, #{ingredients05}, #{ingredients06}, 
+                              #{ingredients07}, #{ingredients08}, #{ingredients09}, 
+                              #{creator}, #{price}, #{cal}, #{del})
+</insert>
+
+<!-- 버거 수정 -->
+<update id="updBurger" parameterType="bb.com.a.model.Bb_BurgerDto">
+ UPDATE BB_BURGER 
+ SET NAME=#{name}, BREAD=#{bread}, INGREDIENT01=#{ingredients01}, INGREDIENT02=#{ingredients02}, INGREDIENT03=#{ingredients03}, 
+                                   INGREDIENT04=#{ingredients04}, INGREDIENT05=#{ingredients05}, INGREDIENT06=#{ingredients06}, 
+                                   INGREDIENT04=#{ingredients04}, INGREDIENT08=#{ingredients08}, INGREDIENT09=#{ingredients09}, 
+                                   CREATOR=#{creator}, PRICE=#{price}, CAL=#{cal}, DEL=#{del}
+ WHERE SEQ=#{seq} 
+</update>
+
+</mapper>  
+
+
+
+
+

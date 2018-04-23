@@ -19,9 +19,9 @@
 <put-attribute name="main" value="/WEB-INF/views/login/regi.jsp"/>
 </definition>
 
-
-<definition>
-	<put-attribute name="main" value="/WEB-INF/views/login/regi.jsp"/>
+<!-- 비밀번호 찾기-->
+<definition name="pwdPage.tiles" extends="home.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/login/findPWD.jsp"/>
 </definition>
 
 <!--오더로 이동-->
@@ -63,18 +63,16 @@
 <definition name="order_history.tiles" extends="changePwd.tiles">
 
 	<put-attribute name="main_side" value="/WEB-INF/views/mypage/mypage_order_history.jsp"/>
-<!--주소추가 폼으로 이동 -->
-<definition name="goAddr.tiles" extends="home.tiles">
-
 
 </definition>
+
 
 <!--주소추가 폼으로 이동 -->
 <definition name="goAddr.tiles" extends="changePwd.tiles">
 	<put-attribute name="main_side" value="/WEB-INF/views/addr/goAddr.jsp"/>
 </definition>
 
-<!--주소추가하기-->
+<!--주소추가하기 -->
 <definition name="addrAdd.tiles" extends="changePwd.tiles">
 	<put-attribute name="main_side" value="/WEB-INF/views/addr/addrAdd.jsp"/>
 </definition>
@@ -114,8 +112,9 @@
 
 </definition>
 
-</tiles-definitions>
 
+
+</tiles-definitions>
 
 
 

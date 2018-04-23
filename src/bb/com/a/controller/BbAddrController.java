@@ -38,6 +38,7 @@ private static final Logger logger = LoggerFactory.getLogger(BbAddrController.cl
 	
 	@RequestMapping(value="goAddr.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String goAddr(Model model, Bb_AddrDto addr, HttpServletRequest req) throws Exception {
+		System.out.println("goaddr");
 		System.out.println("hi goAddr1");
 		logger.info("KhAddressController goAddr");
 		
@@ -111,3 +112,26 @@ private static final Logger logger = LoggerFactory.getLogger(BbAddrController.cl
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -72,6 +72,14 @@ public class BbMemberServiceImpl implements BbMemberService {
 	public int getID(Bb_MemberDto mem) {
 		return bbMemberDao.getID(mem);
 	}
+	/*----------------------------------------------------------------------------
+	 *비밀번호변경
+	 * ----------------------------------------------------------------------------*/
+	@Override
+	public void changePwd(Bb_MemberDto mem) {
+		bbMemberDao.changePwd(mem);
+		
+	}
 
 
 

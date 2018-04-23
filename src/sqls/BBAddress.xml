@@ -5,32 +5,22 @@
 
 <mapper namespace="BBAddress">
 
-	<select id="allAddress" parameterType="bb.com.a.model.Bb_AddrDto"
-		resultType="bb.com.a.model.Bb_AddrDto"> 
-		SELECT SEQ, MEMBER_SEQ, ADDRESS, LAT, LNG, MEMO, DEL 
-		FROM BB_ADDR WHERE DEL=0 AND MEMBER_SEQ=#{member_seq} 
-		ORDER BY SEQ DESC
-	</select> 
-	
-	<insert id="addrAdd"
-		parameterType="bb.com.a.model.Bb_AddrDto">
-		INSERT INTO BB_ADDR
-		(SEQ, MEMBER_SEQ, ADDRESS, LAT, LNG, MEMO, DEL)
-		VALUES
-		(BB_ADDR_SEQ.NEXTVAL, #{member_seq}, #{address}, #{lat}, #{lng}, #{memo}, 0)
-	</insert>
+<select resultType="bb.com.a.model.Bb_AddrDto" id="allAddress">
+<!-- parameterType="bb.com.a.model.Bb_MemberDto" -->
+SELECT SEQ, MEMBER_SEQ, ADDRESS, LAT, LNG, MEMO, DEL FROM BB_ADDR WHERE DEL=0 AND MEMBER_SEQ=#{seq} ORDER BY SEQ DESC 
+</select>
 
-	<update id="addrUpdate"	parameterType="bb.com.a.model.Bb_AddrDto">
-		UPDATE BB_ADDR SET
-		ADDRESS=#{address}, LAT=#{lat}, LNG=#{lng}, MEMO=#{memo} 
-		WHERE SEQ=#{seq}
-	</update>	
-	
-	<update id="addrDelete"	parameterType="bb.com.a.model.Bb_AddrDto">
-		UPDATE BB_ADDR SET
-		DEL=1
-		WHERE SEQ=#{seq}
-	</update>				
+<insert id="addrAdd" parameterType="bb.com.a.model.Bb_AddrDto"> 
+INSERT INTO BB_ADDR (SEQ, MEMBER_SEQ, ADDRESS, LAT, LNG, MEMO, DEL) VALUES (BB_ADDR_SEQ.NEXTVAL, #{member_seq}, #{address}, #{lat}, #{lng}, #{memo}, 0) 
+</insert>
+
+<update id="addrUpdate" parameterType="bb.com.a.model.Bb_AddrDto"> 
+UPDATE BB_ADDR SET ADDRESS=#{address}, LAT=#{lat}, LNG=#{lng}, MEMO=#{memo} WHERE SEQ=#{seq} 
+</update>
+
+<update id="addrDelete" parameterType="bb.com.a.model.Bb_AddrDto"> 
+UPDATE BB_ADDR SET DEL=1 WHERE SEQ=#{seq} 
+</update>
 
 </mapper>
 

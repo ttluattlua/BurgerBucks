@@ -2,7 +2,7 @@ package bb.com.a.dao.Impl;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
@@ -15,7 +15,7 @@ import bb.com.a.model.Bb_MemberDto;;
 public class BbAddrDaoImpl implements BbAddrDao{
 	
 	@Autowired
-	SqlSession sqlSession;
+	SqlSessionTemplate sqlSession;
 	
 	private String ns = "BBAddress.";
 	
