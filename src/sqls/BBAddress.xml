@@ -5,14 +5,14 @@
 
 <mapper namespace="BBAddress">
 
-	<select id="allAddress" parameterType="Bb_MemberDto"
+	<select id="allAddress" parameterType="bb.com.a.model.Bb_AddrDto"
 		resultType="bb.com.a.model.Bb_AddrDto"> 
 		SELECT SEQ, MEMBER_SEQ, ADDRESS, LAT, LNG, MEMO, DEL 
 		FROM BB_ADDR WHERE DEL=0 AND MEMBER_SEQ=#{member_seq} 
 		ORDER BY SEQ DESC
 	</select> 
 	
-	<insert id="addAddr"
+	<insert id="addrAdd"
 		parameterType="bb.com.a.model.Bb_AddrDto">
 		INSERT INTO BB_ADDR
 		(SEQ, MEMBER_SEQ, ADDRESS, LAT, LNG, MEMO, DEL)
