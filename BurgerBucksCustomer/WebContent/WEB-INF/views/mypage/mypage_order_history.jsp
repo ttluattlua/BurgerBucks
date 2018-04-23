@@ -41,16 +41,19 @@ if(session.getAttribute("login") != null){
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.colVis.min.js"></script>
 
 
-
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
-
-
+ 
 
 <div style=" padding-top:50px; width: 750px; height: 620px;">
-<table id="example" class="table table-striped table-bordered" style="width:100%">
+<table id="example" class="table table-striped table-bordered" style="width:100%; background: white;">
+	<thead>
+	<tr>
+		<th>-</th>
+		<th>-</th>
+	</tr>
+	</thead>
 	
     <tbody>
     
@@ -74,11 +77,8 @@ status 는 for문의 돌아가는 상태를 알 수 있게 체크하여 준다
 	<!-- store list -->
 	<c:set var="storeList" value="${storeList }" />
 	
-	<!-- 접속한 점포 코드 -->
-	<c:set var="id" value="<%=id %>"></c:set>
 	
 	<!-- order list -->
-	<c:set var="i" value="0" />
     <c:forEach items="${olist}" var="order" varStatus="status">
 
         <tr id="tr${order.seq}">
@@ -86,15 +86,12 @@ status 는 for문의 돌아가는 상태를 알 수 있게 체크하여 준다
         	
         	<!-- 상세보기 버튼 -->
             <td style="width: 10%; text-align: center;">
-            <button  id="detailBtn" type="button" class="btn btn-danger" value="0" onclick="orderDetail(${order.seq})" >+</button>
+            <button  id="detailBtn" type="button" class="btn btn-danger" value="0" onclick="orderDetail(${order.seq})" >＋</button>
             </td>
-        	
         	
             <!-- 주문일자 -->
             <td><b>주문일자 : </b>${order.order_date }</td>
         </tr>
-        
-        <c:set var="i" value="${i+1 }"></c:set>
     </c:forEach>
     
     </tbody>
@@ -103,12 +100,23 @@ status 는 for문의 돌아가는 상태를 알 수 있게 체크하여 준다
    
 
 <script type="text/javascript">
- 
+
+$('#detailBtn').click( function() {
+    if( $(this).html() == '＋' ) {
+      $(this).html('－');
+    }
+    else {
+      $(this).html('＋');
+    }
+  });
+
 /*---------------------------------------------------------------------------------------------
  * 주문상세 클릭
  *----------------------------------------------------------------------------------------------*/
 	function orderDetail(seq){
 		alert("상세 보기 클릭");
+		
+		
 		
 		$.ajax({
             url : "orderDetail.do",
@@ -129,13 +137,12 @@ status 는 for문의 돌아가는 상태를 알 수 있게 체크하여 준다
                 for(var i=0; i<data.length; i++){
                 
                 	if(x==0){
-                	
 	                	$( '#tr'+seq ).after( 
-	                		'<tr class="trtr'+seq+'"><td>'+
+	                		'<tr class="trtr'+seq+'"><td colspan="2">'+
 	                		'<b>주문번호 : </b> '+data[i].order_seq+ '&nbsp&nbsp&nbsp&nbsp<b>메뉴명 : </b>'+data[i].menu_name+'&nbsp&nbsp&nbsp&nbsp<b>가격 : </b>'+data[i].orderMenu_price+ '&nbsp&nbsp&nbsp&nbsp<b>수량 : </b> '+data[i].orderMenu_quantity +
 	                		'<br><b>버거 : </b>'+data[i].burger_name+'&nbsp&nbsp&nbsp&nbsp<b>음료 : </b>'+data[i].beverage_name+'&nbsp&nbsp&nbsp&nbsp<b>사이드 : </b>'+data[i].side_name+
 	                		'<br><br>'+
-	                		'<b>버거 만들기</b>'+
+	                		'<b>버거 재료</b>'+
 	                		'<br>'+
 	                		data[i].burger_Ingredient +
 	                		'</tr></td>'
@@ -178,10 +185,19 @@ function updateRow(data){
 }
 
 
+
+
+</script>	
+
+
+<!-- 페이지 처리! -->
+<script type="text/javascript">
 $(document).ready(function() {
+	
 	/* initComplete(); */
-	var col_kor = [
-        { }
+	var col_kor = [ 
+        { title: "-" },
+        { title: "-" },
     ];
 
 	 var lang_kor = {
@@ -195,7 +211,7 @@ $(document).ready(function() {
         "lengthMenu" : "_MENU_ 개씩 보기",
         "loadingRecords" : "로딩중...",
         "processing" : "처리중...",
-        "search" : "검색 : ",
+        "search" : "Search : ",
         "zeroRecords" : "검색된 데이터가 없습니다.",
         "paginate" : {
             "first" : "첫 페이지",
@@ -211,14 +227,24 @@ $(document).ready(function() {
 
     var table = $('#example').DataTable( {
         lengthChange: false,
-        buttons: [ 'copy', 'excel', 'pdf' ],
+        bSort: false, //정렬
+        /* buttons: [ 'copy', 'excel', 'pdf' ], */
         columns: col_kor,
         language : lang_kor,
-        "searching": false //서치 막기,
+        "searching": true //서치 막기,
     } );
  
     table.buttons().container()
         .appendTo( '#example_wrapper .col-sm-6:eq(0)' );
 } );
+
+/* function initComplete() {
+	serverSide: true,
+	initComplete : function () {
+	    table.buttons().container()
+	           .appendTo( $('#example_wrapper .col-sm-6:eq(0)'));
+	},
+} */
 </script>	
+
   

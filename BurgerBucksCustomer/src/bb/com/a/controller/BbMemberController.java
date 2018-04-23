@@ -83,6 +83,8 @@ public class BbMemberController {
 			//세션에 아이디 주소 다 저장
 			HttpSession session = req.getSession(true);
 			session.setAttribute("login", login);
+			//혜진 집  http://192.168.219.110:8191/upload/
+			session.setAttribute("imagePath", "http://192.168.219.110:8191/upload/");
 			System.out.println("로그인 성공");
 		}else {
 
