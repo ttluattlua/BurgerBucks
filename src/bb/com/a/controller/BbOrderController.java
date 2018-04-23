@@ -19,6 +19,7 @@ import bb.com.a.model.Bb_AddrDto;
 import bb.com.a.model.Bb_MemberDto;
 import bb.com.a.model.Bb_OrderDto;
 import bb.com.a.model.Bb_StoreDto;
+import bb.com.a.service.BbAddrService;
 import bb.com.a.service.BbOrderSerivce;
 
 @Controller
@@ -35,8 +36,14 @@ public class BbOrderController {
 	 * 오더페이지 클릭했을때 
 	 *-------------------------------------------------------------------------------------------*/
 	@RequestMapping(value="order.do", method=RequestMethod.GET)
-	public String home(Model model) {
+	public String home(Model model, HttpServletRequest req) throws Exception {
 		logger.info("BbOrderController order");
+		HttpSession session = req.getSession(true);
+		Bb_MemberDto login = (Bb_MemberDto)session.getAttribute("login");
+		if(login != null && !login.getId().equals("")) {
+			List<Bb_AddrDto> list = (List<Bb_AddrDto>) session.getAttribute("list");
+			model.addAttribute("list",list);
+		}
 		return "order.tiles";
 	}
 	

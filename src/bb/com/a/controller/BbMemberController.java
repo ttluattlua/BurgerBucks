@@ -53,12 +53,8 @@ public class BbMemberController {
 	 * 켰을때 메인으로 이동
 	 *-------------------------------------------------------------------------------------------*/
 	@RequestMapping(value="home.do", method=RequestMethod.GET)
-	public String home(Model model,  HttpServletRequest req) throws Exception {
+	public String home(Model model) throws Exception {
 		logger.info("BbMemberController home");
-		HttpSession session = req.getSession(true);
-//		Bb_MemberDto login = (Bb_MemberDto)session.getAttribute("login");
-//		List<Bb_AddrDto> list = BbAddrService.allAddress(login);
-//		model.addAttribute("list", list);
 		return "home.tiles";
 	}
 

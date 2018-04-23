@@ -52,11 +52,18 @@
         <div class="form-group" style="margin-top: 5px; height: 50px; width:330px;">
           <label class="control-label" for="comment" style="float: left;">주소지</label><br>
           <div style="margin-top: 5px; height : 30px; width:330px; padding-top: 5px;">
-            <select style="margin-top:-5px; border: 1px solid #999999; border-radius: 4px; height: 30px; width:280px; float: left;">
-              <option>주소지 1</option>
-              <option>주소지 2</option>
-              <option>주소지 3</option>
-            </select>
+          	<c:if test="${empty list}"> 
+	            <select style="margin-top:-5px; border: 1px solid #999999; border-radius: 4px; height: 30px; width:280px; float: left;">
+	              <option>주소를 새로 추가해주세요</option>
+	            </select>
+            </c:if>
+            <c:if test="${not empty list}">
+				 <select style="margin-top:-5px; border: 1px solid #999999; border-radius: 4px; height: 30px; width:280px; float: left;">
+					<c:forEach var="addr" items="${list}" varStatus="vs">
+						<option>${addr.address}</option>
+					</c:forEach>	
+				</select>
+				</c:if>
             <a href="#" style="font-size: 12px;">변경</a>
           </div>
         </div>
