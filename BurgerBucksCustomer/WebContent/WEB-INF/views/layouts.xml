@@ -29,7 +29,15 @@
 	<put-attribute name="main" value="/WEB-INF/views/order/orderpage.jsp"/>
 </definition>
 
+<!--diy게시판으로로이동-->
+<definition name="diyboard.tiles" extends="home.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/diyboard/diyboard.jsp"/>
+</definition>
 
+<!--diy버거등록게시판이동-->
+<definition name="addDiyBoard.tiles" extends="home.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/diyboard/addDiyBoard.jsp"/>
+</definition>
 
 
 <!--마이페이지로 이동 -->
