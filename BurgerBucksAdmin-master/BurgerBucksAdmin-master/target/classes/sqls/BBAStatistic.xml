@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="BBAStatistic">
+ <select id="getMemberCounts" resultType="java.lang.Integer">
+SELECT COUNT(SEQ) FROM BB_MEMBER WHERE DEL=0
+</select>
+
+
+<select id="getStoreCounts" resultType="java.lang.Integer">
+SELECT COUNT(SEQ) FROM BB_STORE WHERE DEL=0
+</select>
+
+<select id="getPreviousMonthProfit" resultType="java.lang.Integer">
+SELECT NVL(SUM(PRICE), 0) FROM BB_ORDER WHERE ORDER_DATE BETWEEN 
+(Select trunc(add_months(sysdate,-1)) - (to_number(to_char(add_months(sysdate,-1),'DD')) - 1) FROM dual)
+ AND 
+(SELECT add_months(trunc(add_months(sysdate,-1)) - (to_number(to_char(add_months(sysdate,-1),'DD')) - 1), 1) -1 FROM dual)
+</select> 
+
+<select id="getPreviousMonthOrderCounts" resultType="java.lang.Integer">
+SELECT COUNT(SEQ) FROM BB_ORDER WHERE ORDER_DATE BETWEEN 
+(Select trunc(add_months(sysdate,-1)) - (to_number(to_char(add_months(sysdate,-1),'DD')) - 1) FROM dual)
+ AND 
+(SELECT add_months(trunc(add_months(sysdate,-1)) - (to_number(to_char(add_months(sysdate,-1),'DD')) - 1), 1) -1 FROM dual)
+</select>
+
+
+<!--7년간 매출 -->
+<select id="getOrderStatisticList" resultType="bba.com.a.model.Bb_OrderStatisticDto">
+SELECT PERIOD, PROFIT
+FROM(
+SELECT 
+    TO_CHAR(ORDER_DATE, 'YYYY') PERIOD,
+    SUM(PRICE) PROFIT
+FROM BB_ORDER
+GROUP BY  TO_CHAR(ORDER_DATE, 'YYYY')
+ORDER BY  TO_CHAR(ORDER_DATE, 'YYYY') ASC
+)
+WHERE PERIOD IN(
+(SELECT to_char(trunc(add_months(sysdate, -12), 'dd'),'yyyy') FROM dual),     
+(SELECT to_char(trunc(add_months(sysdate, -24), 'dd'),'yyyy') FROM dual),
+(SELECT to_char(trunc(add_months(sysdate, -36), 'dd'),'yyyy') FROM dual), 
+(SELECT to_char(trunc(add_months(sysdate, -48), 'dd'),'yyyy') FROM dual), 
+(SELECT to_char(trunc(add_months(sysdate, -60), 'dd'),'yyyy') FROM dual), 
+(SELECT to_char(trunc(add_months(sysdate, -72), 'dd'),'yyyy') FROM dual),
+(SELECT to_char(trunc(add_months(sysdate, -84), 'dd'),'yyyy') FROM dual)
+)
+</select>
+
+
+</mapper>

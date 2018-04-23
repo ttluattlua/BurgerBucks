@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="BBAOrder">
+
+
+
+	<!-- 주문 리스트 불러오기 -->
+	<select id="getOrderList" resultType="bba.com.a.model.Bb_OrderDto">
+		SELECT SEQ, MEMBER_SEQ, MEMBER_ADDR, STORE_SEQ, ORDER_DATE, STATUS, PRICE, DEL
+		FROM BB_ORDER
+		ORDER BY SEQ DESC
+	</select>
+	
+	<!-- 주문 리스트 불러오기 (SEQ) -->
+	<select id="getOrder" parameterType="java.lang.Integer" resultType="bba.com.a.model.Bb_OrderDto">
+		SELECT SEQ, MEMBER_SEQ, MEMBER_ADDR, STORE_SEQ, ORDER_DATE, STATUS, PRICE, DEL
+		FROM BB_ORDER
+		WHERE SEQ=#{seq}
+	</select>
+	
+	
+	
+	<!-- 주문 리스트 -> // 멤버 테이블 불러오기 -->
+	<select id="getMemberList" parameterType="java.lang.Integer" resultType="bba.com.a.model.Bb_MemberDto">
+		SELECT SEQ, ID, PASSWORD, BDAY, NAME, PHONE, SEX, MILEAGE, GRADE, EXP, DEL
+		FROM BB_MEMBER
+		WHERE SEQ=#{member_seq}
+	</select>
+
+	
+	<!-- 주문 리스트 -> // 주소 테이블 불러오기 -->
+	<select id="getAddrList" parameterType="java.lang.Integer" resultType="bba.com.a.model.Bb_AddrDto">
+		SELECT SEQ, MEMBER_SEQ, ADDRESS, LAT, LNG, MEMO, DEL
+		FROM BB_ADDR
+		WHERE SEQ=#{member_addr}
+	</select>
+	
+	
+	
+	<!-- 주문 리스트 -> // 점포 테이블 불러오기 -->
+	<select id="getStoreList" parameterType="java.lang.Integer" resultType="bba.com.a.model.Bb_StoreDto">
+		SELECT SEQ, NAME, PHONE, ADDRESS, LAT, LNG, DEL
+		FROM BB_STORE
+		WHERE SEQ=#{store_seq}
+	</select>
+	
+	
+	<!-- 주문 상세 불러오기 -->
+	<select id="getOrderMenuList" resultType="bba.com.a.model.Bb_OrderMenuDto">
+		SELECT SEQ, ORDER_SEQ, MENU_SEQ, QUANTITY, PRICE, DEL
+		FROM BB_ORDERMENU
+		ORDER BY ORDER_SEQ DESC
+	</select>
+
+
+	<!-- 메뉴 불러오기 -->
+	<select id="getMenuList" parameterType="java.lang.Integer" resultType="bba.com.a.model.Bb_MenuTableDto">
+		SELECT SEQ, BURGER, SIDE, BEVERAGE, NAME, CREATOR, PRICE, CAL, DEL
+		FROM BB_MENU
+		WHERE SEQ=#{seq}
+	</select>
+	
+	
+
+	<!-- 버거 불러오기 -->
+	<select id="getBurgerList" parameterType="java.lang.Integer" resultType="bba.com.a.model.Bb_BurgerTableDto">
+		SELECT SEQ, NAME, BREAD, 
+		INGREDIENT01, INGREDIENT02, INGREDIENT03, INGREDIENT04, INGREDIENT05, 
+		INGREDIENT06, INGREDIENT07, INGREDIENT08, INGREDIENT09, CREATOR, PRICE, CAL, DEL
+		FROM BB_BURGER
+	</select>
+	
+
+	<!-- 음료 불러오기 -->
+	<select id="getBeverageList" resultType="bba.com.a.model.Bb_BeverageDto">
+		SELECT SEQ, NAME, PRICE, CAL, DEL
+		FROM BB_BEVERAGE
+	</select>
+	
+	
+
+	<!-- 사이드 불러오기 -->
+	<select id="getSideList" resultType="bba.com.a.model.Bb_SideDto">
+		SELECT SEQ, NAME, PRICE, CAL, DEL
+		FROM BB_SIDE
+	</select>
+	
+	<!-- 재료 불러오기 -->
+	<select id="getIngreList" resultType="bba.com.a.model.Bb_IngredientDto">
+		SELECT SEQ, NAME, TYPES, PRICE, CAL, DEL
+		FROM BB_INGREDIENT
+	</select>
+	
+	
+	<!-- 주문 상태 변경 -->
+	<update id="changeOrder" parameterType="bba.com.a.model.Bb_OrderDto" >
+		UPDATE BB_ORDER
+		SET STATUS=#{status}
+		WHERE SEQ=#{seq}
+	</update>
+
+
+
+
+
+
+
+</mapper>  
+
+
+
+
+

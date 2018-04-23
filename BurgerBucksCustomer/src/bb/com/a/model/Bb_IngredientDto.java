@@ -9,16 +9,16 @@ import java.io.Serializable;
 public class Bb_IngredientDto implements Serializable {
 	private int seq;		//시퀀스
 	private String name;	//재료이름
-	private int types;		//재료타입 - 0:번, 1:패티, 2:야채, 3:기타
+	private int types;		//재료타입
 	private int price;		//가격
 	private int cal;		//칼로리
 	private int del;		//삭제여부
 
-	////이미지테이블 
+////이미지테이블 
 	private String what_Image;
 	private String image_Src;
 	private int image_Seq;
-  private String type_name;
+    private String type_name;
 	
 	
 	public Bb_IngredientDto() {}
@@ -31,6 +31,21 @@ public class Bb_IngredientDto implements Serializable {
 		this.price = price;
 		this.cal = cal;
 		this.del = del;
+	}
+	
+	
+
+	
+	
+	public Bb_IngredientDto(int seq, String name, int types, int price, int cal, int del, String image_Src) {
+		super();
+		this.seq = seq;
+		this.name = name;
+		this.types = types;
+		this.price = price;
+		this.cal = cal;
+		this.del = del;
+		this.image_Src = image_Src;
 	}
 
 	public Bb_IngredientDto(int seq, String name, int types, int price, int cal, int del, String what_Image,
@@ -47,21 +62,8 @@ public class Bb_IngredientDto implements Serializable {
 		this.image_Seq = image_Seq;
 		this.type_name = type_name;
 	}
-	
-	
 
-	public Bb_IngredientDto(int seq, String name, int types, int price, int cal, int del, String image_Src) {
-    super();
-    this.seq = seq;
-    this.name = name;
-    this.types = types;
-    this.price = price;
-    this.cal = cal;
-    this.del = del;
-    this.image_Src = image_Src;
-  }
-
-  public int getSeq() {
+	public int getSeq() {
 		return seq;
 	}
 

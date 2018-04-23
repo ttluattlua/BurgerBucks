@@ -6,14 +6,15 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import bb.com.a.dao.BbBurgerDao;
 import bb.com.a.dao.BbMemberDao;
 import bb.com.a.model.Bb_AddrDto;
 import bb.com.a.model.Bb_MemberDto;
-import bba.com.a.model.Bb_BeverageDto;
+import bb.com.a.model.Bb_BeverageDto;
 import bb.com.a.model.Bb_BurgerDto;
 
 @Repository
-public class BbBurgerDaoImpl implements BbMemberDao {
+public class BbBurgerDaoImpl implements BbBurgerDao {
 	
 	@Autowired
 	SqlSessionTemplate sqlSession;
@@ -63,58 +64,6 @@ public class BbBurgerDaoImpl implements BbMemberDao {
     List<Bb_BurgerDto> burgerlist = sqlSession.selectList(ns+"getBurgerList_default");
     return burgerlist;
   }
-	
-	
-	/*----------------------------------------------------------------------------
-	 * 로그인 한 사람 최신주소가져오기 
-	 * ----------------------------------------------------------------------------*/
-	@Override
-	public Bb_AddrDto getMostCurrentAddress(Bb_MemberDto bmdto) {
-		return sqlSession.selectOne(ns+"getMostCurrentAddress", bmdto);
-	}
-	
-	
-	
-	
-	/*----------------------------------------------------------------------------
-	 * 회원정보 수정
-	 * ----------------------------------------------------------------------------*/
-	@Override
-	public void updateProfile(Bb_MemberDto bmdto) {
-		int count = sqlSession.update(ns+"updateProfile", bmdto);
 		
-	}
-	
-	/*----------------------------------------------------------------------------
-	 * 회원정보 탈퇴
-	 * ----------------------------------------------------------------------------*/
-	@Override
-	public void deleteMember(int seq) {
-		int count = sqlSession.update(ns+"deleteMember", seq);
-		
-	}
-
-
-	
-	
-	/*----------------------------------------------------------------------------
-	 * 회원가입
-	 * ----------------------------------------------------------------------------*/
-	@Override
-	public boolean addmember(Bb_MemberDto mem) throws Exception {
-		int n = sqlSession.insert(ns + "addMember", mem);		
-		return n>0?true:false;
-	}
-
-	/*----------------------------------------------------------------------------
-	 * 중복확인
-	 * ----------------------------------------------------------------------------*/
-	@Override
-	public int getID(Bb_MemberDto mem) {
-		return sqlSession.selectOne(ns + "getID", mem);
-	}
-
-
-
 
 }
