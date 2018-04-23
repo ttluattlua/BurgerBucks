@@ -6,7 +6,7 @@
 <mapper namespace="BBBurgerDiy">
 <!--버거게시판 버거리스트-->
 <select id="getBurgerDiyList" resultType="bb.com.a.model.Bb_BbsDto" parameterType="Integer">
-SELECT A.SEQ, A.BURGER_SEQ buger_seq, 
+SELECT A.SEQ, A.BURGER_SEQ burger_seq, 
 A.WRITER,
 (SELECT NAME FROM BB_MEMBER WHERE SEQ=A.WRITER) ID ,
 A.BBS_LIKE, A.DEL, NVL(B.IMAGE_SRC, '없음') IMAGE_SRC, 
