@@ -79,7 +79,7 @@
       </a>
     </div>
     <div style="height:100%; width: 160px; border-right: 2px ridge #7a7979; display: block; float: left;" align="center">
-      <a class="hover_a" style="color: #ededed;" href="#" onclick="alert('현재 준비중입니다.')">
+      <a class="hover_a" style="color: #ededed;" href="diyboard.do" onclick="alert('현재 준비중입니다.')">
         <h4 style="size: 28px; margin-top: 30px;">DIY햄버거</h4>
       </a>
     </div>
