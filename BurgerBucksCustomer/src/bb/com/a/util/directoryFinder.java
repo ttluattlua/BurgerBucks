@@ -15,8 +15,8 @@ import org.w3c.dom.Element;
 
 public class directoryFinder {
   
+  static public final String directory = "D:/Programming/BurgerBucks/Burgerbucks-Customer/WebContent";
   //static public final String directory = "D:/Burgerbucks-Customer/WebContent/XML/";
-  static public final String directory = "D:/Programming/BurgerBucks/Burgerbucks-Customer/WebContent/XML/";
   
   static public String directoryFind() {
     
