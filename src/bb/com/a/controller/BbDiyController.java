@@ -21,12 +21,25 @@ public class BbDiyController {
 	
 	@RequestMapping(value="diyboard.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String diyboard(Model model) throws Exception {
-		logger.info("KhAddressController goAddr");
+		logger.info("KhAddressController diyboard");
 		/*List<Bb_AddrDto> addrList = BbAddrService.allAddress();
 		System.out.println("addrList in Controller" + addrList.get(0));
 		model.addAttribute("list", addrList);*/
 		return "diyboard.tiles";	
 	}
+	
+	@RequestMapping(value="addlikes.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public String addlikes(Model model) throws Exception {
+		logger.info("KhAddressController addlikes");
+		return "diyboard.tiles";	
+	}
+	
+	@RequestMapping(value="deletelikes.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public String deletelikes(Model model) throws Exception {
+		logger.info("KhAddressController addlikes");
+		return "diyboard.tiles";	
+	}
+
 
 	
 }
