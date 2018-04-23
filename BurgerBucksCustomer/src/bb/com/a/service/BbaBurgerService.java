@@ -2,7 +2,7 @@ package bb.com.a.service;
 
 import java.util.List;
 
-import bba.com.a.model.Bb_IngredientDto;
+import bb.com.a.model.Bb_IngredientDto;
 
 public interface BbaBurgerService {
 	

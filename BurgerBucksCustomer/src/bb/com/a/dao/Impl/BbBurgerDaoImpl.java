@@ -12,6 +12,7 @@ import bb.com.a.model.Bb_AddrDto;
 import bb.com.a.model.Bb_MemberDto;
 import bb.com.a.model.Bb_BeverageDto;
 import bb.com.a.model.Bb_BurgerDto;
+import bb.com.a.model.Bb_IngredientDto;
 
 @Repository
 public class BbBurgerDaoImpl implements BbBurgerDao {
@@ -63,6 +64,15 @@ public class BbBurgerDaoImpl implements BbBurgerDao {
   public List<Bb_BurgerDto> getBurgerList_total(Bb_MemberDto mem) {
     List<Bb_BurgerDto> burgerlist = sqlSession.selectList(ns+"getBurgerList_default");
     return burgerlist;
+  }
+  
+  /*----------------------------------------------------------------------------
+   * 재료 불러오기
+   * ----------------------------------------------------------------------------*/
+  @Override
+  public List<Bb_IngredientDto> getIngredientList() {
+    List<Bb_IngredientDto> ingredientlist = sqlSession.selectList(ns+"getBurgerList_default");
+    return ingredientlist;
   }
 		
 

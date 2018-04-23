@@ -4,6 +4,7 @@ import java.util.List;
 
 import bb.com.a.model.Bb_AddrDto;
 import bb.com.a.model.Bb_BurgerDto;
+import bb.com.a.model.Bb_IngredientDto;
 import bb.com.a.model.Bb_MemberDto;
 
 public interface BbBurgerDao {
@@ -32,6 +33,11 @@ public interface BbBurgerDao {
    * 버거 불러오기 (Default, DIY 버거)
    * ----------------------------------------------------------------------------*/
   public List<Bb_BurgerDto> getBurgerList_total(Bb_MemberDto mem);
+  
+  /*----------------------------------------------------------------------------
+   * 모든 재료 불러오기
+   * ----------------------------------------------------------------------------*/
+  public List<Bb_IngredientDto> getIngredientList();
 
 
 }

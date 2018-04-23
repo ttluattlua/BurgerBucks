@@ -14,8 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import bba.com.a.model.Bb_IngredientDto;
-import bba.com.a.service.BbaBurgerService;
+import bb.com.a.model.Bb_IngredientDto;
+import bb.com.a.service.BbaBurgerService;
 
 @Controller
 public class BbaBurgerController {
