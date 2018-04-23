@@ -20,10 +20,9 @@
 </definition>
 
 <!--diy게시판으로 이동-->
-<definition name="diyboard.tiles" extends="home.tiles">
-<put-attribute name="main" value="/WEB-INF/views/diyburger/diyboard.jsp"/>
+<definition name="diyboard.tiles" extends="changePwd.tiles">
+<put-attribute name="main_side" value="/WEB-INF/views/diyburger/diyboard.jsp"/>
 </definition>
-
 
 
 <!--오더로 이동-->
