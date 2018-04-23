@@ -16,7 +16,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
-import bba.com.a.model.Bb_IngredientDto;
+import bb.com.a.model.Bb_IngredientDto;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;

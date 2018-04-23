@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import bb.com.a.dao.BbaIngredientDao;
+import bb.com.a.dao.BbIngredientDao;
 import bb.com.a.model.Bb_IngredientDto;
 import bb.com.a.model.Bb_ImageDto;
-import bb.com.a.service.BbaIngredientService;
+import bb.com.a.service.BbIngredientService;
 
 @Service
 public class BbIngredientServiceImpl implements BbIngredientService {

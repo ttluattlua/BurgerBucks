@@ -18,19 +18,21 @@
     <!-- Order --> 
     <div style="display:block; height: 800px; width:640px; float: left;">
       
-      <!-- Select Menu -->
+      <!-- Select Menu Div -->
       <div id="selectMenu" style="height: 800px; width:640px; border: 1px solid #999999; border-radius: 4px;">
         <h2>메뉴 선택 및 새로운 메뉴 추가 DIV 영역</h2>
         <button onclick='newMenu()'>새로운 메뉴 추가하기</button>
       </div>
       
-      <!-- Select Burger -->
+      <!-- Select Burger Div -->
       <div id="selectBurger" style="height: 800px; width:640px; border: 1px solid #999999; border-radius: 4px;" hidden="hidden">
         
+        <!-- Cancel Button -->
         <div style="height: 30px; width:620px; margin: 10px; margin-top: 10px;">
           <a onclick='cancelMenu()' style="height: 40px; width: 20px; float: right;"><span class="glyphicon glyphicon-remove"></span></a>
         </div>
         
+        <!-- Menu Name -->
         <div style="height: 40px; width:620px; margin: 10px; margin-top: 10px;">
 	        <div class="input-group" style="width: 300px;">
 	          <span class="input-group-addon">메뉴 이름</span>
@@ -38,6 +40,7 @@
 	        </div>
         </div>
         
+        <!-- Step Indication -->
         <div style="height: 60px; width:620px; margin: 10px; margin-top: 20px;">
           <div style="height: 60px; width:160px; border: 2px solid #999999; border-radius: 4px; display: inline-block;" align="center">
             <b>
@@ -61,12 +64,36 @@
           </div>
         </div>
         
-        <div style="height: 220px; width:620px; margin: 10px; margin-top: 30px; border: 1px solid black;">
+        <!-- Selected Menu -->
+        <div style="height: 220px; width:620px; margin: 10px; margin-top: 30px;">
+        
+          <!-- Preview Menu -->
+          <div style="height: 220px; width:160px; border: 1px solid #999999; border-radius: 4px; display: inline-block; float: left" align="center">
+            <div style="height: 120px; width:120px; border: 1px solid #999999; border-radius: 4px;  margin-top: 10px;">
+              <img id="previewBurgerImg" alt="" src="">
+            </div>
+            <div style="height: 40px; width:120px; margin-top: 10px;">
+              <div style="height: 40px; width:80px; display: inline-block;">
+              </div>
+              <div style="height: 40px; width:40px; display: inline-block;">
+              </div>
+            </div>
+          </div>
+         
+          <div style="height: 220px; width:420px; margin-left: 20px;  display: inline-block; float: left">
+          
+            <div style="height: 18px; width:420px;"><p>DIY 버거</p></div>
+            
+            <div style="height: 200px; width:420px; border: 1px solid #999999; border-radius: 4px;">
+              
+		        </div>
+          </div>
         </div>
         
-        <div style="height: 220px; width:620px; margin: 10px; margin-top: 10px; border: 1px solid black;">
+        <!-- Select Menu -->
+        <div style="height: 220px; width:620px; margin: 10px; margin-top: 10px;">
           
-	        <div id="burgerCarousel" class="col-md-12 carousel slide" style="height: 200px; background-color: #999999;">
+	        <div class="col-md-12 carousel slide" style="height: 200px; background-color: #999999;">
                         
             <!-- Carousel items -->
             <div class="carousel-inner">
@@ -77,8 +104,8 @@
 	                <div class="col-md-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;"></a></div>
 	                <div class="col-md-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;"></a></div>
 	                <div class="col-md-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;"></a></div>
-	              </div><!--.row-->
-	            </div><!--.item-->
+	              </div>
+	            </div>
            
 	            <div class="item">
 	              <div class="row">
@@ -86,8 +113,8 @@
 	                <div class="col-md-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;"></a></div>
 	                <div class="col-md-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;"></a></div>
 	                <div class="col-md-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;"></a></div>
-	              </div><!--.row-->
-	            </div><!--.item-->
+	              </div>
+	            </div>
            
 	            <div class="item">
 	              <div class="row">
@@ -95,10 +122,10 @@
 	                <div class="col-md-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;"></a></div>
 	                <div class="col-md-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;"></a></div>
 	                <div class="col-md-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;"></a></div>
-	              </div><!--.row-->
-	            </div><!--.item-->
+	              </div>
+	            </div>
           
-             </div><!--.carousel-inner-->
+             </div>
              
              <a data-slide="prev" href="#Carousel" class="left carousel-control" style="width: 30px;"><font size="50px;">‹</font></a>
              <a data-slide="next" href="#Carousel" class="right carousel-control" style="width: 30px;"><font size="50px;">›</font></a>
@@ -106,10 +133,12 @@
 	        </div>
         </div>
         
+        <!-- Add DIY Burger Button -->
         <div style="height: 40px; width:620px; margin: 10px; margin-top: 10px;" align="right">
           <button class="btn btn-warning" data-toggle="modal" data-target="#burgerModal" onclick="loadBurger()">나만의 버거 만들기</button>
         </div>
         
+        <!-- Next & Previous Step -->
         <div style="height: 60px; width:620px; margin: 10px; margin-top: 40px;" align="center">
           <button type="button" class="btn btn-info" onclick='$("#selectBurger").attr("hidden","hidden"); $("#selectSide").removeAttr("hidden");'>
             <span class="glyphicon glyphicon-chevron-right"></span><br>

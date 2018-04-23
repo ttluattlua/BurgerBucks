@@ -185,7 +185,6 @@ public class BbIngredientController {
 		        String ingredient_xml = directoryFinder.directory + "ingredient.xml";
 			    System.out.println("xml file directory : " + ingredient_xml);
 
-			    xmlParser.xml_updIngredient(ingredient_xml, bbdto);
 			    
 		        bbIngredientService.updateIngImageAf(bidto);
 		        
