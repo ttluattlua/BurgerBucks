@@ -82,6 +82,16 @@ public class BbMemberDaoImpl implements BbMemberDao {
 	}
 
 
+	/*----------------------------------------------------------------------------
+	 *비밀번호변경
+	 * ----------------------------------------------------------------------------*/
+	@Override
+	public void changePwd(Bb_MemberDto mem) {
+		sqlSession.update(ns+"changePwd", mem);
+		
+	}
+
+
 
 
 }
