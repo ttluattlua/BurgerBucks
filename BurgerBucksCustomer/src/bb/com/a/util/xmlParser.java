@@ -15,12 +15,6 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
-<<<<<<< HEAD:BurgerBucksCustomer/src/bb/com/a/arrow/xmlParser.java
-
-import bb.com.a.model.Bb_IngredientDto;
-
-=======
->>>>>>> parent of c7cf759... 주문 부분 합치기 거의 완료:BurgerBucksCustomer/src/bb/com/a/util/xmlParser.java
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;

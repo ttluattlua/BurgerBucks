@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-
+<%@page import="bb.com.a.util.txtReader"%>
 <%@page import="java.util.List"%>
-=======
->>>>>>> parent of 295bb71... Upload
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -23,13 +20,19 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.bootstrap.min.css">
 <!--주문조회-->
 
- 	<div style=" padding-top:50px; width: 750px; height: 620px;">
+	<%
+	List<String> terms_text = txtReader.txt_readTerms("D:/BurgerBucks/BurgerBucksCustomer/WebContent/Terms/Terms.txt");
+	%>
+
+  <div style="padding-top:10px; width: 750px; height: 620px;">
+
+		<h1>이용약관</h1>
 		
-		<p>${terms}</p>
+		<textarea rows="25" cols="100" style="margin-top:10px; resize: none; border-radius: 4px; background-color: #f2f2f2; ">
+		<%for(int i=0; i<terms_text.size(); i++){ %>
+    <%=terms_text.get(i) %>
+    <%} %>
+		</textarea>
 
 	</div>
 	
-<script type="text/javascript">
-
-
-</script>	
