@@ -4,11 +4,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:requestEncoding value="utf-8"/> 
+
+
 <!--주문조회-->
 <!-- 자바스크립트-->
 
+<!-- google icon -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-
+<!-- fontawesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 
@@ -32,19 +37,14 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <!--주문조회-->
  	<div style=" padding-top:50px; width: 750px; height: 620px;">
- 			<div style="text-align: right;">
-			<i class="fa fa-shopping-basket"></i> 장바구니 / 
-			<i class="fa fa-credit-card"></i> 주문완료 / 
-			<i class="fa  fa-clock-o"></i> 준비중 / 
-			<i class="fa fa-truck"></i> 배달시작 / 
-			<i class="fa fa-krw"></i> 배달완료 / 
-			</div>
-
+ 		
+			<!-- <i class="material-icons">shopping_cart</i> 장바구니 / 
+			<i class="material-icons">payment</i> 주문완료 / 
+			<i class="material-icons">room_service</i> 준비중 / 
+			<i class="material-icons">directions_bike</i> 배달시작 / 
+			<i class="material-icons">assignment_turned_in</i> 배달완료 /  -->
 		
 			<table id="example" class="table table-striped table-bordered" style="width:100%">
 			  <thead >
@@ -52,18 +52,21 @@
 			      <th scope="col" title="순서">No.</th>
 			      <th scope="col" title="주문번호">Order Number</th>
 			      <th scope="col" title="주문날짜">Order Date</th>
-			      <th scope="col" title="주문상태">Order Status</th>
+			      <th scope="col" title="주문완료">Order Status</th>
+			      <th scope="col" title="준비중">Order Status</th>
+			      <th scope="col" title="배달시작">Order Status</th>
+			      <th scope="col" title="배달완료">Order Status</th>
 			    </tr>
 			  </thead>
 			  <tbody>
 			    <c:if test="${orderList.size() == 0 }">
 	 					<tr align="center">
-	 						<td colspan="4">
+	 						<td colspan="47">
 	 						주문 조회가 없습니다.
 	 						</td>
 	 					</tr>
 						<tr align="center">
-		 					<td colspan="4">
+		 					<td colspan="7">
 		 						<button class="btn btn-success" style="width: 400px; " type="button" onclick="location.href='#'">
 		 						주문하러가기
 		 						</button>
@@ -77,30 +80,46 @@
 			 				<td>${status.count}</td>
 			 				<td>${orderDto.seq}</td>
 			 				<td>${orderDto.order_date}</td>
-			 				<c:choose>
-
-							    <c:when test="${orderDto.status eq '0'}">
-					            <td><i class="fa fa-shopping-basket"></i>장바구니</td> 
-							    </c:when>
-					
-							    <c:when test="${orderDto.status eq '1'}">
-					            <td><i class="fa fa-credit-card"></i>주문완료</td> 
-							    </c:when>
-							    
-							    <c:when test="${orderDto.status eq '2'}">
-					             <td><i class="fa  fa-clock-o"></i>준비중</td> 
-							    </c:when>
-							    
-							    <c:when test="${orderDto.status eq '3'}">
-					             <td><i class="fa fa-truck"></i>배달시작</td> 
-							    </c:when>
-							   
-							    <c:otherwise>
-					             <td><i class="fa fa-krw"></i>배달완료</td> 
-							    </c:otherwise>
-
-							</c:choose>
 			 				
+							<!-- 주문완료 -->
+							<c:choose>
+			 				<c:when test="${orderDto.status < '1'}">
+			 					<td style="text-align: center;"><i class="material-icons" style="font-size: 48px; color: #a3a3a3">payment</i> </td>
+			 				</c:when>
+			 				<c:when test="${orderDto.status >= '1'}">
+			 					<td style="text-align: center;"><i class="material-icons" style="font-size: 48px; color: #a33b2b">payment</i> </td>
+			 				</c:when>
+			 				</c:choose>
+			 				
+			 				<!-- 준비중 -->
+			 				<c:choose>
+			 				<c:when test="${orderDto.status < '2'}">
+			 					<td style="text-align: center;"><i class="material-icons" style="font-size: 48px; color: #a3a3a3">room_service</i></td>
+			 				</c:when>
+			 				<c:when test="${orderDto.status >= '2'}">
+			 					<td style="text-align: center;"><i class="material-icons" style="font-size: 48px; color: #a33b2b">room_service</i></td>
+			 				</c:when>
+			 				</c:choose>
+			 				
+			 				<!-- 배달 시작 -->
+			 				<c:choose>
+			 				<c:when test="${orderDto.status < '3'}">
+			 					<td style="text-align: center;"><i class="material-icons" style="font-size: 48px; color: #a3a3a3">directions_bike</i></td>
+			 				</c:when>
+			 				<c:when test="${orderDto.status >= '3'}">
+			 					<td style="text-align: center;"><i class="material-icons" style="font-size: 48px; color: #a33b2b">directions_bike</i></td>
+			 				</c:when>
+			 				</c:choose>
+			 				
+			 				<!-- 배달완료 -->
+			 				<c:choose>
+			 				<c:when test="${orderDto.status < '4'}">
+				 				<td style="text-align: center;"><i class="material-icons" style="font-size: 48px; color: #a3a3a3">assignment_turned_in</i></td>
+			 				</c:when>
+			 				<c:when test="${orderDto.status >= '4'}">
+				 				<td style="text-align: center;"><i class="material-icons" style="font-size: 48px; color: #a33b2b">assignment_turned_in</i></td>
+			 				</c:when>
+			 				</c:choose>
 			 			</tr>
 						</c:forEach>
 	 				</c:if>
@@ -109,7 +128,7 @@
 
 
 	</div>
-	
+
 <script type="text/javascript">
 $(document).ready(function() {
 	/* initComplete(); */
@@ -117,7 +136,10 @@ $(document).ready(function() {
         { title: "No" },
         { title: "주문번호" },
         { title: "주문날짜" },
-        { title: "주문상태" }
+        { title: "주문완료" },
+        { title: "준비중" },
+        { title: "배달시작" },
+        { title: "배달완료" }
     ];
 
 	 var lang_kor = {
@@ -157,5 +179,11 @@ $(document).ready(function() {
         .appendTo( '#example_wrapper .col-sm-6:eq(0)' );
 } );
 
-
+/* function initComplete() {
+	serverSide: true,
+	initComplete : function () {
+	    table.buttons().container()
+	           .appendTo( $('#example_wrapper .col-sm-6:eq(0)'));
+	},
+} */
 </script>	
