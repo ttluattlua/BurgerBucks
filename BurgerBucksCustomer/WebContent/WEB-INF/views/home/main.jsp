@@ -63,7 +63,7 @@
       </div>
       <!-- ID/PW Find Button -->
       <div style="margin-top:10px;">
-        <button class="btn btn-success" style="width: 290px; border: 1px solid #999999; border-radius: 4px; height: 40px;">ID/PW 찾기</button>
+        <button class="btn btn-success" onclick="location.href='pwdPage.do'" style="width: 290px; border: 1px solid #999999; border-radius: 4px; height: 40px;">ID/PW 찾기</button>
       </div>
       
       <!-- Regist Button -->
@@ -86,8 +86,21 @@
 	        <p style="width: 240px; margin-top:10px;"><h4>${login.name} 님 반갑습니다!</h4></p>
 	        
 	        <div class="input-group" style="width: 240px; margin-top:20px;">
-			  <select  class="form-control">
-			  </select>
+			  			
+				<!-- 주소리스트 --> 
+				
+				<c:if test="${empty list}">
+					<select  class="form-control">
+						<option>주소를 새로 추가해주세요</option>
+					</select>
+				</c:if>
+				<c:if test="${not empty list}">
+				<select  class="form-control">
+					<c:forEach var="addr" items="${list}" varStatus="vs">
+						<option>${addr.address}</option>
+					</c:forEach>	
+				</select>
+				</c:if>
 	        </div>
 	        
 	        <div class="input-group" style="width: 240px; margin-top:10px;">
@@ -95,11 +108,8 @@
 	        </div>
 	        
 	        <div class="input-group" style="width: 240px; margin-top:10px;">
-	           <a class="flat_a" style="color: black;" href="#">주소추가</a>
-		       <font style="cursor: default;">│</font>
-		       <a class="flat_a" style="color: black;" href="#">주소수정</a>
+	           <a class="flat_a" style="color: black;" href="goAddr.do">내 주소정보 보기</a>
 	        </div>
-        
         </form>
       </div>
       <!-- 내 주문 조회 Button -->

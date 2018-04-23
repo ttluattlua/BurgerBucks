@@ -1,16 +1,11 @@
 package bb.com.a.model;
 import java.io.Serializable;
 /*------------------------------------------------------------
- *memberDto
+ *memberDto�Դϴ� 
  *-----------------------------------------------------------*/
 
 public class Bb_MemberDto {
 /////
-	/*
-	SELECT SEQ, ID, PASSWORD, BDAY, NAME, PHONE, SEX, MILEAGE, GRADE, EXP, DEL
-	FROM BB_MEMBER
-	ORDER BY SEQ DESC*/
-	
 	private int seq;
 	private String id;
 	private String password;
@@ -23,11 +18,10 @@ public class Bb_MemberDto {
 	private int exp;
 	private int del;
 	
-	public Bb_MemberDto() {
-		super();
-	}
-	public Bb_MemberDto(int seq, String id, String password, String bday, String name, String phone, int sex,
-			int mileage, int grade, int exp, int del) {
+	public Bb_MemberDto() {}
+	
+	public Bb_MemberDto(int seq, String id, String password, String bday, String name, String phone, int sex, int mileage,
+			int grade, int exp, int del) {
 		super();
 		this.seq = seq;
 		this.id = id;
@@ -107,15 +101,13 @@ public class Bb_MemberDto {
 	public void setDel(int del) {
 		this.del = del;
 	}
+	
 	@Override
 	public String toString() {
-		return "Bb_MemberDto [seq=" + seq + ", id=" + id + ", password=" + password + ", bday=" + bday + ", name="
-				+ name + ", phone=" + phone + ", sex=" + sex + ", mileage=" + mileage + ", grade=" + grade + ", exp="
-				+ exp + ", del=" + del + "]";
+		return "BB_MemberDto [seq=" + seq + ", id=" + id + ", password=" + password + ", bday=" + bday + ", name=" + name
+				+ ", phone=" + phone + ", sex=" + sex + ", mileage=" + mileage + ", grade=" + grade + ", exp=" + exp
+				+ ", del=" + del + "]";
 	}
 	
 	
-	
-	
-
 }

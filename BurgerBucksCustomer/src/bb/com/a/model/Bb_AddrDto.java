@@ -1,7 +1,12 @@
 package bb.com.a.model;
 import java.io.Serializable;
+
 public class Bb_AddrDto implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2344677832892983711L;
 	
 	private int seq;
 	private int member_seq;
@@ -10,10 +15,12 @@ public class Bb_AddrDto implements Serializable {
 	private String lng;
 	private String memo;
 	private int del;
+
 	public Bb_AddrDto() {
-		super();
+		// TODO Auto-generated constructor stub
 	}
-	public Bb_AddrDto(int seq, int member_seq, String address, String lat, String lng, String memo, int del) {
+	public Bb_AddrDto(int seq, int member_seq, String address, String lat, String lng, String memo, int del,
+			String jibunAddress, String postcode) {
 		super();
 		this.seq = seq;
 		this.member_seq = member_seq;
@@ -22,6 +29,7 @@ public class Bb_AddrDto implements Serializable {
 		this.lng = lng;
 		this.memo = memo;
 		this.del = del;
+
 	}
 	public int getSeq() {
 		return seq;
@@ -70,6 +78,9 @@ public class Bb_AddrDto implements Serializable {
 		return "Bb_AddrDto [seq=" + seq + ", member_seq=" + member_seq + ", address=" + address + ", lat=" + lat
 				+ ", lng=" + lng + ", memo=" + memo + ", del=" + del + "]";
 	}
+
+
+	
 	
 	
 	

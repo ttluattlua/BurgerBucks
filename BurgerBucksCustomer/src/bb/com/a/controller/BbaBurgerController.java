@@ -26,8 +26,8 @@ public class BbaBurgerController {
 	
 	// xml에 설정된 리소스 참조
     // bean의 id가 uploadPath인 태그를 참조
-    @Resource(name="uploadPath")
-    String uploadPath;	
+   /* @Resource(name="uploadPath")
+    String uploadPath;	*/
 	
 	
 	/*--------------------------------------------------------------------------------------------

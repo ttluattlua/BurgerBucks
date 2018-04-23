@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +27,7 @@ import bb.com.a.model.Bb_MemberDto;
 import bb.com.a.model.Bb_YesMember;
 import bb.com.a.service.BbAddrService;
 import bb.com.a.service.BbMemberService;
+/*import bb.com.a.service.MailService;*/
 
 
 @Controller
@@ -36,8 +38,15 @@ public class BbMemberController {
 	BbMemberService bbMemberSerivce;
 	@Autowired
 	BbAddrService BbAddrService;
+/*	@Autowired
+	MailService mailService;
 	
+	public void setMailService(MailService mailService) {
 
+        this.mailService = mailService;
+
+    }*/
+	
 	
 	/*--------------------------------------------------------------------------------------------
 	 * 켰을때 메인으로 이동
@@ -68,32 +77,20 @@ public class BbMemberController {
 		logger.info("BbMemberController login");
 		System.out.println(bmdto.toString());
 		Bb_MemberDto login = bbMemberSerivce.login(bmdto);
-		
-		PrintWriter alerting = resp.getWriter();
-		alerting.println("<script language='javascript'>");
-		
-	  //인코딩
-	  req.setCharacterEncoding("utf-8");
-	  resp.setContentType("text/html; charset=UTF-8");
-
 		//회원정보가 일치했을 경우 (주소도 불러옴)
 		if(login != null && !login.getId().equals("")) {
 			//세션에 아이디 주소 다 저장
 			HttpSession session = req.getSession(true);
 			session.setAttribute("login", login);
-			alerting.println("alert('로그인에 성공했습니다.');");
-		}
-		else {
-		  alerting.println("alert('로그인에 실패했습니다.');");
+			System.out.println("로그인 성공");
+		}else {
+
+
+			System.out.println("로그인 실패");
 		}
 		
-		alerting.println("location.href='home.do';"); 
-    
-    alerting.println("</script>"); 
-    alerting.close();
-		
-    return null;
-		/*return "redirect:/home.do";*/
+		return "redirect:/home.do";
+
 	}
 	
 
@@ -249,7 +246,52 @@ public class BbMemberController {
 		return "redirect:/home.do";
 	}
 	
+	/*--------------------------------------------------------------------------------------------
+	 * 비밀번호 찾기 폼으로이동
+	 *-------------------------------------------------------------------------------------------*/
+	@RequestMapping(value = "pwdPage.do", method = RequestMethod.GET)
+    public String pwdPage() {
+		return "pwdPage.tiles";
+    }
 	
+	/*--------------------------------------------------------------------------------------------
+	 * 비밀번호 찾기
+	 *-------------------------------------------------------------------------------------------*/
+/*	@ResponseBody
+	@RequestMapping(value = "findPWD.do", method = RequestMethod.POST)
+    public Map<String, Object>  sendMailPassword(@RequestBody Map<String, Object> map) {
+        Map<String, Object> rmap = new HashMap<>();
+        System.out.println("비밀번호확인");
+        
+    	String id = ((String)map.get("id")).trim();
+    	System.out.println("id: " + id);
+    	Bb_MemberDto mem = new Bb_MemberDto();
+    	mem.setId(id);
+    	int count = bbMemberSerivce.getID(mem);
+        	//0일때는 존재하지 않음 1일때는 존재함
+        	
+        	//존재하니까 임시비밀번호 생성 후, 해당 아이디 비밀번호 DB업데이트, 메일보내기 함수
+        	if(count > 0) {
+        		//
+        		int ran = new Random().nextInt(100000) + 10000; // 10000 ~ 99999
+                String password = String.valueOf(ran);
+                mem.setPassword(password);
+                System.out.println(mem.toString());
+                
+                bbMemberSerivce.changePwd(mem); //비밀번호 업데이트
+                String title = "임시 비밀번호 발급 안내 입니다."; //메일제목
+                StringBuilder sb = new StringBuilder();
+                sb.append("귀하의 임시 비밀번호는 " + password + " 입니다."); //메일내용
+                mailService.send(title, sb.toString(), "burger0bucks@gmail.com", id, null);
+                rmap.put("msg", "해당 이메일로 임시비밀번호를 발급했습니다.");
+                
+        	}else {
+        		rmap.put("msg", "해당 이메일(아이디) 주소가 존재 하지 않습니다.");
+        	}
+
+        return rmap;
+    }
+	*/
 
 	
 }
