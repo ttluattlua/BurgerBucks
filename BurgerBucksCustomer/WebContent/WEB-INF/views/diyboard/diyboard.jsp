@@ -16,7 +16,7 @@
 	display: inline-block;
 	background-color:white;
 	padding: 10px;
-	margin-left: 20px;
+	margin-left: 70px;
 	margin-right: 20px;
 }
 .diy-detail{
@@ -40,8 +40,11 @@
 	padding-top: 5px;	
 }
 </style>
-<div style="padding: 0; margin: 0 auto; margin-top:20px; height: 2000px; width: 1000px;">
-	<div>
+<div style="padding: 0; margin: 0 auto; margin-top:20px; height: 1000px; width: 1000px;">
+	<div align="center" style="overflow-y: scroll; height:900px;">
+		<div align="center">
+			<h2 style="margin-bottom: 30px;">DIY버거게시판</h2>
+		</div>
 		<div align="right">
 			<button class="btn btn-outlined btn-block btn-success" style="width: 100px;" onclick="location.href='addDiyBoard.do'">버거등록</button>
 		</div>
