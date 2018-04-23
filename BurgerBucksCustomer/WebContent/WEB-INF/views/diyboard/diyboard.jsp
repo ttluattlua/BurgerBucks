@@ -41,6 +41,9 @@
 }
 </style>
 <div style="padding: 0; margin: 0 auto; margin-top:20px; height: 300px; width: 1000px;">
+	<div align="right">
+		<button class="btn btn-outlined btn-block btn-success" style="width: 100px;">버거등록</button>
+	</div>
 	<div class="diy-box">
 		<div class="diy-detail"></div>
 		<div class="text-left">
