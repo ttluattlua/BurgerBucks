@@ -63,7 +63,7 @@
       </div>
       <!-- ID/PW Find Button -->
       <div style="margin-top:10px;">
-        <button class="btn btn-success" onclick="location.href='pwdPage.do'" style="width: 290px; border: 1px solid #999999; border-radius: 4px; height: 40px;">ID/PW 찾기</button>
+        <button class="btn btn-success" onclick="location.href='pwdPage.do'" style="width: 290px; border: 1px solid #999999; border-radius: 4px; height: 40px;">PW 찾기</button>
       </div>
       
       <!-- Regist Button -->

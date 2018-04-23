@@ -28,6 +28,7 @@ import bb.com.a.model.Bb_YesMember;
 import bb.com.a.service.BbAddrService;
 import bb.com.a.service.BbMemberService;
 /*import bb.com.a.service.MailService;*/
+import bb.com.a.service.MailService;
 
 
 @Controller
@@ -38,14 +39,14 @@ public class BbMemberController {
 	BbMemberService bbMemberSerivce;
 	@Autowired
 	BbAddrService BbAddrService;
-/*	@Autowired
+	@Autowired
 	MailService mailService;
 	
 	public void setMailService(MailService mailService) {
 
         this.mailService = mailService;
 
-    }*/
+    }
 	
 	
 	/*--------------------------------------------------------------------------------------------
@@ -72,7 +73,7 @@ public class BbMemberController {
 	 * 로그인
 	 *-------------------------------------------------------------------------------------------*/
 
-	@RequestMapping(value="login.do", method=RequestMethod.POST)
+	@RequestMapping(value="login.do", method= {RequestMethod.POST, RequestMethod.GET})
 	public String login(Bb_MemberDto bmdto, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logger.info("BbMemberController login");
 		System.out.println(bmdto.toString());
@@ -98,7 +99,7 @@ public class BbMemberController {
 	/*--------------------------------------------------------------------------------------------
 	 * 회원가입
 	 *-------------------------------------------------------------------------------------------*/
-	@RequestMapping(value="regi.do", method=RequestMethod.GET)
+	@RequestMapping(value="regi.do", method={RequestMethod.POST, RequestMethod.GET})
 	public String regi(Model model) {
 		logger.info("BbMemberController regi");				
 		return "regi.tiles";
@@ -108,7 +109,7 @@ public class BbMemberController {
 	/*--------------------------------------------------------------------------------------------
 	 * 회원가입
 	 *-------------------------------------------------------------------------------------------*/
-	@RequestMapping(value="regiAf.do", method=RequestMethod.GET)
+	@RequestMapping(value="regiAf.do", method={RequestMethod.POST, RequestMethod.GET})
 	public String regiAf(Model model,  Bb_MemberDto mem) {
 		logger.info("BbMemberController regiAf");
 		System.out.println(mem.toString());
@@ -129,7 +130,7 @@ public class BbMemberController {
 	 * 아이디 중복확인
 	 *-------------------------------------------------------------------------------------------*/
 	@ResponseBody
-	@RequestMapping(value="getID.do", method=RequestMethod.POST)
+	@RequestMapping(value="getID.do", method={RequestMethod.POST, RequestMethod.GET})
 	public Bb_YesMember getID(Model model, Bb_MemberDto mem) {
 		logger.info("BbMemberController getID");	
 		
@@ -249,7 +250,7 @@ public class BbMemberController {
 	/*--------------------------------------------------------------------------------------------
 	 * 비밀번호 찾기 폼으로이동
 	 *-------------------------------------------------------------------------------------------*/
-	@RequestMapping(value = "pwdPage.do", method = RequestMethod.GET)
+	@RequestMapping(value = "pwdPage.do", method ={RequestMethod.POST, RequestMethod.GET})
     public String pwdPage() {
 		return "pwdPage.tiles";
     }
@@ -257,8 +258,8 @@ public class BbMemberController {
 	/*--------------------------------------------------------------------------------------------
 	 * 비밀번호 찾기
 	 *-------------------------------------------------------------------------------------------*/
-/*	@ResponseBody
-	@RequestMapping(value = "findPWD.do", method = RequestMethod.POST)
+	@ResponseBody
+	@RequestMapping(value = "findPWD.do", method = {RequestMethod.POST, RequestMethod.GET})
     public Map<String, Object>  sendMailPassword(@RequestBody Map<String, Object> map) {
         Map<String, Object> rmap = new HashMap<>();
         System.out.println("비밀번호확인");
@@ -291,7 +292,7 @@ public class BbMemberController {
 
         return rmap;
     }
-	*/
+	
 
 	
 }
