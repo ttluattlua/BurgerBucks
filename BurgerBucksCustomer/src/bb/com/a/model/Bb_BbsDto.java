@@ -22,7 +22,7 @@ public class Bb_BbsDto implements Serializable {
 	  private int writer;
 	  private int price;
 	  private String burger_name;
-
+      private String s_keyword;
   
 	  /*---------------------------------------------------------------------------------------
 	  Constructor
@@ -47,6 +47,32 @@ public class Bb_BbsDto implements Serializable {
 		this.writer = writer;
 		this.price = price;
 		this.burger_name = burger_name;
+	}
+
+	
+
+	public Bb_BbsDto(int seq, int burger_seq, String id, int bbs_like, int del, Bb_BurgerDto burger, String image_Src,
+			int likecheck, int writer, int price, String burger_name, String s_keyword) {
+		super();
+		this.seq = seq;
+		this.burger_seq = burger_seq;
+		this.id = id;
+		this.bbs_like = bbs_like;
+		this.del = del;
+		this.burger = burger;
+		this.image_Src = image_Src;
+		this.likecheck = likecheck;
+		this.writer = writer;
+		this.price = price;
+		this.burger_name = burger_name;
+		this.s_keyword = s_keyword;
+	}
+
+
+	public Bb_BbsDto(int writer, String s_keyword) {
+		super();
+		this.writer = writer;
+		this.s_keyword = s_keyword;
 	}
 
 
@@ -166,13 +192,27 @@ public class Bb_BbsDto implements Serializable {
 		this.burger_name = burger_name;
 	}
 
+	
+
+	public String getS_keyword() {
+		return s_keyword;
+	}
+
+
+	public void setS_keyword(String s_keyword) {
+		this.s_keyword = s_keyword;
+	}
+
 
 	@Override
 	public String toString() {
 		return "Bb_BbsDto [seq=" + seq + ", burger_seq=" + burger_seq + ", id=" + id + ", bbs_like=" + bbs_like
 				+ ", del=" + del + ", burger=" + burger + ", image_Src=" + image_Src + ", likecheck=" + likecheck
-				+ ", writer=" + writer + ", price=" + price + ", burger_name=" + burger_name + "]";
+				+ ", writer=" + writer + ", price=" + price + ", burger_name=" + burger_name + ", s_keyword="
+				+ s_keyword + "]";
 	}
+
+	
 
 
 

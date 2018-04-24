@@ -1,5 +1,6 @@
 package bb.com.a.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -33,13 +34,21 @@ public class BbDiyController {
 	
 	//diy게시판으로이동
 	@RequestMapping(value="diyboard.do", method=RequestMethod.GET)
-	public String diyboard(Model model, HttpServletRequest req) throws Exception {
+	public String diyboard(Model model, HttpServletRequest req, String s_keyword) throws Exception {
 		logger.info("BbDiyController diyboard");
 		HttpSession session = req.getSession(true);
 		Bb_MemberDto login = (Bb_MemberDto)session.getAttribute("login");
-		List<Bb_BbsDto> bbsList = bbBurgerDiyService.getBurgerDiyList(login.getSeq());
-		for (Bb_BbsDto bb_BbsDto : bbsList) {
-			System.out.println(bb_BbsDto.toString());
+		
+		List<Bb_BbsDto> bbsList = new ArrayList<>();
+		if(s_keyword == null || s_keyword.equals("")) {
+			
+			bbsList = bbBurgerDiyService.getBurgerDiyList(login.getSeq());
+			for (Bb_BbsDto bb_BbsDto : bbsList) {
+				System.out.println(bb_BbsDto.toString());
+			}
+		}else {
+			Bb_BbsDto bsdto = new Bb_BbsDto(login.getSeq(), s_keyword);
+			bbsList = bbBurgerDiyService.diySearch(bsdto);
 		}
 		model.addAttribute("bbsList", bbsList);
 		return "diyboard.tiles";
@@ -104,6 +113,8 @@ public class BbDiyController {
 			return "redirect:/diyboard.do";
 
 		}
+		
+
 		
 		
 

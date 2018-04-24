@@ -46,15 +46,16 @@
 			<h2 style="margin-bottom: 30px;">DIY버거게시판</h2>
 		</div>
 		<div align="right">
-			<form action="diySearch.do">
+			<form action="diyboard.do">
 			<table>
 				<tr>
 					<td><input type="text" id="s_keyword" name="s_keyword"></td>
 					<td><input type="submit" class="btn btn-outlined btn-danger" value="검색" id="searchword" name="searchword"></td>
-					<td><button class="btn btn-outlined btn-warning" style="width: 100px;" onclick="location.href='addDiyBoard.do'">버거등록</button></td>
+					
 				</tr>
-			</table>
+			</table>		
 			</form>
+			<button class="btn btn-outlined btn-warning" style="width: 100px;" onclick="location.href='addDiyBoard.do'">버거등록</button>
 		</div>
 		<div>
 			<c:forEach var="bbsdto" items="${bbsList}" varStatus="status">
