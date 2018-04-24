@@ -52,12 +52,13 @@
 			  <thead >
 			    <tr class="active">
 			      <th scope="col" title="No" style="width: 5%; text-align: center;">No.</th>
-			      <th scope="col" title="주문번호" style="width: 15%; text-align: center;">Order Number</th>
+			      <th scope="col" title="주문번호" style="width: 12%; text-align: center;">Order Number</th>
 			      <th scope="col" title="주문날짜" style="text-align: center;">Order Date</th>
-			      <th scope="col" title="주문완료" style="width: 15%; text-align: center;">Order Status</th>
-			      <th scope="col" title="준비중" style="width: 15%; text-align: center;">Order Status</th>
-			      <th scope="col" title="배달시작" style="width: 15%; text-align: center;">Order Status</th>
-			      <th scope="col" title="배달완료" style="width: 15%; text-align: center;">Order Status</th>
+			      <th scope="col" title="장바구니" style="width: 12%; text-align: center;">Order Status</th>
+			      <th scope="col" title="주문완료" style="width: 12%; text-align: center;">Order Status</th>
+			      <th scope="col" title="준비중" style="width: 12%; text-align: center;">Order Status</th>
+			      <th scope="col" title="배달시작" style="width: 12%; text-align: center;">Order Status</th>
+			      <th scope="col" title="배달완료" style="width: 12%; text-align: center;">Order Status</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -83,43 +84,53 @@
 			 				<td style="vertical-align: middle;">${orderDto.seq}</td>
 			 				<td style="vertical-align: middle;">${orderDto.order_date}</td>
 			 				
+			 				<!-- 장바구니 -->
+							<c:choose>
+			 				<c:when test="${orderDto.status < '0'}">
+			 					<td style="text-align: center;"><i class="material-icons" style="font-size: 40px; color: #a3a3a3">shopping_cart</i> </td>
+			 				</c:when>
+			 				<c:when test="${orderDto.status >= '0'}">
+			 					<td style="text-align: center;"><i class="material-icons" style="font-size: 40px; color: #a33b2b">shopping_cart</i> </td>
+			 				</c:when>
+			 				</c:choose>
+			 				
 							<!-- 주문완료 -->
 							<c:choose>
 			 				<c:when test="${orderDto.status < '1'}">
-			 					<td style="text-align: center;"><i class="material-icons" style="font-size: 48px; color: #a3a3a3">payment</i> </td>
+			 					<td style="text-align: center;"><i class="material-icons" style="font-size: 40px; color: #a3a3a3">payment</i> </td>
 			 				</c:when>
 			 				<c:when test="${orderDto.status >= '1'}">
-			 					<td style="text-align: center;"><i class="material-icons" style="font-size: 48px; color: #a33b2b">payment</i> </td>
+			 					<td style="text-align: center;"><i class="material-icons" style="font-size: 40px; color: #a33b2b">payment</i> </td>
 			 				</c:when>
 			 				</c:choose>
 			 				
 			 				<!-- 준비중 -->
 			 				<c:choose>
 			 				<c:when test="${orderDto.status < '2'}">
-			 					<td style="text-align: center;"><i class="material-icons" style="font-size: 48px; color: #a3a3a3">room_service</i></td>
+			 					<td style="text-align: center;"><i class="material-icons" style="font-size: 40px; color: #a3a3a3">room_service</i></td>
 			 				</c:when>
 			 				<c:when test="${orderDto.status >= '2'}">
-			 					<td style="text-align: center;"><i class="material-icons" style="font-size: 48px; color: #a33b2b">room_service</i></td>
+			 					<td style="text-align: center;"><i class="material-icons" style="font-size: 40px; color: #a33b2b">room_service</i></td>
 			 				</c:when>
 			 				</c:choose>
 			 				
 			 				<!-- 배달 시작 -->
 			 				<c:choose>
 			 				<c:when test="${orderDto.status < '3'}">
-			 					<td style="text-align: center;"><i class="material-icons" style="font-size: 48px; color: #a3a3a3">directions_bike</i></td>
+			 					<td style="text-align: center;"><i class="material-icons" style="font-size: 40px; color: #a3a3a3">directions_bike</i></td>
 			 				</c:when>
 			 				<c:when test="${orderDto.status >= '3'}">
-			 					<td style="text-align: center;"><i class="material-icons" style="font-size: 48px; color: #a33b2b">directions_bike</i></td>
+			 					<td style="text-align: center;"><i class="material-icons" style="font-size: 40px; color: #a33b2b">directions_bike</i></td>
 			 				</c:when>
 			 				</c:choose>
 			 				
 			 				<!-- 배달완료 -->
 			 				<c:choose>
 			 				<c:when test="${orderDto.status < '4'}">
-				 				<td style="text-align: center;"><i class="material-icons" style="font-size: 48px; color: #a3a3a3">assignment_turned_in</i></td>
+				 				<td style="text-align: center;"><i class="material-icons" style="font-size: 40px; color: #a3a3a3">assignment_turned_in</i></td>
 			 				</c:when>
 			 				<c:when test="${orderDto.status >= '4'}">
-				 				<td style="text-align: center;"><i class="material-icons" style="font-size: 48px; color: #a33b2b">assignment_turned_in</i></td>
+				 				<td style="text-align: center;"><i class="material-icons" style="font-size: 40px; color: #a33b2b">assignment_turned_in</i></td>
 			 				</c:when>
 			 				</c:choose>
 			 			</tr>
@@ -139,6 +150,7 @@ $(document).ready(function() {
         { title: "No" },
         { title: "주문번호" },
         { title: "주문날짜" },
+        { title: "장바구니" },
         { title: "주문완료" },
         { title: "준비중" },
         { title: "배달시작" },
