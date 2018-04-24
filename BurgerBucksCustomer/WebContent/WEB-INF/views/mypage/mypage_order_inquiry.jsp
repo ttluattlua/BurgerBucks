@@ -37,6 +37,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
+
+<h2>주문 조회</h2>
 <!--주문조회-->
  	<div style=" padding-top:50px; width: 750px; height: 620px;">
  		
@@ -77,9 +79,9 @@
 	 				<c:if test="${orderList.size() != 0}">
 	 					<c:forEach var="orderDto" items="${orderList}" varStatus="status">
 	 					<tr>
-			 				<td>${status.count}</td>
-			 				<td>${orderDto.seq}</td>
-			 				<td>${orderDto.order_date}</td>
+			 				<td style="vertical-align: middle;">${status.count}</td>
+			 				<td style="vertical-align: middle;">${orderDto.seq}</td>
+			 				<td style="vertical-align: middle;">${orderDto.order_date}</td>
 			 				
 							<!-- 주문완료 -->
 							<c:choose>
@@ -174,7 +176,9 @@ $(document).ready(function() {
         /* buttons: [ 'copy', 'excel', 'pdf' ], */
         columns: col_kor,
         language : lang_kor,
-        "searching": true //서치 막기,
+        searching: true, //서치 막기,
+        bLengthChange:false,
+        bAutoWidth:false
     } );
  
     table.buttons().container()
