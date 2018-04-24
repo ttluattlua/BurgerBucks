@@ -16,7 +16,7 @@
 	display: inline-block;
 	background-color:white;
 	padding: 10px;
-	margin-left: 70px;
+	margin-left: 20px;
 	margin-right: 20px;
 }
 .diy-detail{
@@ -40,10 +40,10 @@
 	padding-top: 5px;	
 }
 </style>
-<<div style="padding: 0; margin: 0 auto; margin-top:20px; height: 1000px; width: 1000px;">
-	<div align="center" style="overflow-y: scroll; height:900px;">
+<div style="padding: 0; margin: 0 auto; margin-top:20px; height: 2000px; width: 1000px;">
+	<div>
 		<div align="center">
-			<h2 style="margin-bottom: 30px;">DIY버거등록하기</h2>
+			<h3>DIY버거등록하기</h3>
 		</div>
 		<div>
 			<c:forEach var="bbsdto" items="${bbsList}" varStatus="status">
@@ -54,7 +54,7 @@
 					<img alt="" src="./UI/AdminBurgerImage.png" style="width: 200px; height: 200px;">
 					</c:if>
 					<c:if test="${bbsdto.image_Src != '없음' }">
-					<img alt="" src="${bbsdto.image_src}" style="width: 200px; height: 200px;">
+					<img alt="" src="${imagePath}${bbsdto.image_src}" style="width: 200px; height: 200px;">
 					</c:if>
 					
 					</div>

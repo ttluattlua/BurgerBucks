@@ -10,94 +10,79 @@
 
 <style>
 .diy-box{
-   height:280px;
-   width:220px;
-   float: left;
-   display: inline-block;
-   background-color:#E4DFDE;
-   padding: 10px;
-   margin-left: 70px;
-   margin-right: 20px;
+	height:280px;
+	width:220px;
+	float: left;
+	display: inline-block;
+	background-color:white;
+	padding: 10px;
+	margin-left: 20px;
+	margin-right: 20px;
 }
 .diy-detail{
-   height: 200px;
-   width: 200px;
-   margin: auto;
-   background-color: white;
+	height: 200px;
+	width: 200px;
+	margin: auto;
+	background-color: gray;
 }
 .text-left{
-   height: 60px;
-   width: 80px;
-   /* background-color: yellow; */
-   float: left;
-   padding-top: 5px;
+	height: 60px;
+	width: 80px;
+	background-color: yellow;
+	float: left;
+	padding-top: 5px;
 }
 .text-right{
-   height: 60px;
-   width: 120px;
-   /* background-color: pink; */
-   float:right;
-   padding-top: 5px;   
-}
-a{
-   color: red;
+	height: 60px;
+	width: 120px;
+	background-color: pink;
+	float:right;
+	padding-top: 5px;	
 }
 </style>
-
-<div style="padding: 0; margin: 0 auto; margin-top:20px; height: 1000px; width: 1000px;">
-   <div align="center" style="overflow-y: scroll; height:900px;">
-      <div align="center">
-         <h2 style="margin-bottom: 30px;">DIY버거게시판</h2>
-      </div>
-      <div align="right">
-         <form action="diyboard.do">
-         <table>
-            <tr>
-               <td><input type="text" id="s_keyword" name="s_keyword" class="form-control"></td>
-               <td><input type="submit" class="btn btn-outlined btn-danger" value="검색" id="searchword" name="searchword"></td>
-               
-            </tr>
-         </table>      
-         </form>
-         <button class="btn btn-outlined btn-warning" style="width: 100px;" onclick="location.href='addDiyBoard.do'">버거등록</button>
-      </div>
-      <div>
-         <c:forEach var="bbsdto" items="${bbsList}" varStatus="status">
-      
-            <div class="diy-box">
-               <div class="diy-detail">
-               <c:if test="${bbsdto.image_Src == '없음' }">
-               <img alt="" src="./UI/AdminBurgerImage.png" style="width: 200px; height: 200px;">
-               </c:if>
-               <c:if test="${bbsdto.image_Src != '없음' }">
-               <img alt="" src="${bbsdto.image_src}" style="width: 200px; height: 200px;">
-               </c:if>
-               
-               </div>
-               <div class="text-left">
-                  <div style="font-size:1.5em; color:Tomato">
-                     <c:if test="${bbsdto.likecheck == 0 }">
-                        <p id="a${bbsdto.seq }"><a  style="color: gray" onclick="likeFunc(${bbsdto.seq}, ${bbsdto.bbs_like})" ><i class="fa fa-meh-o">${bbsdto.bbs_like }</i></a></p>
-                     </c:if>
-                     <c:if test="${bbsdto.likecheck != 0 }">
-                        <p id="a${bbsdto.seq }"><a onclick="unlikeFunc(${bbsdto.seq}, ${bbsdto.bbs_like })"><i class="fa fa-smile-o">${bbsdto.bbs_like }</i></a></p>
-                     </c:if>
-                     <p style="margin-top: 3px;"><i class="fa fa-check" style="font-size: 15px;">${bbsdto.burger_name}</i></p>
-                  </div>
-                  
-               </div>
-               <div class="text-right">
-                  <input type="button" class="btn btn-outlined btn-warning" value="구매" onclick="alert('연구중입니다.')">
-                  <input type="button"  class="btn btn-outlined btn-danger" value="상세" onclick="bbsDetail('${bbsdto.burger_seq}')"  data-toggle="modal" data-target="#detailModal"><br>
-                  <p style="margin-top: 3px;"><i class="fa fa-krw">${bbsdto.price}</i></p>
-               </div>
-            </div>
-            <c:if test="${status.index%3 ==2 }">
-            </c:if>
-         
-         </c:forEach>
-      </div>
-   </div>
+<div style="padding: 0; margin: 0 auto; margin-top:20px; height: 2000px; width: 1000px;">
+	<div>
+		<div align="right">
+			<button class="btn btn-outlined btn-block btn-success" style="width: 100px;" onclick="location.href='addDiyBoard.do'">버거등록</button>
+		</div>
+		<div>
+			<c:forEach var="bbsdto" items="${bbsList}" varStatus="status">
+		
+				<div class="diy-box">
+					<div class="diy-detail">
+					<c:if test="${bbsdto.image_Src == '없음' }">
+					<img alt="" src="./UI/AdminBurgerImage.png" style="width: 200px; height: 200px;">
+					</c:if>
+					<c:if test="${bbsdto.image_Src != '없음' }">
+					<img alt="" src="${imagePath}${bbsdto.image_src}" style="width: 200px; height: 200px;">
+					</c:if>
+					
+					</div>
+					<div class="text-left">
+						<div style="font-size:1.5em; color:Tomato">
+							<c:if test="${bbsdto.likecheck == 0 }">
+								<i class="fa fa-meh-o">${bbsdto.bbs_like }</i>
+							</c:if>
+							<c:if test="${bbsdto.likecheck != 0 }">
+								<i class="fa fa-smile-o">${bbsdto.bbs_like }</i>
+							</c:if>
+							<p style="margin-top: 3px;"><i class="fa fa-check" style="font-size: 15px;">${bbsdto.burger_name}</i></p>
+						</div>
+						
+					</div>
+					<div class="text-right">
+						<input type="button" class="btn btn-outlined btn-warning" value="구매" onclick="alert('연구중입니다.')">
+						<input type="button"  class="btn btn-outlined btn-danger" value="상세" onclick="bbsDetail('${bbsdto.burger_seq}')"  data-toggle="modal" data-target="#detailModal"><br>
+						<p style="margin-top: 3px;"><i class="fa fa-krw">${bbsdto.price}</i></p>
+					</div>
+				</div>
+				<c:if test="${status.index%3 ==2 }">
+				</div><div> 
+				</c:if>
+				
+			</c:forEach>
+		</div>
+	</div>
 </div>
 <!-- 상세보기 모달-->
 
@@ -126,102 +111,45 @@ a{
 
 <script>
 function bbsDetail(burger_Seq) {
-      alert(burger_Seq);
-      var data = {};
-       
-      data["seq"]=burger_Seq;
-      
-      $.ajax({
-         contentType:'application/json',
-         dataType:'json',
-         data:JSON.stringify(data),       //JavaScript 값을 JSON으로 변환 한다
-         url:"getBurgerDiyDetail.do",         // side
-         type:'POST',
-         success:function(data){
-            
-         console.log(data);
-         /* var burgerDD = JSON.parse(data); */
-           $("#burgerName").html("버거이름 : "+data.name);
-           $("#creatorId").html("만든이 : "+data.creatorID);
-           $("#ingredients").html("재료 : "+data.bread_name+"/"+
-                   data.ingredient01_name+"/"+
-                   data.ingredient02_name+"/"+
-                   data.ingredient03_name+"/"+
-                   data.ingredient04_name+"/"+
-                   data.ingredient05_name+"/"+
-                   data.ingredient06_name+"/"+
-                   data.ingredient07_name+"/"+
-                   data.ingredient08_name+"/"+
-                   data.ingredient09_name
-             );
-            $("#calories").html("칼로리 : "+data.cal);
-            $("#price").html("가격 : "+data.price);
-          
-            
-         },
-         error:function(req, status, error){
-            alert("error");
-         }
-      
-      });
+		alert(burger_Seq);
+		var data = {};
+	    
+		data["seq"]=burger_Seq;
+		
+		$.ajax({
+			contentType:'application/json',
+			dataType:'json',
+			data:JSON.stringify(data), 		//JavaScript 값을 JSON으로 변환 한다
+			url:"getBurgerDiyDetail.do",			// side
+			type:'POST',
+			success:function(data){
+				
+			console.log(data);
+			/* var burgerDD = JSON.parse(data); */
+	        $("#burgerName").html("버거이름 : "+data.name);
+	        $("#creatorId").html("만든이 : "+data.creatorID);
+	        $("#ingredients").html("재료 : "+data.bread_name+"/"+
+	        		  data.ingredient01_name+"/"+
+	        		  data.ingredient02_name+"/"+
+	        		  data.ingredient03_name+"/"+
+	        		  data.ingredient04_name+"/"+
+	        		  data.ingredient05_name+"/"+
+	        		  data.ingredient06_name+"/"+
+	        		  data.ingredient07_name+"/"+
+	        		  data.ingredient08_name+"/"+
+	        		  data.ingredient09_name
+	          );
+	         $("#calories").html("칼로리 : "+data.cal);
+	         $("#price").html("가격 : "+data.price);
+			 
+				
+			},
+			error:function(req, status, error){
+				alert("error");
+			}
+		
+		});
+
 }
-/*--------------------------------------------------------------------------------
- * 좋아요 클릭
- *--------------------------------------------------------------------------------*/
-function likeFunc(seq, likecount) {
-   alert(seq);
-   alert(likecount);
-   var data = {};
-    
-   data["seq"]=seq;
-   
-   $.ajax({
-      contentType:'application/json',
-      dataType:'json',
-      data:JSON.stringify(data),       //JavaScript 값을 JSON으로 변환 한다
-      url:"likeClick.do",         // side
-      type:'POST',
-      success:function(data){
-         
-      console.log(data);
-      /* var burgerDD = JSON.parse(data); */
-         $("#a"+seq).html("<a onclick='unlikeFunc("+seq+","+(likecount+1)+")'><i class='fa fa-smile-o'>"+(likecount+1)+"</i></a>");
-         
-      },
-      error:function(req, status, error){
-         alert("error");
-      }
-   
-   });
-   
-}
-/*--------------------------------------------------------------------------------
- * UNLIKE클릭
- *--------------------------------------------------------------------------------*/
-function unlikeFunc(seq, likecount) {
-   alert(seq);
-   alert(likecount);
-   var data = {};
-   data["seq"]=seq;
-   
-   $.ajax({
-      contentType:'application/json',
-      dataType:'json',
-      data:JSON.stringify(data),       //JavaScript 값을 JSON으로 변환 한다
-      url:"unlikeClick.do",         // side
-      type:'POST',
-      success:function(data){
-         
-      console.log(data);
-      /* var burgerDD = JSON.parse(data); */
-      $("#a"+seq).html("<a  style='color: gray' onclick='likeFunc("+seq+","+(likecount-1)+")'><i class='fa fa-meh-o'>"+(likecount-1)+"</i></a>");
-         
-      },
-      error:function(req, status, error){
-         alert("error");
-      }
-   
-   });
-   
-}
+
 </script>

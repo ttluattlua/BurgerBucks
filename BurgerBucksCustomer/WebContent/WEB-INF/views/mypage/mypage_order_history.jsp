@@ -45,11 +45,11 @@ if(session.getAttribute("login") != null){
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
  
-<h2>주문 내역</h2>
+
 <div style=" padding-top:50px; width: 750px; height: 620px;">
 <table id="example" class="table table-striped table-bordered" style="width:100%; background: white;">
-	<thead id="tthead">
-	<tr id="trtr">
+	<thead>
+	<tr>
 		<th>-</th>
 		<th>-</th>
 	</tr>
@@ -90,7 +90,7 @@ status 는 for문의 돌아가는 상태를 알 수 있게 체크하여 준다
             </td>
         	
             <!-- 주문일자 -->
-            <td style="vertical-align: middle;"><b>주문일자 : </b>${order.order_date }</td>
+            <td><b>주문일자 : </b>${order.order_date }</td>
         </tr>
     </c:forEach>
     
@@ -194,7 +194,6 @@ function updateRow(data){
 <script type="text/javascript">
 $(document).ready(function() {
 	
-	
 	/* initComplete(); */
 	var col_kor = [ 
         { title: "-" },
@@ -232,19 +231,20 @@ $(document).ready(function() {
         /* buttons: [ 'copy', 'excel', 'pdf' ], */
         columns: col_kor,
         language : lang_kor,
-        searching: true, //서치 막기,
-        bLengthChange:false,
-        bAutoWidth:false
+        "searching": true //서치 막기,
     } );
  
     table.buttons().container()
         .appendTo( '#example_wrapper .col-sm-6:eq(0)' );
-    
-    
 } );
 
-$("#tthead").hide();
-
+/* function initComplete() {
+	serverSide: true,
+	initComplete : function () {
+	    table.buttons().container()
+	           .appendTo( $('#example_wrapper .col-sm-6:eq(0)'));
+	},
+} */
 </script>	
 
   

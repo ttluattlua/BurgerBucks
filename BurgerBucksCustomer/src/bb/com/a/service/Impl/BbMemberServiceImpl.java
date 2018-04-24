@@ -61,7 +61,7 @@ public class BbMemberServiceImpl implements BbMemberService {
 	 * 회원가입
 	 * ----------------------------------------------------------------------------*/
 	@Override
-	public int addmember(Bb_MemberDto mem) throws Exception {
+	public boolean addmember(Bb_MemberDto mem) throws Exception {
 		return bbMemberDao.addmember(mem);
 	}
 	
@@ -79,13 +79,6 @@ public class BbMemberServiceImpl implements BbMemberService {
 	public void changePwd(Bb_MemberDto mem) {
 		bbMemberDao.changePwd(mem);
 		
-	}
-	/*----------------------------------------------------------------------------
-	 * 가입 후 장바구니 만들기
-	 * ----------------------------------------------------------------------------*/
-	@Override
-	public int makeOrderBasket(Bb_MemberDto mem) {
-		return bbMemberDao.makeOrderBasket(mem);
 	}
 
 

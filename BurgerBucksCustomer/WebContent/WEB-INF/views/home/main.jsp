@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:requestEncoding value="utf-8"/> 
 
@@ -89,14 +90,14 @@
 			  			
 				<!-- 주소리스트 --> 
 				
-				<c:if test="${empty list}">
+				<c:if test="${fn:length(AddrList) eq 0}">
 					<select  class="form-control">
 						<option>주소를 새로 추가해주세요</option>
 					</select>
 				</c:if>
-				<c:if test="${not empty list}">
+				<c:if test="${fn:length(AddrList) ne 0}">
 				<select  class="form-control">
-					<c:forEach var="addr" items="${list}" varStatus="vs">
+					<c:forEach var="addr" items="${AddrList}" varStatus="vs">
 						<option>${addr.address}</option>
 					</c:forEach>	
 				</select>
@@ -131,3 +132,9 @@
   <div style="width: 1000px; height: 400px; background: white; margin: 0 auto; margin-top: 20px; margin-bottom: 20px;">
     <img src="./UI/Deliever.png" style="width: 1000px; height: 400px; border: 1px solid #999999; border-radius: 4px;">
   </div>
+  
+  <script>
+  $(document).ready(function () {
+    alert(${fn:length(AddrList)});
+  })
+  </script>

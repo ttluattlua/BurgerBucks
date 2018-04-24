@@ -15,7 +15,7 @@
     location.href="./home.do";
     }, 4000);
 </script>
-
+ 
 <%-- <%response.sendRedirect("./home.do");%> --%>
 
 </body>

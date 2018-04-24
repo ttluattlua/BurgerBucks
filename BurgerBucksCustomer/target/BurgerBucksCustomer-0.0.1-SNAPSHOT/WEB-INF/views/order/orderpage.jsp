@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:requestEncoding value="utf-8"/> 
 
@@ -19,33 +20,46 @@
     <div style="display:block; height: 800px; width:640px; float: left;">
       
       <!-- Select Menu Div -->
-      <div id="selectMenu" style="height: 800px; width:640px; border: 1px solid #999999; border-radius: 4px;">
-        <h2>메뉴 선택 및 새로운 메뉴 추가 DIV 영역</h2>
-        <button onclick='newMenu()'>새로운 메뉴 추가하기</button>
+      <div id="selectMenuDiv" style="height: 800px; width:640px; border: 1px solid #999999; border-radius: 4px;" >
+        
+        <div style="height: 300px; width:640px; padding-top: 60px;" align="center">
+          <a class="flat_a" onclick='newMenu()' style="cursor: pointer;">
+            <font size="14px;" color="#a31c04">새로운 메뉴 추가하기</font><br>
+            <span style="font-size: 40px; color: #a31c04; margin-top: 20px;" class="glyphicon glyphicon-plus-sign"></span>
+          </a>
+        </div>
+        
+        <div style="height: 500px; width:640px;" align="center">
+          <div style="height: 480px; width:620px; border: 1px solid #999999; border-radius: 4px; padding: 10px;" align="left"> 
+          <font>즐겨찾기</font>
+          </div>
+          
+        </div>
+        
       </div>
       
       <!-- Select Burger Div -->
-      <div id="selectBurger" style="height: 800px; width:640px; border: 1px solid #999999; border-radius: 4px;" hidden="hidden">
+      <div id="selectBurgerDiv" style="height: 800px; width:640px; border: 1px solid #999999; border-radius: 4px;" hidden="hidden">
         
         <!-- Cancel Button -->
         <div style="height: 30px; width:620px; margin: 10px; margin-top: 10px;">
-          <a onclick='cancelMenu()' style="height: 40px; width: 20px; float: right;"><span class="glyphicon glyphicon-remove"></span></a>
+          <span style="height: 30px; width: 30px; font-size: 20px; float: right; cursor: pointer;" onclick='cancelMenu()' class="glyphicon glyphicon-remove"></span>
         </div>
         
         <!-- Menu Name -->
         <div style="height: 40px; width:620px; margin: 10px; margin-top: 10px;">
-	        <div class="input-group" style="width: 300px;">
-	          <span class="input-group-addon">메뉴 이름</span>
-	          <input id="login_id" type="text" class="form-control menu_name" placeholder="메뉴의 이름을 입력하세요" onblur="saveMenuName(this)" style="width: 200px;">
-	        </div>
+          <div class="input-group" style="width: 300px;">
+            <span class="input-group-addon">메뉴 이름</span>
+            <input id="login_id" type="text" class="form-control menu_name" placeholder="메뉴의 이름을 입력하세요" onblur="saveMenuName(this)" style="width: 200px;">
+          </div>
         </div>
         
         <!-- Step Indication -->
         <div style="height: 60px; width:620px; margin: 10px; margin-top: 20px;">
           <div style="height: 60px; width:160px; border: 2px solid #999999; border-radius: 4px; display: inline-block;" align="center">
             <b>
-	            <p>1단계 : 버거 선택</p>
-	            <p id="selectedBurger">햄버거 이름 (0원)</p>
+              <p>1단계 : 버거 선택</p>
+              <p class="selectedBurger">-</p>
             </b>
           </div>
           <div style="height: 60px; width:60px; display: inline-block;">
@@ -53,33 +67,33 @@
           </div>
           <div style="height: 60px; width:160px; border: 1px solid #999999; border-radius: 4px; display: inline-block;" align="center">
             <p>2단계 : 사이드 선택</p>
-            <p id="selectedSide">사이드 이름 (0원)</p>
+            <p class="selectedSide">-</p>
           </div>
           <div style="height: 60px; width:60px; display: inline-block;">
             <span style="height: 60px; width:40px; font-size: 40px; margin-left: 10px;" class="glyphicon glyphicon-menu-right"></span>
           </div>
           <div style="height: 60px; width:160px; border: 1px solid #999999; border-radius: 4px; display: inline-block;" align="center">
             <p>3단계 : 음료 선택</p>
-            <p id="selectedBeverage">음료 이름 (0원)</p>
+            <p class="selectedBeverage">-</p>
           </div>
         </div>
         
-        <!-- Selected Menu -->
+        <!-- Selected Burger Menu -->
         <div style="height: 220px; width:620px; margin: 10px; margin-top: 30px;">
         
           <!-- Preview Menu -->
           <div style="height: 220px; width:160px; border: 1px solid #999999; border-radius: 4px; display: inline-block; float: left" align="center">
             <div style="height: 120px; width:120px; border: 1px solid #999999; border-radius: 4px;  margin-top: 10px;">
-              <img id="previewBurgerImg" alt="" src="">
+              <img id="previewBurgerImg" alt="이미지 없음" src="">
             </div>
             <div style="height: 60px; width:140px; margin-top: 10px;">
               <div style="height: 60px; width:100px; display: inline-block; float: left;" align="left">
-                <b><p id="previewBurgerName" style="font-size: 12px; margin-bottom: 5px;">버거 이름</p></b>
-                <p id="previewBurgerPrice" style="font-size: 8px; margin-bottom: 5px;">버거 가격</p>
-                <p id="previewBurgerCal" style="font-size: 8px;  margin: 0px;">버거 칼로리</p>
+                <b><p id="previewBurgerName" style="font-size: 12px; margin-bottom: 5px;"></p></b>
+                <p id="previewBurgerPrice" style="font-size: 8px; margin-bottom: 5px;"></p>
+                <p id="previewBurgerCal" style="font-size: 8px;  margin: 0px;"></p>
               </div>
               <div style="height: 60px; width:40px; display: inline-block; float: left; ">
-                <button id="previewBurgerDelete" onclick="deleteBurger()" class="btn btn-danger" style="font-size: 8px; width:40px; height: 40px; padding-left: 8px; margin-top:10px;" hidden="hidden">삭제</button>
+                <button id="previewBurgerDelete" onclick="deleteBurger()" class="btn btn-danger" style="font-size: 8px; width:40px; height: 40px; padding-left: 8px; margin-top:10px; display: none;">삭제</button>
               </div>
             </div>
           </div>
@@ -89,199 +103,104 @@
           
             <div style="height: 18px; width:420px;"><p style="font-size: 10px;">DIY 버거</p></div>
             
-            <div id="diyBurgerCarousel" class="carousel slide" style="height: 200px; width:420px; border: 1px solid #999999; border-radius: 4px; background-color: #999999;">
+            <div id="diyBurgerCarousel" class="carousel slide" style="height: 200px; width:420px; border: 1px solid #383838; border-radius: 4px; background-color: #383838;">
                         
-	            <!-- Carousel items -->
-	            <div class="carousel-inner">
-	            
-	              <div class="item active" style="height: 200px; width:420px; ">
-                  <div style="height: 180px; width:120px; display: inline-block; margin:8px; border: 1px solid #424242; border-radius: 4px; cursor: pointer;" align="center" onclick='alert("asd");'>
-                    <div style="height: 100px; width:100px; border: 1px solid #999999; border-radius: 4px; margin-top: 10px;">
-			              <img src="http://placehold.it/100x100" style="border-radius: 4px;">
-			            </div>
-			            <div style="height: 60px; width:110px; margin-top: 10px;" align="left">
-                      <b><p id="previewBurgerName" style="font-size: 12px; margin-bottom: 3px;">버거 이름</p></b>
-		                <p id="previewBurgerPrice" style="font-size: 8px; margin-bottom: 3px;">버거 가격</p>
-		                <p id="previewBurgerCal" style="font-size: 8px;  margin: 0px;">버거 칼로리</p>
-                    </div>
+              <!-- Carousel items -->
+              <div class="carousel-inner">
+              <c:if test="${fn:length(BurgerListDiy) eq 0}">           
+                  <div class="item active" style="height: 200px; width:420px;">
+                    
                   </div>
-                  
-                  <div style="height: 180px; width:120px; display: inline-block; margin:8px; border: 1px solid #424242; border-radius: 4px; cursor: pointer;" align="center" onclick='alert("asd");'>
-                    <div style="height: 100px; width:100px; border: 1px solid #999999; border-radius: 4px; margin-top: 10px;">
-                    <img src="http://placehold.it/100x100" style="border-radius: 4px;">
+              </c:if>
+                
+              <c:forEach var="diyBurgerDto" items="${BurgerListDiy}" varStatus="status">
+                
+                <c:if test="${status.count%3 eq 1 and status.count eq 1}">           
+                  <div class="item active" style="height: 200px; width:420px;">
+                </c:if>
+                <c:if test="${status.count%3 eq 1 and status.count ne 1}">           
+                  <div class="item" style="height: 200px; width:420px;">
+                </c:if>
+                
+                    <div style="height: 180px; width:120px; display: inline-block; margin:8px; border: 1px solid #424242; border-radius: 4px; background-color: #e0e0e0; cursor: pointer;" align="center" onclick="saveBurger(${diyBurgerDto.seq}, ${diyBurgerDto.name}, ${diyBurgerDto.price}, ${diyBurgerDto.cal}, ${diyBurgerDto.image_Src})">
+	                    <div style="height: 100px; width:100px; border: 1px solid #999999; border-radius: 4px; margin-top: 10px;">
+	                    <img id="BurgerImg${diyBurgerDto.seq}" alt="이미지 없음" src="${diyBurgerDto.image_Src}" style="border-radius: 4px;">
+	                  </div>
+	                  <div style="height: 60px; width:110px; margin-top: 10px;" align="left">
+	                      <b><p id="BurgerName${diyBurgerDto.seq}" style="font-size: 12px; margin-bottom: 3px;">${diyBurgerDto.name}</p></b>
+	                    <p id="BurgerPrice${diyBurgerDto.seq}" style="font-size: 8px; margin-bottom: 3px;">${diyBurgerDto.price}</p>
+	                    <p id="BurgerCal${diyBurgerDto.seq}" style="font-size: 8px;  margin: 0px;">${diyBurgerDto.cal}</p>
+	                    </div>
+	                  </div>
+                
+                <c:if test="${status.count%3 eq 0}">
+                  </div> 
+                </c:if>
+                <c:if test="${status.count%3 eq 1 and status.count eq fn:length(BurgerListDiy)}">           
                   </div>
-                  <div style="height: 60px; width:110px; margin-top: 10px;" align="left">
-                      <b><p id="previewBurgerName" style="font-size: 12px; margin-bottom: 3px;">버거 이름</p></b>
-                    <p id="previewBurgerPrice" style="font-size: 8px; margin-bottom: 3px;">버거 가격</p>
-                    <p id="previewBurgerCal" style="font-size: 8px;  margin: 0px;">버거 칼로리</p>
-                    </div>
-                  </div>
-                  
-                  <div style="height: 180px; width:120px; display: inline-block; margin:8px; border: 1px solid #424242; border-radius: 4px; cursor: pointer;" align="center" onclick='alert("asd");'>
-                    <div style="height: 100px; width:100px; border: 1px solid #999999; border-radius: 4px; margin-top: 10px;">
-                    <img src="http://placehold.it/100x100" style="border-radius: 4px;">
-                  </div>
-                  <div style="height: 60px; width:110px; margin-top: 10px;" align="left">
-                      <b><p id="previewBurgerName" style="font-size: 12px; margin-bottom: 3px;">버거 이름</p></b>
-                    <p id="previewBurgerPrice" style="font-size: 8px; margin-bottom: 3px;">버거 가격</p>
-                    <p id="previewBurgerCal" style="font-size: 8px;  margin: 0px;">버거 칼로리</p>
-                    </div>
-                  </div>
-	              </div>
-	           
-	              <div class="item" style="height: 200px; width:420px; ">
-                  <div style="height: 180px; width:120px; display: inline-block; margin:8px; border: 1px solid #424242; border-radius: 4px; cursor: pointer;" align="center" onclick='alert("asd");'>
-                    <div style="height: 100px; width:100px; border: 1px solid #999999; border-radius: 4px; margin-top: 10px;">
-                    <img src="http://placehold.it/100x100" style="border-radius: 4px;">
-                  </div>
-                  <div style="height: 60px; width:110px; margin-top: 10px;" align="left">
-                      <b><p id="previewBurgerName" style="font-size: 12px; margin-bottom: 3px;">버거 이름</p></b>
-                    <p id="previewBurgerPrice" style="font-size: 8px; margin-bottom: 3px;">버거 가격</p>
-                    <p id="previewBurgerCal" style="font-size: 8px;  margin: 0px;">버거 칼로리</p>
-                    </div>
-                  </div>
-                  
-                  <div style="height: 180px; width:120px; display: inline-block; margin:8px; border: 1px solid #424242; border-radius: 4px; cursor: pointer;" align="center" onclick='alert("asd");'>
-                    <div style="height: 100px; width:100px; border: 1px solid #999999; border-radius: 4px; margin-top: 10px;">
-                    <img src="http://placehold.it/100x100" style="border-radius: 4px;">
-                  </div>
-                  <div style="height: 60px; width:110px; margin-top: 10px;" align="left">
-                      <b><p id="previewBurgerName" style="font-size: 12px; margin-bottom: 3px;">버거 이름</p></b>
-                    <p id="previewBurgerPrice" style="font-size: 8px; margin-bottom: 3px;">버거 가격</p>
-                    <p id="previewBurgerCal" style="font-size: 8px;  margin: 0px;">버거 칼로리</p>
-                    </div>
-                  </div>
-                  
-                  <div style="height: 180px; width:120px; display: inline-block; margin:8px; border: 1px solid #424242; border-radius: 4px; cursor: pointer;" align="center" onclick='alert("asd");'>
-                    <div style="height: 100px; width:100px; border: 1px solid #999999; border-radius: 4px; margin-top: 10px;">
-                    <img src="http://placehold.it/100x100" style="border-radius: 4px;">
-                  </div>
-                  <div style="height: 60px; width:110px; margin-top: 10px;" align="left">
-                      <b><p id="previewBurgerName" style="font-size: 12px; margin-bottom: 3px;">버거 이름</p></b>
-                    <p id="previewBurgerPrice" style="font-size: 8px; margin-bottom: 3px;">버거 가격</p>
-                    <p id="previewBurgerCal" style="font-size: 8px;  margin: 0px;">버거 칼로리</p>
-                    </div>
-                  </div>
-                </div>
-	          
-	            </div>
-	            
-	            <a data-slide="prev" href="#diyBurgerCarousel" class="left carousel-control" style="width: 30px;"><font size="50px;">‹</font></a>
-	            <a data-slide="next" href="#diyBurgerCarousel" class="right carousel-control" style="width: 30px;"><font size="50px;">›</font></a>
-	
-		        </div>
+                </c:if>
+                <c:if test="${status.count%3 eq 2 and status.count eq fn:length(BurgerListDiy)}">
+                  </div>      
+                </c:if>
+              </c:forEach>
+            
+              </div>
+              
+              <a data-slide="prev" href="#diyBurgerCarousel" class="left carousel-control" style="width: 30px;"><font size="50px;">‹</font></a>
+              <a data-slide="next" href="#diyBurgerCarousel" class="right carousel-control" style="width: 30px;"><font size="50px;">›</font></a>
+  
+            </div>
           </div>
         </div>
         
-        <!-- Select Menu -->
+        <!-- Select Burger Menu -->
         <div style="height: 220px; width:620px; margin: 10px; margin-top: 10px;">
           
             <div style="height: 18px; width:620px;"><p style="font-size: 10px;">버거벅스 버거</p></div>
             
-            <div id="BurgerCarousel" class="carousel slide" style="height: 200px; width:620px; border: 1px solid #999999; border-radius: 4px; background-color: #999999; padding-left: 30px;">
-                        
+            <div id="BurgerCarousel" class="carousel slide" style="height: 200px; width:620px; border: 1px solid #999999; border-radius: 4px; background-color: #383838; padding-left: 30px;">
+                     
               <!-- Carousel items -->
               <div class="carousel-inner">
-              
-                <div class="item active" style="height: 200px; width:620px; ">
-                  <div style="height: 180px; width:120px; display: inline-block; margin:8px; border: 1px solid #424242; border-radius: 4px; cursor: pointer;" align="center" onclick='alert("asd");'>
-                    <div style="height: 100px; width:100px; border: 1px solid #999999; border-radius: 4px; margin-top: 10px;">
-                    <img src="http://placehold.it/100x100" style="border-radius: 4px;">
-                  </div>
-                  <div style="height: 60px; width:110px; margin-top: 10px;" align="left">
-                      <b><p id="previewBurgerName" style="font-size: 12px; margin-bottom: 3px;">버거 이름</p></b>
-                    <p id="previewBurgerPrice" style="font-size: 8px; margin-bottom: 3px;">버거 가격</p>
-                    <p id="previewBurgerCal" style="font-size: 8px;  margin: 0px;">버거 칼로리</p>
-                    </div>
-                  </div>
-                  
-                  <div style="height: 180px; width:120px; display: inline-block; margin:8px; border: 1px solid #424242; border-radius: 4px; cursor: pointer;" align="center" onclick='alert("asd");'>
-                    <div style="height: 100px; width:100px; border: 1px solid #999999; border-radius: 4px; margin-top: 10px;">
-                    <img src="http://placehold.it/100x100" style="border-radius: 4px;">
-                  </div>
-                  <div style="height: 60px; width:110px; margin-top: 10px;" align="left">
-                      <b><p id="previewBurgerName" style="font-size: 12px; margin-bottom: 3px;">버거 이름</p></b>
-                    <p id="previewBurgerPrice" style="font-size: 8px; margin-bottom: 3px;">버거 가격</p>
-                    <p id="previewBurgerCal" style="font-size: 8px;  margin: 0px;">버거 칼로리</p>
-                    </div>
-                  </div>
-                  
-                  <div style="height: 180px; width:120px; display: inline-block; margin:8px; border: 1px solid #424242; border-radius: 4px; cursor: pointer;" align="center" onclick='alert("asd");'>
-                    <div style="height: 100px; width:100px; border: 1px solid #999999; border-radius: 4px; margin-top: 10px;">
-                    <img src="http://placehold.it/100x100" style="border-radius: 4px;">
-                  </div>
-                  <div style="height: 60px; width:110px; margin-top: 10px;" align="left">
-                      <b><p id="previewBurgerName" style="font-size: 12px; margin-bottom: 3px;">버거 이름</p></b>
-                    <p id="previewBurgerPrice" style="font-size: 8px; margin-bottom: 3px;">버거 가격</p>
-                    <p id="previewBurgerCal" style="font-size: 8px;  margin: 0px;">버거 칼로리</p>
-                    </div>
-                  </div>
-                  
-                  <div style="height: 180px; width:120px; display: inline-block; margin:8px; border: 1px solid #424242; border-radius: 4px; cursor: pointer;" align="center" onclick='alert("asd");'>
-                    <div style="height: 100px; width:100px; border: 1px solid #999999; border-radius: 4px; margin-top: 10px;">
-                    <img src="http://placehold.it/100x100" style="border-radius: 4px;">
-                  </div>
-                  <div style="height: 60px; width:110px; margin-top: 10px;" align="left">
-                      <b><p id="previewBurgerName" style="font-size: 12px; margin-bottom: 3px;">버거 이름</p></b>
-                    <p id="previewBurgerPrice" style="font-size: 8px; margin-bottom: 3px;">버거 가격</p>
-                    <p id="previewBurgerCal" style="font-size: 8px;  margin: 0px;">버거 칼로리</p>
-                    </div>
-                  </div>
-                </div>
+              <c:forEach var="defaultBurgerDto" items="${BurgerListDefault}" varStatus="status">
                 
-                <div class="item" style="height: 200px; width:620px; ">
-                  <div style="height: 180px; width:120px; display: inline-block; margin:8px; border: 1px solid #424242; border-radius: 4px; cursor: pointer;" align="center" onclick='alert("asd");'>
-                    <div style="height: 100px; width:100px; border: 1px solid #999999; border-radius: 4px; margin-top: 10px;">
-                    <img src="http://placehold.it/100x100" style="border-radius: 4px;">
-                  </div>
-                  <div style="height: 60px; width:110px; margin-top: 10px;" align="left">
-                      <b><p id="previewBurgerName" style="font-size: 12px; margin-bottom: 3px;">버거 이름</p></b>
-                    <p id="previewBurgerPrice" style="font-size: 8px; margin-bottom: 3px;">버거 가격</p>
-                    <p id="previewBurgerCal" style="font-size: 8px;  margin: 0px;">버거 칼로리</p>
+                <c:if test="${status.count%4 eq 1 and status.count eq 1}">           
+                  <div class="item active" style="height: 200px; width:620px;">
+                </c:if>
+                <c:if test="${status.count%4 eq 1 and status.count ne 1}">           
+                  <div class="item" style="height: 200px; width:620px;">
+                </c:if>
+                
+                    <div style="height: 180px; width:120px; display: inline-block; margin:8px; border: 1px solid #424242; border-radius: 4px; background-color: #e0e0e0; cursor: pointer;" align="center" onclick="saveBurger(${defaultBurgerDto.seq})">
+                      <div style="height: 100px; width:100px; border: 1px solid #999999; border-radius: 4px; margin-top: 10px;">
+                        <img id="BurgerImg${defaultBurgerDto.seq}" alt="이미지 없음" src="${defaultBurgerDto.image_Src}" style="border-radius: 4px;">
+                      </div>
+                      <div style="height: 60px; width:110px; margin-top: 10px;" align="left">
+                        <b><p id="BurgerName${defaultBurgerDto.seq}" style="font-size: 12px; margin-bottom: 3px;">${defaultBurgerDto.name}</p></b>
+                        <p id="BurgerPrice${defaultBurgerDto.seq}" style="font-size: 8px; margin-bottom: 3px;">${defaultBurgerDto.price}</p>
+                        <p id="BurgerCal${defaultBurgerDto.seq}" style="font-size: 8px;  margin: 0px;">${defaultBurgerDto.cal}</p>
+                      </div>
                     </div>
+                
+                <c:if test="${status.count%4 eq 0}">
+                  </div> 
+                </c:if>
+                <c:if test="${status.count%4 eq 1 and status.count eq fn:length(BurgerListDefault)}">           
                   </div>
-                  
-                  <div style="height: 180px; width:120px; display: inline-block; margin:8px; border: 1px solid #424242; border-radius: 4px; cursor: pointer;" align="center" onclick='alert("asd");'>
-                    <div style="height: 100px; width:100px; border: 1px solid #999999; border-radius: 4px; margin-top: 10px;">
-                    <img src="http://placehold.it/100x100" style="border-radius: 4px;">
-                  </div>
-                  <div style="height: 60px; width:110px; margin-top: 10px;" align="left">
-                      <b><p id="previewBurgerName" style="font-size: 12px; margin-bottom: 3px;">버거 이름</p></b>
-                    <p id="previewBurgerPrice" style="font-size: 8px; margin-bottom: 3px;">버거 가격</p>
-                    <p id="previewBurgerCal" style="font-size: 8px;  margin: 0px;">버거 칼로리</p>
-                    </div>
-                  </div>
-                  
-                  <div style="height: 180px; width:120px; display: inline-block; margin:8px; border: 1px solid #424242; border-radius: 4px; cursor: pointer;" align="center" onclick='alert("asd");'>
-                    <div style="height: 100px; width:100px; border: 1px solid #999999; border-radius: 4px; margin-top: 10px;">
-                    <img src="http://placehold.it/100x100" style="border-radius: 4px;">
-                  </div>
-                  <div style="height: 60px; width:110px; margin-top: 10px;" align="left">
-                      <b><p id="previewBurgerName" style="font-size: 12px; margin-bottom: 3px;">버거 이름</p></b>
-                    <p id="previewBurgerPrice" style="font-size: 8px; margin-bottom: 3px;">버거 가격</p>
-                    <p id="previewBurgerCal" style="font-size: 8px;  margin: 0px;">버거 칼로리</p>
-                    </div>
-                  </div>
-                  
-                  <div style="height: 180px; width:120px; display: inline-block; margin:8px; border: 1px solid #424242; border-radius: 4px; cursor: pointer;" align="center" onclick='alert("asd");'>
-                    <div style="height: 100px; width:100px; border: 1px solid #999999; border-radius: 4px; margin-top: 10px;">
-                    <img src="http://placehold.it/100x100" style="border-radius: 4px;">
-                  </div>
-                  <div style="height: 60px; width:110px; margin-top: 10px;" align="left">
-                      <b><p id="previewBurgerName" style="font-size: 12px; margin-bottom: 3px;">버거 이름</p></b>
-                    <p id="previewBurgerPrice" style="font-size: 8px; margin-bottom: 3px;">버거 가격</p>
-                    <p id="previewBurgerCal" style="font-size: 8px;  margin: 0px;">버거 칼로리</p>
-                    </div>
-                  </div>
-                </div>
-            
+                </c:if>
+                <c:if test="${status.count%4 eq 2 and status.count eq fn:length(BurgerListDefault)}">
+                  </div>      
+                </c:if>
+                <c:if test="${status.count%4 eq 3 and status.count eq fn:length(BurgerListDefault)}">
+                  </div>      
+                </c:if>
+              </c:forEach>
               </div>
               
               <a data-slide="prev" href="#BurgerCarousel" class="left carousel-control" style="width: 30px;"><font size="50px;">‹</font></a>
               <a data-slide="next" href="#BurgerCarousel" class="right carousel-control" style="width: 30px;"><font size="50px;">›</font></a>
-  
-            </div>
-          
+            </div> 
+            
         </div>
         
         <!-- Add DIY Burger Button -->
@@ -291,7 +210,7 @@
         
         <!-- Next & Previous Step -->
         <div style="height: 60px; width:620px; margin: 10px; margin-top: 40px;" align="center">
-          <button type="button" class="btn btn-info" onclick='$("#selectBurger").attr("hidden","hidden"); $("#selectSide").removeAttr("hidden");'>
+          <button type="button" class="btn btn-info" onclick='$("#selectBurgerDiv").attr("hidden","hidden"); $("#selectSideDiv").removeAttr("hidden");'>
             <span class="glyphicon glyphicon-chevron-right"></span><br>
             <font>사이드 메뉴 선택</font>
           </button>
@@ -299,24 +218,27 @@
                
       </div>
       
-      <!-- Select Side -->
-      <div id="selectSide" style="height: 800px; width:640px; border: 1px solid #999999; border-radius: 4px;" hidden="hidden">
-        <div style="height: 40px; width:620px; margin: 10px; margin-top: 30px;">
-          <div style="display: inline-block; float: left;">
-            <div class="input-group" style="width: 300px;">
-              <span class="input-group-addon">메뉴 이름</span>
-              <input id="login_id" type="text" class="form-control menu_name" placeholder="메뉴의 이름을 입력하세요" onblur="saveMenuName(this)" style="width: 200px;">
-            </div>
-          </div>
-          
-          <a onclick='cancelMenu()' style="height: 40px; width: 20px; display: inline-block; float: right;"><span class="glyphicon glyphicon-remove"></span></a>
-          
+      <!-- Select Side Div -->
+      <div id="selectSideDiv" style="height: 800px; width:640px; border: 1px solid #999999; border-radius: 4px;" hidden="hidden">
+        
+        <!-- Cancel Button -->
+        <div style="height: 30px; width:620px; margin: 10px; margin-top: 10px;">
+          <span style="height: 30px; width: 30px; font-size: 20px; float: right; cursor: pointer;" onclick='cancelMenu()' class="glyphicon glyphicon-remove"></span>
         </div>
         
-        <div style="height: 60px; width:620px; margin: 10px; margin-top: 30px;">
+        <!-- Menu Name -->
+        <div style="height: 40px; width:620px; margin: 10px; margin-top: 10px;">
+          <div class="input-group" style="width: 300px;">
+            <span class="input-group-addon">메뉴 이름</span>
+            <input id="login_id" type="text" class="form-control menu_name" placeholder="메뉴의 이름을 입력하세요" onblur="saveMenuName(this)" style="width: 200px;">
+          </div>
+        </div>
+        
+        <!-- Step Indication -->
+        <div style="height: 60px; width:620px; margin: 10px; margin-top: 20px;">
           <div style="height: 60px; width:160px; border: 1px solid #999999; border-radius: 4px; display: inline-block;" align="center">
             <p>1단계 : 버거 선택</p>
-            <p id="selectedBurger">햄버거 이름 (0원)</p>
+            <p class="selectedBurger">-</p>
           </div>
           <div style="height: 60px; width:60px; display: inline-block;">
             <span style="height: 60px; width:40px; font-size: 40px; margin-left: 10px;" class="glyphicon glyphicon-menu-right"></span>
@@ -324,7 +246,7 @@
           <div style="height: 60px; width:160px; border: 2px solid #999999; border-radius: 4px; display: inline-block;" align="center">
             <b>
 	            <p>2단계 : 사이드 선택</p>
-	            <p id="selectedSide">사이드 이름 (0원)</p>
+	            <p class="selectedSide">-</p>
             </b>
           </div>
           <div style="height: 60px; width:60px; display: inline-block;">
@@ -332,110 +254,343 @@
           </div>
           <div style="height: 60px; width:160px; border: 1px solid #999999; border-radius: 4px; display: inline-block;" align="center">
             <p>3단계 : 음료 선택</p>
-            <p id="selectedBeverage">음료 이름 (0원)</p>
+            <p class="selectedBeverage">-</p>
           </div>
         </div>
         
-        <div style="height: 400px; width:620px; margin: 10px; margin-top: 30px;">
+        <!-- Selected Side Menu -->
+        <div style="height: 220px; width:620px; margin: 10px; margin-top: 30px;">
+        
+          <!-- Preview Menu -->
+          <div style="height: 220px; width:160px; border: 1px solid #999999; border-radius: 4px; display: inline-block; float: left" align="center">
+            <div style="height: 120px; width:120px; border: 1px solid #999999; border-radius: 4px;  margin-top: 10px;">
+              <img id="previewSideImg" alt="이미지 없음" src="">
+            </div>
+            <div style="height: 60px; width:140px; margin-top: 10px;">
+              <div style="height: 60px; width:100px; display: inline-block; float: left;" align="left">
+                <b><p id="previewSideName" style="font-size: 12px; margin-bottom: 5px;"></p></b>
+                <p id="previewSidePrice" style="font-size: 8px; margin-bottom: 5px;"></p>
+                <p id="previewSideCal" style="font-size: 8px;  margin: 0px;"></p>
+              </div>
+              <div style="height: 60px; width:40px; display: inline-block; float: left; ">
+                <button id="previewSideDelete" onclick="deleteSide()" class="btn btn-danger" style="font-size: 8px; width:40px; height: 40px; padding-left: 8px; margin-top:10px; display: none;">삭제</button>
+              </div>
+            </div>
+          </div>
         </div>
         
-        <div style="height: 60px; width:620px; margin: 10px; margin-top: 20px;">
-          <button onclick='$("#selectSide").attr("hidden","hidden"); $("#selectBurger").removeAttr("hidden");'>버거 선택</button>
-          <button onclick='$("#selectSide").attr("hidden","hidden"); $("#selectBeverage").removeAttr("hidden");'>음료 선택</button>
+        <!-- Select Side Menu -->
+        <div style="height: 220px; width:620px; margin: 10px; margin-top: 10px;" >
+          
+            <div style="height: 18px; width:620px;"><p style="font-size: 10px;">버거벅스 사이드 메뉴</p></div>
+            
+            <div id="SideCarousel" class="carousel slide" style="height: 200px; width:620px; border: 1px solid #999999; border-radius: 4px; background-color: #383838; padding-left: 30px;">
+                     
+              <!-- Carousel items -->
+              <div class="carousel-inner">
+              
+              <c:forEach var="SideDto" items="${SideList}" varStatus="status">
+                <c:if test="${status.count%4 eq 1 and status.count eq 1}">           
+                  <div class="item active" style="height: 200px; width:620px;">
+                </c:if>
+                <c:if test="${status.count%4 eq 1 and status.count ne 1}">           
+                  <div class="item" style="height: 200px; width:620px;">
+                </c:if>
+                
+                    <div style="height: 180px; width:120px; display: inline-block; margin:8px; border: 1px solid #424242; border-radius: 4px; background-color: #e0e0e0; cursor: pointer;" align="center" onclick="saveSide(${SideDto.seq})">
+                      <div style="height: 100px; width:100px; border: 1px solid #999999; border-radius: 4px; margin-top: 10px;">
+                        <img id="SideImg${SideDto.seq}" alt="이미지 없음" src="${SideDto.image_Src}" style="border-radius: 4px;">
+                      </div>
+                      <div style="height: 60px; width:110px; margin-top: 10px;" align="left">
+                        <b><p id="SideName${SideDto.seq}" style="font-size: 12px; margin-bottom: 3px;">${SideDto.name}</p></b>
+                        <p id="SidePrice${SideDto.seq}" style="font-size: 8px; margin-bottom: 3px;">${SideDto.price}</p>
+                        <p id="SideCal${SideDto.seq}" style="font-size: 8px;  margin: 0px;">${SideDto.cal}</p>
+                      </div>
+                    </div>
+                
+                <c:if test="${status.count%4 eq 0}">
+                  </div> 
+                </c:if>
+                <c:if test="${status.count%4 eq 1 and status.count eq fn:length(SideList)}">           
+                  </div>
+                </c:if>
+                <c:if test="${status.count%4 eq 2 and status.count eq fn:length(SideList)}">
+                  </div>      
+                </c:if>
+                <c:if test="${status.count%4 eq 3 and status.count eq fn:length(SideList)}">
+                  </div>      
+                </c:if>
+              </c:forEach>
+              
+              </div>
+              
+              <a data-slide="prev" href="#SideCarousel" class="left carousel-control" style="width: 30px;"><font size="50px;">‹</font></a>
+              <a data-slide="next" href="#SideCarousel" class="right carousel-control" style="width: 30px;"><font size="50px;">›</font></a>
+            </div> 
+            
+        </div>                
+        
+        <!-- Next & Previous Step -->
+        <div style="height: 60px; width:620px; margin: 10px; margin-top: 90px;" align="center">
+          <button type="button" class="btn btn-info" onclick='$("#selectSideDiv").attr("hidden","hidden"); $("#selectBurgerDiv").removeAttr("hidden");'>
+            <span class="glyphicon glyphicon-chevron-left"></span><br>
+            <font>버거 메뉴 선택</font>
+          </button>
+          
+          <button type="button" class="btn btn-info" onclick='$("#selectSideDiv").attr("hidden","hidden"); $("#selectBeverageDiv").removeAttr("hidden");'>
+            <span class="glyphicon glyphicon-chevron-right"></span><br>
+            <font>음료 메뉴 선택</font>
+          </button>
         </div>
                 
       </div>
       
-      <!-- Select Beverage -->
-      <div id="selectBeverage" style="height: 800px; width:640px; border: 1px solid #999999; border-radius: 4px;" hidden="hidden">
-        <div style="height: 40px; width:620px; margin: 10px; margin-top: 30px;">
-          <div style="display: inline-block; float: left;">
-            <div class="input-group" style="width: 300px;">
-              <span class="input-group-addon">메뉴 이름</span>
-              <input id="login_id" type="text" class="form-control menu_name" placeholder="메뉴의 이름을 입력하세요" onblur="saveMenuName(this)" style="width: 200px;">
-            </div>
-          </div>
-          
-          <a onclick='cancelMenu()' style="height: 40px; width: 20px; display: inline-block; float: right;"><span class="glyphicon glyphicon-remove"></span></a>
-          
+      <!-- Select Beverage Div -->
+      <div id="selectBeverageDiv" style="height: 800px; width:640px; border: 1px solid #999999; border-radius: 4px;" hidden="hidden">
+        
+        <!-- Cancel Button -->
+        <div style="height: 30px; width:620px; margin: 10px; margin-top: 10px;">
+          <span style="height: 30px; width: 30px; font-size: 20px; float: right; cursor: pointer;" onclick='cancelMenu()' class="glyphicon glyphicon-remove"></span>
         </div>
         
-        <div style="height: 60px; width:620px; margin: 10px; margin-top: 30px;">
+        <!-- Menu Name -->
+        <div style="height: 40px; width:620px; margin: 10px; margin-top: 10px;">
+          <div class="input-group" style="width: 300px;">
+            <span class="input-group-addon">메뉴 이름</span>
+            <input id="login_id" type="text" class="form-control menu_name" placeholder="메뉴의 이름을 입력하세요" onblur="saveMenuName(this)" style="width: 200px;">
+          </div>
+        </div>
+        
+        <!-- Step Indication -->
+        <div style="height: 60px; width:620px; margin: 10px; margin-top: 20px;">
           <div style="height: 60px; width:160px; border: 1px solid #999999; border-radius: 4px; display: inline-block;" align="center">
-	          <p>1단계 : 버거 선택</p>
-	          <p id="selectedBurger">햄버거 이름 (0원)</p>
+            <p>1단계 : 버거 선택</p>
+            <p class="selectedBurger">-</p>
           </div>
           <div style="height: 60px; width:60px; display: inline-block;">
             <span style="height: 60px; width:40px; font-size: 40px; margin-left: 10px;" class="glyphicon glyphicon-menu-right"></span>
           </div>
           <div style="height: 60px; width:160px; border: 1px solid #999999; border-radius: 4px; display: inline-block;" align="center">
             <p>2단계 : 사이드 선택</p>
-            <p id="selectedSide">사이드 이름 (0원)</p>
+            <p class="selectedSide">-</p>
           </div>
           <div style="height: 60px; width:60px; display: inline-block;">
             <span style="height: 60px; width:40px; font-size: 40px; margin-left: 10px;" class="glyphicon glyphicon-menu-right"></span>
           </div>
           <div style="height: 60px; width:160px; border: 2px solid #999999; border-radius: 4px; display: inline-block;" align="center">
             <b>
-		          <p>3단계 : 음료 선택</p>
-		          <p id="selectedBeverage">음료 이름 (0원)</p>
+	            <p>3단계 : 음료 선택</p>
+	            <p class="selectedBeverage">-</p>
             </b>
           </div>
         </div>
         
-        <div style="height: 400px; width:620px; margin: 10px; margin-top: 30px;">
+        <!-- Selected Beverage Menu -->
+        <div style="height: 220px; width:620px; margin: 10px; margin-top: 30px;">
+        
+          <!-- Preview Menu -->
+          <div style="height: 220px; width:160px; border: 1px solid #999999; border-radius: 4px; display: inline-block; float: left" align="center">
+            <div style="height: 120px; width:120px; border: 1px solid #999999; border-radius: 4px;  margin-top: 10px;">
+              <img id="previewBeverageImg" alt="이미지 없음" src="">
+            </div>
+            <div style="height: 60px; width:140px; margin-top: 10px;">
+              <div style="height: 60px; width:100px; display: inline-block; float: left;" align="left">
+                <b><p id="previewBeverageName" style="font-size: 12px; margin-bottom: 5px;"></p></b>
+                <p id="previewBeveragePrice" style="font-size: 8px; margin-bottom: 5px;"></p>
+                <p id="previewBeverageCal" style="font-size: 8px;  margin: 0px;"></p>
+              </div>
+              <div style="height: 60px; width:40px; display: inline-block; float: left; ">
+                <button id="previewBeverageDelete" onclick="deleteBeverage()" class="btn btn-danger" style="font-size: 8px; width:40px; height: 40px; padding-left: 8px; margin-top:10px; display: none;">삭제</button>
+              </div>
+            </div>
+          </div>
         </div>
         
-        <div style="height: 60px; width:620px; margin: 10px; margin-top: 20px;">
-          <button onclick='$("#selectBeverage").attr("hidden","hidden"); $("#selectSide").removeAttr("hidden");'>사이드 메뉴 선택</button>  
-          <button onclick="addCart()">메뉴 구성 완료</button>
-        </div>
+        <!-- Select Beverage Menu -->
+        <div style="height: 220px; width:620px; margin: 10px; margin-top: 10px;">
+          
+            <div style="height: 18px; width:620px;"><p style="font-size: 10px;">버거벅스 음료 메뉴</p></div>
+            
+            <div id="BeverageCarousel" class="carousel slide" style="height: 200px; width:620px; border: 1px solid #999999; border-radius: 4px; background-color: #383838; padding-left: 30px;">
+                     
+              <!-- Carousel items -->
+              <div class="carousel-inner">
+              
+              <c:forEach var="BeverageDto" items="${BeverageList}" varStatus="status">
+                <c:if test="${status.count%4 eq 1 and status.count eq 1}">           
+                  <div class="item active" style="height: 200px; width:620px;">
+                </c:if>
+                <c:if test="${status.count%4 eq 1 and status.count ne 1}">           
+                  <div class="item" style="height: 200px; width:620px;">
+                </c:if>
+                
+                    <div style="height: 180px; width:120px; display: inline-block; margin:8px; border: 1px solid #424242; border-radius: 4px; background-color: #e0e0e0; cursor: pointer;" align="center" onclick="saveBeverage(${BeverageDto.seq})">
+                      <div style="height: 100px; width:100px; border: 1px solid #999999; border-radius: 4px; margin-top: 10px;">
+                        <img id="BeverageImg${BeverageDto.seq}" alt="이미지 없음" src="${BeverageDto.image_Src}" style="border-radius: 4px;">
+                      </div>
+                      <div style="height: 60px; width:110px; margin-top: 10px;" align="left">
+                        <b><p id="BeverageName${BeverageDto.seq}" style="font-size: 12px; margin-bottom: 3px;">${BeverageDto.name}</p></b>
+                        <p id="BeveragePrice${BeverageDto.seq}" style="font-size: 8px; margin-bottom: 3px;">${BeverageDto.price}</p>
+                        <p id="BeverageCal${BeverageDto.seq}" style="font-size: 8px;  margin: 0px;">${BeverageDto.cal}</p>
+                      </div>
+                    </div>
+                
+                <c:if test="${status.count%4 eq 0}">
+                  </div> 
+                </c:if>
+                <c:if test="${status.count%4 eq 1 and status.count eq fn:length(BeverageList)}">           
+                  </div>
+                </c:if>
+                <c:if test="${status.count%4 eq 2 and status.count eq fn:length(BeverageList)}">
+                  </div>      
+                </c:if>
+                <c:if test="${status.count%4 eq 3 and status.count eq fn:length(BeverageList)}">
+                  </div>      
+                </c:if>
+              </c:forEach>
+              
+              </div>
+              
+              <a data-slide="prev" href="#BeverageCarousel" class="left carousel-control" style="width: 30px;"><font size="50px;">‹</font></a>
+              <a data-slide="next" href="#BeverageCarousel" class="right carousel-control" style="width: 30px;"><font size="50px;">›</font></a>
+            </div> 
+            
+        </div>                
         
+        <!-- Next & Previous Step -->
+        <div style="height: 60px; width:620px; margin: 10px; margin-top: 90px;" align="center">
+          <button type="button" class="btn btn-info" onclick='$("#selectBeverageDiv").attr("hidden","hidden"); $("#selectSideDiv").removeAttr("hidden");'>
+            <span class="glyphicon glyphicon-chevron-left"></span><br>
+            <font>사이드 메뉴 선택</font>
+          </button>
+          
+          <button type="button" class="btn btn-info" onclick='saveCart()'>
+            <span class="glyphicon glyphicon glyphicon-shopping-cart"></span><br>
+            <font>장바구니에 저장</font>
+          </button>
+        </div>
+                
       </div>
       
-      <!-- Order End -->
+      <!-- Order End Div-->
       <div id="orderMenu" style="height: 800px; width:640px; border: 1px solid #999999; border-radius: 4px;" hidden="hidden">
         <p>결제 DIV 영역</p>
       </div>
       
       <!-- Add Cart Script -->
       <script type="text/javascript">
+      var newCart = true;
+      var editCartSeq = null;
+      
       var cartHeight = 1;
       var menuName = null;
-      var burgerSeq = null, burgerName = null, burgerPrice = null, burgerCal = null;
-      var sideSeq = null, sideName = null, sidePrice = null, sideCal = null;
-      var beverageSeq = null, beverageName = null, beveragePrice = null, beverageCal = null;
+      var burgerSeq = null, sideSeq = null, beverageSeq = null;
+      var burgerPrice = null, sidePrice = null, beveragePrice = null;
+      var burgerCal = null, sideCal = null, beverageCal = null;
       
       function saveMenuName(input){
         menuName = input.value;
         $(".menu_name").val(input.value);
       }
       
-      function saveBurger(){
-        menuName = input.value;
-        $(".menu_name").val(input.value);
+      function saveBurger(inputSeq){
+        burgerSeq = inputSeq;
+        burgerPrice = $("#BurgerPrice" + inputSeq).text();
+        burgerCal = $("#BurgerCal" + inputSeq).text();        
+        
+        $("#previewBurgerDelete").css("display", "");
+        
+        $(".selectedBurger").text($("#BurgerName" + inputSeq).text() + "(" + $("#BurgerPrice" + inputSeq).text() + "원)");
+        
+        $("#previewBurgerImg").attr("src", $("#BurgerImg" + inputSeq).attr("src"));
+        $("#previewBurgerName").text($("#BurgerName" + inputSeq).text());
+        $("#previewBurgerPrice").text($("#BurgerPrice" + inputSeq).text());
+        $("#previewBurgerCal").text($("#BurgerCal" + inputSeq).text());
       }
       
-      function saveSide(){
-        menuName = input.value;
-        $(".menu_name").val(input.value);
+      function deleteBurger(){
+        burgerSeq = null;
+        burgerPrice = null;
+        burgerCal = null;
+        
+        $("#previewBurgerDelete").css("display", "none");
+        
+        $(".selectedBurger").text("-");
+        
+        $("#previewBurgerImg").attr("src", "");
+        $("#previewBurgerName").text("");
+        $("#previewBurgerPrice").text("");
+        $("#previewBurgerCal").text("");
       }
       
-      function saveBevarage(){
-        menuName = input.value;
-        $(".menu_name").val(input.value);
+      function saveSide(inputSeq){
+        sideSeq = inputSeq;
+        sidePrice = $("#SidePrice" + inputSeq).text();
+        sideCal = $("#SideCal" + inputSeq).text(); 
+        
+        $("#previewSideDelete").css("display", "");
+        
+        $(".selectedSide").text($("#SideName" + inputSeq).text() + "(" + $("#SidePrice" + inputSeq).text() + "원)");
+        
+        $("#previewSideImg").attr("src", $("#SideImg" + inputSeq).attr("src"));
+        $("#previewSideName").text($("#SideName" + inputSeq).text());
+        $("#previewSidePrice").text($("#SidePrice" + inputSeq).text());
+        $("#previewSideCal").text($("#SideCal" + inputSeq).text());
+      }
+      
+      function deleteSide(){
+        sideSeq = null;
+        sidePrice = null;
+        sideCal = null; 
+        
+        $("#previewSideDelete").css("display", "none");
+        
+        $(".selectedSide").text("-");
+        
+        $("#previewSideImg").attr("src", "");
+        $("#previewSideName").text("");
+        $("#previewSidePrice").text("");
+        $("#previewSideCal").text("");
+      }
+      
+      function saveBeverage(inputSeq){
+        beverageSeq = inputSeq;
+        beveragePrice = $("#BeveragePrice" + inputSeq).text();
+        beverageCal = $("#BeverageCal" + inputSeq).text(); 
+        
+        $("#previewBeverageDelete").css("display", "");
+        
+        $(".selectedBeverage").text($("#BeverageName" + inputSeq).text() + "(" + $("#BeveragePrice" + inputSeq).text() + "원)");
+        
+        $("#previewBeverageImg").attr("src", $("#BeverageImg" + inputSeq).attr("src"));
+        $("#previewBeverageName").text($("#BeverageName" + inputSeq).text());
+        $("#previewBeveragePrice").text($("#BeveragePrice" + inputSeq).text());
+        $("#previewBeverageCal").text($("#BeverageCal" + inputSeq).text());
+      }
+      
+      function deleteBeverage(){
+        beverageSeq = null;
+        beveragePrice = null;
+        beverageCal = null;
+        
+        $("#previewBeverageDelete").css("display", "none");
+        
+        $(".selectedBeverage").text("-");
+        
+        $("#previewBeverageImg").attr("src", "");
+        $("#previewBeverageName").text("");
+        $("#previewBeveragePrice").text("");
+        $("#previewBeverageCal").text("");
       }
       
       function newMenu() {
         if (cartHeight >= 7){
-          alert("장바구니가 가득 차서 상품을 담을 수 없습니다.");
+          alert("장바구니가 가득차서 새로운 메뉴를 추가할 수 없습니다.");
           return;
         }
         
-        menuName = null;
-        
-        $("#selectMenu").attr("hidden","hidden");
-        $("#selectBurger").removeAttr("hidden");
+        $("#selectMenuDiv").attr("hidden","hidden");
+        $("#selectBurgerDiv").removeAttr("hidden");
         
       }
       
@@ -443,10 +598,45 @@
         
         menuName = null;
         
-        $("#selectBurger").attr("hidden","hidden");
-        $("#selectBeverage").attr("hidden","hidden");
-        $("#selectSide").attr("hidden","hidden");
-        $("#selectMenu").removeAttr("hidden");
+        burgerSeq = null;
+        burgerPrice = null;
+        burgerCal = null;
+        
+        sideSeq = null;
+        sidePrice = null;
+        sideCal = null; 
+        
+        beverageSeq = null;
+        beveragePrice = null;
+        beverageCal = null;
+        
+        $("#previewBurgerDelete").css("display", "none");
+        $("#previewSideDelete").css("display", "none");
+        $("#previewBeverageDelete").css("display", "none");
+        
+        $(".selectedBurger").text("-");
+        $(".selectedSide").text("-");
+        $(".selectedBeverage").text("-");
+        
+        $("#previewBurgerImg").attr("src", "");
+        $("#previewBurgerName").text("");
+        $("#previewBurgerPrice").text("");
+        $("#previewBurgerCal").text("");
+        
+        $("#previewSideImg").attr("src", "");
+        $("#previewSideName").text("");
+        $("#previewSidePrice").text("");
+        $("#previewSideCal").text("");
+        
+        $("#previewBeverageImg").attr("src", "");
+        $("#previewBeverageName").text("");
+        $("#previewBeveragePrice").text("");
+        $("#previewBeverageCal").text("");
+        
+        $("#selectBurgerDiv").attr("hidden","hidden");
+        $("#selectBeverageDiv").attr("hidden","hidden");
+        $("#selectSideDiv").attr("hidden","hidden");
+        $("#selectMenuDiv").removeAttr("hidden");
         
       }
       
@@ -454,22 +644,59 @@
         
         menuName = null;
         
-        $("#selectMenu").attr("hidden","hidden");
-        $("#selectBurger").attr("hidden","hidden");
-        $("#selectBeverage").attr("hidden","hidden");
-        $("#selectSide").attr("hidden","hidden");
+        $("#selectMenuDiv").attr("hidden","hidden");
+        $("#selectBurgerDiv").attr("hidden","hidden");
+        $("#selectBeverageDiv").attr("hidden","hidden");
+        $("#selectSideDiv").attr("hidden","hidden");
         $("#orderMenu").removeAttr("hidden");  
         
       }
       
-			function addCart(){
-			  $("#cartList").append("<div style='margin-top:10px; border: 1px solid #999999; border-radius: 4px; height: 60px; width:330px;'></div>");
-        $("#cartDiv").height(40+(cartHeight*70));
-        cartHeight ++;
+      function saveCart(){
+        if(menuName == "" || menuName == null) {
+          alert("메뉴 이름을 입력해주세요.");
+          return;
+        }
         
-        $("#selectBeverage").attr("hidden","hidden");
-        $("#selectMenu").removeAttr("hidden");
-			}
+        if(burgerSeq == null && beverageSeq == null && sideSeq == null) {
+          alert("최소 1개 이상의 메뉴를 선택해야 합니다.");
+          return;
+        }
+        
+        if (newCart) {
+          addCart();
+        }
+        else {
+          editCart(editCartSeq);
+        }
+      }
+      
+      function addCart(){
+        var cart = "";
+        cart += "<div style='margin-top:10px; border: 1px solid #999999; border-radius: 4px; height: 60px; width:330px;'>";
+        cart += "  <div style='height: 30px; width:330px; margin-left: 10px; margin-right: 10px;'>";
+        cart += "    <font style='float: left;'>" + menuName + "</font>";
+        cart += "    <font style='float: right;'>" + (Number(burgerPrice) + Number(beveragePrice) + Number(sidePrice)) + "</font>";
+        cart += "  </div>";
+        cart += "  <div style='height: 30px; width:330px; margin-left: 10px; margin-right: 10px;'>";
+        cart += "    <button>a</button>";
+        cart += "    <button>a</button>";
+        cart += "    <button>-</button>";
+        cart += "    <font>" + 1 + "</font>";
+        cart += "    <button>+</button>";
+        cart += "  </div>";
+        cart += "</div>";
+        
+        $("#cartList").append(cart);
+        $("#cartDiv").height(40+(cartHeight*70));
+        cartHeight++;
+        
+        cancelMenu();
+      }
+      
+      function editCart(cartSeq){
+        
+      }
       </script>     
     </div>
     
@@ -494,11 +721,11 @@
           <label class="control-label" for="comment" style="float: left;">주소지</label><br>
           <div style="margin-top: 5px; height : 30px; width:330px; padding-top: 5px;">
             <select style="margin-top:-5px; border: 1px solid #999999; border-radius: 4px; height: 30px; width:280px; float: left;">
-              <option>주소지 1</option>
-              <option>주소지 2</option>
-              <option>주소지 3</option>
+              <c:forEach var="AddrDto" items="${AddrList}" varStatus="status">
+              <option value="${AddrDto.seq}">${AddrDto.address}</option>
+              </c:forEach>
             </select>
-            <a href="#" style="font-size: 12px;">변경</a>
+            <a href="goAddr.do" style="font-size: 12px;">변경</a>
           </div>
         </div>
         
@@ -530,7 +757,7 @@
     </div>
   </div>
  
-  <!-- Burger Modal -->
+  <!-- DIY Burger Modal -->
   <div class="modal fade" id="burgerModal" role="dialog" align="center" style="margin: auto; margin-top:100px; overflow: hidden;">
     
     <!-- Modal Part -->
@@ -564,7 +791,14 @@
               <div id="ingredientList" style="border:1px solid lightgray; border-radius: 4px; height:440px; width: 320px; vertical-align: bottom; display: table-cell;" align="center">            
                 
                 <div style="height:30px; width: 318px; margin-bottom: 30px; z-index: 0; position: relative; display: block;">
-                  
+                  <div style="height:30px; width: 140px; float:left;" align="center">
+                    <%-- <img src="<%=bun_list.get(0).getImage_Src()%>" id="bread_down" style="height: 50px; width: 100px; margin-top:-10px;"> --%>
+                  </div>
+                  <div style="height:30px; width: 120px; float:left; padding-top:5px;" align="center">
+                    <%-- <p id="bread_down_name"><%=bun_list.get(0).getName()%></p> --%>
+                  </div>
+                  <div style="height:30px; width: 58px; float:left; padding-top:5px;" align="center">
+                  </div>
                 </div>
                 
                </div>
@@ -575,12 +809,44 @@
               
               <!-- Bread and Meat Select -->
               <div style="height:220px; width: 440px;">
+                <div class="form-group" style="height:220px; width: 220px; float:left; text-align: left; padding:10px;">
+                  <label class="control-label">햄버거 번</label><br>
+                  <select class="form-control" id='bunSelect' name='bunSelect' style="width: 180px; float:left;" size="8">
+                   <%--  <%for (int i=0; i<bun_list.size(); i++) { %>
+                        <option onclick="changeBun(this)" value="<%=bun_list.get(i).getImage_Src()%>" id="<%=bun_list.get(i).getSeq()%>"><%=bun_list.get(i).getName()%></option>
+                    <%}%> --%>
+                  </select>
+                </div>
                 
+                <div class="form-group" style="height:220px; width: 220px; float:left; text-align: left; padding:10px;">
+                  <label class="control-label">패티</label><br>
+                  <select class="form-control" id='pattySelect' name='pattySelect' style="width: 180px; float:left;" size="8">
+                   <%--  <%for (int i=0; i<patty_list.size(); i++) { %>
+                        <option onclick="addIngredient(this)" value="<%=patty_list.get(i).getImage_Src()%>" id="<%=patty_list.get(i).getSeq()%>"><%=patty_list.get(i).getName()%></option>
+                    <%}%> --%>
+                  </select>
+                </div>
               </div>
               
               <!-- Lettuce and Etc Select -->
               <div style="height:220px; width: 440px;">
+                <div class="form-group" style="margin-top:-15px; height:220px; width: 220px; float:left; text-align: left; padding:10px;">
+                  <label class="control-label">채소</label><br>
+                  <select class="form-control" id='vegeSelect' name='vegeSelect' style="width: 180px; float:left;" size="8">
+                    <%-- <%for (int i=0; i<vege_list.size(); i++) { %>
+                        <option onclick="addIngredient(this)" value="<%=vege_list.get(i).getImage_Src()%>" id="<%=vege_list.get(i).getSeq()%>"><%=vege_list.get(i).getName()%></option>
+                    <%}%> --%>
+                  </select>
+                </div>
                 
+                <div class="form-group" style="margin-top:-15px; height:220px; width: 220px; float:left; text-align: left; padding:10px;">
+                  <label class="control-label">기타</label><br>
+                  <select class="form-control" id='etcSelect' name='etcSelect' style="width: 180px; float:left;" size="8">
+                    <%-- <%for (int i=0; i<etc_list.size(); i++) { %>
+                        <option onclick="addIngredient(this)" value="<%=etc_list.get(i).getImage_Src()%>" id="<%=etc_list.get(i).getSeq()%>"><%=etc_list.get(i).getName()%></option>
+                    <%}%> --%>
+                  </select>
+                </div>
               </div>
               
             </div>
@@ -666,14 +932,8 @@
       e.preventDefault();
       $('#burgerModal').modal('toggle');
       return false;
-    });
+    }
     </script>
 
   </div>
-  
-  <!-- Carousel Control -->
-  <script>
-  $('.carousel').carousel({
-    interval: false;
-  }); 
-  </script> 
+   

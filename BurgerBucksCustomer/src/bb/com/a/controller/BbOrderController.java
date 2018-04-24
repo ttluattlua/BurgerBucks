@@ -1,11 +1,13 @@
 package bb.com.a.controller;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -20,10 +22,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import bb.com.a.model.Bb_AddrDto;
 import bb.com.a.model.Bb_MemberDto;
+import bb.com.a.model.Bb_MenuDto;
 import bb.com.a.model.Bb_OrderDto;
 import bb.com.a.model.Bb_StoreDto;
+import bb.com.a.service.BbAddrService;
+import bb.com.a.service.BbBeverageService;
+import bb.com.a.service.BbBurgerService;
 import bb.com.a.service.BbOrderSerivce;
+import bb.com.a.service.BbSideService;
 import bb.com.a.model.Bb_BeverageDto;
+import bb.com.a.model.Bb_BurgerDto;
 import bb.com.a.model.Bb_BurgerTableDto;
 import bb.com.a.model.Bb_IngredientDto;
 import bb.com.a.model.Bb_MenuTableDto;
@@ -39,14 +47,68 @@ public class BbOrderController {
 	@Autowired
 	BbOrderSerivce bbOrderService;
 	
+	@Autowired
+	BbBurgerService bbBurgerService;
+	
+	@Autowired
+  BbSideService bbSideService;
+	
+	@Autowired
+  BbBeverageService bbBeverageService;
+	
+	@Autowired
+  BbAddrService bbAddrService;
+	
+	/*@Autowired
+  BbIngredientService bbIngredientService;*/
 	
 
 	/*--------------------------------------------------------------------------------------------
 	 * 오더페이지 클릭했을때 
 	 *-------------------------------------------------------------------------------------------*/
 	@RequestMapping(value="order.do", method=RequestMethod.GET)
-	public String home(Model model) {
+	public String home(Model model, HttpServletRequest req,  HttpServletResponse resp) throws Exception {
 		logger.info("BbOrderController order");
+		
+		HttpSession session = req.getSession(true);
+    Bb_MemberDto login = (Bb_MemberDto)session.getAttribute("login");
+    
+    
+    List<Bb_AddrDto> AddrList = bbAddrService.allAddress(login);
+    
+    if (AddrList.size()==0) {
+      resp.setCharacterEncoding("UTF-8"); 
+      resp.setContentType("text/html; charset=UTF-8");
+      
+      PrintWriter alerting = resp.getWriter();
+      alerting.println("<script language='javascript'>");
+      alerting.println("alert('주문을 하기 위한 주소를 추가해주세요');");
+      alerting.println("location.href='goAddr.do';"); 
+      
+      alerting.println("</script>"); 
+      alerting.close();
+    }
+    
+    List<Bb_BurgerDto> BurgerListDefault = bbBurgerService.getBurgerList_default();
+    List<Bb_BurgerDto> BurgerListDiy = bbBurgerService.getBurgerList_diy(login.getSeq());
+    List<Bb_SideDto> SideList = bbSideService.getSideList();
+    List<Bb_BeverageDto> BeverageList = bbBeverageService.getBeverageList();
+    
+    /*
+    List<Bb_IngredientDto> IngredientList = bbIngredientService.getIngList();
+    */
+    
+    model.addAttribute("BurgerListDefault", BurgerListDefault);
+    model.addAttribute("BurgerListDiy", BurgerListDiy);
+    model.addAttribute("SideList", SideList);
+    model.addAttribute("BeverageList", BeverageList);
+    model.addAttribute("AddrList", AddrList);
+    
+    /*
+    model.addAttribute("IngredientList", IngredientList);
+    
+    */
+		
 		return "order.tiles";
 	}
 	
@@ -123,7 +185,13 @@ public class BbOrderController {
 			HttpServletRequest request, Model model) throws Exception {
 		logger.info("Welcome BbaOrderController orderDetail! "+ new Date());
 		
-		System.out.println("orderDetail 들어옴");
+		HttpSession session = request.getSession(true);
+		String imagePath = (String)session.getAttribute("imagePath");
+		System.out.println("imagePath:"+imagePath);
+		
+		Bb_SideDto sideDto = null;
+		Bb_BeverageDto beverDto= null;
+		Bb_BurgerTableDto burgerDto = null;
 		
 		//버거 리스트 가져오기
 		List<Bb_BurgerTableDto> burgerList = bbOrderService.getBurgerList();
@@ -298,7 +366,7 @@ public class BbOrderController {
 		}
 		
 		for(int i = 0; i < odList.size(); i++) {
-			System.out.println("orderDetail의 odList 최종 : " + odList.get(i).toString());
+			System.out.println("odList 최종 : " + odList.get(i).toString());
 		}
 		
 		//정리 된 리스트를 한번에 출력

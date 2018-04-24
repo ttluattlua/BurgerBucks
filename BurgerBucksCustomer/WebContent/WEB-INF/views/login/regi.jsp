@@ -3,21 +3,25 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<fmt:requestEncoding value="utf-8"/>
+<fmt:requestEncoding value="utf-8"/> 
+
+ 		
+<div style="padding: 0; margin: 0 auto; margin-top:20px; width: 1000px;">
+<div align="center">
+
+<!--===============현재가 어느 화면인지 나타내주는 상단바 ============================-->
+<!-- Page wrapper  -->
+   <!-- Bread crumb -->
+<div class="row page-titles">
+
+    </div>
+</div>
+<!-- End Bread crumb -->
+<!-- Container fluid  -->
 
 
-<div
-	style="padding: 0; margin: 0 auto; margin-top: 20px; width: 1000px;">
-
-	<!--===============현재가 어느 화면인지 나타내주는 상단바 ============================-->
-	<!-- Page wrapper  -->
-	<!-- Bread crumb -->
-	<!-- End Bread crumb -->
-	<!-- Container fluid  -->
-
-
-	<!-- ajax 조건부 부분 -->
-	<script type="text/javascript">
+<!-- ajax 조건부 부분 -->
+<script type="text/javascript">
 	$(function() {
 		$("#input-id").blur(function() {
 			var userID = $('#input-id').val();
@@ -42,9 +46,9 @@
 	});
 </script>
 
-	<script type="text/javascript">
+<script type="text/javascript">
 function idCheckMessage(data) {
-	if(data == 'FAIL'){
+	if(data == 'SUCS'){
 		$("#checkMessage").html("사용할 수 없는 메일주소입니다");
 		$("#input-id").val("");		
 		
@@ -58,149 +62,119 @@ function idCheckMessage(data) {
 
 
 
-	<div class="container-fluid">
-		<!-- Start Page Content -->
-		<!--<div class="row" style="background-color: pink">
-			<div class="col-lg-6" style="margin: auto; background-color:yellow"> 
-        <div class="card card-outline-primary" style="background-color: blue">
-        <div class="card-body" style="background-color: magenta"> -->
-			
-			<div class="form-body" style="background-color: #f9f9f9">
-				
-				<form action="" name="adminPForm" id="_adminPForm" method="get">
-					<div class="row">
-					<div class="col-md-4 col-md-offset-4">
-					<h3 class="card-title m-t-15">회원가입</h3>
-					</div>
-					</div>
-					<br>
-					<!-- 이메일(id) 입력 -->
-					<div class="row">
-					
-						<div class="col-md-4 col-md-offset-4">
-							<div class="form-group">
-								<div>
-									<label for="input-id">Email</label>
-									<p id="checkMessage_ID" style="line-height: 35px;"></p>
-								</div>
-								<input type="text" name="id" id="input-id"
-									placeholder="Enter Email" class="form-control"> <strong
-									class="help-block" style="display: block; width: 200%;"
-									id="checkMessage">
-									<!-- 영문, 숫자, 언더스코어(_), 하이픈(-)으로 이루어진  3~16 문자 -->
-								</strong>
-							</div>
-						</div>
-						
-					</div>
+<div class="container-fluid">
+    <!-- Start Page Content -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card card-outline-primary">
+        
 
 
-					<!-- 패스워드 입력 -->
-					<div class="row">
-						<div class="col-md-4 col-md-offset-4">
-							<div class="form-group">
-								<label for="input-pw">Password</label>
-								<div>
+            <div class="card-body">
+                 <form action="" name="adminPForm" id="_adminPForm" method="get">
+                    <div class="form-body">
+                        <h3 class="card-title m-t-15">회원가입</h3>
+                       	<br>
+                       	
+                       <!-- 이메일(id) 입력 -->
+                        <div class="row">
+                          <div class="col-md-6 ">
+                              <div class="form-group">
+                              	<div>
+                                  <label for="input-id">Email</label>
+                                  <p id="checkMessage_ID" style="line-height: 35px;"></p>
+                                  </div>
+                                  <input type="text" name="id" id="input-id" placeholder="Enter Email" class="form-control">
+                              	<strong class="help-block" style="display: block;width: 200%;" id="checkMessage"><!-- 영문, 숫자, 언더스코어(_), 하이픈(-)으로 이루어진  3~16 문자 --></strong>
+                              </div>
+                            </div>
+                        </div>
+                        
+                            
+                        <!-- 패스워드 입력 -->
+                        <div class="row">
+                            <div class="col-md-6 ">
+                                <div class="form-group">
+                                    <label for="input-pw">Password</label>
+                                    <div>
 									<p id="checkMessage_PW" style="line-height: 35px;"></p>
-								</div>
-								<input type="password" name="password" id="input-pw"
-									placeholder="Enter Password" class="form-control"> <strong
-									class="help-block" style="display: block; width: 200%;"
-									id="checkMessage2">
-									<!-- 영문, 숫자, 언더스코어(_), 하이픈(-)으로 이루어진  6~18 문자. -->
-								</strong>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-4 col-md-offset-4">
-							<div class="form-group">
-								<label for="input-repw">Password 확인</label> <input
-									type="password" id="input-repw" placeholder="Enter Password"
-									class="form-control">
-								<p class="help-block" style="display: block; width: 200%;"
-									id="checkpw"></p>
-							</div>
-						</div>
-					</div>
-
-					<!-- 이름 입력 -->
-					<div class="row">
-
-						<div class="col-md-4 col-md-offset-4">
-							<div class="form-group">
-								<label class="input-name">성함</label> <input type="text"
-									name="name" id="input-name" class="form-control"
-									placeholder="Enter Name">
-							</div>
-						</div>
-						<!--/span-->
-
-					</div>
-
-					<!-- 생일 -->
-					<div class="row">
-						<div class="col-md-4 col-md-offset-4">
-							<div class="form-group">
-								<label class="control-label">생일</label> <input type="date"
-									name="bday" id="input-bday" value="" class="form-control"
-									placeholder="BirthDay" required="required"> <small
-									class="form-control-feedback"></small>
-							</div>
-						</div>
-					</div>
-
-
-					<!-- 성별 입력 -->
-					<div class="row">
-						<div class="col-md-4 col-md-offset-4">
-							<div class="form-group">
-								<label for="input-sex">성별</label> <select id="input-sex"
-									class="form-control">
-									<option selected></option>
-									<option value="0">남</option>
-									<option value="1">여</option>
-								</select>
-							</div>
-						</div>
-					</div>
-
-					<!-- 휴대전화 -->
-					<div class="row">
-						<div class="col-md-4 col-md-offset-4">
-							<div class="form-group">
-								<label for="input_phone">연락처</label> <input type="text"
-									name="phone" id="input-phone" placeholder="Enter Phone Number"
-									class="form-control">
-							</div>
-						</div>
-					</div>
+									</div>
+                                    <input type="password" name="password" id="input-pw" placeholder="Enter Password" class="form-control">
+                                    	<strong class="help-block" style="display: block;width: 200%;" id="checkMessage2"><!-- 영문, 숫자, 언더스코어(_), 하이픈(-)으로 이루어진  6~18 문자. --></strong>
+                                </div>
+                            </div>
+                         </div>
+                         
+                         <div class="row">
+                            <div class="col-md-6 ">
+                                <div class="form-group">
+                                    <label for="input-repw">Password 확인</label>
+                                    <input type="password" id="input-repw" placeholder="Enter Password" class="form-control">
+                                	<p class="help-block" style="display: block;width: 200%;" id="checkpw"></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                       <!-- 이름 입력 -->
+                        <div class="row">
+	                       
+	                            <div class="col-md-6">
+	                                <div class="form-group">
+	                                    <label class="input-name">성함</label>
+	                                    <input type="text" name="name" id="input-name" class="form-control" placeholder="Enter Name">
+	                                </div>
+	                            </div>
+	                            <!--/span-->
+	                       
+	                     </div>
+                        
+                       <!-- 생일 -->
+                       <div class="row">
+	                       <div class="col-md-6">
+	                          <div class="form-group">
+	                              <label class="control-label">생일</label>
+	                              <input type="date" name="bday" id="input-bday" value="" class="form-control" placeholder="BirthDay" required="required">
+	                            <small class="form-control-feedback"></small></div>
+	                      	  </div>
+	                       </div>
+                        </div>
+                        
+                       <!-- 성별 입력 -->
+                       <div class="row">
+	                        <div class="col-md-6">
+	                        <div class="form-group">
+						      <label for="input-sex">성별</label>
+						      <select id="input-sex" class="form-control">
+						        <option selected></option>
+						        <option value="0">남</option>
+						        <option value="1">여</option>
+						      </select>
+						      </div>
+						    </div>
+                        </div>
+                         
+                       <!-- 휴대전화 -->
+                       <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="input_phone">연락처</label>
+                                    <input type="text" name="phone" id="input-phone" placeholder="Enter Phone Number" class="form-control">
+                               </div>
+                            </div>
+                       </div>
+                       
+                        
+                        
+                        
 
 
-
-
-
-					<div class="row">
-					<div class="col-md-4 col-md-offset-4">
-					<div class="form-actions" align="center">
-						<button type="submit" class="btn btn-dark" id="btn_branchMRegi"
-							onclick="account()">
-							<i class="fa fa-check"></i> Save
-						</button>
-						<button type="button" class="btn btn-inverse">Cancel</button>
-					</div>
-					</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-<!-- </div>
-	</div>
-	</div>
-	</div>
-     -->    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-dark" id="btn_branchMRegi" onclick="account()"> <i class="fa fa-check"></i> Save</button>
+                        <button type="button" class="btn btn-inverse">Cancel</button>
+                    </div>
+                    </div>
+                    
+                    
                     
                     	
  			<script type="text/javascript">
@@ -255,67 +229,73 @@ function idCheckMessage(data) {
 						 	return false;
 						} else if (iname.val() == ""){
 							alert("[이름 입력 오류] 이름을 입력해주세요");
-							i
-					name.focus();
-								return false;
-							} else if (ibday.val() == "") {
-								alert("[생일 입력 오류] 생일을 입력해주세요");
-								ibday.focus();
-								return false;
-							} else if (isex.val() == "") {
-								alert("[성별 입력 오류] 성별을 입력해주세요");
-								isex.focus();
-								return false;
-							} else if (iphone.val() == "") {
-								alert("[연락처 입력 오류] 연락처를 입력해주세요");
-								iphone.focus();
-								return false;
-							}
-
-						});
-
-						// #uid, #upw 인풋에 입력된 값의 길이가 적당한지 알려주려고 한다
-						// #uid, #upw 다음 순서에 경고 텍스트 출력을 위한 빈 strong 요소를 추가한다
-						// 무턱대고 자바스크립트를 이용해서 HTML 삽입하는 것은 좋지 않은 버릇
-						// 그러나 이 경우는 strong 요소가 없어도 누구나 form 핵심 기능을 이용할 수 있으니까 문제 없다
-
-						/* $("#input-id, #input-pw").after('<strong></strong>'); */
-
-						// #uid 인풋에서 onkeyup 이벤트가 발생하면
-						iid.keyup(function() {
-							var i = $("#checkMessage_ID");
-							/* var s = $(this).next('strong'); // strong 요소를 변수에 할당 */
-
-							if (iid.val().length == 0) { // 입력 값이 없을 때
-								i.text(''); // strong 요소에 포함된 문자 지움
-							} else if (re_id.test(iid.val()) != true) { // 유효하지 않은 문자 입력 시
-								i.text('이메일 형식을 입력해 주세요.'); // strong 요소에 문자 출력
-							} else { // 입력 값이 3 이상 16 이하일 때
-								i.text('아이디가 적당합니다.'); // strong 요소에 문자 출력
-							}
-						});
-
-						// #upw 인풋에서 onkeyup 이벤트가 발생하면
-						ipw.keyup(function() {
-							var i = $("#checkMessage_PW");
-							/* var s = $(this).next('strong'); // strong 요소를 변수에 할당 */
-
-							if (ipw.val().length == 0) { // 입력 값이 없을 때
-								i.text(''); // strong 요소에 포함된 문자 지움
-							} else if (ipw.val().length < 6) { // 입력 값이 6보다 작을 때
-								i.text('비밀번호는 6자리 이상 입력해주십시오.'); // strong 요소에 문자 출력
-							} else if (ipw.val().length > 18) { // 입력 값이 18보다 클 때
-								i.text('비밀번호가 너무 깁니다.'); // strong 요소에 문자 출력
-							} else { // 입력 값이 6 이상 18 이하일 때
-								i.text('비밀번호가 적당합니다.'); // strong 요소에 문자 출력
-							}
-						});
-
+							iname.focus();
+							return false;
+						} else if (ibday.val() == ""){
+							alert("[생일 입력 오류] 생일을 입력해주세요");
+							ibday.focus();
+							return false;
+						} else if (isex.val() == ""){
+							alert("[성별 입력 오류] 성별을 입력해주세요");
+							isex.focus();
+							return false;
+						} else if (iphone.val() == ""){
+							alert("[연락처 입력 오류] 연락처를 입력해주세요");
+							iphone.focus();
+							return false;
+						}
+						
 					});
-					// ]]>
+										
+					// #uid, #upw 인풋에 입력된 값의 길이가 적당한지 알려주려고 한다
+					// #uid, #upw 다음 순서에 경고 텍스트 출력을 위한 빈 strong 요소를 추가한다
+					// 무턱대고 자바스크립트를 이용해서 HTML 삽입하는 것은 좋지 않은 버릇
+					// 그러나 이 경우는 strong 요소가 없어도 누구나 form 핵심 기능을 이용할 수 있으니까 문제 없다
+					
+					/* $("#input-id, #input-pw").after('<strong></strong>'); */
+					
+					// #uid 인풋에서 onkeyup 이벤트가 발생하면
+					iid.keyup( function() {
+						var i = $("#checkMessage_ID");
+						/* var s = $(this).next('strong'); // strong 요소를 변수에 할당 */
+						
+						if (iid.val().length == 0) { // 입력 값이 없을 때
+							i.text(''); // strong 요소에 포함된 문자 지움
+						} else if ( re_id.test(iid.val()) != true ) { // 유효하지 않은 문자 입력 시
+							i.text('이메일 형식을 입력해 주세요.'); // strong 요소에 문자 출력
+						} else { // 입력 값이 3 이상 16 이하일 때
+							i.text('아이디가 적당합니다.'); // strong 요소에 문자 출력
+						}
+					});
+					
+					// #upw 인풋에서 onkeyup 이벤트가 발생하면
+					ipw.keyup( function() {
+						var i = $("#checkMessage_PW");
+						/* var s = $(this).next('strong'); // strong 요소를 변수에 할당 */
+						
+						if (ipw.val().length == 0) { // 입력 값이 없을 때
+							i.text(''); // strong 요소에 포함된 문자 지움
+						} else if (ipw.val().length < 6) { // 입력 값이 6보다 작을 때
+							i.text('비밀번호는 6자리 이상 입력해주십시오.'); // strong 요소에 문자 출력
+						} else if (ipw.val().length > 18) { // 입력 값이 18보다 클 때
+							i.text('비밀번호가 너무 깁니다.'); // strong 요소에 문자 출력
+						} else { // 입력 값이 6 이상 18 이하일 때
+							i.text('비밀번호가 적당합니다.'); // strong 요소에 문자 출력
+						}
+					});
+					
+				});
+				// ]]>
 				</script>
      
-
+                    
+              </form>
+             </div>
+            </div>
+		</div>
+	</div>
+	</div>
+        
 
 
 <!-- 비밀번호 확인창 blur -->

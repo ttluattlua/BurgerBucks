@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import bb.com.a.model.Bb_FaqDto;
 import bb.com.a.model.Bb_InquiryDto;
 import bb.com.a.model.Bb_MemberDto;
+import bb.com.a.model.Bb_YesMember;
 import bb.com.a.service.BbMemberService;
 import bb.com.a.service.BbFaqService;
 import bb.com.a.service.BbInquiryService;

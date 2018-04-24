@@ -39,9 +39,9 @@
 	          <input id="update_pwd_input2" type="password" class="form-control" placeholder="변경 된 비밀번호를 다시한번 입력해주세요" required onkeyup="checkSamePWD()">
 	          <strong class="help-block" style="display: block;width: 200%;" id="checkMessage3"><!-- 영문, 숫자, 언더스코어(_), 하이픈(-)으로 이루어진  6~18 문자. --></strong>
 	        </div>
-        	 <div align="center">
+        
         	 <button class="btn btn-success" style="width: 400px; margin-top:50px;" type="button" onclick="updatePwd()">비밀번호 변경</button>
-       		 </div>
+       
  		</div>
  		
  		<script>

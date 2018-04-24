@@ -42,21 +42,8 @@ UPDATE BB_MEMBER SET DEL=1 WHERE SEQ=#{seq}
 
 <insert parameterType="bb.com.a.model.Bb_MemberDto" id="addMember"> 
 INSERT INTO BB_MEMBER(SEQ, ID, PASSWORD, BDAY, NAME, PHONE, SEX, MILEAGE, GRADE, EXP, DEL) 
-VALUES(BB_MEMBER_SEQ.NEXTVAL, #{id}, #{password}, #{bday}, #{name}, #{phone}, #{sex}, 0, 0, 0, 0)
- <selectKey keyProperty="seq" resultType="Integer" order="AFTER"> 
- SELECT BB_MEMBER_SEQ.CURRVAL FROM dual 
- </selectKey> 
+VALUES(BB_MEMBER_SEQ.NEXTVAL, #{id}, #{password}, #{bday}, #{name}, #{phone}, #{sex}, 0, 0, 0, 0) 
 </insert>
-
-<!--가입후 장바구니 생성/return으로 들어간 장바구니 session뽑아오기-->
-<insert id="makeOrderBasket" parameterType="bb.com.a.model.Bb_MemberDto">
-INSERT INTO BB_ORDER(SEQ, MEMBER_SEQ, MEMBER_ADDR, STORE_SEQ, ORDER_DATE, STATUS, PRICE, DEL) 
-VALUES(BB_ORDER_SEQ.NEXTVAL, #{seq}, null, null, SYSDATE, 0, 0, 0) 
- <selectKey keyProperty="seq" resultType="Integer" order="AFTER"> 
- SELECT BB_ORDER_SEQ.CURRVAL FROM dual 
- </selectKey>
-</insert>
-
 
 <!-- 중복확인-->
 

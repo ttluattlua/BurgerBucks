@@ -75,13 +75,21 @@
     </mvc:interceptors>
 
 
-		<!-- String uploadPath = new String("이용약관") -->
+		<!-- String termsPath = new String("이용약관") -->
 		<bean class="java.lang.String" id="termsPath">		
-		<!-- 이용약관불러올 경로 디렉토리-->
-		<!-- <constructor-arg value="http:\\192.168.25.7:8090\\upload\\"/> -->
+		<!-- 
+		<constructor-arg value="http:\\192.168.25.7:8090\\upload\\"/> 
+		-->
 		<constructor-arg value="D:/BurgerBucks/BurgerBucksCustomer/"/>
 		</bean>
 		
+		<!-- String imagePath = new String("이미지") -->
+    <bean class="java.lang.String" id="imagePath">    
+    <!-- 
+    <constructor-arg value="http:\\192.168.25.7:8090\\upload\\"/> 
+    -->
+    <constructor-arg value="D:/BurgerBucks/BurgerBucksCustomer/"/>
+    </bean>		
 		
 		<!-- 이메일 관련 -->
 		<bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="javaMailSender">

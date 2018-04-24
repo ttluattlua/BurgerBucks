@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import bb.com.a.model.Bb_AddrDto;
 import bb.com.a.model.Bb_MemberDto;
+import bb.com.a.model.Bb_YesMember;
 import bb.com.a.service.BbAddrService;
 import bb.com.a.service.BbMemberService;
 /*import bb.com.a.service.MailService;*/
@@ -73,10 +74,14 @@ public class BbMemberController {
 	 *-------------------------------------------------------------------------------------------*/
 
 	@RequestMapping(value="login.do", method= {RequestMethod.POST, RequestMethod.GET})
-	public String login(Bb_MemberDto bmdto, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public String login(Bb_MemberDto bmdto, HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception {
 		logger.info("BbMemberController login");
 		System.out.println(bmdto.toString());
 		Bb_MemberDto login = bbMemberSerivce.login(bmdto);
+		
+		List<Bb_AddrDto> AddrList = BbAddrService.allAddress(login);
+		System.out.println("AddrList Size : " + AddrList.size());
+		
 		//회원정보가 일치했을 경우 (주소도 불러옴)
 		if(login != null && !login.getId().equals("")) {
 			//세션에 아이디 주소 다 저장
@@ -114,15 +119,9 @@ public class BbMemberController {
 	public String regiAf(Model model,  Bb_MemberDto mem) {
 		logger.info("BbMemberController regiAf");
 		System.out.println(mem.toString());
-		int seq;//member 등록하고 해당 seq바로 뽑아온거
-		int order_seq; //장바구니 등록하고 해당 seq바로 뽑아온거
+		
 		try {
-			seq = bbMemberSerivce.addmember(mem);
-			Bb_MemberDto regimem = new Bb_MemberDto();
-			regimem.setSeq(seq);
-			order_seq = bbMemberSerivce.makeOrderBasket(regimem); //해당 memberSeq넣어서 장바구닝생성
-			System.out.println("멤버컨트롤러_회원가입한후 seq:"+seq);
-			System.out.println("멤버컨트롤러_회원가입한후장바구니 order_seq:"+order_seq);
+			boolean sign_up = bbMemberSerivce.addmember(mem);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -138,18 +137,18 @@ public class BbMemberController {
 	 *-------------------------------------------------------------------------------------------*/
 	@ResponseBody
 	@RequestMapping(value="getID.do", method={RequestMethod.POST, RequestMethod.GET})
-	public String getID(Model model, Bb_MemberDto mem) {
+	public Bb_YesMember getID(Model model, Bb_MemberDto mem) {
 		logger.info("BbMemberController getID");	
 		
 		int count = bbMemberSerivce.getID(mem);
 		
-		//0일때는 존재하지 않음 1일때는 존재함
+		Bb_YesMember yes = new Bb_YesMember();
 		if(count > 0) {
-			return "FAIL";
+			yes.setMessage("SUCS");
 		}else {
-			return "SUCS";
+			yes.setMessage("FAIL");
 		}
-	
+		return yes;		
 	}
 	
 	/*--------------------------------------------------------------------------------------------

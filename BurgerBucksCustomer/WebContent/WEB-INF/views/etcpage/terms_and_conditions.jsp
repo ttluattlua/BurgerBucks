@@ -21,7 +21,7 @@
 <!--주문조회-->
 
 	<%
-	List<String> terms_text = txtReader.txt_readTerms("D:/BurgerBucks/BurgerBucksCustomer/WebContent/Terms/Terms.txt");
+	List<String> terms_text = txtReader.txt_readTerms("D:/Git/BurgerBucksCustomer/WebContent/Terms/Terms.txt");
 	%>
 
   <div style="padding-top:10px; width: 750px; height: 620px;">
