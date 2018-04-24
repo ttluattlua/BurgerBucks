@@ -39,6 +39,11 @@
 	float:right;
 	padding-top: 5px;	
 }
+
+a{
+	color: red;
+
+}
 </style>
 <div style="padding: 0; margin: 0 auto; margin-top:20px; height: 1000px; width: 1000px;">
 	<div align="center" style="overflow-y: scroll; height:900px;">
@@ -73,10 +78,10 @@
 					<div class="text-left">
 						<div style="font-size:1.5em; color:Tomato">
 							<c:if test="${bbsdto.likecheck == 0 }">
-								<i class="fa fa-meh-o">${bbsdto.bbs_like }</i>
+								<p id="a${bbsdto.seq }"><a onclick="likeFunc(${bbsdto.seq})" ><i class="fa fa-meh-o">${bbsdto.bbs_like }</i></a></p>
 							</c:if>
 							<c:if test="${bbsdto.likecheck != 0 }">
-								<i class="fa fa-smile-o">${bbsdto.bbs_like }</i>
+								<p id="a${bbsdto.seq }"><a onclick="unlikeFunc(${bbsdto.seq})"><i class="fa fa-smile-o">${bbsdto.bbs_like }</i></a></p>
 							</c:if>
 							<p style="margin-top: 3px;"><i class="fa fa-check" style="font-size: 15px;">${bbsdto.burger_name}</i></p>
 						</div>
@@ -162,6 +167,18 @@ function bbsDetail(burger_Seq) {
 		
 		});
 
+}
+
+
+function likeFunc(seq) {
+	alert(seq);
+	
+	$("#a"+seq).html("<a onclick='unlikeFunc("+seq+")'><i class='fa fa-smile-o'>"+3+"</i></a>");
+}
+
+function unlikeFunc(seq) {
+	alert(seq);
+	$("#a"+seq).html("<a onclick='likeFunc("+seq+")'><i class='fa fa-meh-o'>"+3+"</i></a>");
 }
 
 </script>
