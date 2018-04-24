@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import bb.com.a.model.BB_DiyBurgerDto;
 import bb.com.a.model.Bb_BbsDto;
+import bb.com.a.model.Bb_LikeDto;
 
 public interface BbBurgerDiyService {
 	
@@ -34,4 +35,24 @@ public interface BbBurgerDiyService {
 	 * 버거게시판리스트 가져오기
 	 *-------------------------------------------------------------------------------------------*/
 	public List<Bb_BbsDto> diySearch(Bb_BbsDto bsdto); 
+	
+	  /*----------------------------------------------------------------------------
+	   * 버거 라이크 추가 
+	   * ----------------------------------------------------------------------------*/ 
+		public void likeClick(Bb_LikeDto ldto) throws Exception ;
+
+	  /*----------------------------------------------------------------------------
+	   * 버거 라이크 삭제 
+	   * ----------------------------------------------------------------------------*/ 
+		public void unlikeClick(Bb_LikeDto ldto) throws Exception ;
+		
+	 /*----------------------------------------------------------------------------
+	   * bbs에 버거 라이크 추가  
+	   * ----------------------------------------------------------------------------*/ 
+		public void bbsLikeAdd(Bb_LikeDto ldto) throws Exception;
+
+	 /*----------------------------------------------------------------------------
+	   * bbs에 버거 라이크 추가  
+	   * ----------------------------------------------------------------------------*/ 
+		public void bbsLikeDelete(Bb_LikeDto ldto) throws Exception;	
 }

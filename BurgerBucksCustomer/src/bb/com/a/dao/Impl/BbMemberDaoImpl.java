@@ -68,9 +68,11 @@ public class BbMemberDaoImpl implements BbMemberDao {
 	 * 회원가입
 	 * ----------------------------------------------------------------------------*/
 	@Override
-	public boolean addmember(Bb_MemberDto mem) throws Exception {
-		int n = sqlSession.insert(ns + "addMember", mem);		
-		return n>0?true:false;
+	public int addmember(Bb_MemberDto mem) throws Exception {
+		int count = sqlSession.insert(ns + "addMember", mem);		
+		int seq = mem.getSeq();
+		System.out.println("멤버가입한 후 뽑아오는 시퀀스:"+seq);
+		return seq;
 	}
 
 	/*----------------------------------------------------------------------------
@@ -89,6 +91,18 @@ public class BbMemberDaoImpl implements BbMemberDao {
 	public void changePwd(Bb_MemberDto mem) {
 		sqlSession.update(ns+"changePwd", mem);
 		
+	}
+
+	/*----------------------------------------------------------------------------
+	 * 가입 후 장바구니 만들기
+	 * ----------------------------------------------------------------------------*/
+	@Override
+	public int makeOrderBasket(Bb_MemberDto mem) {
+		System.out.println("장바구니 만들기전 seq: "+ mem.getSeq());
+		int count = sqlSession.insert(ns+"makeOrderBasket", mem);
+		int seq = mem.getSeq();
+		System.out.println("장바구니 만든 후 seq변화: "+ seq);
+		return seq;
 	}
 
 
