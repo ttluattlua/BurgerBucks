@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import bb.com.a.model.Bb_IngredientDto;
-import bb.com.a.service.BbBurgerService;
+import bb.com.a.service.BbaBurgerService;
 
 @Controller
 public class BbaBurgerController {
 	private static final Logger logger = LoggerFactory.getLogger(BbaBurgerController.class);
 
 	@Autowired
-	BbBurgerService bbaBurgerService;
+	BbaBurgerService bbaBurgerService;
 	
 	// xml에 설정된 리소스 참조
     // bean의 id가 uploadPath인 태그를 참조
