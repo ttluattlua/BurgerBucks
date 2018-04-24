@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import bb.com.a.model.Bb_AddrDto;
 import bb.com.a.model.Bb_MemberDto;
-import bb.com.a.model.Bb_YesMember;
 import bb.com.a.service.BbAddrService;
 import bb.com.a.service.BbMemberService;
 /*import bb.com.a.service.MailService;*/
@@ -119,9 +118,15 @@ public class BbMemberController {
 	public String regiAf(Model model,  Bb_MemberDto mem) {
 		logger.info("BbMemberController regiAf");
 		System.out.println(mem.toString());
-		
+		int seq;//member 등록하고 해당 seq바로 뽑아온거
+		int order_seq; //장바구니 등록하고 해당 seq바로 뽑아온거
 		try {
-			boolean sign_up = bbMemberSerivce.addmember(mem);
+			seq = bbMemberSerivce.addmember(mem);
+			Bb_MemberDto regimem = new Bb_MemberDto();
+			regimem.setSeq(seq);
+			order_seq = bbMemberSerivce.makeOrderBasket(regimem); //해당 memberSeq넣어서 장바구닝생성
+			System.out.println("멤버컨트롤러_회원가입한후 seq:"+seq);
+			System.out.println("멤버컨트롤러_회원가입한후장바구니 order_seq:"+order_seq);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -137,18 +142,18 @@ public class BbMemberController {
 	 *-------------------------------------------------------------------------------------------*/
 	@ResponseBody
 	@RequestMapping(value="getID.do", method={RequestMethod.POST, RequestMethod.GET})
-	public Bb_YesMember getID(Model model, Bb_MemberDto mem) {
+	public String getID(Model model, Bb_MemberDto mem) {
 		logger.info("BbMemberController getID");	
 		
 		int count = bbMemberSerivce.getID(mem);
 		
-		Bb_YesMember yes = new Bb_YesMember();
+		//0일때는 존재하지 않음 1일때는 존재함
 		if(count > 0) {
-			yes.setMessage("SUCS");
+			return "FAIL";
 		}else {
-			yes.setMessage("FAIL");
+			return "SUCS";
 		}
-		return yes;		
+	
 	}
 	
 	/*--------------------------------------------------------------------------------------------
