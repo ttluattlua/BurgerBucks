@@ -114,9 +114,15 @@ public class BbMemberController {
 	public String regiAf(Model model,  Bb_MemberDto mem) {
 		logger.info("BbMemberController regiAf");
 		System.out.println(mem.toString());
-		
+		int seq;//member 등록하고 해당 seq바로 뽑아온거
+		int order_seq; //장바구니 등록하고 해당 seq바로 뽑아온거
 		try {
-			boolean sign_up = bbMemberSerivce.addmember(mem);
+			seq = bbMemberSerivce.addmember(mem);
+			Bb_MemberDto regimem = new Bb_MemberDto();
+			regimem.setSeq(seq);
+			order_seq = bbMemberSerivce.makeOrderBasket(regimem); //해당 memberSeq넣어서 장바구닝생성
+			System.out.println("멤버컨트롤러_회원가입한후 seq:"+seq);
+			System.out.println("멤버컨트롤러_회원가입한후장바구니 order_seq:"+order_seq);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
