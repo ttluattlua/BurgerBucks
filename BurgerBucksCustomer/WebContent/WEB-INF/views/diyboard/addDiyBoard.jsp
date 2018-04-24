@@ -54,7 +54,7 @@
 					<img alt="" src="./UI/AdminBurgerImage.png" style="width: 200px; height: 200px;">
 					</c:if>
 					<c:if test="${bbsdto.image_Src != '없음' }">
-					<img alt="" src="${imagePath}${bbsdto.image_src}" style="width: 200px; height: 200px;">
+					<img alt="" src="${bbsdto.image_src}" style="width: 200px; height: 200px;">
 					</c:if>
 					
 					</div>

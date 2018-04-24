@@ -40,17 +40,27 @@ public class BbDiyController {
 		logger.info("BbDiyController diyboard");
 		HttpSession session = req.getSession(true);
 		Bb_MemberDto login = (Bb_MemberDto)session.getAttribute("login");
-		
+		String imagePath = (String)session.getAttribute("imagePath");
 		List<Bb_BbsDto> bbsList = new ArrayList<>();
 		if(s_keyword == null || s_keyword.equals("")) {
 			
 			bbsList = bbBurgerDiyService.getBurgerDiyList(login.getSeq());
 			for (Bb_BbsDto bb_BbsDto : bbsList) {
 				System.out.println(bb_BbsDto.toString());
+				//저장된 이미지가 있을경우 
+				if(!bb_BbsDto.getImage_Src().equals("없음")) {
+					bb_BbsDto.setImage_Src(imagePath+bb_BbsDto.getImage_Src());
+				}
 			}
 		}else {
 			Bb_BbsDto bsdto = new Bb_BbsDto(login.getSeq(), s_keyword);
 			bbsList = bbBurgerDiyService.diySearch(bsdto);
+			for (Bb_BbsDto bb_BbsDto : bbsList) {
+				//저장된 이미지가 있을경우 
+				if(!bb_BbsDto.getImage_Src().equals("없음")) {
+					bb_BbsDto.setImage_Src(imagePath+bb_BbsDto.getImage_Src());
+				}
+			}
 		}
 		model.addAttribute("bbsList", bbsList);
 		return "diyboard.tiles";
@@ -93,9 +103,13 @@ public class BbDiyController {
 			logger.info("BbDiyController addDiyBurger");
 			HttpSession session = req.getSession(true);
 			Bb_MemberDto login = (Bb_MemberDto)session.getAttribute("login");
+			String imagePath = (String)session.getAttribute("imagePath");
 			List<BB_DiyBurgerDto> bbsList = bbBurgerDiyService.myDiyBurgerList(login.getSeq());
 			for (BB_DiyBurgerDto BB_DiyBurgerDto : bbsList) {
 				System.out.println(BB_DiyBurgerDto.toString());
+				if(!BB_DiyBurgerDto.getImage_Src().equals("없음")) {
+					BB_DiyBurgerDto.setImage_Src(imagePath+BB_DiyBurgerDto.getImage_Src());
+				}
 			}
 			model.addAttribute("bbsList", bbsList);
 			return "addDiyBoard.tiles";
