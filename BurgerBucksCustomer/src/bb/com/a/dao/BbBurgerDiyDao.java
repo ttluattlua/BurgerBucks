@@ -4,6 +4,7 @@ import java.util.List;
 
 import bb.com.a.model.BB_DiyBurgerDto;
 import bb.com.a.model.Bb_BbsDto;
+import bb.com.a.model.Bb_LikeDto;
 
 
 
@@ -38,5 +39,30 @@ public interface BbBurgerDiyDao {
 	 * 버거게시판리스트 가져오기
 	 *-------------------------------------------------------------------------------------------*/
 	public List<Bb_BbsDto> diySearch(Bb_BbsDto bsdto);
+	
+	
+	  /*----------------------------------------------------------------------------
+	   * 버거 라이크 추가 -Like테이블
+	   * ----------------------------------------------------------------------------*/ 
+		  
+		  public void likeClick(Bb_LikeDto ldto) throws Exception ;
+
+	  /*----------------------------------------------------------------------------
+	   * 버거 라이크 삭제 -Like테이블
+	   * ----------------------------------------------------------------------------*/ 
+		  	  
+		  public void unlikeClick(Bb_LikeDto ldto) throws Exception;
+		  
+	  /*----------------------------------------------------------------------------
+	   * 라이크 1증가  -bbs테이블
+	   * ----------------------------------------------------------------------------*/ 
+		  
+		  public void bbsLikeAdd(Bb_LikeDto ldto) throws Exception;
+		  
+	  /*----------------------------------------------------------------------------
+	   * 라이크 1감소  -bbs테이블
+	   * ----------------------------------------------------------------------------*/ 
+		  
+		  public void bbsLikeDelete(Bb_LikeDto ldto) throws Exception;
 
 }
