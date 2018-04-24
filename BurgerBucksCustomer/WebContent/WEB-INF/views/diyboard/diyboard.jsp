@@ -46,7 +46,15 @@
 			<h2 style="margin-bottom: 30px;">DIY버거게시판</h2>
 		</div>
 		<div align="right">
-			<button class="btn btn-outlined btn-block btn-success" style="width: 100px;" onclick="location.href='addDiyBoard.do'">버거등록</button>
+			<form action="diySearch.do">
+			<table>
+				<tr>
+					<td><input type="text" id="s_keyword" name="s_keyword"></td>
+					<td><input type="submit" class="btn btn-outlined btn-danger" value="검색" id="searchword" name="searchword"></td>
+					<td><button class="btn btn-outlined btn-warning" style="width: 100px;" onclick="location.href='addDiyBoard.do'">버거등록</button></td>
+				</tr>
+			</table>
+			</form>
 		</div>
 		<div>
 			<c:forEach var="bbsdto" items="${bbsList}" varStatus="status">
@@ -84,6 +92,15 @@
 				</c:if>
 				
 			</c:forEach>
+		</div>
+		<!--페이징  -->
+		<div>
+			<jsp:include page="/WEB-INF/views/common/paging.jsp" flush="false">
+				<jsp:param value="${pageNumber }" name="pageNumber"/>
+				<jsp:param value="${pageCountPerScreen }" name="pageCountPerScreen"/>
+				<jsp:param value="${recordCountPerPage }" name="recordCountPerPage"/>
+				<jsp:param value="${totalRecordCount }" name="totalRecordCount"/>
+			</jsp:include>
 		</div>
 	</div>
 </div>
