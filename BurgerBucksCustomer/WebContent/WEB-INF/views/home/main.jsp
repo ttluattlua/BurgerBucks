@@ -23,15 +23,15 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
           <div class="item active">
-            <img src="./UI/Notice_01.png" style="width:698px; height: 298px; border-radius: 4px;" />
+            <img src="./UI/Notice_01.jpg" style="width:698px; height: 298px; border-radius: 4px;" />
           </div>
 
           <div class="item">
-            <img src="./UI/Notice_02.png" style="width:698px; height: 298px; border-radius: 4px;" />
+            <img src="./UI/Notice_02.jpg" style="width:698px; height: 298px; border-radius: 4px;" />
           </div>
 
           <div class="item">
-            <img src="./UI/Notice_03.png" style="width:698px; height: 298px; border-radius: 4px;" />
+            <img src="./UI/Notice_03.jpg" style="width:698px; height: 298px; border-radius: 4px;" />
           </div>
         </div>
         

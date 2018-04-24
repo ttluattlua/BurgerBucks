@@ -1,8 +1,5 @@
 package bb.com.a.service;
 
-<<<<<<< HEAD
-public interface BbBurgerDiyService {
-=======
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +29,5 @@ public interface BbBurgerDiyService {
 	   * 내버거게시판에등록
 	   * ----------------------------------------------------------------------------*/ 
 		public void regiDiyBurger(Bb_BbsDto bsdto);
->>>>>>> master
 
 }

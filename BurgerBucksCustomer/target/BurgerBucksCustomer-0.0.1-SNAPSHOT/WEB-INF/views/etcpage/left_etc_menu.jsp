@@ -21,9 +21,9 @@ a{
 
 	<ul class="mypage_ul">
     	<li><h4>기타페이지</h4></li>
-    	<li><a href="terms_and_conditions.do">이용약관</a></li>
-    	<li><a href="faq.do">FAQ</a></li>
-    	<li><a href="customer_inquiry.do">문의하기</a></li>
+    	<li><a href="terms_and_conditions.do" class="text-muted">이용약관</a></li>
+    	<li><a href="faq.do" class="text-muted">FAQ</a></li>
+    	<li><a href="customer_inquiry.do" class="text-muted">문의하기</a></li>
     
     </ul>
 

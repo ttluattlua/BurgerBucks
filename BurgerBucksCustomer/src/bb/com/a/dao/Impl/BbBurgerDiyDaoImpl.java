@@ -1,10 +1,5 @@
 package bb.com.a.dao.Impl;
 
-<<<<<<< HEAD
-import org.springframework.stereotype.Repository;
-
-import bb.com.a.dao.BbBurgerDiyDao;
-=======
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -14,13 +9,10 @@ import org.springframework.stereotype.Repository;
 import bb.com.a.dao.BbBurgerDiyDao;
 import bb.com.a.model.BB_DiyBurgerDto;
 import bb.com.a.model.Bb_BbsDto;
->>>>>>> master
 
 
 @Repository
 public class BbBurgerDiyDaoImpl implements BbBurgerDiyDao {
-<<<<<<< HEAD
-=======
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
@@ -62,6 +54,5 @@ public class BbBurgerDiyDaoImpl implements BbBurgerDiyDao {
 	}
 	
 	
->>>>>>> master
 
 }

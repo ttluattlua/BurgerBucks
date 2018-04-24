@@ -1,11 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:requestEncoding value="utf-8"/> 
+
 <!--========================다음 도로명주소위한 스크립트 꼭사용해야함========================-->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <!--===================================구글 지도 사용하기위한 스크립트 =========================================-->
@@ -20,10 +18,8 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW3AnL99zotumTGhgh3B8lT3N
 <!-- jquery-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<body>
-<div align="center" style="margin-top:50px">
-<div style="width:1000px;">
-<div style="display:block; height: 300px; width:500px; float: left; border-radius: 4px;">
+<div style="width: 750px; height: 620px;">
+<div style="display:block; width:480px; height:400px; float: left; margin-right:20px; border-radius: 4px; ">
 
 <!-- 주소 form 시작 -->
 <form action="./addrAddAf.do" id="_frmForm"  method="get">
@@ -36,42 +32,44 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW3AnL99zotumTGhgh3B8lT3N
 
 <!-- 주소입력테이블  -->
 <table style= "background-color: white; padding:10px; border:1px solid #eee;">
-<tr>
-<th style="border: 1px; padding: 5px; background-color:#eeeeee" scope="row">주소</th>
-<td>
-<input type="text" id="_postcode" name="postcode" size="10" >-
-<input type="button" onclick="findPostCode()" value="우편번호 검색"><br>
-<input type="text" id="_roadAddress" name="address"  size="40">도로명주소<br>
-<input type="text" id="_jibunAddress" name="jibunAddress" size="40">지번주소
-</td>
-</tr>
-<tr>
-<th style="padding: 5px; background-color:#eeeeee" scope="row">배달 특이사항</th>
-<td><input type="text" id="_memo" name="memo" size="40" ></td>
-</tr>
+	<tr style="border-bottom: 1px solid gray">
+	<th style="border: 1px; padding: 5px; background-color:#eeeeee" scope="row">주소</th>
+	<td height="80" style="padding:15;">
+	<input type="text" id="_postcode" name="postcode" size="10" >-
+	<input type="button" onclick="findPostCode()" value="우편번호 검색"><br>
+	<p style="font-size:7px">(우편번호)</p>
+	<input type="text" id="_roadAddress" name="address" size="50"><br>
+	<p style="font-size:7px">(도로명 주소)</p>
+	<input type="text" id="_jibunAddress" name="jibunAddress" size="50"><br>
+	<p style="font-size:7px">(지번 주소)</p>
+	</td>
+	</tr>
+	<tr>
+	<th style="padding: 5px; width:50px; background-color:#eee" scope="row">배달<br>특이사항</th>
+	<td height="20" style="padding:15;"><input type="text" id="_memo" name="memo" size="50" ></td>
+	</tr>
 </table>
-<input type="button" id="_btnSubmit" value="주소저장">
+
+<div align="right" style="margin-right:20px"> <!-- style="float:right" -->
+	<input type="button" id="_btnSubmit" value="주소저장">
+</div>
 </form>
 </div>
 <span id="guide" style="color:#999"></span>
 
+<!--지도 띄우는 div-->
+<div style="display:block; width:250px; height: 400px; float: left;">
+<div id="map" style="width: 250px; height: 400px;"></div> 
+</div>
+</div>
+
 <script type="text/javascript">
 $("#_btnSubmit").click(function() {	
-	alert('글작성');
-//	location.href = "addAddrAf.do";
+	alert('주소입력 완료!');
 	$("#_frmForm").attr({ "target":"_self", "action":"addrUpdateAf.do" }).submit();
-	//$("#_frmForm").submit();
-	alert('글작성 123');	
+
 });
 </script>
-
-<div style="display:block; height: 500px; width:500px; float: left;">
-<!--지도 띄우는 div-->
-<div id="map" style="width: 400px; height: 400px;"></div> 
-</div>
-</div>
-</div>
-
 
 
 <script>
@@ -169,12 +167,8 @@ function initMap() {
 			
 			latlng = latlng.replace("(","");
 			latlng = latlng.replace(")","");
-			alert('AF replace: ' + latlng);
 			
 			var afterStr = latlng.split(',');
-			alert("lat:"+ afterStr[0]);
-			alert("lng:"+ afterStr[1]);
-
 			
 			document.getElementById('_lat').value = afterStr[0];
 			document.getElementById('_lng').value = afterStr[1];
@@ -196,6 +190,3 @@ function initMap() {
 
 	}
 </script>
-
-</body>
-</html>

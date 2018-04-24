@@ -7,6 +7,7 @@ bb\com\a\service\BbAddrService.class
 bb\com\a\model\Bb_FavoriteDto.class
 bb\com\a\model\Bb_BbsDto.class
 bb\com\a\service\BbMemberService.class
+bb\com\a\model\BB_DiyBurgerDto.class
 bb\com\a\service\MailService.class
 bb\com\a\model\Bb_BurgerTableDto.class
 bb\com\a\service\BbFaqService.class

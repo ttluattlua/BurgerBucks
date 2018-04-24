@@ -40,7 +40,24 @@ public class BbBurgerDaoImpl implements BbBurgerDao {
   }
   
   /*----------------------------------------------------------------------------
-   * 버거 불러오기 (디폴트 버거만)
+   * 버거 불러오기 (특정 버거)
+   * ----------------------------------------------------------------------------*/
+  @Override
+  public Bb_BurgerDto getBurger(int seq) {
+    return sqlSession.selectOne(ns+"getBurger", seq);
+  }
+    
+  /*----------------------------------------------------------------------------
+   * 버거 리스트 불러오기 (DIY 버거)
+   * ----------------------------------------------------------------------------*/
+  @Override
+  public List<Bb_BurgerDto> getBurgerList_diy(int creator) {
+    List<Bb_BurgerDto> burgerlist = sqlSession.selectList(ns+"getBurgerList_diy", creator);
+    return burgerlist;
+  }
+  
+  /*----------------------------------------------------------------------------
+   * 버거 리스트 불러오기 (Default 버거)
    * ----------------------------------------------------------------------------*/
   @Override
   public List<Bb_BurgerDto> getBurgerList_default() {
@@ -49,20 +66,11 @@ public class BbBurgerDaoImpl implements BbBurgerDao {
   }
   
   /*----------------------------------------------------------------------------
-   * 버거 불러오기 (DIY 버거만)
+   * 버거 리스트 불러오기 (DIY, Default 버거)
    * ----------------------------------------------------------------------------*/
   @Override
-  public List<Bb_BurgerDto> getBurgerList_diy(Bb_MemberDto mem) {
-    List<Bb_BurgerDto> burgerlist = sqlSession.selectList(ns+"getBurgerList_default");
-    return burgerlist; 
-  }
-  
-  /*----------------------------------------------------------------------------
-   * 버거 불러오기 (Default, DIY 버거)
-   * ----------------------------------------------------------------------------*/
-  @Override
-  public List<Bb_BurgerDto> getBurgerList_total(Bb_MemberDto mem) {
-    List<Bb_BurgerDto> burgerlist = sqlSession.selectList(ns+"getBurgerList_default");
+  public List<Bb_BurgerDto> getBurgerList_total(int creator) {
+    List<Bb_BurgerDto> burgerlist = sqlSession.selectList(ns+"getBurgerList_total", creator);
     return burgerlist;
   }
   

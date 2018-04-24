@@ -1,15 +1,5 @@
 package bb.com.a.controller;
 
-<<<<<<< HEAD
-import javax.servlet.http.HttpServletRequest;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-=======
 import java.util.List;
 import java.util.Map;
 
@@ -32,27 +22,19 @@ import bb.com.a.model.BB_DiyBurgerDto;
 import bb.com.a.model.Bb_BbsDto;
 import bb.com.a.model.Bb_MemberDto;
 import bb.com.a.service.BbBurgerDiyService;
->>>>>>> master
 
 @Controller
 public class BbDiyController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BbDiyController.class);	
 	
-<<<<<<< HEAD
-=======
 	@Autowired
 	BbBurgerDiyService bbBurgerDiyService;
 	
->>>>>>> master
 	//diy게시판으로이동
 	@RequestMapping(value="diyboard.do", method=RequestMethod.GET)
 	public String diyboard(Model model, HttpServletRequest req) throws Exception {
 		logger.info("BbDiyController diyboard");
-<<<<<<< HEAD
-		return "diyboard.tiles";
-	}
-=======
 		HttpSession session = req.getSession(true);
 		Bb_MemberDto login = (Bb_MemberDto)session.getAttribute("login");
 		List<Bb_BbsDto> bbsList = bbBurgerDiyService.getBurgerDiyList(login.getSeq());
@@ -124,6 +106,5 @@ public class BbDiyController {
 		}
 		
 		
->>>>>>> master
 
 }

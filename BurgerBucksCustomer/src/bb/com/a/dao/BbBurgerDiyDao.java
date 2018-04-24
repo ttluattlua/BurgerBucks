@@ -1,9 +1,5 @@
 package bb.com.a.dao;
 
-<<<<<<< HEAD
-public interface BbBurgerDiyDao {
-
-=======
 import java.util.List;
 
 import bb.com.a.model.BB_DiyBurgerDto;
@@ -35,5 +31,4 @@ public interface BbBurgerDiyDao {
 	   * 내버거게시판에등록
 	   * ----------------------------------------------------------------------------*/ 
 	  public void regiDiyBurger(Bb_BbsDto bsdto);
->>>>>>> master
 }

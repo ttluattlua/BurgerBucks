@@ -19,13 +19,25 @@
 <put-attribute name="main" value="/WEB-INF/views/login/regi.jsp"/>
 </definition>
 
+<!-- 비밀번호 찾기-->
+<definition name="pwdPage.tiles" extends="home.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/login/findPWD.jsp"/>
+</definition>
 
 <!--오더로 이동-->
 <definition name="order.tiles" extends="home.tiles">
 	<put-attribute name="main" value="/WEB-INF/views/order/orderpage.jsp"/>
 </definition>
 
+<!--diy게시판으로로이동-->
+<definition name="diyboard.tiles" extends="home.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/diyboard/diyboard.jsp"/>
+</definition>
 
+<!--diy버거등록게시판이동-->
+<definition name="addDiyBoard.tiles" extends="home.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/diyboard/addDiyBoard.jsp"/>
+</definition>
 
 
 <!--마이페이지로 이동 -->
@@ -62,46 +74,26 @@
 
 </definition>
 
+
 <!--주소추가 폼으로 이동 -->
-
-
-
 <definition name="goAddr.tiles" extends="changePwd.tiles">
-
-<put-attribute name="main_side" value="/WEB-INF/views/addr/goAddr.jsp"/>
-
+	<put-attribute name="main_side" value="/WEB-INF/views/addr/goAddr.jsp"/>
 </definition>
 
-<!--주소추가하기 2-->
-
-
-
+<!--주소추가하기 -->
 <definition name="addrAdd.tiles" extends="changePwd.tiles">
-
-<put-attribute name="main_side" value="/WEB-INF/views/addr/addrAdd.jsp"/>
-
+	<put-attribute name="main_side" value="/WEB-INF/views/addr/addrAdd.jsp"/>
 </definition>
 
 <!--주소추가 완료 후-->
-
-
-
 <definition name="addrAddAf.tiles" extends="changePwd.tiles">
-
-<put-attribute name="main_side" value="/WEB-INF/views/addr/addrAddAf.jsp"/>
-
+	<put-attribute name="main_side" value="/WEB-INF/views/addr/addrAddAf.jsp"/>
 </definition>
 
 <!--주소 수정-->
-
-
-
 <definition name="addrUpdate.tiles" extends="changePwd.tiles">
-
-<put-attribute name="main_side" value="/WEB-INF/views/addr/addrUpdate.jsp"/>
-
+	<put-attribute name="main_side" value="/WEB-INF/views/addr/addrUpdate.jsp"/>
 </definition>
-
 
 <!--기타페이지로 이동 -->
 <!-- 문의하기 페이지로 이동 -->

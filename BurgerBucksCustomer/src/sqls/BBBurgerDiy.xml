@@ -4,10 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="BBBurgerDiy">
-<<<<<<< HEAD
-
-
-=======
 <!--버거게시판 버거리스트-->
 <select id="getBurgerDiyList" resultType="bb.com.a.model.Bb_BbsDto" parameterType="Integer">
 SELECT A.SEQ, A.BURGER_SEQ burger_seq, 
@@ -71,7 +67,6 @@ ORDER BY SEQ
 INSERT INTO BB_BBS
 VALUES(BB_BBS_SEQ.NEXTVAL, #{burger_seq}, #{writer}, 0, 0)
 </insert>
->>>>>>> master
 
 </mapper>  
 

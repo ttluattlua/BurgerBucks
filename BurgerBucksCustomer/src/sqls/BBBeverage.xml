@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="BBBeverage">
+
+<!-- 재료 리스트 불러오기 -->
+<select id="getBeverageList" resultType="bb.com.a.model.Bb_BeverageDto">
+ SELECT A.SEQ, A.NAME, A.PRICE, A.CAL, A.DEL ,NVL(B.IMAGE_SRC, '없음') IMAGE_SRC
+ FROM BB_BEVERAGE A, (SELECT * FROM BB_IMAGE WHERE TABLE_NAME='BB_BEVERAGE') B
+ WHERE A.SEQ = B.REF_SEQ(+)
+</select>
+
+
+</mapper>  
+
+
+
+
+

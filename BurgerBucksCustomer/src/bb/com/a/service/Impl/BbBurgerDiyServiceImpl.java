@@ -1,9 +1,5 @@
 package bb.com.a.service.Impl;
 
-<<<<<<< HEAD
-import org.springframework.stereotype.Service;
-
-=======
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +8,11 @@ import org.springframework.stereotype.Service;
 import bb.com.a.dao.BbBurgerDiyDao;
 import bb.com.a.model.BB_DiyBurgerDto;
 import bb.com.a.model.Bb_BbsDto;
->>>>>>> master
 import bb.com.a.service.BbBurgerDiyService;
 
 @Service
 public class BbBurgerDiyServiceImpl implements BbBurgerDiyService {
 
-<<<<<<< HEAD
-=======
 	@Autowired
 	BbBurgerDiyDao bbBurgerDiyDao;
 	
@@ -61,5 +54,4 @@ public class BbBurgerDiyServiceImpl implements BbBurgerDiyService {
 		
 	}
 
->>>>>>> master
 }

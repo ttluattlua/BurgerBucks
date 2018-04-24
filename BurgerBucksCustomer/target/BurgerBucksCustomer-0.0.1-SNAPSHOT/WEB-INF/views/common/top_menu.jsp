@@ -40,7 +40,7 @@
       <div class="modal-content">
         <button type="button" class="close" data-dismiss="modal" style="margin: 10px; color: white;">×</button>
         
-        <div style="width:240px; margin: auto; padding-top: 40px;">
+        <div style="color:black; width:240px; margin: auto; padding-top: 40px;">
           <form action="login.do" method="post" name="loginuserInfo" onsubmit="return logincheckValue()">
             <h1 style="color: white; opacity: 1;">로그인</h1>
             
@@ -56,7 +56,7 @@
              
              <div style="margin-top: 20px;">
               <button class="btn btn-primary" type="submit"> 로그인 </button>
-              <button class="btn btn-primary" onclick="location.href='UserController?command=regist'">회원가입</button>
+              <button class="btn btn-primary" onclick="location.href='regi.do'">회원가입</button>
              </div>
              
           </form>
@@ -79,7 +79,7 @@
       </a>
     </div>
     <div style="height:100%; width: 160px; border-right: 2px ridge #7a7979; display: block; float: left;" align="center">
-      <a class="hover_a" style="color: #ededed;" href="#" data-toggle="modal" data-target="#burgerModal">
+      <a class="hover_a" style="color: #ededed;" href="diyboard.do" onclick="alert('현재 준비중입니다.')">
         <h4 style="size: 28px; margin-top: 30px;">DIY햄버거</h4>
       </a>
     </div>
@@ -88,8 +88,8 @@
         <h4 style="cursor:pointer; size: 28px; margin-top: 30px; color: #ededed; size: 28px; margin-top: 30px;">마이 페이지 ▼</h4>
       </a>
       <ul class="dropdown-menu">
-	      <li><a href="order_inquiry.do">주문 내역</a></li>
 	      <li><a href="order_history.do">주문 조회</a></li>
+	      <li><a href="order_inquiry.do">주문 내역</a></li>
 	      <li><a href="#">즐겨찾기</a></li>
 	      <li><a href="goAddr.do">주소록</a></li>
 	      <li><a href="updateProfile.do">회원정보 수정</a></li>
