@@ -53,5 +53,13 @@ public class BbBurgerDiyServiceImpl implements BbBurgerDiyService {
 		bbBurgerDiyDao.regiDiyBurger(bsdto);
 		
 	}
+	/*--------------------------------------------------------------------------------------------
+	 * 버거게시판리스트 가져오기
+	 *-------------------------------------------------------------------------------------------*/
+	@Override
+	public List<Bb_BbsDto> diySearch(Bb_BbsDto bsdto) {
+		// TODO Auto-generated method stub
+		return bbBurgerDiyDao.diySearch(bsdto);
+	}
 
 }

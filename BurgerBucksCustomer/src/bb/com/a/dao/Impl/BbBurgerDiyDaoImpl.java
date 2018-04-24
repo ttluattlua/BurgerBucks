@@ -52,6 +52,14 @@ public class BbBurgerDiyDaoImpl implements BbBurgerDiyDao {
 		int count =sqlSession.insert(ns+"regiDiyBurger", bsdto);
 		
 	}
+	/*--------------------------------------------------------------------------------------------
+	 * 버거게시판리스트 가져오기
+	 *-------------------------------------------------------------------------------------------*/
+	@Override
+	public List<Bb_BbsDto> diySearch(Bb_BbsDto bsdto) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(ns+"diySearch", bsdto);
+	}
 	
 	
 

@@ -68,6 +68,24 @@ INSERT INTO BB_BBS
 VALUES(BB_BBS_SEQ.NEXTVAL, #{burger_seq}, #{writer}, 0, 0)
 </insert>
 
+
+
+<!--버거게시판검색 버거리스트-->
+<select id="diySearch" resultType="bb.com.a.model.Bb_BbsDto" parameterType="bb.com.a.model.Bb_BbsDto">
+SELECT A.SEQ, A.BURGER_SEQ burger_seq, 
+A.WRITER,
+(SELECT NAME FROM BB_MEMBER WHERE SEQ=A.WRITER) ID ,
+A.BBS_LIKE, A.DEL, NVL(B.IMAGE_SRC, '없음') IMAGE_SRC, 
+(SELECT COUNT(SEQ) FROM BB_LIKE WHERE MEMBER_SEQ=#{writer}) LIKECHECK,
+NVL((SELECT price FROM BB_BURGER WHERE SEQ=A.BURGER_SEQ), 0) price,
+NVL((SELECT NAME FROM BB_BURGER WHERE SEQ=A.BURGER_SEQ), '버거이름x') burger_name
+FROM (SELECT * FROM BB_BBS WHERE DEL=0) A, (SELECT * FROM BB_IMAGE WHERE TABLE_NAME='BB_BURGER') B, (SELECT SEQ FROM BB_BURGER WHERE NAME LIKE '%'||#{s_keyword}||'%') C
+WHERE A.SEQ = B.REF_SEQ(+)
+AND A.BURGER_SEQ = C.SEQ
+ORDER BY SEQ DESC
+</select>
+
+
 </mapper>  
 
 
