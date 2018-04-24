@@ -94,15 +94,6 @@
 				
 			</c:forEach>
 		</div>
-		<!--페이징  -->
-		<div>
-			<jsp:include page="/WEB-INF/views/common/paging.jsp" flush="false">
-				<jsp:param value="${pageNumber }" name="pageNumber"/>
-				<jsp:param value="${pageCountPerScreen }" name="pageCountPerScreen"/>
-				<jsp:param value="${recordCountPerPage }" name="recordCountPerPage"/>
-				<jsp:param value="${totalRecordCount }" name="totalRecordCount"/>
-			</jsp:include>
-		</div>
 	</div>
 </div>
 <!-- 상세보기 모달-->
