@@ -123,13 +123,7 @@ public class BbOrderController {
 			HttpServletRequest request, Model model) throws Exception {
 		logger.info("Welcome BbaOrderController orderDetail! "+ new Date());
 		
-		HttpSession session = request.getSession(true);
-		String imagePath = (String)session.getAttribute("imagePath");
-		System.out.println("imagePath:"+imagePath);
-		
-		Bb_SideDto sideDto = null;
-		Bb_BeverageDto beverDto= null;
-		Bb_BurgerTableDto burgerDto = null;
+		System.out.println("orderDetail 들어옴");
 		
 		//버거 리스트 가져오기
 		List<Bb_BurgerTableDto> burgerList = bbOrderService.getBurgerList();
@@ -304,7 +298,7 @@ public class BbOrderController {
 		}
 		
 		for(int i = 0; i < odList.size(); i++) {
-			System.out.println("odList 최종 : " + odList.get(i).toString());
+			System.out.println("orderDetail의 odList 최종 : " + odList.get(i).toString());
 		}
 		
 		//정리 된 리스트를 한번에 출력
