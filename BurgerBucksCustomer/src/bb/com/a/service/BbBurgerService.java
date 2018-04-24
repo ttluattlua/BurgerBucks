@@ -1,24 +1,22 @@
-package bb.com.a.dao;
+package bb.com.a.service;
 
 import java.util.List;
 
-import bb.com.a.model.Bb_AddrDto;
 import bb.com.a.model.Bb_BurgerDto;
 import bb.com.a.model.Bb_IngredientDto;
-import bb.com.a.model.Bb_MemberDto;
 
-public interface BbBurgerDao {
+public interface BbBurgerService {
 	
-	/*----------------------------------------------------------------------------
-	 * 버거 추가
-	 * ----------------------------------------------------------------------------*/
+  /*----------------------------------------------------------------------------
+   * 버거 추가
+   * ----------------------------------------------------------------------------*/
   public boolean addBurger(Bb_BurgerDto burgerdto);
   
   /*----------------------------------------------------------------------------
    * 버거 수정
    * ----------------------------------------------------------------------------*/
   public void updBurger(Bb_BurgerDto burgerdto);
-	
+  
   /*----------------------------------------------------------------------------
    * 버거 불러오기 (특정 버거)
    * ----------------------------------------------------------------------------*/
@@ -43,6 +41,5 @@ public interface BbBurgerDao {
    * 모든 재료 불러오기
    * ----------------------------------------------------------------------------*/
   public List<Bb_IngredientDto> getIngredientList();
-
 
 }
