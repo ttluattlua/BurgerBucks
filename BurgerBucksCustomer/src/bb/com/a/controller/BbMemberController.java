@@ -74,13 +74,10 @@ public class BbMemberController {
 	 *-------------------------------------------------------------------------------------------*/
 
 	@RequestMapping(value="login.do", method= {RequestMethod.POST, RequestMethod.GET})
-	public String login(Bb_MemberDto bmdto, HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception {
+	public String login(Bb_MemberDto bmdto, HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		logger.info("BbMemberController login");
 		System.out.println(bmdto.toString());
 		Bb_MemberDto login = bbMemberSerivce.login(bmdto);
-		
-		List<Bb_AddrDto> AddrList = BbAddrService.allAddress(login);
-		System.out.println("AddrList Size : " + AddrList.size());
 		
 		//회원정보가 일치했을 경우 (주소도 불러옴)
 		if(login != null && !login.getId().equals("")) {
