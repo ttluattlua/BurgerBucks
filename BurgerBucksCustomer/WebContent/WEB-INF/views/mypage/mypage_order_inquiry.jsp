@@ -40,7 +40,7 @@
 
 <h2>주문 조회</h2>
 <!--주문조회-->
- 	<div style=" padding-top:50px; width: 750px; height: 620px;">
+ 	<div style=" padding-top:50px; width: 750px; height: 1200px;">
  		
 			<!-- <i class="material-icons">shopping_cart</i> 장바구니 / 
 			<i class="material-icons">payment</i> 주문완료 / 

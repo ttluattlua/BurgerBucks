@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.bootstrap.min.css">
 <!--주문조회-->
 
+<h2>FAQ</h2>
  	<div style=" padding-top:50px; width: 750px; height: 620px;">
  		
 		

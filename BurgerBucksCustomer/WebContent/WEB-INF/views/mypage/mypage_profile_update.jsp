@@ -5,45 +5,42 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:requestEncoding value="utf-8"/> 
 <!--회원정보수정-->
+<h2>회원정보수정</h2>
 
- 	<div style=" padding-top:50px; width: 750px; height: 620px;">
- 		
-		<div align="center" style="width: 500px;">
+ 	<div style=" padding-top:50px; width: 800px; height: 620px;">
+		<div style="width: 800px;">
 	 		<form action="deleteMember.do">
 	 			<input type="hidden" id="profile_seq" name="seq" value="${login.seq}">
-	 			<table>
-	 				<tr>
-	 					<td>
-	 						 <div class="form-group">
-							    <label for="profile_id">아이디</label>
+	 			<div class="row p-t-20">
+                            <div class="col-md-6">
+                                <div class="form-group">
+							    <label class="control-label" for="profile_id">아이디</label>
 							    <input type="text" class="form-control" id="profile_id" name="id" value="${login.id }" readonly="readonly">
 			  				</div>
-	 					</td>
-	 					<td>
-	 						 <div class="form-group">
-							    <label for="grade">등급
+			  				</div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+							    <label class="control-label" for="grade">등급
 							    <a href="#" data-toggle="tooltip" title="등급">
 							    <span class="label label-info">i</span>
 							    </a>
 							    </label>
 							    <input type="text" class="form-control" id="grade" value="${login.grade}" readonly="readonly">
 			  				</div>
-	 					</td>
-	 				</tr>
-	 				
-	 				<tr>
-	 					<td>
-	 						 <div class="form-group">
-							    <label for="exp">경험치
+			  				</div>	</div>
+	 				<div class="row p-t-20">
+                            <div class="col-md-6">
+                                <div class="form-group">
+							    <label for="exp" style="text-align: left;">경험치
 							    <a href="#" data-toggle="tooltip" title="${exp }">
 							    <span class="label label-info">i</span>
 							    </a>
 							    </label>
 							    <input type="text" class="form-control" id="exp" value="${login.exp }" placeholder="이름을 입력해주세요" readonly="readonly">
 			  				</div>
-	 					</td>
-	 					<td>
-	 						 <div class="form-group">
+			  				</div>
+                            <div class="col-md-6">
+                                <div class="form-group">
 							    <label for="mileage">마일리지
 							    <a href="#" data-toggle="tooltip" title="마일리지">
 							    <span class="label label-info">i</span>
@@ -51,29 +48,26 @@
 							    </label>
 							    <input type="text" class="form-control" id="mileage" value="${login.mileage }" readonly="readonly">
 			  				</div>
-	 					</td>
-	 				</tr>
-	 				
-	 				<tr>
-	 					<td colspan="2">
-	 						 <div class="form-group">
-							    <label for="name">이름</label>
+			  				</div>
+			  				</div>
+			  				<div class="row p-t-20">
+                            <div class="col-md-12">
+                                <div class="form-group">
+							    <label class="control-label" for="name">이름</label>
 							    <input type="text" class="form-control" id="name" value="${login.name }" placeholder="이름을 입력해주세요">
 			  				</div>
-	 					</td>
-	
-	 				</tr>
-	 				
-	 				<tr>
-	 					<td>
-	 						 <div class="form-group">
-							    <label for="bday">생일</label>
+			  				</div>
+			  				</div>
+			  				<div class="row p-t-20">
+                            <div class="col-md-6">
+                                <div class="form-group">
+							    <label class="control-label" for="bday">생일</label>
 							    <input type="date" class="form-control" id="bday" value="${login.bday }" placeholder="생일을 입력해주세요">
 			  				</div>
-	 					</td>
-	 					<td>
-	 						 <div class="form-group">
-							    <label for="sex">성별</label>
+			  				</div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+							    <label class="control-label" for="sex">성별</label>
 						
 							    	<c:if test="${login.sex == 0 }">
 									    <select class="form-control" id="sex">							    	
@@ -90,30 +84,26 @@
 							    	</c:if>
 											
 			  				</div>
-	 					</td>
-	 				</tr>
-	 				
-	 				<tr>
-	 					<td colspan="2">
-	 						 <div class="form-group">
-							    <label for="phone">핸드폰</label>
+			  				</div>
+			  				</div>
+			  				
+			  				<div class="row p-t-20">
+                            <div class="col-md-12">
+                                <div class="form-group">
+							    <label class="control-label" for="phone" style="text-align: left;">핸드폰</label>
 							    <input type="text" class="form-control" id="phone" value="${login.phone }" placeholder="이름을 입력해주세요">
 			  				</div>
-	 					</td>
-	
-	 				</tr>
-	 				
-	 				<tr>
-	 					<td>
-	 						 <button class="btn btn-success" style="width: 400px; margin-top:50px;" type="button" onclick="updateProfile()">회원정보 수정</button>
-	 					</td>
-	 					<td>
-	 						 <button class="btn btn-success" style="width: 400px; margin-top:50px;" type="submit">회원탈퇴</button>
-	 					</td>
-	 				</tr>
-	 			</table>
+			  				</div>
+			  				</div>
+								<div style="text-align: center;">
+	 						 <button class="btn btn-success" style="width: 380px; margin-top:50px;" type="button" onclick="updateProfile()">회원정보 수정</button>
+	 						 &nbsp;&nbsp;&nbsp;&nbsp;
+	 						 <button class="btn btn-success" style="width: 380px; margin-top:50px;" type="submit">회원탈퇴</button>
+	 						 </div>
 			</form>
+			
 		</div>
+		
 
 	</div>
 	

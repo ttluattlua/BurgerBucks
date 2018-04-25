@@ -6,6 +6,8 @@
 <fmt:requestEncoding value="utf-8"/> 
 <!--비밀번호 변경-->
 
+<h2>비밀번호 변경</h2>
+
  	<div style=" padding-top:50px; width: 750px; height: 620px;">
  		
  		

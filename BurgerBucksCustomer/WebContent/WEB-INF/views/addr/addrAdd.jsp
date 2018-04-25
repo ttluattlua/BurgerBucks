@@ -12,16 +12,14 @@
     https://console.developers.google.com' and get your key value
     > 파라미터 key 값 제 코드라서 각자 받아서 써야해요  https://console.developers.google.com 여기들어가서 키값받으면 됨
 -->
-<!--구글맵 api코드: 서원계정으로 받음 -->
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW3AnL99zotumTGhgh3B8lT3NgEACpRoo&callback=initMap">
-</script>
+
 <!-- jquery-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-
-<div style="width: 750px; height: 620px;">
-<div style="display:block; width:480px; height:400px; float: left; margin-right:20px; border-radius: 4px; ">
+<h2>주소 추가하기</h2><br><br>
+<div>
+<div style="width: 800px; height: 620px;">
+<div style="display:block; width:500px; height:400px; float: left; margin-right:20px; border-radius: 4px; ">
 
 <!-- 주소 form 시작 -->
 <form action="./addrAddAf.do" id="_frmForm"  method="get">
@@ -37,7 +35,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW3AnL99zotumTGhgh3B8lT3N
 <th style="border: 1px; padding: 5px; background-color:#eeeeee" scope="row">주소</th>
 <td height="80" style="padding:15;">
 <input type="text" id="_postcode" name="postcode" size="10" >-
-<input type="button" onclick="findPostCode()" value="우편번호 검색"><br>
+<input type="button" onclick="findPostCode()" value="우편번호 검색" class="btn btn-outlined btn-danger"><br>
 <p style="font-size:7px">(우편번호)</p>
 <input type="text" id="_roadAddress" name="address" size="50"><br>
 <p style="font-size:7px">(도로명 주소)</p>
@@ -52,7 +50,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW3AnL99zotumTGhgh3B8lT3N
 </table>
 <br>
 <div align="right" style="margin-right:20px"> <!-- style="float:right" -->
-<input type="button" id="_btnSubmit" value="주소저장">
+<input type="button" id="_btnSubmit" value="주소저장" class="btn btn-success">
 </div>
 </form>
 </div>
@@ -61,6 +59,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW3AnL99zotumTGhgh3B8lT3N
 <!--지도 띄우는 div-->
 <div style="display:block; width:250px; height: 400px; float: left;">
 <div id="map" style="width: 250px; height: 400px;"></div> 
+</div>
 </div>
 </div>
 
@@ -188,3 +187,8 @@ function initMap() {
 
 	}
 </script>
+
+<!--구글맵 api코드: 서원계정으로 받음 -->
+<script async defer
+ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxS09DQjD3WePPaHn8KNG5beXCleuL3Ls&callback=initMap">
+ </script>

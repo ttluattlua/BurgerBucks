@@ -26,7 +26,7 @@
 		
 
 		<!--main-->
-		<div style="padding: 0; margin: 0 auto; margin-top:20px; margin-bottom:20px; height: 700px; width: 1000px;  background: #E4DFDE;  border-radius: 1em;">
+		<div style="padding: 0; margin: 0 auto; margin-top:20px; margin-bottom:20px; height: 1000px; width: 1000px;  background: #E4DFDE;  border-radius: 1em;">
 			<div class="mypage_common" >
 				<tiles:insertAttribute name="left_side"/>
 			</div>

@@ -46,7 +46,7 @@ if(session.getAttribute("login") != null){
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
  
 <h2>주문 내역</h2>
-<div style=" padding-top:50px; width: 750px; height: 620px;">
+<div style=" padding-top:50px; width: 750px; height: 1000px;">
 <table id="example" class="table table-striped table-bordered" style="width:100%; background: white;">
 	<thead id="tthead">
 	<tr id="trtr">

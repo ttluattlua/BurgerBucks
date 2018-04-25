@@ -6,6 +6,8 @@
 <fmt:requestEncoding value="utf-8"/> 
 <!--문의하기-->
 
+<h2>문의하기</h2>
+
  	<div style=" padding-top:50px; width: 750px; height: 620px;">
  		
  		
