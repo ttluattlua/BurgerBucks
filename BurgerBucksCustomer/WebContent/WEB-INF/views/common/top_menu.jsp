@@ -79,7 +79,7 @@
       </a>
     </div>
     <div style="height:100%; width: 160px; border-right: 2px ridge #7a7979; display: block; float: left;" align="center">
-      <a class="hover_a" style="color: #ededed;" href="diyboard.do" onclick="alert('현재 준비중입니다.')">
+      <a class="hover_a" style="color: #ededed;" href="diyboard.do">
         <h4 style="size: 28px; margin-top: 30px;">DIY햄버거</h4>
       </a>
     </div>
@@ -90,7 +90,6 @@
       <ul class="dropdown-menu">
 	      <li><a href="order_inquiry.do">주문 조회</a></li>
 	      <li><a href="order_history.do">주문 내역</a></li>
-	      <li><a href="#">즐겨찾기</a></li>
 	      <li><a href="goAddr.do">주소록</a></li>
 	      <li><a href="updateProfile.do">회원정보 수정</a></li>
 	      <li><a href="changePwd.do">비밀번호 변경</a></li>

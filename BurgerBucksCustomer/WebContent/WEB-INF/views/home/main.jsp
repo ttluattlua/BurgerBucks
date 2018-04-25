@@ -104,7 +104,7 @@
 	        </div>
 	        
 	        <div class="input-group" style="width: 240px; margin-top:10px;">
-	           <button class="btn btn-success" style="width: 240px; margin-top:15px;">주문하러가기</button>
+	           <!-- <button class="btn btn-success" style="width: 240px; margin-top:15px;" type="button" onclick="">주문하러가기</button> -->
 	        </div>
 	        
 	        <div class="input-group" style="width: 240px; margin-top:10px;">

@@ -1,11 +1,13 @@
 package bb.com.a.controller;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -13,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,8 +25,15 @@ import bb.com.a.model.Bb_AddrDto;
 import bb.com.a.model.Bb_MemberDto;
 import bb.com.a.model.Bb_OrderDto;
 import bb.com.a.model.Bb_StoreDto;
+import bb.com.a.service.BbAddrService;
+import bb.com.a.service.BbBeverageService;
+import bb.com.a.service.BbBurgerService;
+import bb.com.a.service.BbMemberService;
 import bb.com.a.service.BbOrderSerivce;
+import bb.com.a.service.BbSideService;
+import bb.com.a.service.BbaBurgerService;
 import bb.com.a.model.Bb_BeverageDto;
+import bb.com.a.model.Bb_BurgerDto;
 import bb.com.a.model.Bb_BurgerTableDto;
 import bb.com.a.model.Bb_IngredientDto;
 import bb.com.a.model.Bb_MenuTableDto;
@@ -38,6 +48,16 @@ public class BbOrderController {
 	
 	@Autowired
 	BbOrderSerivce bbOrderService;
+	@Autowired
+	BbBurgerService bbBurgerService;
+	@Autowired
+	BbSideService bbSideService;
+	@Autowired
+	BbBeverageService bbBeverageService;
+	@Autowired
+	BbAddrService bbAddrService;
+	@Autowired
+	BbMemberService bbMemberService;
 	
 	
 
@@ -45,9 +65,69 @@ public class BbOrderController {
 	 * 오더페이지 클릭했을때 
 	 *-------------------------------------------------------------------------------------------*/
 	@RequestMapping(value="order.do", method=RequestMethod.GET)
-	public String home(Model model) {
+	public String home(Model model, HttpServletRequest req,  HttpServletResponse resp) throws Exception {
 		logger.info("BbOrderController order");
-		return "order.tiles";
+	    
+	    HttpSession session = req.getSession(true);
+	    Bb_MemberDto login = (Bb_MemberDto)session.getAttribute("login");
+	    
+	    List<Bb_AddrDto> AddrList = bbAddrService.allAddress(login);
+	    
+	    if (AddrList.size()==0) {
+	      resp.setCharacterEncoding("UTF-8"); 
+	      resp.setContentType("text/html; charset=UTF-8");
+	      
+	      PrintWriter alerting = resp.getWriter();
+	      alerting.println("<script language='javascript'>");
+	      alerting.println("alert('주문을 하기 위한 주소를 추가해주세요');");
+	      alerting.println("location.href='goAddr.do';"); 
+	      
+	      alerting.println("</script>"); 
+	      alerting.close();
+	    }
+	    
+	    List<Bb_BurgerDto> BurgerListDefault = bbBurgerService.getBurgerList_default();
+	    List<Bb_BurgerDto> BurgerListDiy = bbBurgerService.getBurgerList_diy(login.getSeq());
+	    List<Bb_SideDto> SideList = bbSideService.getSideList();
+	    List<Bb_BeverageDto> BeverageList = bbBeverageService.getBeverageList();
+	    List<Bb_IngredientDto> IngredientList = bbBurgerService.getIngredientList();
+	    List<Bb_IngredientDto> bun_list = new ArrayList();
+	    List<Bb_IngredientDto> patty_list = new ArrayList();
+	    List<Bb_IngredientDto> vege_list = new ArrayList();
+	    List<Bb_IngredientDto> etc_list = new ArrayList();
+	    
+	    
+	    for (int i=0; i<IngredientList.size(); i++) {
+	      switch (IngredientList.get(i).getTypes()) {
+	      case 1: bun_list.add(IngredientList.get(i)); break;
+	      case 2: patty_list.add(IngredientList.get(i)); break;
+	      case 3: vege_list.add(IngredientList.get(i)); break;
+	      case 4: etc_list.add(IngredientList.get(i)); break;
+	      }
+	    }
+	    
+	    Bb_IngredientDto first_bun = bun_list.get(0);
+	    
+	    Bb_OrderDto orderDto = bbMemberService.getOrderBasket(login);
+	    
+	    model.addAttribute("login", login);
+	    
+	    model.addAttribute("BurgerListDefault", BurgerListDefault);
+	    model.addAttribute("BurgerListDiy", BurgerListDiy);
+	    model.addAttribute("SideList", SideList);
+	    model.addAttribute("BeverageList", BeverageList);
+	    model.addAttribute("AddrList", AddrList);
+	    
+	    model.addAttribute("bun_list", bun_list);
+	    model.addAttribute("patty_list", patty_list);
+	    model.addAttribute("vege_list", vege_list);
+	    model.addAttribute("etc_list", etc_list);
+	    
+	    model.addAttribute("first_bun", first_bun);
+	    
+	    model.addAttribute("orderDto", orderDto);
+	    
+			return "order.tiles";
 	}
 	
 	/*--------------------------------------------------------------------------------------------
@@ -60,6 +140,7 @@ public class BbOrderController {
 		Bb_MemberDto login = (Bb_MemberDto)session.getAttribute("login");
 		
 		List<Bb_OrderDto> orderList = bbOrderService.getOrderInquiry(login.getSeq());
+		
 		if(orderList.size() == 0) {
 			System.out.println("주문내역없음");
 		}else {
@@ -306,5 +387,112 @@ public class BbOrderController {
 		
 		return odList;
 	}
+	
+	/*--------------------------------------------------------------------------------------------
+	   * 주문 완료
+	   *-------------------------------------------------------------------------------------------*/
+		@ResponseBody
+		@RequestMapping(value="orderEnd.do", method = {RequestMethod.POST,RequestMethod.GET})
+	  public int orderEnd(@RequestBody Map<String, Object> map) {
+	    logger.info("BbOrderController orderEnd");
+	    
+	    
+	    System.out.println("--------------------------오더 등록-----------------------------");
+	    int seq = (int)map.get("seq");
+	    System.out.println("seq :"+seq );
+	    
+	    int member_seq = (int)map.get("member_seq");
+	    System.out.println("member_seq :"+member_seq);
+	    
+	    int member_addr = Integer.parseInt((String)map.get("member_addr"));
+	    System.out.println("member_addr :"+member_addr);
+	    
+	    int store_seq = (int)map.get("store_seq");
+	    System.out.println("store_seq :"+ store_seq);
+	    
+	    int price = (int)map.get("price");
+	    System.out.println("price :"+ price);
+	    
+	    String order_date = (String)map.get("order_date");
+	    System.out.println("order_date :"+ order_date);
+	    
+	    int status = (int)map.get("status");
+	    System.out.println("status :"+ status);
+	    
+	    int del = (int)map.get("del");
+	    System.out.println("del :"+ del);
+
+	    int orderSequence = bbMemberService.addOrder(new Bb_OrderDto(seq, member_seq, member_addr, store_seq, order_date, status, price, del));
+	    
+	    
+	    return orderSequence;
+	  }
+		
+		/*--------------------------------------------------------------------------------------------
+	   * 주문 완료
+	   *-------------------------------------------------------------------------------------------*/
+	  @ResponseBody
+	  @RequestMapping(value="menuEnd.do", method = {RequestMethod.POST,RequestMethod.GET})
+	  public int menuEnd(@RequestBody Map<String, Object> map) {
+	    logger.info("BbOrderController menuEnd");
+	    
+	    System.out.println("--------------------------메뉴 등록-----------------------------");
+	    
+	    int burgerSeq = (int)map.get("burgerSeq");
+	    System.out.println("burgerSeq : "+ burgerSeq );
+	    
+	    int sideSeq = (int)map.get("sideSeq");
+	    System.out.println("sideSeq : "+sideSeq);
+	    
+	    int beverageSeq = (int)map.get("beverageSeq");
+	    System.out.println("beverageSeq : "+beverageSeq);
+	    
+	    String menuName = (String)map.get("menuName");
+	    System.out.println("menuName : "+ menuName);
+	    
+	    int userSeq = (int)map.get("userSeq");
+	    System.out.println("userSeq : "+ userSeq);
+	    
+	    int price = (int)map.get("price");
+	    System.out.println("price : "+ price);
+	    
+	    int cal = (int)map.get("cal");
+	    System.out.println("cal : "+ cal);
+	    
+	    int orderSeq = (int)map.get("orderSeq");
+	    System.out.println("orderSeq : "+ orderSeq);
+	    
+	    int menuSeq = bbMemberService.addMenu(new Bb_MenuTableDto(0, burgerSeq, sideSeq, beverageSeq, menuName, userSeq, price, cal, 0));
+	    System.out.println("menuSeq : "+ menuSeq);
+	        
+	    return menuSeq;
+	  }
+	  
+	  /*--------------------------------------------------------------------------------------------
+	   * 주문 완료
+	   *-------------------------------------------------------------------------------------------*/
+	  @ResponseBody
+	  @RequestMapping(value="orderMenuEnd.do", method = {RequestMethod.POST,RequestMethod.GET})
+	  public String orderMenuEnd(@RequestBody Map<String, Object> map) {
+	    logger.info("BbOrderController orderMenuEnd");
+	    
+	    System.out.println("--------------------------오더 메뉴 등록-----------------------------");
+	    
+	    int price = (int)map.get("price");
+	    System.out.println("price : "+ price);
+	    
+	    int cal = (int)map.get("cal");
+	    System.out.println("cal : "+ cal);
+	    
+	    int orderSeq = (int)map.get("orderSeq");
+	    System.out.println("orderSeq : "+ orderSeq);
+	    
+	    int menuSeq = (int)map.get("menuSeq");
+	    System.out.println("menuSeq : "+ menuSeq);
+	    
+	    bbMemberService.addOrderMenu(new Bb_OrderMenuDto(0, orderSeq, menuSeq, 1, price, 0));
+	        
+	    return "success";
+	  }
 
 }

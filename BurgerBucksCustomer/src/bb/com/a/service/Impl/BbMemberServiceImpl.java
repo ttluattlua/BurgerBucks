@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import bb.com.a.dao.BbMemberDao;
 import bb.com.a.model.Bb_AddrDto;
 import bb.com.a.model.Bb_MemberDto;
+import bb.com.a.model.Bb_MenuTableDto;
+import bb.com.a.model.Bb_OrderDto;
+import bb.com.a.model.Bb_OrderMenuDto;
 import bb.com.a.service.BbMemberService;
 
 @Service
@@ -87,8 +90,35 @@ public class BbMemberServiceImpl implements BbMemberService {
 	public int makeOrderBasket(Bb_MemberDto mem) {
 		return bbMemberDao.makeOrderBasket(mem);
 	}
+	
+	/*----------------------------------------------------------------------------
+	   * 장바구니 불러오기
+	   * ----------------------------------------------------------------------------*/
+	  @Override
+	  public Bb_OrderDto getOrderBasket(Bb_MemberDto mem) {
+	    return bbMemberDao.getOrderBasket(mem);
+	  }
 
-
+	/*----------------------------------------------------------------------------
+	   * 오더 등록
+	   * ----------------------------------------------------------------------------*/
+	  public int addOrder(Bb_OrderDto order) {
+	    return bbMemberDao.addOrder(order);
+	  }
+	  
+	  /*----------------------------------------------------------------------------
+	   * 메뉴 등록
+	   * ----------------------------------------------------------------------------*/
+	  public int addMenu(Bb_MenuTableDto menu) {
+	    return bbMemberDao.addMenu(menu);
+	  }
+	  
+	  /*----------------------------------------------------------------------------
+	   * 오더 메뉴 등록
+	   * ----------------------------------------------------------------------------*/
+	  public void addOrderMenu(Bb_OrderMenuDto orderMenu) {
+	    bbMemberDao.addOrderMenu(orderMenu);
+	  }
 
 
 	

@@ -34,6 +34,19 @@ public class Bb_OrderDto implements Serializable {
 		this.del = del;
 		this.order_menu = order_menu;
 	}
+	
+	public Bb_OrderDto(int seq, int member_seq, int member_addr, int store_seq, String order_date, int status,
+      int price, int del) {
+    super();
+    this.seq = seq;
+    this.member_seq = member_seq;
+    this.member_addr = member_addr;
+    this.store_seq = store_seq;
+    this.order_date = order_date;
+    this.status = status;
+    this.price = price;
+    this.del = del;
+  }
 
 
 

@@ -2,6 +2,9 @@ package bb.com.a.service;
 
 import bb.com.a.model.Bb_AddrDto;
 import bb.com.a.model.Bb_MemberDto;
+import bb.com.a.model.Bb_MenuTableDto;
+import bb.com.a.model.Bb_OrderDto;
+import bb.com.a.model.Bb_OrderMenuDto;
 
 public interface BbMemberService {
 	
@@ -49,5 +52,25 @@ public interface BbMemberService {
 	 * 가입 후 장바구니 만들기
 	 * ----------------------------------------------------------------------------*/
 	public int makeOrderBasket(Bb_MemberDto mem);
+	
+	/*----------------------------------------------------------------------------
+	   * 장바구니 불러오기
+	   * ----------------------------------------------------------------------------*/
+	  public Bb_OrderDto getOrderBasket(Bb_MemberDto mem);
+	  
+	  /*----------------------------------------------------------------------------
+	   * 오더 등록
+	   * ----------------------------------------------------------------------------*/
+	  public int addOrder(Bb_OrderDto order);
+	  
+	  /*----------------------------------------------------------------------------
+	   * 메뉴 등록
+	   * ----------------------------------------------------------------------------*/
+	  public int addMenu(Bb_MenuTableDto menu);
+	  
+	  /*----------------------------------------------------------------------------
+	   * 오더 메뉴 등록
+	   * ----------------------------------------------------------------------------*/
+	  public void addOrderMenu(Bb_OrderMenuDto orderMenu);
 
 }

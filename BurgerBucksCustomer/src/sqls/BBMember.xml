@@ -72,6 +72,39 @@ SELECT NVL(COUNT(*), 0) FROM BB_MEMBER WHERE ID=#{id}
 UPDATE BB_MEMBER SET PASSWORD=#{password} WHERE ID=#{id} 
 </update>
 
+<!--장바구니 불러오기-->
+<select id="getOrderBasket" resultType="bb.com.a.model.Bb_OrderDto" parameterType="bb.com.a.model.Bb_MemberDto">
+ SELECT SEQ, MEMBER_SEQ, MEMBER_ADDR, STORE_SEQ, PRICE, ORDER_DATE, STATUS, PRICE, DEL 
+ FROM BB_ORDER 
+ WHERE SEQ=#{seq}
+ AND STATUS = 0
+</select>
+
+<!-- 오더 등록 -->
+<insert id="addOrder" parameterType="bb.com.a.model.Bb_OrderDto">
+  INSERT INTO BB_ORDER(SEQ, MEMBER_SEQ, MEMBER_ADDR, STORE_SEQ, ORDER_DATE, STATUS, PRICE, DEL) 
+  VALUES(BB_ORDER_SEQ.NEXTVAL, #{member_seq}, #{member_addr}, #{store_seq}, SYSDATE, 0, #{price}, 0)
+  <selectKey keyProperty="seq" resultType="Integer" order="AFTER"> 
+  SELECT BB_ORDER_SEQ.CURRVAL FROM dual 
+  </selectKey>
+</insert>
+
+<!-- 메뉴 등록 -->
+<insert id="addMenu" parameterType="bb.com.a.model.Bb_MenuTableDto">
+  INSERT INTO BB_MENU (SEQ, BURGER, SIDE, BEVERAGE, NAME, CREATOR, PRICE, CAL, DEL) 
+  VALUES(BB_MENU_SEQ.NEXTVAL, #{burger}, #{side}, #{beverage}, #{name}, #{creator}, #{price}, #{cal}, 0) 
+  <selectKey keyProperty="seq" resultType="Integer" order="AFTER"> 
+  SELECT BB_MENU_SEQ.CURRVAL FROM dual
+  </selectKey>
+</insert>
+
+<!-- 오더 메뉴 등록 -->
+<insert id="addOrderMenu" parameterType="bb.com.a.model.Bb_OrderMenuDto">
+  INSERT INTO BB_ORDERMENU(SEQ, ORDER_SEQ, MENU_SEQ, QUANTITY, DEL)
+  VALUES(BB_ORDER_SEQ.NEXTVAL, #{order_seq}, #{menu_seq}, #{quantity}, 0) 
+</insert>
+
+
 </mapper>  
 
 

@@ -1,8 +1,14 @@
 package bb.com.a.dao;
 
+import java.util.List;
+
 import bb.com.a.model.Bb_AddrDto;
 import bb.com.a.model.Bb_BurgerDto;
 import bb.com.a.model.Bb_MemberDto;
+import bb.com.a.model.Bb_MenuDto;
+import bb.com.a.model.Bb_MenuTableDto;
+import bb.com.a.model.Bb_OrderDto;
+import bb.com.a.model.Bb_OrderMenuDto;
 
 public interface BbMemberDao {
 	/*----------------------------------------------------------------------------
@@ -49,6 +55,36 @@ public interface BbMemberDao {
 	 * 가입 후 장바구니 만들기
 	 * ----------------------------------------------------------------------------*/
 	public int makeOrderBasket(Bb_MemberDto mem);
+	
+	/*----------------------------------------------------------------------------
+	   * 장바구니 불러오기
+	   * ----------------------------------------------------------------------------*/
+	  public Bb_OrderDto getOrderBasket(Bb_MemberDto mem);
+	  
+	  /*----------------------------------------------------------------------------
+	   * 장바구니에 상품 추가하기
+	   * ----------------------------------------------------------------------------*/
+	  public void addOrderBasketMenu(Bb_MenuDto menu);
+	  
+	  /*----------------------------------------------------------------------------
+	   * 장바구니 리스트
+	   * ----------------------------------------------------------------------------*/
+	  public List<Bb_OrderMenuDto> getOrderBasketMenu(Bb_OrderDto order);
+	  
+	  /*----------------------------------------------------------------------------
+	   * 오더 등록
+	   * ----------------------------------------------------------------------------*/
+	  public int addOrder(Bb_OrderDto order);
+	  
+	  /*----------------------------------------------------------------------------
+	   * 메뉴 등록
+	   * ----------------------------------------------------------------------------*/
+	  public int addMenu(Bb_MenuTableDto menu);
+	  
+	  /*----------------------------------------------------------------------------
+	   * 오더 메뉴 등록
+	   * ----------------------------------------------------------------------------*/
+	  public void addOrderMenu(Bb_OrderMenuDto orderMenu);
 	
 
 

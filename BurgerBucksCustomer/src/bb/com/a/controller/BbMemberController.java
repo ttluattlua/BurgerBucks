@@ -73,27 +73,24 @@ public class BbMemberController {
 	 *-------------------------------------------------------------------------------------------*/
 
 	@RequestMapping(value="login.do", method= {RequestMethod.POST, RequestMethod.GET})
-	public String login(Bb_MemberDto bmdto, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		logger.info("BbMemberController login");
-		System.out.println(bmdto.toString());
-		Bb_MemberDto login = bbMemberSerivce.login(bmdto);
-		//회원정보가 일치했을 경우 (주소도 불러옴)
-		if(login != null && !login.getId().equals("")) {
-			//세션에 아이디 주소 다 저장
-			HttpSession session = req.getSession(true);
-			session.setAttribute("login", login);
-			//혜진 집  http://192.168.219.110:8191/upload/
-			session.setAttribute("imagePath", "http://192.168.219.110:8191/upload/");
-			System.out.println("로그인 성공");
-		}else {
-
-
-			System.out.println("로그인 실패");
-		}
-		
-		return "redirect:/home.do";
-
-	}
+	   public String login(Model model, Bb_MemberDto bmdto, HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	      logger.info("BbMemberController login");
+	      System.out.println(bmdto.toString());
+	      Bb_MemberDto login = bbMemberSerivce.login(bmdto);
+	      //회원정보가 일치했을 경우 (주소도 불러옴)
+	      if(login != null && !login.getId().equals("")) {
+	         //세션에 아이디 주소 다 저장
+	         HttpSession session = req.getSession(true);
+	         session.setAttribute("login", login);
+	         List<Bb_AddrDto> list = BbAddrService.allAddress(login);
+	         session.setAttribute("list",list);
+	         System.out.println("로그인 성공");
+	      }else {
+	         System.out.println("로그인 실패");
+	      }
+	      
+	      return "redirect:/home.do";
+	   }
 	
 
 	
